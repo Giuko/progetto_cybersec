@@ -1,0 +1,2 @@
+*.fd filter=lfs diff=lfs merge=lfs -text
+qemu/build/qemu-system-arm filter=lfs diff=lfs merge=lfs -text
