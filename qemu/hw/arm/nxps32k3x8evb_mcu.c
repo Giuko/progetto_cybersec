@@ -6,11 +6,15 @@
 #include "hw/qdev-clock.h"
 #include "hw/misc/unimp.h"
 #include "qemu/log.h"
-
+#include "hw/char/pl011.h"
 
 #include "hw/arm/nxps32k3x8evb_mcu.h"
 #include "hw/arm/nxps32k3x8evb.h"
+#include "hw/arm/nxps32k3x8evb_uart.h"
+
 #include "qom/object.h"
+#include "system/memory.h"
+#include "system/system.h"
 
 #include <stdio.h>
 
@@ -22,7 +26,7 @@ static void nxps32k3x8evb_mcu_init(Object *obj){
     
     object_initialize_child(OBJECT(s), "armv7m", &s->cpu, TYPE_ARMV7M);
     qdev_prop_set_string(DEVICE(&s->cpu), "cpu-type", ARM_CPU_TYPE_NAME("cortex-m7"));
-    qdev_prop_set_uint32(DEVICE(&s->cpu), "num-irq", NXPS32K3X8_IRQ_NUM);       // Random number
+    qdev_prop_set_uint32(DEVICE(&s->cpu), "num-irq", NXPS32K3X8_IRQ_NUM);       
 
     s->sysclk = qdev_init_clock_in(DEVICE(s), "sysclk", NULL, NULL, 0);
 }
@@ -85,10 +89,7 @@ static void nxps32k3x8evb_mcu_realize(DeviceState *dev_mcu, Error **errp){
     }
     memory_region_add_subregion(&s->container, DFLASH_BASE_ADDRESS, &s->dflash);
 
-
-
-
-
+    
 
     // Connect CPU memory
     object_property_set_link(OBJECT(&s->cpu), "memory", OBJECT(&s->container), &error_abort);
@@ -98,8 +99,28 @@ static void nxps32k3x8evb_mcu_realize(DeviceState *dev_mcu, Error **errp){
         return;
     }
     
-    memory_region_add_subregion_overlap(&s->container, 0, s->board_memory, -1);
 
+
+	// ====== ADD UART (LPUART0) ======
+    DeviceState *uart = qdev_new("pl011_luminary");
+    SysBusDevice *sbd = SYS_BUS_DEVICE(uart);
+    qdev_prop_set_chr(uart, "chardev", serial_hd(0));
+    if (!sysbus_realize_and_unref(sbd, errp)) 
+        return;
+
+    memory_region_add_subregion(&s->container, LPUART0, sysbus_mmio_get_region(sbd, 0));
+    memory_region_set_size(sysbus_mmio_get_region(sbd, 0), UART_SIZE);
+    
+    DeviceState *nvic = DEVICE(&s->cpu);
+    if(nvic){
+        printf("NVIC device found\n");
+        sysbus_connect_irq(sbd, 0, qdev_get_gpio_in(nvic, LPUART0_TRANSMIT_INTERRUPT));
+    }else{
+        printf("NVIC device is not found\n");
+    }
+
+
+    memory_region_add_subregion_overlap(&s->container, 0, s->board_memory, -1);
 }
 
 

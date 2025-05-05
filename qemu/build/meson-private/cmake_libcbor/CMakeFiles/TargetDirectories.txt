@@ -1,0 +1,2 @@
+/root/CESprj/qemu/build/meson-private/cmake_libcbor/CMakeFiles/edit_cache.dir
+/root/CESprj/qemu/build/meson-private/cmake_libcbor/CMakeFiles/rebuild_cache.dir

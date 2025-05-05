@@ -1,0 +1,7 @@
+[options]
+docs = disabled
+plugins = true
+
+[properties]
+native_file = ['/root/CESprj/qemu/build/config-meson.cross']
+
