@@ -1,0 +1,7 @@
+#ifndef __NXPS32K3X8EVB_TPM__ 
+#define __NXPS32K3X8EVB_TPM__ 
+
+#define NXPS32K3X8EVB_TPM_BASE_ADDRESS   0xE0000000
+#define NXPS32K3X8EVB_TPM_SIZE           4 * 1024
+    
+#endif

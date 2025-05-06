@@ -327,5 +327,6 @@ libqemu-arm-softmmu.a.p/hw_arm_nxps32k3x8evb_mcu.c.o: \
  /root/CESprj/qemu/target/arm/idau.h \
  /root/CESprj/qemu/include/hw/arm/nxps32k3x8evb.h \
  /root/CESprj/qemu/include/hw/arm/nxps32k3x8evb_uart.h \
+ /root/CESprj/qemu/include/hw/arm/nxps32k3x8evb_TPM.h \
  /root/CESprj/qemu/include/system/system.h \
  /root/CESprj/qemu/include/qemu/uuid.h
