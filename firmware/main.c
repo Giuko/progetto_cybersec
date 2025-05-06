@@ -12,7 +12,18 @@ int main(void){
     UART_init();
     UART_printf("Hello board\n");
 
+    volatile uint8_t *tpm = (volatile uint8_t *)TPM_ADDRESS;
 
+    // Write a dumb byte (e.g., 0xAA) to the TPM base address
+    tpm[0] = 0xAA;
+
+    // Optional: read back (may not make sense depending on what TPM expects)
+    uint8_t value = tpm[0];
+
+
+    char value_str[50];
+    snprintf(value_str, sizeof(value_str), "Error: 0x%X\n", value);
+    UART_printf(value_str);
 
     uint32_t rc = validate_command_header(command_buffer, sizeof(command_buffer));
     if (rc == TPM_RC_SUCCESS) {
