@@ -1,6 +1,9 @@
 #include "uart.h"
 #include "tpm.h"
 
+#include <string.h>
+#include <stdio.h>
+
 uint8_t command_buffer[] = {
     0x80, 0x01,  // TPM_ST_NO_SESSIONS
     0x00, 0x00, 0x00, 0x0C,  // commandSize = 12 bytes
@@ -20,19 +23,16 @@ int main(void){
     // Optional: read back (may not make sense depending on what TPM expects)
     uint8_t value = tpm[0];
 
+    
 
-    char value_str[50];
-    snprintf(value_str, sizeof(value_str), "Error: 0x%X\n", value);
-    UART_printf(value_str);
-
-    uint32_t rc = validate_command_header(command_buffer, sizeof(command_buffer));
-    if (rc == TPM_RC_SUCCESS) {
-        UART_printf("Command header is valid\n");
-    } else {
-        char error_message[50];
-        snprintf(error_message, sizeof(error_message), "Error: 0x%X\n", rc);
-        UART_printf(error_message);
-    }
+    // uint32_t rc = validate_command_header(command_buffer, sizeof(command_buffer));
+    // if (rc == TPM_RC_SUCCESS) {
+    //     UART_printf("Command header is valid\n");
+    // } else {
+    //     char error_message[50];
+    //     snprintf(error_message, sizeof(error_message), "Error: 0x%X\n", rc);
+    //     UART_printf(error_message);
+    // }
 
     return 0;
 }
