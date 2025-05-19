@@ -17,24 +17,10 @@ DEBUG_FLAGS = -g
 QEMU_FLAGS = -M nxps32k3x8evb \
     -nographic \
     -kernel $(main).elf \
-    -nographic \
-    -chardev socket,id=chrtpm,path=/tmp/swtpm-sock \
-    -tpmdev emulator,id=tpm0,chardev=chrtpm
+    -nographic 
 
 
 qemu_exec = ../qemu/build/qemu-system-arm $(QEMU_FLAGS)
-
-# SWTPM directory
-TPM_DIR = /tmp/tpm
-SOCKET_PATH = /tmp/swtpm-sock
-
-
-# SWTPM configuration
-SWTPM_FLAGS = --tpmstate dir=$(TPM_DIR) \
-             --ctrl type=unixio,path=$(SOCKET_PATH) \
-             --tpm2 --server type=tcp,port=2321 \
-             --ctrl type=tcp,port=2322 \
-             --flags startup-clear 
 
 # Normal compilation
 OBJS = $(startup).o $(main).o $(uart).o
@@ -66,7 +52,6 @@ link_dbg:
 	$(ARM_GNU)-ld $(LDFLAGS) $(OBJS_DBG) -o $(main).elf
 
 
-
 # Run QEMU
 qemu_start:
 	$(qemu_exec)
@@ -81,18 +66,3 @@ gdb_start:
 # Clean up all the .o and .elf files 
 clean:
 	rm -f *.o *.elf
-
-# TPM execution command
-clean_tpm:
-	killall swtpm 2>/dev/null
-	rm -rf $(TPM_DIR)
-	rm -f $(SOCKET_PATH)
-
-start_tpm:	
-	killall swtpm 2>/dev/null
-	rm -rf $(TPM_DIR)
-	mkdir -p $(TPM_DIR)
-	chmod 777 $(TPM_DIR)
-
-	swtpm socket $(SWTPM_FLAGS)
-	export TPM2TOOLS_TCTI="swtpm:port=2321"

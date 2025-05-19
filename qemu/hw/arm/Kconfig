@@ -217,6 +217,14 @@ config NXPS32K3X8EVB
     bool
     default y
 
+
+#######################################
+# Custom TPM 
+#######################################
+config CUSTOMTPM
+    bool
+    default y
+
 config STELLARIS
     bool
     default y

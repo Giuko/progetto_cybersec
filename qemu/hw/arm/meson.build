@@ -22,6 +22,12 @@ arm_ss.add(when: 'CONFIG_SBSA_REF', if_true: files('sbsa-ref.c'))
 arm_ss.add(when: 'CONFIG_NXPS32K3X8EVB', if_true: files('nxps32k3x8evb.c', 'nxps32k3x8evb_mcu.c'))
 #arm_common_ss.add(when: 'CONFIG_NXPS32K3X8EVB', if_true: files('nxps32k3x8evb.c', 'nxps32k3x8evb_mcu.c'))
 
+
+#######################################
+# Custom TPM 
+#######################################
+arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: files('custom_tpm.c'))
+
 #arm_common_ss.add(when: 'CONFIG_STELLARIS', if_true: files('stellaris.c'))
 #arm_common_ss.add(when: 'CONFIG_STM32VLDISCOVERY', if_true: files('stm32vldiscovery.c'))
 #arm_common_ss.add(when: 'CONFIG_ZYNQ', if_true: files('xilinx_zynq.c'))

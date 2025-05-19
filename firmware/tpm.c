@@ -1,53 +1,52 @@
-#include "tpm.h"
 
 #include <stdint.h>
-#include <string.h>
-#include <stdio.h>
+#include "stdbool.h"
+#include "tpm.h"
 
 
+#define TPM_STS_VALID       (1 << 7)   // stsValid, if 0 the STS should be ignore
+#define TPM_STS_DATA_AVAIL  (1 << 4)   // dataAvail, if 1 you can read
+#define TPM_STS_EXPECT      (1 << 3)   // tpmExpect, if 0 writing the FIFO is invalid 
 
-// ############### COMMAND HEADER VALIDATION ###############
-// Command header structure:
-//TPMI_ST_COMMAND_TAG (2B) | UINT32 commandSize (4B)| TPM_CC commandCode
+void TPM_write(uint8_t data){
+    while( ((TPM_STS & TPM_STS_VALID) == 0) || (TPM_STS & TPM_STS_EXPECT) == 0){}
 
-typedef uint16_t TPMI_ST_COMMAND_TAG;
-typedef uint32_t TPM_CC;
+    // It is possible to write
+    TPM_DATA_FIFO = data;
+}
 
-// Sample list of implemented commands
-const TPM_CC implemented_commands[] = {
-    0x0000017A,  // TPM2_StartAuthSession
-    0x00000153,  // TPM2_Hash
-    0x0000017B   // TPM2_PolicyAuthValue
-};
-
-// int is_command_supported(TPM_CC cc) {
-//     for (size_t i = 0; i < sizeof(implemented_commands)/sizeof(TPM_CC); i++) {
-//         if (implemented_commands[i] == cc) return 1;
-//     }
-//     return 0;
-// }
-
-// uint32_t validate_command_header(const uint8_t *buffer, size_t buffer_len) {
-//     if (buffer_len < 10) return TPM_RC_COMMAND_SIZE; // Not enough for header: min size is 10 (10 + 2 optional)
-
-//     TPMI_ST_COMMAND_TAG tag = (buffer[0] << 8) | buffer[1];
-//     if (tag != TPM_ST_NO_SESSIONS && tag != TPM_ST_SESSIONS) {
-//         return TPM_RC_BAD_TAG;
-//     }
-
-//     uint32_t commandSize = (buffer[2] << 24) | (buffer[3] << 16) |
-//                            (buffer[4] << 8) | buffer[5];
-//     if (commandSize != buffer_len) {
-//         return TPM_RC_COMMAND_SIZE;
-//     }
-
-//     TPM_CC commandCode = (buffer[6] << 24) | (buffer[7] << 16) |
-//                          (buffer[8] << 8) | buffer[9];
-//     if (!is_command_supported(commandCode)) {
-//         return TPM_RC_COMMAND_CODE;
-//     }
-
-//     return TPM_RC_SUCCESS;
-// }
+uint8_t TPM_read(void){
+    while( ((TPM_STS & TPM_STS_VALID) == 0) || (TPM_STS & TPM_STS_DATA_AVAIL) == 0){}
+    return TPM_DATA_FIFO;
+}
 
 
+//////////////////////
+// Access Register
+/////////////////////
+#define TPM_ACCESS_RegValidSts      (1 << 7)    // If 1 then all other bits of this register contain valid values
+#define TPM_ACCESS_activeLocality   (1 << 5)    // Read 0 if this isn't active, Read 1 if it is active, Write 1 if want the control
+#define TPM_ACCESS_beenSeized       (1 << 4)    // Read 0 if it works normallyor is not active
+                                                // Read 1 if control of the TPM has been taken from this locality by another 
+                                                //          higher locality while this locality had its 
+                                                //          TPM_ACCESS_x.activeLocality bit set
+                                                // Write 1 to clear the bit
+#define TPM_ACCESS_Seize            (1 << 3)    // A write to this field forces the TPM to give control of the 
+                                                //          TPM to the localtiy setting this bit if it
+                                                //          is the higher priority locality.
+#define TPM_ACCESS_pendingRequest   (1 << 2)    // Read 1 = some other locality is requesting usage of the TPM
+                                                // Read 0 = no other locality is requesting use of the TPM
+#define TPM_ACCESS_requestUse       (1 << 1)    // Read 0 = This locality is either not requesting to use the 
+                                                //          TPM or is already the active locality
+                                                // Read 1 = This locality is requesting to use TPM and is 
+                                                //          not yet the active locality
+                                                // Write 1 = Request that this locality is granted the active locality
+#define TPM_ACCESS_establishment    (1 << 0)    //
+
+
+void TPM_GainOwnership(void){
+    TPM_ACCESS = TPM_ACCESS_requestUse;
+    while((TPM_ACCESS & TPM_ACCESS_activeLocality) == 0){
+        // WAIT
+    }
+}

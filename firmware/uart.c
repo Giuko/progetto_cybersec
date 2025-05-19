@@ -11,3 +11,10 @@ void UART_printf(const char *s) {
         s++;
     }
 }
+
+void UART_putc(const char c){
+	while(UART0_FLAGREG & (1<<5)){
+		//wait
+	}
+	UART0_DATA = c;
+}

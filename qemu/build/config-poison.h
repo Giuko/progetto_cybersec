@@ -68,6 +68,7 @@
 #pragma GCC poison CONFIG_COLLIE
 #pragma GCC poison CONFIG_CPU_CLUSTER
 #pragma GCC poison CONFIG_CUBIEBOARD
+#pragma GCC poison CONFIG_CUSTOMTPM
 #pragma GCC poison CONFIG_CXL
 #pragma GCC poison CONFIG_CXL_MEM_DEVICE
 #pragma GCC poison CONFIG_DDC

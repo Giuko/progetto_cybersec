@@ -2746,6 +2746,7 @@ libqemu-arm-softmmu.a.p/hw_arm_virt.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_virt-acpi-build.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_nxps32k3x8evb.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_nxps32k3x8evb_mcu.c.o \
+libqemu-arm-softmmu.a.p/hw_arm_custom_tpm.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_bcm2836.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_raspi.c.o \
 libqemu-arm-softmmu.a.p/hw_arm_aspeed.c.o \

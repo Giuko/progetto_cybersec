@@ -1,0 +1,2 @@
+pl011_write: Bad offset 0x10
+pl011_write: Bad offset 0x8

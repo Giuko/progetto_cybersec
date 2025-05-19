@@ -145,6 +145,8 @@
 
 #define CONFIG_CUBIEBOARD 1
 
+#define CONFIG_CUSTOMTPM 1
+
 #define CONFIG_CXL 1
 
 #define CONFIG_CXL_MEM_DEVICE 1

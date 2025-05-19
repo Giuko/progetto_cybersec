@@ -16866,7 +16866,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep253041117911325706068799667166557108511",
+      "dep312845993156123199089964845455922778670",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17234,6 +17234,7 @@
           "/root/CESprj/qemu/hw/arm/virt-acpi-build.c",
           "/root/CESprj/qemu/hw/arm/nxps32k3x8evb.c",
           "/root/CESprj/qemu/hw/arm/nxps32k3x8evb_mcu.c",
+          "/root/CESprj/qemu/hw/arm/custom_tpm.c",
           "/root/CESprj/qemu/hw/arm/bcm2836.c",
           "/root/CESprj/qemu/hw/arm/raspi.c",
           "/root/CESprj/qemu/hw/arm/aspeed.c",
@@ -17403,7 +17404,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep253041117911325706068799667166557108511",
+      "dep312845993156123199089964845455922778670",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17668,7 +17669,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep253041117911325706068799667166557108511",
+      "dep312845993156123199089964845455922778670",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -23997,7 +23998,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep316168229788403852597285112561380461103"
+      "dep134318936528262336516470151183372670575"
     ],
     "depends": [],
     "installed": false
@@ -24083,7 +24084,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep316168229788403852597285112561380461103"
+      "dep134318936528262336516470151183372670575"
     ],
     "depends": [],
     "installed": false
@@ -24240,9 +24241,9 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep316168229788403852597285112561380461103",
-      "dep170863253152294865349347228501363606462",
-      "dep232568900900610379956408517228869952501"
+      "dep134318936528262336516470151183372670575",
+      "dep313452177811861687505498529980169887324",
+      "dep257217931157967782790689973483924486838"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24399,8 +24400,8 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep170863253152294865349347228501363606462",
-      "dep316168229788403852597285112561380461103"
+      "dep313452177811861687505498529980169887324",
+      "dep134318936528262336516470151183372670575"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24547,7 +24548,7 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep316168229788403852597285112561380461103"
+      "dep134318936528262336516470151183372670575"
     ],
     "depends": [],
     "win_subsystem": "console",
