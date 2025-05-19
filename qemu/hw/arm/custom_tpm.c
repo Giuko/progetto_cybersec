@@ -34,10 +34,9 @@ static uint64_t custom_tpm_mmio_read(void *opaque, hwaddr addr, unsigned size){
         case 0x00:
             // handle TPM_ACCESS
             printf("Reading TPM Access register");
-            return TPM_ACCESS_ACTIVE | TPM_ACCESS_VALID;
+            return 3;
             break;
         default:
-            printf("Undefined register address: %llx", addr);
             return -1;
     }
 }
@@ -48,6 +47,7 @@ static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsig
     CustomTPMState *s = opaque;
     if (addr < sizeof(s->regs)) {
         s->regs[addr] = val;
+        printf("Writing at addres: %lx, value: %ld", addr, val);
     }
 }
 

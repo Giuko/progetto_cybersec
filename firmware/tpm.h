@@ -36,5 +36,4 @@ void TPM_EnableInterrupts(void);
 void TPM_WriteFIFO(TPMStruct *tpm);
 uint8_t TPM_ReadFIFO(TPMStruct *tpm);
 
-
 #endif
