@@ -12,3 +12,7 @@ config TPM_EMULATOR
     bool
     default y
     depends on TPM_BACKEND
+
+config TPM_MINIMAL
+	bool
+	default y
