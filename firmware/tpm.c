@@ -1,52 +1,74 @@
-
-#include <stdint.h>
-#include "stdbool.h"
 #include "tpm.h"
+#include <stdint.h>
 
+void tpm_init(struct tpm_device *dev, void *base_address){
+    dev->mmio_base = base_address;
+    dev->state = TPM_STATE_IDLE;
+    dev->cmd_size = 0;
+    dev->resp_size = 0;
 
-#define TPM_STS_VALID       (1 << 7)   // stsValid, if 0 the STS should be ignore
-#define TPM_STS_DATA_AVAIL  (1 << 4)   // dataAvail, if 1 you can read
-#define TPM_STS_EXPECT      (1 << 3)   // tpmExpect, if 0 writing the FIFO is invalid 
-
-void TPM_write(uint8_t data){
-    while( ((TPM_STS & TPM_STS_VALID) == 0) || (TPM_STS & TPM_STS_EXPECT) == 0){}
-
-    // It is possible to write
-    TPM_DATA_FIFO = data;
+    // Reset TPM to ready state
+    mmio_write8(dev->mmio_base+TPM_STS, TPM_STS_CMD_READY);
 }
 
-uint8_t TPM_read(void){
-    while( ((TPM_STS & TPM_STS_VALID) == 0) || (TPM_STS & TPM_STS_DATA_AVAIL) == 0){}
-    return TPM_DATA_FIFO;
-}
-
-
-//////////////////////
-// Access Register
-/////////////////////
-#define TPM_ACCESS_RegValidSts      (1 << 7)    // If 1 then all other bits of this register contain valid values
-#define TPM_ACCESS_activeLocality   (1 << 5)    // Read 0 if this isn't active, Read 1 if it is active, Write 1 if want the control
-#define TPM_ACCESS_beenSeized       (1 << 4)    // Read 0 if it works normallyor is not active
-                                                // Read 1 if control of the TPM has been taken from this locality by another 
-                                                //          higher locality while this locality had its 
-                                                //          TPM_ACCESS_x.activeLocality bit set
-                                                // Write 1 to clear the bit
-#define TPM_ACCESS_Seize            (1 << 3)    // A write to this field forces the TPM to give control of the 
-                                                //          TPM to the localtiy setting this bit if it
-                                                //          is the higher priority locality.
-#define TPM_ACCESS_pendingRequest   (1 << 2)    // Read 1 = some other locality is requesting usage of the TPM
-                                                // Read 0 = no other locality is requesting use of the TPM
-#define TPM_ACCESS_requestUse       (1 << 1)    // Read 0 = This locality is either not requesting to use the 
-                                                //          TPM or is already the active locality
-                                                // Read 1 = This locality is requesting to use TPM and is 
-                                                //          not yet the active locality
-                                                // Write 1 = Request that this locality is granted the active locality
-#define TPM_ACCESS_establishment    (1 << 0)    //
-
-
-void TPM_GainOwnership(void){
-    TPM_ACCESS = TPM_ACCESS_requestUse;
-    while((TPM_ACCESS & TPM_ACCESS_activeLocality) == 0){
-        // WAIT
+static int wait_for_status(struct tpm_device *dev, uint8_t mask, uint8_t value){
+    int timeout = 50;       // Simulating waiting for peripheral
+    while(timeout-- > 0){
+        uint8_t status = mmio_read8(dev->mmio_base+TPM_STS);
+        if((status & mask)==value)
+            return 0;
     }
+    return -1; // Timeout error
 }
+
+int tpm_send_command(struct tpm_device *dev, void *command, uint32_t size){
+    // Check command size
+    if(size > sizeof(dev->command_buffer))
+        return -1;
+
+    // Wait for command ready
+    if(wait_for_status(dev, TPM_STS_CMD_READY, TPM_STS_CMD_READY))
+        return -1;
+
+    // Write command to FIFO
+    uint8_t *cmd = (uint8_t *)command;
+    for(int i = 0; i < size; i++){
+        mmio_write8(dev->mmio_base+TPM_DATA_FIFO, cmd[i]);
+    }
+
+    // Trigger command execution
+    mmio_write8(dev->mmio_base+TPM_STS, TPM_STS_GO);
+    
+    dev->state = TPM_STATE_PROCESSING;
+    return 0;
+}
+
+int tpm_receive_response(struct tpm_device *dev, void *buffer, uint32_t max_size){
+    // Wait for data availability
+    if(wait_for_status(dev, TPM_STS_DATA_AVAIL, TPM_STS_DATA_AVAIL))
+        return -1;
+
+    struct tpm_response_header *res = (struct tpm_response_header *)buffer;
+    // Standard response 10 is ok
+    for(int i = 0; i < 10; i++)
+        ((uint8_t *)res)[i] = mmio_read8(dev->mmio_base + TPM_DATA_FIFO);
+
+    if(res->size > max_size || res->size < 10)
+        return -1;
+
+    uint32_t remaining = res->size-10;
+    uint8_t *buf_ptr = (uint8_t*)buffer + 10;
+
+    for(int i = 0; i < remaining; i++)
+        buf_ptr[i] = mmio_read8(dev->mmio_base+TPM_DATA_FIFO);
+
+
+    // Clear status
+    mmio_write8(dev->mmio_base+TPM_STS, TPM_STS_CMD_READY);
+
+    dev->state = TPM_STATE_READY;
+    return res->size;
+}
+
+
+

@@ -1,4 +1,4 @@
-Build started at 2025-05-13T12:47:54.921663
+Build started at 2025-05-27T10:48:04.840405
 Main binary: /root/CESprj/qemu/build/pyvenv/bin/python3
 Build Options: -Ddocs=disabled -Dplugins=true --native-file=/root/CESprj/qemu/build/config-meson.cross
 Python system: Linux
@@ -527,28 +527,28 @@ Cached compiler stderr:
 Compiler for C supports arguments -Wno-typedef-redefinition: NO (cached)
 Program cgcc found: NO
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpzpasx31e
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp51ctide7
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpzpasx31e/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzpasx31e/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp51ctide7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp51ctide7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
 Library m found: YES
 Dependency threads found: YES unknown (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpmyhbszmr
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpmyhbszmr/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmyhbszmr/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lutil -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lutil -Wl,--allow-shlib-undefined` -> 0
 Library util found: YES
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpaby5lpx7
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp7mpemvap
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpaby5lpx7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpaby5lpx7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Hypervisor` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp7mpemvap/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7mpemvap/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Hypervisor` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
@@ -620,12 +620,12 @@ Cached compiler stderr:
  
 Has header "libaio.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpvalwhasr
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp90b5fqk6
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpvalwhasr/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvalwhasr/output.exe -D_FILE_OFFSET_BITS=64 -O0 -laio -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp90b5fqk6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp90b5fqk6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -laio -Wl,--allow-shlib-undefined` -> 0
 Library aio found: YES
 Pkg-config binary for host machine specified from cross file, native file, or env var as ['pkg-config']
 Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
@@ -677,39 +677,39 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp4kmotyv9
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpjh77mner
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp4kmotyv9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4kmotyv9/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Cocoa` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpjh77mner/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjh77mner/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Cocoa` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpkp03zee3
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpzsoqblkb
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpkp03zee3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkp03zee3/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework CoreVideo` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpzsoqblkb/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzsoqblkb/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework CoreVideo` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpvox5_xe4
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpvox5_xe4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvox5_xe4/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework QuartzCore` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework QuartzCore` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Run-time dependency appleframeworks found: NO (tried framework)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpsp7ko4ow
+Working directory:  /root/CESprj/qemu/build/meson-private/tmplr04c6wq
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpsp7ko4ow/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpsp7ko4ow/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework vmnet` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmplr04c6wq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmplr04c6wq/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework vmnet` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
@@ -744,12 +744,12 @@ Cached compiler stderr:
  
 Has header "cap-ng.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpg48pikjs
+Working directory:  /root/CESprj/qemu/build/meson-private/tmppe96uko4
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpg48pikjs/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpg48pikjs/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lcap-ng -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmppe96uko4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppe96uko4/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lcap-ng -Wl,--allow-shlib-undefined` -> 0
 Library cap-ng found: YES
 Using cached compile:
 Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgd1smsj2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgd1smsj2/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lcap-ng 
@@ -818,12 +818,12 @@ Dependency sndio found: YES 1.9.0 (cached)
 Dependency spice-protocol found: YES 0.14.3 (cached)
 Dependency spice-server found: YES 0.15.1 (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp4j6l09wo
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp3vhukt5u
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp4j6l09wo/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4j6l09wo/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrt -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp3vhukt5u/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp3vhukt5u/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrt -Wl,--allow-shlib-undefined` -> 0
 Library rt found: YES
 Dependency libiscsi found: YES 1.19.0 (cached)
 Dependency libzstd found: YES 1.5.5 (cached)
@@ -914,12 +914,12 @@ Package 'libcurl', required by 'virtual:world', not found
 Run-time dependency libcurl found: NO (tried pkgconfig)
 Dependency libudev found: YES 255 (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpvz8k14wk
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp7odrf4kj
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpvz8k14wk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvz8k14wk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lmpathpersist -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp7odrf4kj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7odrf4kj/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lmpathpersist -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -lmpathpersist: No such file or directory
 collect2: error: ld returned 1 exit status
@@ -943,11 +943,11 @@ Cached run stdout:
 Cached run stderr:
  
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp146nvdo8
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp3eg5f09n
 Code:
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp146nvdo8/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp146nvdo8/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp3eg5f09n/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp3eg5f09n/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
 stdout:
 install: /usr/lib/gcc/x86_64-linux-gnu/13/
 programs: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/
@@ -1056,12 +1056,12 @@ Package 'SDL2_image', required by 'virtual:world', not found
 -----------
 Run-time dependency sdl2_image found: NO (tried pkgconfig)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpehs7uue_
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpzu3taj7l
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpehs7uue_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpehs7uue_/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrados -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpzu3taj7l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzu3taj7l/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrados -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -lrados: No such file or directory
 collect2: error: ld returned 1 exit status
@@ -1149,12 +1149,12 @@ Cached compiler stderr:
  
 Has header "bzlib.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpsxxfyfjq
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpjcz_vum_
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpsxxfyfjq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpsxxfyfjq/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lbz2 -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpjcz_vum_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjcz_vum_/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lbz2 -Wl,--allow-shlib-undefined` -> 0
 Library bz2 found: YES
 Using cached compile:
 Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_g4i_l9a/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_g4i_l9a/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lbz2 
@@ -1374,12 +1374,12 @@ Cached compiler stderr:
 
 Has header "numa.h" : NO (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp930zdpf0
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp930zdpf0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp930zdpf0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lfdt -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lfdt -Wl,--allow-shlib-undefined` -> 0
 Library fdt found: YES
 Using cached compile:
 Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpo4p4zabj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo4p4zabj/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lfdt 
@@ -1414,12 +1414,12 @@ Cached compiler stderr:
 
 Has header "rdma/rdma_cma.h" : NO (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpqmtj8ood
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpwkpbpki6
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpqmtj8ood/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqmtj8ood/output.exe -D_FILE_OFFSET_BITS=64 -O0 -libverbs -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpwkpbpki6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwkpbpki6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -libverbs -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -libverbs: No such file or directory
 collect2: error: ld returned 1 exit status
@@ -4104,6 +4104,8 @@ CONFIG_TMP421=y
 CONFIG_TPCI200=y
 CONFIG_TPM_BACKEND=y
 CONFIG_TPM_EMULATOR=y
+CONFIG_TPM_GENERIC=y
+CONFIG_TPM_MINIMAL=y
 CONFIG_TPM_PASSTHROUGH=y
 CONFIG_TPM_TIS=y
 CONFIG_TPM_TIS_I2C=y
@@ -7946,11 +7948,11 @@ qemu 10.0.50
 WARNING: The following command line option(s) were not used: cpp_args,objc_args,cpp_link_args,cpp_std
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpwc39kcd_
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpgseemv9v
 Code:
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpwc39kcd_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwc39kcd_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpgseemv9v/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgseemv9v/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
 stdout:
 install: /usr/lib/gcc/x86_64-linux-gnu/13/
 programs: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/

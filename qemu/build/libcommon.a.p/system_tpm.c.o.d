@@ -262,4 +262,5 @@ libcommon.a.p/system_tpm.c.o: ../system/tpm.c /usr/include/stdc-predef.h \
  /root/CESprj/qemu/include/qemu/queue.h \
  /root/CESprj/qemu/include/system/tpm.h qapi/qapi-types-tpm.h \
  /root/CESprj/qemu/include/qemu/config-file.h \
- /root/CESprj/qemu/include/qemu/error-report.h
+ /root/CESprj/qemu/include/qemu/error-report.h \
+ /root/CESprj/qemu/hw/tpm/tpm-generic.h

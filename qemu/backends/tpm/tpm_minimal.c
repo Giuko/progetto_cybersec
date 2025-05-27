@@ -1,5 +1,5 @@
-#include "qemu/osdep.h"
-#include "hw/tpm/tpm_backend.h"
+/*#include "qemu/osdep.h"
+//#include "hw/tpm/tpm_backend.h"
 #include "qapi/error.h"
 #include "qemu/module.h"
 #include "qemu/log.h"
@@ -12,4 +12,4 @@ typedef struct TPMMinimalState {
 static TPMBackend *tpm_minimal_create
 
 
-
+*/

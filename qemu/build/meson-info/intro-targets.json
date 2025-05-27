@@ -16515,6 +16515,7 @@
           "/root/CESprj/qemu/hw/tpm/tpm_tis_i2c.c",
           "/root/CESprj/qemu/hw/tpm/tpm_crb.c",
           "/root/CESprj/qemu/hw/tpm/tpm_ppi.c",
+          "/root/CESprj/qemu/hw/tpm/tpm-generic.c",
           "/root/CESprj/qemu/hw/uefi/hardware-info.c",
           "/root/CESprj/qemu/hw/ufs/ufs.c",
           "/root/CESprj/qemu/hw/ufs/lu.c",
@@ -16680,6 +16681,7 @@
           "/root/CESprj/qemu/backends/hostmem-epc.c",
           "/root/CESprj/qemu/backends/spdm-socket.c",
           "/root/CESprj/qemu/backends/tpm/tpm_backend.c",
+          "/root/CESprj/qemu/backends/tpm/tpm_minimal.c",
           "/root/CESprj/qemu/backends/tpm/tpm_util.c",
           "/root/CESprj/qemu/backends/tpm/tpm_passthrough.c",
           "/root/CESprj/qemu/backends/tpm/tpm_emulator.c",
@@ -16866,7 +16868,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep312845993156123199089964845455922778670",
+      "dep186768873782508267670105961731408743899",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17404,7 +17406,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep312845993156123199089964845455922778670",
+      "dep186768873782508267670105961731408743899",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17669,7 +17671,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep312845993156123199089964845455922778670",
+      "dep186768873782508267670105961731408743899",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -23998,7 +24000,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep134318936528262336516470151183372670575"
+      "dep228137193220255369184363864505714865659"
     ],
     "depends": [],
     "installed": false
@@ -24084,7 +24086,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep134318936528262336516470151183372670575"
+      "dep228137193220255369184363864505714865659"
     ],
     "depends": [],
     "installed": false
@@ -24241,9 +24243,9 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep134318936528262336516470151183372670575",
-      "dep313452177811861687505498529980169887324",
-      "dep257217931157967782790689973483924486838"
+      "dep228137193220255369184363864505714865659",
+      "dep231458857629731446546618838086567877006",
+      "dep319637332716569970480331945594238754308"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24400,8 +24402,8 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep313452177811861687505498529980169887324",
-      "dep134318936528262336516470151183372670575"
+      "dep231458857629731446546618838086567877006",
+      "dep228137193220255369184363864505714865659"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24548,7 +24550,7 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep134318936528262336516470151183372670575"
+      "dep228137193220255369184363864505714865659"
     ],
     "depends": [],
     "win_subsystem": "console",

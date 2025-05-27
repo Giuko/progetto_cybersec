@@ -5,6 +5,7 @@ ld_script = linker
 startup = startup
 main = main
 uart = uart
+tpm = tpm
 
 # Compiler flags
 AARCH = -mcpu=cortex-m7
@@ -16,14 +17,14 @@ DEBUG_FLAGS = -g
 # QEMU configuration
 QEMU_FLAGS = -M nxps32k3x8evb \
     -nographic \
-    -kernel $(main).elf \
+	-kernel $(main).elf \
     -nographic 
 
 
 qemu_exec = ../qemu/build/qemu-system-arm $(QEMU_FLAGS)
 
 # Normal compilation
-OBJS = $(startup).o $(main).o $(uart).o
+OBJS = $(startup).o $(main).o $(uart).o $(tpm).o
 
 all: $(OBJS) link
 
@@ -38,7 +39,7 @@ link:
 
 
 # Debug version
-OBJS_DBG = $(startup)_dbg.o $(main)_dbg.o $(uart)_dbg.o
+OBJS_DBG = $(startup)_dbg.o $(main)_dbg.o $(uart)_dbg.o $(tpm)_dbg.o
 
 debug: $(OBJS_DBG) link_dbg
 

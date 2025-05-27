@@ -11,6 +11,8 @@
 #define UART0_FLAGREG                         ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 0x18UL ) ) ) )
 
 void UART_init(void);
-void UART_printf(const char *s);
+void UART_putstr(const char *s);
 void UART_putc(const char c);
+void UART_puthex(uint32_t vaue);
+
 #endif

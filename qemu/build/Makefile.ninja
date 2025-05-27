@@ -2342,6 +2342,7 @@ libcommon.a.p/hw_tpm_tpm_tis_sysbus.c.o \
 libcommon.a.p/hw_tpm_tpm_tis_i2c.c.o \
 libcommon.a.p/hw_tpm_tpm_crb.c.o \
 libcommon.a.p/hw_tpm_tpm_ppi.c.o \
+libcommon.a.p/hw_tpm_tpm-generic.c.o \
 libcommon.a.p/hw_uefi_hardware-info.c.o \
 libcommon.a.p/hw_ufs_ufs.c.o \
 libcommon.a.p/hw_ufs_lu.c.o \
@@ -2507,6 +2508,7 @@ libcommon.a.p/backends_dbus-vmstate.c.o \
 libcommon.a.p/backends_hostmem-epc.c.o \
 libcommon.a.p/backends_spdm-socket.c.o \
 libcommon.a.p/backends_tpm_tpm_backend.c.o \
+libcommon.a.p/backends_tpm_tpm_minimal.c.o \
 libcommon.a.p/backends_tpm_tpm_util.c.o \
 libcommon.a.p/backends_tpm_tpm_passthrough.c.o \
 libcommon.a.p/backends_tpm_tpm_emulator.c.o \

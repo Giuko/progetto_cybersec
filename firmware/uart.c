@@ -5,7 +5,7 @@ void UART_init( void ){
     UART0_CTRL = 1;
 }
 
-void UART_printf(const char *s) {
+void UART_putstr(const char *s) {
     while(*s != '\0') {
         UART0_DATA = (unsigned int)(*s);
         s++;
@@ -17,4 +17,14 @@ void UART_putc(const char c){
 		//wait
 	}
 	UART0_DATA = c;
+}
+
+void UART_puthex(uint32_t value){
+
+    const char hex_digits[] = "0123456789ABCDEF";
+
+    for(int i = 7; i >= 0; i--){
+        uint8_t trad = (value >> (i*4)) & 0xF;
+        UART_putc(hex_digits[trad]);
+    }
 }

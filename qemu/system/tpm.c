@@ -22,6 +22,8 @@
 #include "qemu/config-file.h"
 #include "qemu/error-report.h"
 
+#include "hw/tpm/tpm-generic.h"
+
 static QLIST_HEAD(, TPMBackend) tpm_backends =
     QLIST_HEAD_INITIALIZER(tpm_backends);
 

@@ -4,36 +4,70 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* Peripheral memory region */
 #define TPM_BASE_ADDRESS                        ( 0xF0000000UL )
 #define TPM_SIZE                                ( 4 * 1024 )
 
-#define TPM_ACCESS          (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x00))    // Used to gain ownership of the TPM for this locality (only 0 implemented)
-#define TPM_INT_ENABLE      (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x08))    // Interrupt configuration register
-#define TPM_INT_VECTOR      (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x0C))    // SIRQ vector used by the TPM
-#define TPM_INT_STATUS      (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x10))    // Shows which interrupt has occured 
-#define TPM_INTF_CAPABILITY (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x14))    // Provides the information about supported interrupts
-#define TPM_STS             (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x18))    // Status register
-#define TPM_DATA_FIFO       (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x24))    // ReadFIFO or WriteFIFO depending on the bus sycle
-#define TPM_XDATA_FIFO      (*(volatile uint8_t *)(TPM_BASE_ADDRESS + 0x80))    // Extended ReadFIFO or WriteFIFO
+// MACROS to access MMIO
+#define mmio_read8(addr) (*(volatile uint8_t *)(addr))
+#define mmio_write8(addr, val) (*(volatile uint8_t *)(addr) = (val))
 
-typedef struct {
-    uint8_t     access;
-    uint32_t    int_enable;
-    uint8_t     int_vector;
-    uint32_t    int_status;
-    uint32_t    intf_capability;
-    uint32_t    sts;
-    uint8_t     fifo[256];
-    uint32_t    cmd_len;
-    uint32_t    cmd_idx;
-    bool        is_ready;
-} TPMStruct;
+/* TPM Interface Specification Registers */
+#define TPM_ACCESS      0x00
+#define TPM_STS         0x18
+#define TPM_DATA_FIFO   0x24
 
-void TPM_write(uint8_t data);
-uint8_t TPM_read(void);
-void TPM_GainOwnership(void);
-void TPM_EnableInterrupts(void);
-void TPM_WriteFIFO(TPMStruct *tpm);
-uint8_t TPM_ReadFIFO(TPMStruct *tpm);
+/* TPM Status Register Flags */
+#define TPM_STS_CMD_READY   0x40
+#define TPM_STS_GO          0x20
+#define TPM_STS_DATA_AVAIL  0x10
+#define TPM_STS_VALID       0x80
+
+/* TPM Command Codes */
+#define TPM2_CC_NV_DefineSpace      0x0000012A
+#define TPM2_CC_SelfTest            0x00000143
+#define TPM2_CC_Startup             0x00000144
+#define TPM2_CC_Shatdown            0x00000145
+#define TPM2_CC_StartAuthSession    0x00000176
+#define TPM2_CC_GetCapability       0x0000017A
+#define TPM2_CC_GetRandom           0x0000017B
+
+/* TPM Command Header */
+struct tpm_command_header{
+    uint16_t tag;
+    uint32_t size;
+    uint32_t command_code;
+} __attribute__((packed));      // To avoid padding
+
+/* TPM Response Header */
+struct tpm_response_header{
+    uint16_t tag;
+    uint32_t size;
+    uint32_t response_code;
+} __attribute__((packed));      // To avoid padding
+
+enum tpm_state {
+    TPM_STATE_IDLE,
+    TPM_STATE_READY,
+    TPM_STATE_RECEIVING,
+    TPM_STATE_PROCESSING,
+    TPM_STATE_SENDING
+};
+
+/* TPM Interface */
+struct tpm_device {
+    void *mmio_base;
+    uint8_t command_buffer[256];
+    uint8_t response_buffer[256];
+    uint32_t cmd_size;
+    uint32_t resp_size;
+    enum tpm_state state;
+};
+
+/* Basic Function */
+void tpm_init(struct tpm_device *dev, void *base_address);
+
+int tpm_send_command(struct tpm_device *dev, void *command, uint32_t size);
+int tpm_receive_response(struct tpm_device *dev, void *buffer, uint32_t max_size);
 
 #endif

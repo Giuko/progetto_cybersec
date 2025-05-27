@@ -131,7 +131,7 @@ static void nxps32k3x8evb_mcu_realize(DeviceState *dev_mcu, Error **errp){
     sbd = SYS_BUS_DEVICE(tpm);
     // qdev_prop_set_string(tpm, "tpmdev", "tpm0"); -- Useful for swtpm
 
-
+    
     if (!sysbus_realize_and_unref(sbd, errp))
         return;
     
