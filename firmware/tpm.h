@@ -18,10 +18,12 @@
 #define TPM_DATA_FIFO   0x24
 
 /* TPM Status Register Flags */
-#define TPM_STS_CMD_READY   0x40
-#define TPM_STS_GO          0x20
-#define TPM_STS_DATA_AVAIL  0x10
-#define TPM_STS_VALID       0x80
+#define TPM_STS_ERROR       0x01        // bit 0
+#define TPM_STS_DATA_EXPECT 0x04        // bit 2
+#define TPM_STS_DATA_AVAIL  0x10        // bit 4
+#define TPM_STS_GO          0x20        // bit 5
+#define TPM_STS_CMD_READY   0x40        // bit 6
+#define TPM_STS_VALID       0x80        // bit 7
 
 /* TPM Command Codes */
 #define TPM2_CC_NV_DefineSpace      0x0000012A
@@ -31,6 +33,11 @@
 #define TPM2_CC_StartAuthSession    0x00000176
 #define TPM2_CC_GetCapability       0x0000017A
 #define TPM2_CC_GetRandom           0x0000017B
+
+/* TPM TAG */
+#define TAG_TPM_ST_NO_SESSIONS      0x8001  // Command uses no authorization sessions (password-based authorization)
+#define TAG_TPM_ST_SESSIONS         0x8002  // Command uses authorization sessions
+#define TAG_TPM_ST_ATTEST_NV        0x8003  // Used for NV attestation
 
 /* TPM Command Header */
 struct tpm_command_header{
@@ -70,4 +77,11 @@ void tpm_init(struct tpm_device *dev, void *base_address);
 int tpm_send_command(struct tpm_device *dev, void *command, uint32_t size);
 int tpm_receive_response(struct tpm_device *dev, void *buffer, uint32_t max_size);
 
+
+/* Helper and log function */
+
+const char* tpm_command_name(uint32_t command_code);
+int tpm_send_command_with_log(struct tpm_device *dev, void *command, uint32_t size);
+int tpm_receive_response_with_log(struct tpm_device *dev, void *buffer, uint32_t max_size);
+void log_tpm_status(struct tpm_device *dev);
 #endif

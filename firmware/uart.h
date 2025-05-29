@@ -13,6 +13,10 @@
 void UART_init(void);
 void UART_putstr(const char *s);
 void UART_putc(const char c);
-void UART_puthex(uint32_t vaue);
-
+void UART_println();
+void UART_puthex(uint32_t value);
+void UART_puthex_byte(uint8_t value);
+void UART_puthex_2byte(uint16_t value);
+void UART_puthex_4byte(uint32_t value);
+void UART_putdigit(uint8_t digit);
 #endif

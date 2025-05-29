@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include "hw/registerfields.h"
 
+// For asynch behavior
+#include "qemu/main-loop.h"
+
 /*REGISTER DEFINITION*/
 REG32(TPM_ACCESS, 0X00)
     FIELD(TPM_ACCESS, VALID, 1, 1)
@@ -59,6 +62,8 @@ struct CustomTPMState {
     uint32_t response_pos;
 
     bool processing;
+
+    QEMUBH *command_bh; // For async command execution
 };
 
 /* COMMAND DEFINITION */
@@ -74,55 +79,66 @@ struct CustomTPMState {
 
 #define SUCCESS_CODE                0x00
 #define ERROR_CODE                  0x01
+
+
 static void process_command(CustomTPMState *s){
-    // Parsing TPM header (big-endian)
-    uint16_t tag = (s->command[0] << 8) | s->command[1];
-    uint32_t size = (s->command[2] << 24) | (s->command[3] << 16) | (s->command[4] << 8) | s->command[5];
-    uint32_t command_code = (s->command[6] << 24) | (s->command[7] << 16) | (s->command[8] << 8) | s->command[9];
+    // Parsing TPM header
+    // +---------------+----------------+------------------------+
+    // | Tag (2 bytes) | Size (4 bytes) | Command Code (4 bytes) |
+    // +---------------+----------------+------------------------+
     
-    s->response[0] = tag >> 8;
-    s->response[1] = tag & 0xFF;
-    s->response_size = 10;
+    uint16_t tag = (s->command[1] << 8) | s->command[0];
+    uint32_t size = (s->command[5] << 24) | (s->command[4] << 16) | (s->command[3] << 8) | s->command[2];
+    uint32_t command_code = (s->command[9] << 24) | (s->command[8] << 16) | (s->command[7] << 8) | s->command[6];
     
     switch (command_code){
         case TPM2_CC_SelfTest:
+            printf("[TPM]: SelfTest Command execution\n");
             s->response[6] = SUCCESS_CODE;     
             break;
         default:
-            s->response[6] = ERROR_CODE;      
+            printf("[TPM]: Command not recognized\n");
+            s->response[6] = ERROR_CODE;
             break;
     }
 
-    // Update response size field (big-endian)
-    s->response[2] = (s->response_size >> 24) & 0xFF;
-    s->response[3] = (s->response_size >> 16) & 0xFF;
-    s->response[4] = (s->response_size >> 8) & 0xFF;
-    s->response[5] = s->response_size & 0xFF;
-
-    s->response_pos = 0;
-    s->regs[R_TPM_STS] |= R_TPM_STS_DATA_AVAIL_MASK;
-
+    // +---------------+----------------+-------------------------+
+    // | Tag (2 bytes) | Size (4 bytes) | Response Code (4 bytes) |
+    // +---------------+----------------+-------------------------+
+   
+    // Setting reposnse tag         
+    s->response[1] = tag >> 8;
+    s->response[0] = tag;
     
+    // Update response size field
+    s->response_size = 10;
+    s->response[5] = (s->response_size >> 24);
+    s->response[4] = (s->response_size >> 16);
+    s->response[3] = (s->response_size >> 8);
+    s->response[2] = s->response_size;
+    s->regs[R_TPM_STS] |= R_TPM_STS_DATA_AVAIL_MASK;
+}
+
+static void process_command_bh(void *opaque){
+    CustomTPMState *s = opaque;
+    process_command(s);
+    s->processing = false;
+    s->regs[R_TPM_STS] &= ~R_TPM_STS_GO_MASK;
 }
 
 static uint64_t custom_tpm_mmio_read(void *opaque, hwaddr addr, unsigned size){
     CustomTPMState *s = opaque;
     uint32_t val = 0;
-    
+   
+    printf("[TPM]: Reading address: 0x%lx\n", addr);
+
     switch(addr){
         case A_TPM_ACCESS:
             // Reports TPM accessibility status
-            printf("Reading TPM_ACCESS\n");
-            return R_TPM_ACCESS_VALID_MASK | R_TPM_ACCESS_ACTIVE_MASK;
+            return s->regs[R_TPM_ACCESS];
         case A_TPM_STS:
             // Reports Status register
-            printf("Reading TPM_STS\n");
-            if(s->response_size > 0 && s -> response_pos < s->response_size)
-                val |= R_TPM_STS_DATA_AVAIL_MASK;
-            if(s->command_pos >= s->command_size && !s->processing)
-                val |= R_TPM_STS_CMD_READY_MASK;
-            val |= R_TPM_STS_VALID_MASK;
-            break;
+            return s->regs[R_TPM_STS];
         case A_TPM_DATA_FIFO:
             if(s->response_pos < s->response_size){
                 val = s->response[s->response_pos++];
@@ -131,35 +147,42 @@ static uint64_t custom_tpm_mmio_read(void *opaque, hwaddr addr, unsigned size){
                     s->regs[R_TPM_STS] &= ~R_TPM_STS_DATA_AVAIL_MASK;
                 }
             }
-            break;
+            return val;
         default:
             qemu_log_mask(LOG_UNIMP, "%s: Unhandled read at 0x%" HWADDR_PRIx "\n", __func__, addr);
     }
     return val;
 }
 
-
-
 static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size){
     CustomTPMState *s = opaque;
     
     switch (addr){
         case A_TPM_STS:
-            // To trigger data execution
+            s->regs[R_TPM_STS] = s->regs[R_TPM_STS] | val;
             if(val & R_TPM_STS_GO_MASK){
+                // To trigger data execution
+                printf("[TPM]: Triggering command execution\n");
                 s->processing = true;
-                process_command(s);
-                s->processing = false;
-                //s->regs[R_TPM_STS] &= ~R_TPM_STS_GO_MASK;
+                qemu_bh_schedule(s->command_bh);
             }
             break;
         case A_TPM_DATA_FIFO:
             // Accumulate commands
             if(s->command_pos < sizeof(s->command)) {
-                s->command[s->command_pos++] = val;
-                if (s->command_pos >= 6){   // Waiting 6 bytes
-                    s->command_size = (s->command[2] << 24) | (s->command[3] << 16) | (s->command[4] << 8) | s->command[5];
+                // +---------------+----------------+------------------------+
+                // | Tag (2 bytes) | Size (4 bytes) | Command Code (4 bytes) |
+                // +---------------+----------------+------------------------+
+                s->command[s->command_pos++] = val; 
+                
+                if (s->command_pos >= 6){   
+                    // Waiting 6 bytes to have the size and to check it 
+                    // Parsing size 
+                    
+                    s->command_size = (s->command[5] << 24) | (s->command[4] << 16) | (s->command[3] << 8) | s->command[2];
                     if(s->command_size > sizeof(s->command)){
+                        // Command size too big, return error
+                        printf("[TPM]: Command size too big: %d\n", s->command_size);
                         s->regs[R_TPM_STS] |= R_TPM_STS_ERROR_MASK; 
                         s->command_pos = s->command_size = 0;
                     }
@@ -180,26 +203,60 @@ static const MemoryRegionOps custom_tpm_mmio_ops = {
 
 static void custom_tpm_init(Object *obj){
     CustomTPMState *s = CUSTOM_TPM(obj);
+
+    // Clear registers
     memset(s->regs, 0, sizeof(s->regs)); 
+    
+    // Initialize command state
+    memset(s->command, 0, sizeof(s->command));
+    s->command_size = 0;
+    s->command_pos = 0;
+    
+    // Initialize response state
+    memset(s->response, 0, sizeof(s->response));
+    s->response_size = 0;
+    s->response_pos = 0;
+
+    // Initialize FIFO state
+    memset(s->fifo, 0, sizeof(s->fifo));
+    s->fifo_pos = 0;
+
+    s->processing = false;
+
+    /* Initialize register values */
+    // Set interface capabilities (FIFO interface)
+    s->regs[R_TPM_INTF_CAPABILITY] = R_TPM_INTF_CAPABILITY_FIFO_IF_MASK;
+
+    // Set device and vendor id
+    s->regs[R_TPM_DID_VID] = 0x00000000;
+
+    // Initialize TPM_STS to ready state 
+    //s->regs[R_TPM_STS] = R_TPM_STS_VALID_MASK | R_TPM_STS_CMD_READY_MASK;
+
+    // Initialize TPM_ACCESS to ready state 
+    s->regs[R_TPM_ACCESS] = R_TPM_ACCESS_VALID_MASK | R_TPM_ACCESS_ACTIVE_MASK;
+
 }
 
 static void custom_tpm_realize(DeviceState *dev, Error **errp){
     CustomTPMState *s = CUSTOM_TPM(dev);
     SysBusDevice *sbd = SYS_BUS_DEVICE(dev);
 
+    s->command_bh = qemu_bh_new(process_command_bh, s);
+
     /* Initialize MMIO region */
     memory_region_init_io(&s->mmio, OBJECT(dev), &custom_tpm_mmio_ops, s, "custom-tpm-mmio", 0x100);
     sysbus_init_mmio(sbd, &s->mmio);
 
-    /* Initialize register values */
-    // Set interface capabilities (FIFO interface)
-    s->regs[R_TPM_INTF_CAPABILITY / sizeof(uint32_t)] = R_TPM_INTF_CAPABILITY_FIFO_IF_MASK;
+}
 
-    // Set device and vendor id
-    s->regs[R_TPM_DID_VID / sizeof(uint32_t)] = 0x00000000;
+static void custom_tpm_finalize(Object *obj){
+    CustomTPMState *s = CUSTOM_TPM(obj);
 
-    // Initialize TPM_STS to ready state 
-    s->regs[R_TPM_STS / sizeof(uint32_t)] = R_TPM_STS_VALID_MASK | R_TPM_STS_CMD_READY_MASK;
+    if(s->command_bh){
+        qemu_bh_delete(s->command_bh);
+        s->command_bh = NULL;
+    }
 }
 
 static void custom_tpm_class_init(ObjectClass *klass, void *data){
@@ -214,6 +271,7 @@ static const TypeInfo custom_tpm_info = {
     .parent        = TYPE_SYS_BUS_DEVICE,
     .instance_size = sizeof(CustomTPMState),
     .instance_init = custom_tpm_init,
+    .instance_finalize = custom_tpm_finalize,
     .class_init    = custom_tpm_class_init,
 };
 

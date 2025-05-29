@@ -303,4 +303,11 @@ libqemu-arm-softmmu.a.p/hw_arm_custom_tpm.c.o: ../hw/arm/custom_tpm.c \
  /root/CESprj/qemu/include/hw/qdev-properties.h \
  /root/CESprj/qemu/include/qapi/error.h qapi/qapi-types-error.h \
  /root/CESprj/qemu/include/qemu/log.h \
- /root/CESprj/qemu/include/qemu/log-for-trace.h
+ /root/CESprj/qemu/include/qemu/log-for-trace.h \
+ /root/CESprj/qemu/include/qemu/main-loop.h \
+ /root/CESprj/qemu/include/block/aio.h \
+ /root/CESprj/qemu/include/qemu/coroutine-core.h \
+ /root/CESprj/qemu/include/qemu/event_notifier.h \
+ /root/CESprj/qemu/include/qemu/timer.h \
+ /root/CESprj/qemu/include/block/graph-lock.h \
+ /root/CESprj/qemu/include/system/event-loop-base.h

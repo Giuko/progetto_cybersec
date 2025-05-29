@@ -119,7 +119,6 @@ static void nxps32k3x8evb_mcu_realize(DeviceState *dev_mcu, Error **errp){
     
     DeviceState *nvic = DEVICE(&s->cpu);
     if(nvic){
-        printf("NVIC device found\n");
         sysbus_connect_irq(sbd, 0, qdev_get_gpio_in(nvic, LPUART0_TRANSMIT_INTERRUPT));
     }else{
         printf("NVIC device is not found\n");
