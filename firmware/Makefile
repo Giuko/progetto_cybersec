@@ -67,3 +67,31 @@ gdb_start:
 # Clean up all the .o and .elf files 
 clean:
 	rm -f *.o *.elf
+
+
+# Target to prepare the system to execute build/run QEMU and cross-compile
+init:
+	@echo "Installing required packages..."
+	sudo apt update
+	sudo apt install -y \
+		build-essential \
+		python3 \
+		python3-pip \
+		git \
+		flex \
+		bison \
+		libglib2.0-dev \
+		libpixman-1-dev \
+		zlib1g-dev \
+		libfdt-dev \
+		libtool \
+		autoconf \
+		automake \
+		pkg-config \
+		libsdl2-dev \
+		libsdl2-image-dev \
+		ninja-build \
+		python3-sphinx \
+		gcc-arm-linux-gnueabi\
+		gdb-multiarch \
+		virt-what
