@@ -12,6 +12,10 @@
 // For asynch behavior
 #include "qemu/main-loop.h"
 
+// For Crypto operations
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+
 /*REGISTER DEFINITION*/
 REG32(TPM_ACCESS, 0X00)
     FIELD(TPM_ACCESS, VALID, 1, 1)
@@ -141,6 +145,39 @@ struct CustomTPMState {
 #define SUCCESS_CODE                0x00
 #define ERROR_CODE                  0x01
 
+
+/**  CRYPTO OPERATIONS  **/
+static int generate_rsa_key(TPM_Key *key){
+    RSA *rsa = RSA_generate_key(2048, RSA_F4, NULL, NULL);
+    if(!rsa) return -1;
+
+    // Serialize public key
+    BIO *pub_bio = BIO_new(BIO_s_mem());            //Create a dynamic buffer
+    PEM_write_bio_RSA_PUBKEY(pub_bio, rsa);
+    key->public_size = BIO_read(pub_bio, key->public_key, sizeof(key->public_key));
+    BIO_free(pub_bio);
+    
+    // Serialize private key
+    BIO *priv_bio = BIO_new(BIO_s_mem());           // Create a dynamic buffer
+    PEM_write_bio_RSAPrivateKey(priv_bio, rsa, NULL, NULL, 0, NULL, NULL);
+    key->private_size = BIO_read(priv_bio, key->private_key, sizeof(key->private_key));
+    BIO_free(priv_bio);
+    
+    RSA_free(rsa);
+    return 0;
+}
+
+static int sign_digest(RSA *rsa, const uint8_t *digest, size_t digest_len, uint8_t *signature, size_t *sig_len){
+    unsigned int sig_size;
+    int rv = RSA_sign(NID_sha256, digest, digest_len, 
+                     signature, &sig_size, rsa);
+    if (rv != 1) return -1;
+    
+    *sig_len = sig_size;
+    return 0;
+}
+
+/**                     **/
 static void tpm_reset_state(CustomTPMState *s){
     printf("[TPM] Performing state reset (CLEAR)\n");
     
@@ -260,17 +297,22 @@ static void process_command(CustomTPMState *s){
             key->handle = KEY_HANDLE_BASE + s->next_handle++;
             key->type = KEY_TYPE_RSA;
             key->attributes = FIXED_TPM | FIXED_PARENT | SIGN | DECRYPT;
-            key->loaded = true;
 
             // Generate key pair
             // Fake generation
+            /*
             const char pub_key[] = "PUBLIC_KEY_DATA";
             const char priv_key[] = "PRIVATE_KEY_DATA";
             memcpy(key->public_key, pub_key, sizeof(pub_key));
             key->public_size = sizeof(pub_key);
             memcpy(key->private_key, priv_key, sizeof(priv_key));
             key->private_size = sizeof(priv_key);
-
+            */
+            if(generate_rsa_key(key)){
+                rc = TPM_RC_FAILURE;
+                break;
+            }
+            key->loaded = true;
             // Prepare response
             s->response_size = 10 + 4 + key->public_size; // Handle + public key
             
