@@ -15,6 +15,8 @@
 #define TPM2_CC_Create              0x00000153
 #define TPM2_CC_Load                0x00000157
 #define TPM2_CC_Sign                0x0000015F
+#define TPM2_CC_RSA_Encrypt         0x00000174
+#define TPM2_CC_RSA_Decrypt         0x00000159
 #define TPM2_CC_SelfTest            0x00000143
 #define TPM2_CC_Startup             0x00000144
 #define TPM2_CC_Shutdown            0x00000145
@@ -70,6 +72,7 @@ typedef enum {
 
 typedef struct{
     uint32_t handle;
+    uint32_t parent_handle;
     KeyType type;
     uint32_t attributes;                    // Bitmap to specifie the key use
    

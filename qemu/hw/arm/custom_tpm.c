@@ -210,8 +210,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
         return TPM_RC_SIZE;
     }
     // Skip inSensitive Value 
-
-    offset += inSensitive.size;
+    
     if(offset+2 > s->command_size) return TPM_RC_SIZE;
 
     inPublic.size = (s->command[offset+1] << 8) | s->command[offset];
@@ -341,6 +340,541 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     return TPM_RC_SUCCESS;
 }
 
+static uint32_t Create(CustomTPMState *s){
+    // To generate a key under an existing parent key
+    printf("[TPM]: Create Command execution\n");
+    s->response_size = 10;
+    
+    if(s->state == TPM_STATE_IDLE) { 
+        return TPM_RC_INITIALIZE; 
+    } 
+    
+    if(s->command_size < 25) {  // 10 + 4 + 2 + 2 + 2 + 4 + 1 (minimum)
+        printf("[TPM] Create command too small\n");
+        return TPM_RC_SIZE;
+    }
+
+    // Extra fields in command are:
+    // TPMI_DH_OBJECT parentHandle             (uint32_t)  4 bytes
+    // TPM2B_SENSITIVE_CREATE inSensitive       2 bytes + data
+    // TPM2B_PUBLIC inPublic                    2 bytes + data
+    // TPM2B_DATA outsideInfo                   2 bytes + data
+    // TPML_PCR_SELECTION creationPCR           4 bytes + data
+    
+    uint32_t parentHandle;
+    TPM2B_SENSITIVE_CREATE inSensitive;
+    TPM2B_PUBLIC inPublic;
+    uint16_t outsideInfoSize;
+    uint32_t creationPCRCount;
+    int offset = 10;        // Already analyzed fields
+    // Parse parentHandle
+    parentHandle = (s->command[offset+3] << 24) | (s->command[offset+2] << 16) | 
+                   (s->command[offset+1] << 8) | s->command[offset];
+    offset += 4;
+    
+    printf("[TPM]: Parent Handle: 0x%x\n", parentHandle);
+    
+    // Find parent key
+    TPM_Key *parentKey = NULL;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(s->keys[i].loaded && s->keys[i].handle == parentHandle){
+            parentKey = &(s->keys[i]);
+            break;
+        }
+    }
+
+    if(parentKey == NULL){
+        printf("[TPM]: Parent handle 0x%x not found\n", parentHandle);
+        return TPM_RC_HANDLE;
+    }
+
+    // Check if parent has the right attributes (should be able to create children)
+    // Not implemented this check always create a children
+    //
+    // Parse inSensitive
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    inSensitive.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + inSensitive.size > s->command_size){
+        printf("[TPM] Invalid inSensitive size: %d\n", inSensitive.size);
+        return TPM_RC_SIZE;
+    }
+    // Skip inSensitive data for now
+    offset += inSensitive.size;
+
+    // Parse inPublic
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    inPublic.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + inPublic.size > s->command_size){
+        printf("[TPM] Invalid inPublic size: %d\n", inPublic.size);
+        return TPM_RC_SIZE;
+    }
+    
+    if(inPublic.size < 8) return TPM_RC_SIZE;
+
+    // Parse public area
+    inPublic.publicArea.type = (s->command[offset + 1] << 8) | s->command[offset]; 
+    inPublic.publicArea.nameAlg = (s->command[offset + 3] << 8) | s->command[offset + 2]; 
+    inPublic.publicArea.objectAttributes = (s->command[offset + 7] << 24) | 
+                                          (s->command[offset + 6] << 16) | 
+                                          (s->command[offset + 5] << 8) | 
+                                          s->command[offset + 4]; 
+    
+    printf("[TPM] Algorithm: 0x%04x, NameAlg: 0x%04x, Attributes: 0x%08x\n", 
+           inPublic.publicArea.type, inPublic.publicArea.nameAlg, inPublic.publicArea.objectAttributes);
+
+    offset += inPublic.size;
+
+    // Parse outsideInfo
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    outsideInfoSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + outsideInfoSize > s->command_size){
+        printf("[TPM] Invalid outsideInfo size: %d\n", outsideInfoSize);
+        return TPM_RC_SIZE;
+    }
+    offset += outsideInfoSize;
+
+    // Parse creationPCR
+    if(offset + 4 > s->command_size) return TPM_RC_SIZE;
+    creationPCRCount = (s->command[offset+3] << 24) | (s->command[offset+2] << 16) | 
+                       (s->command[offset+1] << 8) | s->command[offset];
+    // Skip PCR data for now
+
+    // Find available slot for the new key
+    int slot = -1;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(!s->keys[i].loaded){
+            slot = i;
+            break;
+        }
+    }
+
+    if(slot == -1){
+        printf("[TPM]: No available key slots\n");
+        return TPM_RC_OBJECT_MEMORY;
+    }
+
+    TPM_Key *newKey = &(s->keys[slot]);
+
+    // Initialize new key
+    newKey->handle = 0; // Create command doesn't assign handle immediately
+    newKey->parent_handle = parentHandle;
+
+    switch (inPublic.publicArea.type){
+        case TPM_ALG_RSA:
+            newKey->type = KEY_TYPE_RSA;
+            break;
+        default:
+            printf("[TPM] Unsupported algorithm: 0x%04X\n", inPublic.publicArea.type);
+            return TPM_RC_ASYMMETRIC;
+    }
+
+    newKey->attributes = inPublic.publicArea.objectAttributes;
+    newKey->hierarchy = parentKey->hierarchy; // Inherit from parent
+
+    // Generate key pair (for simplicity, using fixed 1024 bit)
+    if(generate_rsa_keys(newKey->ctx, 1024)){
+        printf("[TPM]: Failed to generate RSA key pair\n");
+        return TPM_RC_FAILURE;
+    }
+    
+    newKey->loaded = false; // Created but not loaded yet
+    printf("[TPM] Created key under parent 0x%08x\n", parentHandle);
+
+    // Prepare respons
+    int resp_offset = 10;
+
+    // TPM2B_PRIVATE outPrivate (simplified - in real TPM this would be encrypted)
+    uint16_t privateSize = sizeof(newKey->ctx->private_key);
+    s->response[resp_offset] = privateSize;
+    s->response[resp_offset + 1] = (privateSize >> 8);
+    resp_offset += 2;
+    
+    if(resp_offset + privateSize > sizeof(s->response)){
+        printf("[TPM]: Response buffer too small for private key\n");
+        return TPM_RC_FAILURE;
+    }
+    
+    // In a real implementation, this should be encrypted with parent's key
+    memcpy(&s->response[resp_offset], &(newKey->ctx->private_key), privateSize);
+    resp_offset += privateSize;
+
+    // TPM2B_PUBLIC outPublic
+    uint16_t publicSize = sizeof(newKey->ctx->public_key) + 8; // +8 for the public area header
+    s->response[resp_offset] = publicSize & 0xFF;
+    s->response[resp_offset + 1] = (publicSize >> 8) & 0xFF;
+    resp_offset += 2;
+    
+    if(resp_offset + publicSize > sizeof(s->response)){
+        printf("[TPM]: Response buffer too small for public key\n");
+        return TPM_RC_FAILURE;
+    }
+
+    // Add public area header
+    s->response[resp_offset] = inPublic.publicArea.type;
+    s->response[resp_offset + 1] = (inPublic.publicArea.type >> 8);
+    s->response[resp_offset + 2] = inPublic.publicArea.nameAlg;
+    s->response[resp_offset + 3] = (inPublic.publicArea.nameAlg >> 8);
+    s->response[resp_offset + 4] = inPublic.publicArea.objectAttributes;
+    s->response[resp_offset + 5] = (inPublic.publicArea.objectAttributes >> 8);
+    s->response[resp_offset + 6] = (inPublic.publicArea.objectAttributes >> 16);
+    s->response[resp_offset + 7] = (inPublic.publicArea.objectAttributes >> 24);
+    resp_offset += 8;
+    
+    memcpy(&s->response[resp_offset], &(newKey->ctx->public_key), sizeof(newKey->ctx->public_key));
+    resp_offset += sizeof(newKey->ctx->public_key);
+
+        // TPM2B_CREATION_DATA (simplified, empty for now)
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset + 1] = 0x00; // size high
+    resp_offset += 2;
+
+    // TPMT_TK_CREATION (simplified, null ticket)
+    s->response[resp_offset] = 0x21; // TPM_ST_CREATION low
+    s->response[resp_offset + 1] = 0x80; // TPM_ST_CREATION high
+    resp_offset += 2;
+    
+    s->response[resp_offset] = 0x07; // TPM_RH_NULL
+    s->response[resp_offset + 1] = 0x00;
+    s->response[resp_offset + 2] = 0x00;
+    s->response[resp_offset + 3] = 0x40;
+    resp_offset += 4;
+    
+    // Empty digest for creation ticket
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset + 1] = 0x00; // size high  
+    resp_offset += 2;
+    
+    // TPM2B_DIGEST name (simplified, empty for now)
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset + 1] = 0x00; // size high
+    resp_offset += 2;
+    
+    s->response_size = resp_offset;
+
+    printf("[TPM] Create response prepared, size: %d bytes\n", s->response_size);
+
+    return TPM_RC_SUCCESS;
+    
+
+}
+
+static uint32_t RSA_Decrypt(CustomTPMState *s){
+    // TPM2_RSA_Decrypt command implementation
+    printf("[TPM]: RSA_Decrypt Command execution\n");
+    s->response_size = 10;
+    
+    if(s->state == TPM_STATE_IDLE) { 
+        return TPM_RC_INITIALIZE; 
+    } 
+    
+    if(s->command_size < 23) {  // 10 + 4 + 2 + 2 + 2 + 2 + 1 (minimum)
+        printf("[TPM] RSA_Decrypt command too small\n");
+        return TPM_RC_SIZE;
+    }
+
+    // Command structure:
+    // TPMI_DH_OBJECT keyHandle                (uint32_t)  4 bytes
+    // TPM2B_PUBLIC_KEY_RSA cipherText         2 bytes + data
+    // TPMT_RSA_DECRYPT inScheme              2 bytes (simplified)
+    // TPM2B_DATA label                       2 bytes + data
+    
+    uint32_t keyHandle;
+    uint16_t cipherTextSize;
+    uint16_t schemeAlg;
+    uint16_t labelSize;
+    int offset = 10;        // Skip TPM header
+
+    // Parse keyHandle
+    keyHandle = (s->command[offset+3] << 24) | (s->command[offset+2] << 16) | 
+                (s->command[offset+1] << 8) | s->command[offset];
+    offset += 4;
+    
+    printf("[TPM]: Key Handle: 0x%x\n", keyHandle);
+    
+    // Find the key - must be loaded
+    TPM_Key *key = NULL;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(s->keys[i].loaded && s->keys[i].handle == keyHandle){
+            key = &(s->keys[i]);
+            break;
+        }
+    }
+    
+    if(key == NULL){
+        printf("[TPM]: Key handle 0x%x not found or not loaded\n", keyHandle);
+        return TPM_RC_HANDLE;
+    }
+    
+    // Verify key type
+    if(key->type != KEY_TYPE_RSA){
+        printf("[TPM]: Key is not an RSA key\n");
+        return TPM_RC_VALUE;
+    }
+    
+    // Verify key can decrypt (must have DECRYPT attribute) Skipped
+
+    // Parse cipherText
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    cipherTextSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(cipherTextSize == 0) {
+        printf("[TPM]: Cipher text size cannot be zero\n");
+        return TPM_RC_SIZE;
+    }
+    
+    if(cipherTextSize > 8) { // Our RSA functions work with uint64_t
+        printf("[TPM]: Cipher text too large for simplified RSA implementation (max 8 bytes)\n");
+        return TPM_RC_SIZE;
+    }
+    
+    if(offset + cipherTextSize > s->command_size){
+        printf("[TPM] Invalid cipher text size: %d\n", cipherTextSize);
+        return TPM_RC_SIZE;
+    }
+    
+    // Extract ciphertext (convert bytes to uint64_t)
+    uint64_t ciphertext = 0;
+    for(int i = 0; i < cipherTextSize; i++){
+        ciphertext |= ((uint64_t)s->command[offset + i]) << (i * 8);
+    }
+    offset += cipherTextSize;
+    
+    printf("[TPM]: Ciphertext: 0x%016lx (size: %d bytes)\n", ciphertext, cipherTextSize);
+
+    // Parse scheme (simplified - just read algorithm)
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    schemeAlg = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    printf("[TPM]: Decrypt scheme: 0x%04x\n", schemeAlg);
+    
+    // Parse label
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    labelSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + labelSize > s->command_size){
+        printf("[TPM] Invalid label size: %d\n", labelSize);
+        return TPM_RC_SIZE;
+    }
+    
+    // Skip label data
+    offset += labelSize;
+    
+    printf("[TPM]: Label size: %d bytes\n", labelSize);
+
+    // Perform RSA decryption using the custom function
+    printf("[TPM]: Performing RSA decryption...\n");
+    uint64_t plaintext = rsa_decrypt(ciphertext, &(key->ctx->private_key));
+    
+    printf("[TPM]: Decryption result: 0x%016lx\n", plaintext);
+    
+    // Prepare response
+    int resp_offset = 10;
+    
+    // TPM2B_PUBLIC_KEY_RSA message (the decrypted plaintext)
+    // Convert uint64_t back to bytes
+    uint8_t plaintextBytes[8];
+    int plaintextSize = 0;
+    
+    // Find actual size (remove leading zeros)
+    uint64_t temp = plaintext;
+    if(temp == 0) {
+        plaintextSize = 1;
+        plaintextBytes[0] = 0;
+    } else {
+        while(temp > 0) {
+            plaintextBytes[plaintextSize] = temp;
+            temp >>= 8;
+            plaintextSize++;
+        }
+    }
+    
+    // Write size
+    if(resp_offset + 2 + plaintextSize > sizeof(s->response)){
+        printf("[TPM]: Response buffer too small\n");
+        return TPM_RC_FAILURE;
+    }
+    
+    s->response[resp_offset] = plaintextSize;
+    s->response[resp_offset + 1] = (plaintextSize >> 8);
+    resp_offset += 2;
+    
+    // Write plaintext bytes
+    memcpy(&s->response[resp_offset], plaintextBytes, plaintextSize);
+    resp_offset += plaintextSize;
+    
+    s->response_size = resp_offset;
+
+    printf("[TPM] RSA_Decrypt response prepared, size: %d bytes, plaintext size: %d\n", 
+           s->response_size, plaintextSize);
+
+    return TPM_RC_SUCCESS;
+}
+
+static uint32_t RSA_Encrypt(CustomTPMState *s){
+    // TPM2_RSA_Encrypt command implementation
+    printf("[TPM]: RSA_Encrypt Command execution\n");
+    s->response_size = 10;
+    
+    if(s->state == TPM_STATE_IDLE) { 
+        return TPM_RC_INITIALIZE; 
+    } 
+    
+    if(s->command_size < 23) {  // 10 + 4 + 2 + 2 + 2 + 2 + 1 (minimum)
+        printf("[TPM] RSA_Encrypt command too small\n");
+        return TPM_RC_SIZE;
+    }
+
+    // Command structure:
+    // TPMI_DH_OBJECT keyHandle                (uint32_t)  4 bytes
+    // TPM2B_PUBLIC_KEY_RSA message            2 bytes + data
+    // TPMT_RSA_DECRYPT inScheme              2 bytes (simplified)
+    // TPM2B_DATA label                       2 bytes + data
+    
+    uint32_t keyHandle;
+    uint16_t messageSize;
+    uint16_t schemeAlg;
+    uint16_t labelSize;
+    int offset = 10;        // Skip TPM header
+
+    // Parse keyHandle
+    keyHandle = (s->command[offset+3] << 24) | (s->command[offset+2] << 16) | 
+                (s->command[offset+1] << 8) | s->command[offset];
+    offset += 4;
+    
+    printf("[TPM]: Key Handle: 0x%x\n", keyHandle);
+    
+    // Find the key - must be loaded
+    TPM_Key *key = NULL;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(s->keys[i].loaded && s->keys[i].handle == keyHandle){
+            key = &(s->keys[i]);
+            break;
+        }
+    }
+    
+    if(key == NULL){
+        printf("[TPM]: Key handle 0x%x not found or not loaded\n", keyHandle);
+        return TPM_RC_HANDLE;
+    }
+    
+    // Verify key type
+    if(key->type != KEY_TYPE_RSA){
+        printf("[TPM]: Key is not an RSA key\n");
+        return TPM_RC_VALUE;
+    }
+    
+    // For encrypt, we typically use the public key
+    // Verify key can encrypt - skipped for simplicity
+
+    // Parse message (plaintext to encrypt)
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    messageSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(messageSize == 0) {
+        printf("[TPM]: Message size cannot be zero\n");
+        return TPM_RC_SIZE;
+    }
+    
+    if(messageSize > 8) { // Our RSA functions work with uint64_t
+        printf("[TPM]: Message too large for simplified RSA implementation (max 8 bytes)\n");
+        return TPM_RC_SIZE;
+    }
+    
+    if(offset + messageSize > s->command_size){
+        printf("[TPM] Invalid message size: %d\n", messageSize);
+        return TPM_RC_SIZE;
+    }
+    
+    // Extract message (convert bytes to uint64_t)
+    uint64_t message = 0;
+    for(int i = 0; i < messageSize; i++){
+        message |= ((uint64_t)s->command[offset + i]) << (i * 8);
+    }
+    offset += messageSize;
+    
+    printf("[TPM]: Message: 0x%016lx (size: %d bytes)\n", message, messageSize);
+
+    // Parse scheme (simplified - just read algorithm)
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    schemeAlg = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    printf("[TPM]: Encrypt scheme: 0x%04x\n", schemeAlg);
+    
+    // Parse label
+    if(offset + 2 > s->command_size) return TPM_RC_SIZE;
+    labelSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + labelSize > s->command_size){
+        printf("[TPM] Invalid label size: %d\n", labelSize);
+        return TPM_RC_SIZE;
+    }
+    
+    // Skip label data
+    offset += labelSize;
+    
+    printf("[TPM]: Label size: %d bytes\n", labelSize);
+
+    // Perform RSA encryption using the custom function
+    printf("[TPM]: Performing RSA encryption...\n");
+    uint64_t ciphertext = rsa_encrypt(message, &(key->ctx->public_key));
+    
+    printf("[TPM]: Encryption result: 0x%016lx\n", ciphertext);
+    
+    // Prepare response
+    int resp_offset = 10;
+    
+    // TPM2B_PUBLIC_KEY_RSA outData (the encrypted ciphertext)
+    // Convert uint64_t back to bytes
+    uint8_t ciphertextBytes[8];
+    int ciphertextSize = 0;
+    
+    // Find actual size (remove leading zeros)
+    uint64_t temp = ciphertext;
+    if(temp == 0) {
+        ciphertextSize = 1;
+        ciphertextBytes[0] = 0;
+    } else {
+        while(temp > 0) {
+            ciphertextBytes[ciphertextSize] = temp;
+            temp >>= 8;
+            ciphertextSize++;
+        }
+    }
+    
+    // Write size
+    if(resp_offset + 2 + ciphertextSize > sizeof(s->response)){
+        printf("[TPM]: Response buffer too small\n");
+        return TPM_RC_FAILURE;
+    }
+    
+    s->response[resp_offset] = ciphertextSize;
+    s->response[resp_offset + 1] = (ciphertextSize >> 8);
+    resp_offset += 2;
+    
+    // Write ciphertext bytes
+    memcpy(&s->response[resp_offset], ciphertextBytes, ciphertextSize);
+    resp_offset += ciphertextSize;
+    
+    s->response_size = resp_offset;
+
+    printf("[TPM] RSA_Encrypt response prepared, size: %d bytes, ciphertext size: %d\n", 
+           s->response_size, ciphertextSize);
+
+    return TPM_RC_SUCCESS;
+}
+
 /*  End  Commands */
 static void process_command(CustomTPMState *s){
     // Parsing TPM header
@@ -365,6 +899,12 @@ static void process_command(CustomTPMState *s){
             break;
         case TPM2_CC_CreatePrimary:
             rc = CreatePrimary(s);
+            break;
+        case TPM2_CC_Create:
+            rc = Create(s);
+            break;
+        case TPM2_CC_Load:
+            printf("[TPM]: Load Command not implemented");
             break;
         case TPM2_CC_StartAuthSession:
             printf("[TPM]: StartAuthSession Command execution\n");
