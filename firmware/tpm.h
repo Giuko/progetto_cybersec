@@ -39,12 +39,23 @@
 #define TAG_TPM_ST_SESSIONS         0x8002  // Command uses authorization sessions
 #define TAG_TPM_ST_ATTEST_NV        0x8003  // Used for NV attestation
 
+/* Startup Types */
+#define TPM_SU_CLEAR                0x0000 
+#define TPM_SU_STATE                0x0001
+
 /* TPM Command Header */
 struct tpm_command_header{
     uint16_t tag;
     uint32_t size;
     uint32_t command_code;
 } __attribute__((packed));      // To avoid padding
+
+struct tpm_startup_command_header{
+    struct tpm_command_header command_header;
+    uint16_t startup_type;
+} __attribute__((packed));      // To avoid padding
+
+
 
 /* TPM Response Header */
 struct tpm_response_header{

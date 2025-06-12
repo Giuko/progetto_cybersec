@@ -27,6 +27,7 @@ arm_ss.add(when: 'CONFIG_NXPS32K3X8EVB', if_true: files('nxps32k3x8evb.c', 'nxps
 # Custom TPM 
 #######################################
 arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: files('custom_tpm.c'))
+arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: files('tpm_basic_crypto_rsa.c'))
 
 #arm_common_ss.add(when: 'CONFIG_STELLARIS', if_true: files('stellaris.c'))
 #arm_common_ss.add(when: 'CONFIG_STM32VLDISCOVERY', if_true: files('stm32vldiscovery.c'))

@@ -405,7 +405,8 @@ libcommon.a.p/ui_sdl2.c.o: ../ui/sdl2.c /usr/include/stdc-predef.h \
  /usr/include/SDL2/SDL_misc.h /usr/include/SDL2/SDL_syswm.h \
  /usr/include/X11/Xlib.h /usr/include/X11/X.h \
  /usr/include/X11/Xfuncproto.h /usr/include/X11/Xosdefs.h \
- /usr/include/X11/Xatom.h /root/CESprj/qemu/include/ui/kbd-state.h \
+ /usr/include/X11/Xatom.h /usr/include/SDL2/SDL_image.h \
+ /usr/include/SDL2/SDL.h /root/CESprj/qemu/include/ui/kbd-state.h \
  /root/CESprj/qemu/include/ui/egl-helpers.h /usr/include/epoxy/egl.h \
  /usr/include/epoxy/egl_generated.h /usr/include/EGL/eglplatform.h \
  /usr/include/KHR/khrplatform.h /usr/include/gbm.h \

@@ -1,4 +1,4 @@
-Build started at 2025-05-27T10:48:04.840405
+Build started at 2025-05-31T14:15:53.512299
 Main binary: /root/CESprj/qemu/build/pyvenv/bin/python3
 Build Options: -Ddocs=disabled -Dplugins=true --native-file=/root/CESprj/qemu/build/config-meson.cross
 Python system: Linux
@@ -44,7 +44,7 @@ Compiler for language rust skipped: feature rust disabled
 Program iasl found: YES (/usr/bin/iasl)
 Program bzip2 found: YES (/usr/bin/bzip2)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp115tdo34/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp115tdo34/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror -fstack-protector-strong 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1fsy6m4e/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1fsy6m4e/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror -fstack-protector-strong 
 
 Code:
  
@@ -61,7 +61,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1gwcktlk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1gwcktlk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror -fstack-protector-strong 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwh69d11i/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwh69d11i/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror -fstack-protector-strong 
 
 Code:
  
@@ -78,7 +78,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpeqchkkfk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpeqchkkfk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp3qi_29cg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp3qi_29cg/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -92,7 +92,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpw5ozlzu2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpw5ozlzu2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc4rzyj09/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc4rzyj09/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -110,7 +110,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpocib7214/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpocib7214/output.exe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--fatal-warnings -Wl,-z,relro 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpq3btgk2a/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpq3btgk2a/output.exe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--fatal-warnings -Wl,-z,relro 
 
 Code:
  int main(void) { return 0; }
@@ -121,7 +121,7 @@ Cached compiler stderr:
  
 Compiler for C supports link arguments -Wl,-z,relro: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6nnxosqn/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6nnxosqn/output.exe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--fatal-warnings -Wl,-z,now 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmplkgrd5ha/testfile.c -o /root/CESprj/qemu/build/meson-private/tmplkgrd5ha/output.exe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--fatal-warnings -Wl,-z,now 
 
 Code:
  int main(void) { return 0; }
@@ -132,7 +132,7 @@ Cached compiler stderr:
  
 Compiler for C supports link arguments -Wl,-z,now: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpksx_vn1f/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpksx_vn1f/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -O2 -fzero-call-used-regs=used-gpr 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr0bxpn3y/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr0bxpn3y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -O2 -fzero-call-used-regs=used-gpr 
 
 Code:
  extern struct { void (*cb)(void); } s; void f(void) { s.cb(); }
@@ -142,7 +142,7 @@ Cached compiler stderr:
  
 Checking if "-fzero-call-used-regs=used-gpr" compiles: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprqgmx727/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprqgmx727/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -ftrivial-auto-var-init=zero 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcmcq44l4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcmcq44l4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -ftrivial-auto-var-init=zero 
 
 Code:
  extern int i;
@@ -154,7 +154,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -ftrivial-auto-var-init=zero: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6xnhwtkl/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6xnhwtkl/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fzero-call-used-regs=used-gpr 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfgmq7e9c/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfgmq7e9c/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -fzero-call-used-regs=used-gpr 
 
 Code:
  extern int i;
@@ -166,7 +166,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -fzero-call-used-regs=used-gpr: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpls5xfkda/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpls5xfkda/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wthread-safety -Werror 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfw65ln10/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfw65ln10/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wthread-safety -Werror 
 
 Code:
  
@@ -185,7 +185,7 @@ Cached compiler stderr:
  cc: error: unrecognized command-line option '-Wthread-safety'
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpd6sh2yv2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpd6sh2yv2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wempty-body 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9cjbpy8s/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9cjbpy8s/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wempty-body 
 
 Code:
  extern int i;
@@ -197,7 +197,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wempty-body: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcm33votu/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcm33votu/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wendif-labels 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr95wj51z/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr95wj51z/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wendif-labels 
 
 Code:
  extern int i;
@@ -209,7 +209,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wendif-labels: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgq2v3cov/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgq2v3cov/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wexpansion-to-defined 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpk1qp3hrf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpk1qp3hrf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wexpansion-to-defined 
 
 Code:
  extern int i;
@@ -221,7 +221,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wexpansion-to-defined: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_5sv0mlf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_5sv0mlf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-security 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpd336di8m/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpd336di8m/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-security 
 
 Code:
  extern int i;
@@ -233,7 +233,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wformat-security: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmppetwwxxt/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppetwwxxt/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-y2k 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpabxffsz8/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpabxffsz8/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wformat-y2k 
 
 Code:
  extern int i;
@@ -245,7 +245,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wformat-y2k: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7ylah4d3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7ylah4d3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-qualifiers 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpw2tac3og/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpw2tac3og/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-qualifiers 
 
 Code:
  extern int i;
@@ -257,7 +257,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wignored-qualifiers: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqz38mqrw/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqz38mqrw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wimplicit-fallthrough=2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpy2en13ba/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpy2en13ba/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wimplicit-fallthrough=2 
 
 Code:
  extern int i;
@@ -269,7 +269,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wimplicit-fallthrough=2: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7g6se19l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7g6se19l/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Winit-self 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgmkba5j5/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgmkba5j5/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Winit-self 
 
 Code:
  extern int i;
@@ -281,7 +281,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Winit-self: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfa9wwwpq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfa9wwwpq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-format-attribute 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpnb7s7uae/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpnb7s7uae/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-format-attribute 
 
 Code:
  extern int i;
@@ -293,7 +293,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-format-attribute: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpb3qdfn96/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpb3qdfn96/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-prototypes 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoa2v_zc9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpoa2v_zc9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-prototypes 
 
 Code:
  extern int i;
@@ -305,7 +305,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wmissing-prototypes: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpndmlc50d/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpndmlc50d/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wnested-externs 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwe6ngc9r/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwe6ngc9r/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wnested-externs 
 
 Code:
  extern int i;
@@ -317,7 +317,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wnested-externs: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqyosc7bz/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqyosc7bz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-declaration 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpce_c1dew/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpce_c1dew/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-declaration 
 
 Code:
  extern int i;
@@ -329,7 +329,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wold-style-declaration: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfvoi47rj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfvoi47rj/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-definition 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpuvc2k3ky/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpuvc2k3ky/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wold-style-definition 
 
 Code:
  extern int i;
@@ -341,7 +341,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wold-style-definition: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprke98tdg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprke98tdg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wredundant-decls 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp84hbcqit/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp84hbcqit/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wredundant-decls 
 
 Code:
  extern int i;
@@ -353,7 +353,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wredundant-decls: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpph_mplvv/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpph_mplvv/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wshadow=local 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbgqv35g_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbgqv35g_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wshadow=local 
 
 Code:
  extern int i;
@@ -365,7 +365,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wshadow=local: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpaupjd8t_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpaupjd8t_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-prototypes 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkc3u0ymb/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkc3u0ymb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-prototypes 
 
 Code:
  extern int i;
@@ -377,7 +377,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wstrict-prototypes: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp39vzdvhv/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp39vzdvhv/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtype-limits 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7b_s686b/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7b_s686b/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtype-limits 
 
 Code:
  extern int i;
@@ -389,7 +389,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wtype-limits: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmps92_k78g/testfile.c -o /root/CESprj/qemu/build/meson-private/tmps92_k78g/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wundef 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpa7b0et9k/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpa7b0et9k/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wundef 
 
 Code:
  extern int i;
@@ -401,7 +401,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wundef: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpj1tpkt6p/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpj1tpkt6p/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wvla 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmptcal187z/testfile.c -o /root/CESprj/qemu/build/meson-private/tmptcal187z/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wvla 
 
 Code:
  extern int i;
@@ -413,7 +413,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wvla: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpknihp1t2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpknihp1t2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wwrite-strings 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwvaffom4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwvaffom4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wwrite-strings 
 
 Code:
  extern int i;
@@ -425,7 +425,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wwrite-strings: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpsnjwno44/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpsnjwno44/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wgnu-variable-sized-type-not-at-end -Wno-gnu-variable-sized-type-not-at-end 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmponur4mt9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmponur4mt9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wgnu-variable-sized-type-not-at-end -Wno-gnu-variable-sized-type-not-at-end 
 
 Code:
  extern int i;
@@ -438,7 +438,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Wno-gnu-variable-sized-type-not-at-end: NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7tnbz5j9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7tnbz5j9/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Winitializer-overrides -Wno-initializer-overrides 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9awvvc_w/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9awvvc_w/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Winitializer-overrides -Wno-initializer-overrides 
 
 Code:
  extern int i;
@@ -451,7 +451,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Wno-initializer-overrides: NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpznwivdpo/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpznwivdpo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-include-dirs -Wno-missing-include-dirs 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjhxbohqd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjhxbohqd/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wmissing-include-dirs -Wno-missing-include-dirs 
 
 Code:
  extern int i;
@@ -463,7 +463,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-missing-include-dirs: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmptmhl358z/testfile.c -o /root/CESprj/qemu/build/meson-private/tmptmhl358z/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wpsabi -Wno-psabi 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjlqeox6l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjlqeox6l/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wpsabi -Wno-psabi 
 
 Code:
  extern int i;
@@ -475,7 +475,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-psabi: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgpvuyct2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgpvuyct2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wshift-negative-value -Wno-shift-negative-value 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqap1jn3m/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqap1jn3m/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wshift-negative-value -Wno-shift-negative-value 
 
 Code:
  extern int i;
@@ -487,7 +487,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wno-shift-negative-value: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_aknlz1l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_aknlz1l/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstring-plus-int -Wno-string-plus-int 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkuubco_5/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkuubco_5/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstring-plus-int -Wno-string-plus-int 
 
 Code:
  extern int i;
@@ -500,7 +500,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Wno-string-plus-int: NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdf9r2wox/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdf9r2wox/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtautological-type-limit-compare -Wno-tautological-type-limit-compare 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfu9n_54q/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfu9n_54q/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtautological-type-limit-compare -Wno-tautological-type-limit-compare 
 
 Code:
  extern int i;
@@ -513,7 +513,7 @@ Cached compiler stderr:
 
 Compiler for C supports arguments -Wno-tautological-type-limit-compare: NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4rr92bad/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4rr92bad/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtypedef-redefinition -Wno-typedef-redefinition 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmd32h9wq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmd32h9wq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wtypedef-redefinition -Wno-typedef-redefinition 
 
 Code:
  extern int i;
@@ -527,28 +527,28 @@ Cached compiler stderr:
 Compiler for C supports arguments -Wno-typedef-redefinition: NO (cached)
 Program cgcc found: NO
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp51ctide7
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp1tgszfwu
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp51ctide7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp51ctide7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp1tgszfwu/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1tgszfwu/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lm -Wl,--allow-shlib-undefined` -> 0
 Library m found: YES
 Dependency threads found: YES unknown (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpf3ihhdn5
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc6p8pvi3/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lutil -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpf3ihhdn5/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpf3ihhdn5/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lutil -Wl,--allow-shlib-undefined` -> 0
 Library util found: YES
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp7mpemvap
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpiy71yv_d
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp7mpemvap/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7mpemvap/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Hypervisor` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpiy71yv_d/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpiy71yv_d/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Hypervisor` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
@@ -563,7 +563,7 @@ Dependency xentoolcore found: YES 1.0 (cached)
 Dependency glib-2.0 found: YES 2.80.0 (cached)
 Dependency gmodule-no-export-2.0 found: YES 2.80.0 (cached)
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmpq6jb_fqk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpq6jb_fqk/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmpmz4rrimt/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmz4rrimt/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -583,7 +583,7 @@ Cached compiler stderr:
  
 Dependency gio-2.0 found: YES 2.80.0 (cached)
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid /root/CESprj/qemu/build/meson-private/tmpn5l4vo0d/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpn5l4vo0d/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
+Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid /root/CESprj/qemu/build/meson-private/tmpj9yix7fu/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpj9yix7fu/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
 
 Code:
  
@@ -603,7 +603,7 @@ Program scripts/xml-preprocess.py found: YES (/root/CESprj/qemu/build/pyvenv/bin
 Dependency pixman-1 found: YES 0.42.2 (cached)
 Dependency zlib found: YES 1.3 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2hqc31mt/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjdfq_waq/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -620,12 +620,12 @@ Cached compiler stderr:
  
 Has header "libaio.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp90b5fqk6
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpo_pdyfbf
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp90b5fqk6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp90b5fqk6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -laio -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpo_pdyfbf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo_pdyfbf/output.exe -D_FILE_OFFSET_BITS=64 -O0 -laio -Wl,--allow-shlib-undefined` -> 0
 Library aio found: YES
 Pkg-config binary for host machine specified from cross file, native file, or env var as ['pkg-config']
 Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
@@ -642,7 +642,7 @@ Package 'liburing', required by 'virtual:world', not found
 -----------
 Run-time dependency liburing found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmps55x1g8d/testfile.c -o /root/CESprj/qemu/build/meson-private/tmps55x1g8d/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpstc_rw7r/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpstc_rw7r/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -653,14 +653,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmps55x1g8d/testfile.c:2:12: fatal error: liburing.h: No such file or directory
+ /root/CESprj/qemu/build/meson-private/tmpstc_rw7r/testfile.c:2:12: fatal error: liburing.h: No such file or directory
     2 |   #include <liburing.h>
       |            ^~~~~~~~~~~~
 compilation terminated.
 
 Dependency libnfs found: YES 5.0.2 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjjnlx73p/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjjnlx73p/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpajaniqqi/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpajaniqqi/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -677,39 +677,39 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpjh77mner
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpwuajcb7c
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpjh77mner/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjh77mner/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Cocoa` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpwuajcb7c/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwuajcb7c/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework Cocoa` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpzsoqblkb
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpm4f9s039
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpzsoqblkb/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzsoqblkb/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework CoreVideo` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpm4f9s039/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpm4f9s039/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework CoreVideo` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpki_dbn7s
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpq5v0l3mc/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework QuartzCore` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpki_dbn7s/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpki_dbn7s/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework QuartzCore` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
 Run-time dependency appleframeworks found: NO (tried framework)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmplr04c6wq
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp5ue2f76x
 Code:
 int main(void) { return 0; }
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmplr04c6wq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmplr04c6wq/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework vmnet` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp5ue2f76x/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp5ue2f76x/output.exe -D_FILE_OFFSET_BITS=64 -O0 -framework vmnet` -> 1
 stderr:
 cc: error: unrecognized command-line option '-framework'
 -----------
@@ -727,7 +727,7 @@ Package 'libseccomp', required by 'virtual:world', not found
 -----------
 Run-time dependency libseccomp found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_ia12bg8/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp88ixnjzz/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -744,15 +744,15 @@ Cached compiler stderr:
  
 Has header "cap-ng.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmppe96uko4
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpiqp40awp
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmppe96uko4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppe96uko4/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lcap-ng -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpiqp40awp/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpiqp40awp/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lcap-ng -Wl,--allow-shlib-undefined` -> 0
 Library cap-ng found: YES
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgd1smsj2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgd1smsj2/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lcap-ng 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmwjh7hzy/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmwjh7hzy/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lcap-ng 
 
 Code:
  
@@ -769,7 +769,7 @@ Cached compiler stderr:
 Dependency xkbcommon found: YES 1.6.0 (cached)
 Dependency slirp found: YES 4.7.0 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqde4gxkq/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvz00ti0_/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -783,7 +783,7 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpqde4gxkq/testfile.c:4:12: error: #error "Header 'libvdeplug.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpvz00ti0_/testfile.c:4:12: error: #error "Header 'libvdeplug.h' could not be found"
     4 |           #error "Header 'libvdeplug.h' could not be found"
       |            ^~~~~
 
@@ -818,12 +818,12 @@ Dependency sndio found: YES 1.9.0 (cached)
 Dependency spice-protocol found: YES 0.14.3 (cached)
 Dependency spice-server found: YES 0.15.1 (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp3vhukt5u
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp0o2d02rn
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp3vhukt5u/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp3vhukt5u/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrt -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp0o2d02rn/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp0o2d02rn/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrt -Wl,--allow-shlib-undefined` -> 0
 Library rt found: YES
 Dependency libiscsi found: YES 1.19.0 (cached)
 Dependency libzstd found: YES 1.5.5 (cached)
@@ -914,12 +914,12 @@ Package 'libcurl', required by 'virtual:world', not found
 Run-time dependency libcurl found: NO (tried pkgconfig)
 Dependency libudev found: YES 255 (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp7odrf4kj
+Working directory:  /root/CESprj/qemu/build/meson-private/tmplvotkt5k
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp7odrf4kj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7odrf4kj/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lmpathpersist -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmplvotkt5k/testfile.c -o /root/CESprj/qemu/build/meson-private/tmplvotkt5k/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lmpathpersist -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -lmpathpersist: No such file or directory
 collect2: error: ld returned 1 exit status
@@ -943,11 +943,11 @@ Cached run stdout:
 Cached run stderr:
  
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmp3eg5f09n
+Working directory:  /root/CESprj/qemu/build/meson-private/tmph9dyw7v3
 Code:
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp3eg5f09n/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp3eg5f09n/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmph9dyw7v3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmph9dyw7v3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
 stdout:
 install: /usr/lib/gcc/x86_64-linux-gnu/13/
 programs: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/
@@ -956,7 +956,7 @@ libraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/.
 Library mpathpersist found: NO
 Dependency ncursesw found: YES 6.4.20240113 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvbrro3gg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvbrro3gg/output.exe -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600 -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -DNCURSES_WIDECHAR=1 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libncursesw.so /usr/lib/x86_64-linux-gnu/libtinfo.so -Wl,--end-group 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwo6hou9b/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwo6hou9b/output.exe -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=600 -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -DNCURSES_WIDECHAR=1 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libncursesw.so /usr/lib/x86_64-linux-gnu/libtinfo.so -Wl,--end-group 
 
 Code:
  
@@ -980,7 +980,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmpo_p0k1fs/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo_p0k1fs/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group -liconv /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
+Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmp0dbughz8/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp0dbughz8/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group -liconv /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
 
 Code:
  
@@ -996,7 +996,7 @@ Cached compiler stderr:
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmplehz0j8_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmplehz0j8_/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
+Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmp5npe_o7q/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp5npe_o7q/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
 
 Code:
  
@@ -1010,7 +1010,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcgeljzeg/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpb0w9helf/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1024,14 +1024,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpcgeljzeg/testfile.c:4:12: error: #error "Header 'brlapi.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpb0w9helf/testfile.c:4:12: error: #error "Header 'brlapi.h' could not be found"
     4 |           #error "Header 'brlapi.h' could not be found"
       |            ^~~~~
 
 Has header "brlapi.h" : NO (cached)
 Dependency sdl2 found: YES 2.30.0 (cached)
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/SDL2 /root/CESprj/qemu/build/meson-private/tmp6qsentl1/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6qsentl1/output.obj -c -D_REENTRANT -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror=undef 
+Cached command line:  cc -m64 -I/usr/include/SDL2 /root/CESprj/qemu/build/meson-private/tmpy8772w3k/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpy8772w3k/output.obj -c -D_REENTRANT -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror=undef 
 
 Code:
  
@@ -1043,32 +1043,21 @@ Cached compiler stdout:
  
 Cached compiler stderr:
  
-Determining dependency 'SDL2_image' with pkg-config executable '/usr/bin/pkg-config'
-env[PKG_CONFIG_PATH]: 
-env[PKG_CONFIG]: /usr/bin/pkg-config
------------
-Called: `/usr/bin/pkg-config --modversion SDL2_image` -> 1
-stderr:
-Package SDL2_image was not found in the pkg-config search path.
-Perhaps you should add the directory containing `SDL2_image.pc'
-to the PKG_CONFIG_PATH environment variable
-Package 'SDL2_image', required by 'virtual:world', not found
------------
-Run-time dependency sdl2_image found: NO (tried pkgconfig)
+Dependency SDL2_image found: YES 2.8.2 (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpzu3taj7l
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpo76twb85
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpzu3taj7l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzu3taj7l/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrados -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpo76twb85/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo76twb85/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lrados -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -lrados: No such file or directory
 collect2: error: ld returned 1 exit status
 -----------
 Library rados found: NO
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_jjef52e/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmplncf0qag/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1082,7 +1071,7 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp_jjef52e/testfile.c:4:12: error: #error "Header 'rbd/librbd.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmplncf0qag/testfile.c:4:12: error: #error "Header 'rbd/librbd.h' could not be found"
     4 |           #error "Header 'rbd/librbd.h' could not be found"
       |            ^~~~~
 
@@ -1100,7 +1089,7 @@ Package 'glusterfs-api', required by 'virtual:world', not found
 -----------
 Run-time dependency glusterfs-api found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmp_qwmhpuh/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_qwmhpuh/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
+Cached command line:  cc -m64 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include /root/CESprj/qemu/build/meson-private/tmpo9yq68ge/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo9yq68ge/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Wl,--start-group /usr/lib/x86_64-linux-gnu/libglib-2.0.so /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so -Wl,--end-group 
 
 Code:
  
@@ -1132,7 +1121,7 @@ Package 'libssh', required by 'virtual:world', not found
 -----------
 Run-time dependency libssh found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwvl1cc78/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6erjw4jk/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1149,15 +1138,15 @@ Cached compiler stderr:
  
 Has header "bzlib.h" : YES (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpjcz_vum_
+Working directory:  /root/CESprj/qemu/build/meson-private/tmp1t0z1v_7
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpjcz_vum_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjcz_vum_/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lbz2 -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmp1t0z1v_7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1t0z1v_7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lbz2 -Wl,--allow-shlib-undefined` -> 0
 Library bz2 found: YES
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_g4i_l9a/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_g4i_l9a/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lbz2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpnwvf__i3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpnwvf__i3/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lbz2 
 
 Code:
  
@@ -1168,7 +1157,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpksbr6jsz/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpog9c68cv/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1182,13 +1171,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpksbr6jsz/testfile.c:4:12: error: #error "Header 'lzfse.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpog9c68cv/testfile.c:4:12: error: #error "Header 'lzfse.h' could not be found"
     4 |           #error "Header 'lzfse.h' could not be found"
       |            ^~~~~
 
 Has header "lzfse.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqca6iu53/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgxb5f5ns/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1206,7 +1195,7 @@ Cached compiler stderr:
 Has header "sys/soundcard.h" : YES (cached)
 Dependency epoxy found: YES 1.5.10 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpd5_fwaax/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpezgvfj81/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1249,8 +1238,8 @@ Calling CMake (['/usr/bin/cmake']) in /root/CESprj/qemu/build/meson-private/cmak
   - "."
   -- Module search paths:    ['/', '/opt', '/usr', '/usr/local']
   -- CMake root:             /usr/share/cmake-3.28
-  -- CMake architectures:    ['x86_64-linux-gnu']
-  -- CMake lib search paths: ['lib', 'lib32', 'lib64', 'libx32', 'share', '', 'lib/x86_64-linux-gnu']
+  -- CMake architectures:    ['arm-linux-gnueabi', 'x86_64-linux-gnu']
+  -- CMake lib search paths: ['lib', 'lib32', 'lib64', 'libx32', 'share', '', 'lib/arm-linux-gnueabi', 'lib/x86_64-linux-gnu']
 Preliminary CMake check failed. Aborting.
 Run-time dependency libcbor found: NO (tried pkgconfig and cmake)
 Dependency gnutls found: YES 3.8.3 (cached)
@@ -1274,7 +1263,7 @@ Dependency x11 found: YES 1.8.7 (cached)
 Dependency libpng found: YES 1.6.43 (cached)
 Dependency libjpeg found: YES 2.1.5 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpuodyf_x9/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2wvzb72k/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1288,13 +1277,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpuodyf_x9/testfile.c:4:12: error: #error "Header 'sasl/sasl.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmp2wvzb72k/testfile.c:4:12: error: #error "Header 'sasl/sasl.h' could not be found"
     4 |           #error "Header 'sasl/sasl.h' could not be found"
       |            ^~~~~
 
 Has header "sasl/sasl.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpxjzx3n25/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpua6tvct3/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1308,13 +1297,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpxjzx3n25/testfile.c:4:12: error: #error "Header 'security/pam_appl.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpua6tvct3/testfile.c:4:12: error: #error "Header 'security/pam_appl.h' could not be found"
     4 |           #error "Header 'security/pam_appl.h' could not be found"
       |            ^~~~~
 
 Has header "security/pam_appl.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp5wugr4tj/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp57evd4bb/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1328,13 +1317,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp5wugr4tj/testfile.c:4:12: error: #error "Header 'snappy-c.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmp57evd4bb/testfile.c:4:12: error: #error "Header 'snappy-c.h' could not be found"
     4 |           #error "Header 'snappy-c.h' could not be found"
       |            ^~~~~
 
 Has header "snappy-c.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpj7romuxk/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpzrfrgqpa/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1348,13 +1337,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpj7romuxk/testfile.c:4:12: error: #error "Header 'lzo/lzo1x.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpzrfrgqpa/testfile.c:4:12: error: #error "Header 'lzo/lzo1x.h' could not be found"
     4 |           #error "Header 'lzo/lzo1x.h' could not be found"
       |            ^~~~~
 
 Has header "lzo/lzo1x.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbj_kqdgr/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp0grrmit_/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1368,21 +1357,21 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpbj_kqdgr/testfile.c:4:12: error: #error "Header 'numa.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmp0grrmit_/testfile.c:4:12: error: #error "Header 'numa.h' could not be found"
     4 |           #error "Header 'numa.h' could not be found"
       |            ^~~~~
 
 Has header "numa.h" : NO (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpigly65is
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmqk1mcy6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lfdt -Wl,--allow-shlib-undefined` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpigly65is/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpigly65is/output.exe -D_FILE_OFFSET_BITS=64 -O0 -lfdt -Wl,--allow-shlib-undefined` -> 0
 Library fdt found: YES
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpo4p4zabj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo4p4zabj/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lfdt 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpab7tjgwx/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpab7tjgwx/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lfdt 
 
 Code:
  
@@ -1394,7 +1383,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp8dfdecok/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbwykg4p5/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1408,18 +1397,18 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp8dfdecok/testfile.c:4:12: error: #error "Header 'rdma/rdma_cma.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpbwykg4p5/testfile.c:4:12: error: #error "Header 'rdma/rdma_cma.h' could not be found"
     4 |           #error "Header 'rdma/rdma_cma.h' could not be found"
       |            ^~~~~
 
 Has header "rdma/rdma_cma.h" : NO (cached)
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpwkpbpki6
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpwx0pubsu
 Code:
 int main(void) { return 0; }
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpwkpbpki6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwkpbpki6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -libverbs -Wl,--allow-shlib-undefined` -> 1
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpwx0pubsu/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwx0pubsu/output.exe -D_FILE_OFFSET_BITS=64 -O0 -libverbs -Wl,--allow-shlib-undefined` -> 1
 stderr:
 /usr/bin/ld: cannot find -libverbs: No such file or directory
 collect2: error: ld returned 1 exit status
@@ -1512,7 +1501,7 @@ Package 'libkeyutils', required by 'virtual:world', not found
 -----------
 Run-time dependency libkeyutils found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcwcuyuea/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcwcuyuea/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9mh8vqh7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9mh8vqh7/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1540,7 +1529,7 @@ Cached compiler stderr:
 Checking for function "gettid" : YES (cached)
 Dependency libselinux found: YES 3.5 (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpce9bmhry/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpce9bmhry/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphhubsfv0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphhubsfv0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <malloc.h>
@@ -1561,7 +1550,7 @@ Cached compiler stderr:
  
 Checking for function "malloc_trim" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1p5sk5cy/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1p5sk5cy/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpm8_x21b_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpm8_x21b_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1583,7 +1572,7 @@ Cached compiler stderr:
  
 Header "sys/stat.h" has symbol "STATX_BASIC_STATS" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr9xigxel/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr9xigxel/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc7dbm9oi/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc7dbm9oi/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1641,7 +1630,7 @@ Package 'libdw', required by 'virtual:world', not found
 -----------
 Run-time dependency libdw found: NO (tried pkgconfig)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpknn_2gk2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpknn_2gk2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4di0513k/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4di0513k/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1659,7 +1648,7 @@ Cached compiler stderr:
  
 Header "linux/fs.h" has symbol "FIFREEZE" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc7w0enxs/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc7w0enxs/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpavvku2q2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpavvku2q2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1677,7 +1666,7 @@ Cached compiler stderr:
  
 Header "linux/fs.h" has symbol "FITRIM" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpt16yu806/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfldywxvk/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1694,7 +1683,7 @@ Cached compiler stderr:
  
 Has header "sys/epoll.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkg8g26nl/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoeauhn89/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1711,7 +1700,7 @@ Cached compiler stderr:
  
 Has header "linux/magic.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpla0oqc_a/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpiytfxx_c/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1725,13 +1714,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpla0oqc_a/testfile.c:4:12: error: #error "Header 'valgrind/valgrind.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpiytfxx_c/testfile.c:4:12: error: #error "Header 'valgrind/valgrind.h' could not be found"
     4 |           #error "Header 'valgrind/valgrind.h' could not be found"
       |            ^~~~~
 
 Has header "valgrind/valgrind.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgmy4cfx1/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyr3m3b8z/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1748,7 +1737,7 @@ Cached compiler stderr:
  
 Has header "linux/btrfs.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp0fkxlwe4/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp0mwsek9g/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1765,7 +1754,7 @@ Cached compiler stderr:
  
 Has header "libdrm/drm.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpht6h7g_w/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphnuo3588/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1782,7 +1771,7 @@ Cached compiler stderr:
  
 Has header "linux/openat2.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqrb53eud/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmg36rq4b/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1799,7 +1788,7 @@ Cached compiler stderr:
  
 Has header "pty.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpju_g3uks/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjj2um6v8/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1813,13 +1802,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpju_g3uks/testfile.c:4:12: error: #error "Header 'sys/disk.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpjj2um6v8/testfile.c:4:12: error: #error "Header 'sys/disk.h' could not be found"
     4 |           #error "Header 'sys/disk.h' could not be found"
       |            ^~~~~
 
 Has header "sys/disk.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpye0q4yu_/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmdmi842q/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1833,13 +1822,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpye0q4yu_/testfile.c:4:12: error: #error "Header 'sys/ioccom.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpmdmi842q/testfile.c:4:12: error: #error "Header 'sys/ioccom.h' could not be found"
     4 |           #error "Header 'sys/ioccom.h' could not be found"
       |            ^~~~~
 
 Has header "sys/ioccom.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpx7i5ndxz/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpthc96dw7/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -1853,13 +1842,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpx7i5ndxz/testfile.c:4:12: error: #error "Header 'sys/kcov.h' could not be found"
+ /root/CESprj/qemu/build/meson-private/tmpthc96dw7/testfile.c:4:12: error: #error "Header 'sys/kcov.h' could not be found"
     4 |           #error "Header 'sys/kcov.h' could not be found"
       |            ^~~~~
 
 Has header "sys/kcov.h" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphriqc2wg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphriqc2wg/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpsuppfeh4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpsuppfeh4/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1886,7 +1875,7 @@ Cached compiler stderr:
  
 Checking for function "close_range" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgy5qd43j/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgy5qd43j/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpuaksz362/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpuaksz362/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1913,7 +1902,7 @@ Cached compiler stderr:
  
 Checking for function "accept4" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpseaeengd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpseaeengd/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpy4ppacoy/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpy4ppacoy/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1940,7 +1929,7 @@ Cached compiler stderr:
  
 Checking for function "clock_adjtime" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpu15w71wa/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpu15w71wa/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpk9ywsan6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpk9ywsan6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1967,7 +1956,7 @@ Cached compiler stderr:
  
 Checking for function "dup3" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyrpw8wnc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpyrpw8wnc/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpegmf_ba9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpegmf_ba9/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -1994,7 +1983,7 @@ Cached compiler stderr:
  
 Checking for function "fallocate" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmdssb8ka/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmdssb8ka/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjrutcvy1/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjrutcvy1/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2021,7 +2010,7 @@ Cached compiler stderr:
  
 Checking for function "posix_fallocate" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp30u8eyii/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp30u8eyii/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcyy_wvf6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcyy_wvf6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2052,7 +2041,7 @@ Cached compiler stderr:
  
 Checking for function "getcpu" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmptpg2e9qq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmptpg2e9qq/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyfu72vbc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpyfu72vbc/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sched.h>
@@ -2070,15 +2059,15 @@ int main(void) {
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmptpg2e9qq/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmptpg2e9qq/testfile.c:9:32: error: 'sched_getcpu' undeclared (first use in this function); did you mean 'sched_getparam'?
+ /root/CESprj/qemu/build/meson-private/tmpyfu72vbc/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmpyfu72vbc/testfile.c:9:32: error: 'sched_getcpu' undeclared (first use in this function); did you mean 'sched_getparam'?
     9 |             void *a = (void*) &sched_getcpu;
       |                                ^~~~~~~~~~~~
       |                                sched_getparam
-/root/CESprj/qemu/build/meson-private/tmptpg2e9qq/testfile.c:9:32: note: each undeclared identifier is reported only once for each function it appears in
+/root/CESprj/qemu/build/meson-private/tmpyfu72vbc/testfile.c:9:32: note: each undeclared identifier is reported only once for each function it appears in
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpt7hfrw90/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpt7hfrw90/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkiycoj8h/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkiycoj8h/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sched.h>
@@ -2107,17 +2096,17 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpt7hfrw90/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmpt7hfrw90/testfile.c:12:14: error: #error "No definition for __builtin_sched_getcpu found in the prefix"
+ /root/CESprj/qemu/build/meson-private/tmpkiycoj8h/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmpkiycoj8h/testfile.c:12:14: error: #error "No definition for __builtin_sched_getcpu found in the prefix"
    12 |             #error "No definition for __builtin_sched_getcpu found in the prefix"
       |              ^~~~~
-/root/CESprj/qemu/build/meson-private/tmpt7hfrw90/testfile.c:17:18: error: #error "__builtin_sched_getcpu not found"
+/root/CESprj/qemu/build/meson-private/tmpkiycoj8h/testfile.c:17:18: error: #error "__builtin_sched_getcpu not found"
    17 |                 #error "__builtin_sched_getcpu not found"
       |                  ^~~~~
 
 Checking for function "sched_getcpu" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpnsnjj0z0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpnsnjj0z0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9nrq31c9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9nrq31c9/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <stdlib.h>
@@ -2138,7 +2127,7 @@ Cached compiler stderr:
  
 Checking for function "posix_memalign" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphfxvjko6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphfxvjko6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprcznx1za/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprcznx1za/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2162,12 +2151,12 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /usr/bin/ld: /tmp/ccIUwrNd.o: in function `main':
+ /usr/bin/ld: /tmp/cc8NJQoh.o: in function `main':
 testfile.c:(.text+0x9): undefined reference to `_aligned_malloc'
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpi17309h9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpi17309h9/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpnnj_obow/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpnnj_obow/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2196,14 +2185,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpi17309h9/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmpi17309h9/testfile.c:17:18: error: #error "__builtin__aligned_malloc not found"
+ /root/CESprj/qemu/build/meson-private/tmpnnj_obow/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmpnnj_obow/testfile.c:17:18: error: #error "__builtin__aligned_malloc not found"
    17 |                 #error "__builtin__aligned_malloc not found"
       |                  ^~~~~
 
 Checking for function "_aligned_malloc" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprp7mpaot/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprp7mpaot/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbbsgdzwh/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbbsgdzwh/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2230,7 +2219,7 @@ Cached compiler stderr:
  
 Checking for function "valloc" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp03wdw3sq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp03wdw3sq/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4bxaftrg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4bxaftrg/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2257,7 +2246,7 @@ Cached compiler stderr:
  
 Checking for function "memalign" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpzsycwzmz/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzsycwzmz/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpek4ezndf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpek4ezndf/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2284,7 +2273,7 @@ Cached compiler stderr:
  
 Checking for function "ppoll" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmom1fw4d/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmom1fw4d/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpa5qauxci/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpa5qauxci/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sys/uio.h>
@@ -2305,7 +2294,7 @@ Cached compiler stderr:
  
 Checking for function "preadv" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1br0sakz/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1br0sakz/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpx4nscg9m/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpx4nscg9m/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2329,12 +2318,12 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /usr/bin/ld: /tmp/ccpZWCaP.o: in function `main':
+ /usr/bin/ld: /tmp/ccOLMw7y.o: in function `main':
 testfile.c:(.text+0x9): undefined reference to `pthread_fchdir_np'
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpa7m87oki/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpa7m87oki/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp97jilr3v/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp97jilr3v/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2363,14 +2352,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpa7m87oki/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmpa7m87oki/testfile.c:17:18: error: #error "__builtin_pthread_fchdir_np not found"
+ /root/CESprj/qemu/build/meson-private/tmp97jilr3v/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmp97jilr3v/testfile.c:17:18: error: #error "__builtin_pthread_fchdir_np not found"
    17 |                 #error "__builtin_pthread_fchdir_np not found"
       |                  ^~~~~
 
 Checking for function "pthread_fchdir_np" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprdn7ts6f/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprdn7ts6f/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvzronpel/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvzronpel/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2397,7 +2386,7 @@ Cached compiler stderr:
  
 Checking for function "sendfile" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7nxqjpes/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7nxqjpes/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpx5xferc_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpx5xferc_/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2424,7 +2413,7 @@ Cached compiler stderr:
  
 Checking for function "setns" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr9tacpp0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr9tacpp0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmppne80qfd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppne80qfd/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2451,7 +2440,7 @@ Cached compiler stderr:
  
 Checking for function "unshare" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwepy_v2g/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwepy_v2g/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpuohaf5ym/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpuohaf5ym/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2478,7 +2467,7 @@ Cached compiler stderr:
  
 Checking for function "syncfs" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2w8y636l/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp2w8y636l/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6_8x72wa/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6_8x72wa/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2505,7 +2494,7 @@ Cached compiler stderr:
  
 Checking for function "sync_file_range" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpy_pzzmih/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpy_pzzmih/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqn2ppwhd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqn2ppwhd/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2532,7 +2521,7 @@ Cached compiler stderr:
  
 Checking for function "timerfd_create" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvt48r0ny/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvt48r0ny/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4v2t35h8/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4v2t35h8/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2559,7 +2548,7 @@ Cached compiler stderr:
  
 Checking for function "getloadavg" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp03f3pr9c/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp03f3pr9c/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpz6alx055/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpz6alx055/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2586,7 +2575,7 @@ Cached compiler stderr:
  
 Checking for function "copy_file_range" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpz44stwr6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpz44stwr6/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr67nvuot/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr67nvuot/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2613,7 +2602,7 @@ Cached compiler stderr:
  
 Checking for function "getifaddrs" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpayckequ2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpayckequ2/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lutil 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpzpigisg3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzpigisg3/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -lutil 
 
 Code:
  
@@ -2640,7 +2629,7 @@ Cached compiler stderr:
  
 Checking for function "openpty" with dependency -lutil: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp00aurt_r/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp00aurt_r/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpf02dyht9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpf02dyht9/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2667,7 +2656,7 @@ Cached compiler stderr:
  
 Checking for function "strchrnul" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpstxq2ucd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpstxq2ucd/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpl7gpsgds/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpl7gpsgds/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <stdlib.h>
@@ -2688,7 +2677,7 @@ Cached compiler stderr:
  
 Checking for function "system" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1i_vebaq/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1i_vebaq/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp5em9t119/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp5em9t119/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2706,7 +2695,7 @@ Cached compiler stderr:
  
 Header "sys/inotify.h" has symbol "inotify_init" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpppyqelg7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpppyqelg7/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyucpw9zp/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpyucpw9zp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2724,7 +2713,7 @@ Cached compiler stderr:
  
 Header "sys/inotify.h" has symbol "inotify_init1" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpav22ix59/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpav22ix59/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpwat1uu47/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpwat1uu47/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2742,7 +2731,7 @@ Cached compiler stderr:
  
 Header "linux/blkzoned.h" has symbol "BLKOPENZONE" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc_h04r2i/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc_h04r2i/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpb0xcd4f0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpb0xcd4f0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2760,7 +2749,7 @@ Cached compiler stderr:
  
 Header "sys/epoll.h" has symbol "epoll_create1" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp67pukh7j/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp67pukh7j/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpym312i3j/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpym312i3j/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2778,7 +2767,7 @@ Cached compiler stderr:
  
 Header "linux/falloc.h" has symbol "FALLOC_FL_PUNCH_HOLE" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpykn9c2nb/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpykn9c2nb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdd0qwui5/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdd0qwui5/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2796,7 +2785,7 @@ Cached compiler stderr:
  
 Header "linux/falloc.h" has symbol "FALLOC_FL_KEEP_SIZE" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmppok9cd64/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppok9cd64/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoic53jkf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpoic53jkf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2814,7 +2803,7 @@ Cached compiler stderr:
  
 Header "linux/falloc.h" has symbol "FALLOC_FL_ZERO_RANGE" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpxqy0kshg/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4fgj656e/testfile.c -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=gnu11 
 
 Code:
  
@@ -2831,7 +2820,7 @@ Cached compiler stderr:
  
 Has header "linux/fiemap.h" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvvs3_4u2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvvs3_4u2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpun5b3ltn/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpun5b3ltn/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2849,7 +2838,7 @@ Cached compiler stderr:
  
 Header "linux/fs.h" has symbol "FS_IOC_FIEMAP" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbpk3mfpd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbpk3mfpd/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphd2c3q98/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphd2c3q98/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2876,7 +2865,7 @@ Cached compiler stderr:
  
 Checking for function "getrandom" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbe9qv3t_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbe9qv3t_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmperk0x73x/testfile.c -o /root/CESprj/qemu/build/meson-private/tmperk0x73x/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2894,7 +2883,7 @@ Cached compiler stderr:
  
 Header "sys/random.h" has symbol "GRND_NONBLOCK" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpk3a8ooc5/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpk3a8ooc5/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdpf6jquw/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdpf6jquw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2912,7 +2901,7 @@ Cached compiler stderr:
  
 Header "sys/prctl.h" has symbol "PR_SET_TIMERSLACK" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpp5o2yr1r/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpp5o2yr1r/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc9pec_ij/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc9pec_ij/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2930,7 +2919,7 @@ Cached compiler stderr:
  
 Header "linux/rtnetlink.h" has symbol "IFLA_PROTO_DOWN" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6pfisy_c/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6pfisy_c/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphbhgc64r/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphbhgc64r/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2948,7 +2937,7 @@ Cached compiler stderr:
  
 Header "sys/sysmacros.h" has symbol "makedev" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmzpjkzp0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmzpjkzp0/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmptjvuf7xz/testfile.c -o /root/CESprj/qemu/build/meson-private/tmptjvuf7xz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2963,15 +2952,15 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpmzpjkzp0/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmpmzpjkzp0/testfile.c:6:17: error: 'optreset' undeclared (first use in this function)
+ /root/CESprj/qemu/build/meson-private/tmptjvuf7xz/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmptjvuf7xz/testfile.c:6:17: error: 'optreset' undeclared (first use in this function)
     6 |                 optreset;
       |                 ^~~~~~~~
-/root/CESprj/qemu/build/meson-private/tmpmzpjkzp0/testfile.c:6:17: note: each undeclared identifier is reported only once for each function it appears in
+/root/CESprj/qemu/build/meson-private/tmptjvuf7xz/testfile.c:6:17: note: each undeclared identifier is reported only once for each function it appears in
 
 Header "getopt.h" has symbol "optreset" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr4ypnlg3/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr4ypnlg3/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprbgibtx2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprbgibtx2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -2989,7 +2978,7 @@ Cached compiler stderr:
  
 Header "netinet/in.h" has symbol "IPPROTO_MPTCP" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcpertmvb/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcpertmvb/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpl8dxzmd1/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpl8dxzmd1/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3007,7 +2996,7 @@ Cached compiler stderr:
  
 Header "libaio.h" has symbol "io_prep_pwritev2" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvclpb4ny/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvclpb4ny/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmyjf7qkg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmyjf7qkg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <signal.h>
@@ -3020,14 +3009,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpvclpb4ny/testfile.c: In function 'bar':
-/root/CESprj/qemu/build/meson-private/tmpvclpb4ny/testfile.c:4:25: error: 'struct sigevent' has no member named 'sigev_notify_thread_id'
+ /root/CESprj/qemu/build/meson-private/tmpmyjf7qkg/testfile.c: In function 'bar':
+/root/CESprj/qemu/build/meson-private/tmpmyjf7qkg/testfile.c:4:25: error: 'struct sigevent' has no member named 'sigev_notify_thread_id'
     4 |             (void) ( foo.sigev_notify_thread_id );
       |                         ^
 
 Checking whether type "struct sigevent" has member "sigev_notify_thread_id" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmppcftelgz/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppcftelgz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2a18s2mj/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp2a18s2mj/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sys/stat.h>
@@ -3043,7 +3032,7 @@ Cached compiler stderr:
  
 Checking whether type "struct stat" has member "st_atim" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpua8pkbm6/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpua8pkbm6/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvsm1an_a/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvsm1an_a/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <linux/blkzoned.h>
@@ -3059,7 +3048,7 @@ Cached compiler stderr:
  
 Checking whether type "struct blk_zone" has member "capacity" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp13rztoz_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp13rztoz_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp4oi8vd7f/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp4oi8vd7f/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sys/uio.h>
@@ -3072,7 +3061,7 @@ Cached compiler stderr:
  
 Checking for type "struct iovec" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpt71bcqiy/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpt71bcqiy/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgp0x33od/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgp0x33od/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <utmpx.h>
@@ -3085,7 +3074,7 @@ Cached compiler stderr:
  
 Checking for type "struct utmpx" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqthbnjr2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqthbnjr2/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpv5n4nh_q/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpv5n4nh_q/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3096,7 +3085,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmprkunixrs/testfile.c -o /root/CESprj/qemu/build/meson-private/tmprkunixrs/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpk2s0ho79/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpk2s0ho79/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3117,7 +3106,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp5kho0bf0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp5kho0bf0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpb4u6xpbc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpb4u6xpbc/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3134,7 +3123,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9q50xoum/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9q50xoum/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpjff_8mdk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpjff_8mdk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3150,16 +3139,16 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp9q50xoum/testfile.c:9:16: error: conflicting types for 'madvise'; have 'int(int)'
+ /root/CESprj/qemu/build/meson-private/tmpjff_8mdk/testfile.c:9:16: error: conflicting types for 'madvise'; have 'int(int)'
     9 |     extern int madvise(int);
       |                ^~~~~~~
-In file included from /root/CESprj/qemu/build/meson-private/tmp9q50xoum/testfile.c:7:
+In file included from /root/CESprj/qemu/build/meson-private/tmpjff_8mdk/testfile.c:7:
 /usr/include/x86_64-linux-gnu/sys/mman.h:94:12: note: previous declaration of 'madvise' with type 'int(void *, size_t,  int)' {aka 'int(void *, long unsigned int,  int)'}
    94 | extern int madvise (void *__addr, size_t __len, int __advice) __THROW;
       |            ^~~~~~~
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgclr6lap/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgclr6lap/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpccbm0fmk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpccbm0fmk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3174,7 +3163,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpi2vko245/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpi2vko245/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpxh96g0ft/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpxh96g0ft/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3193,7 +3182,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmptco26l27/testfile.c -o /root/CESprj/qemu/build/meson-private/tmptco26l27/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpr4_i5k67/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpr4_i5k67/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3209,7 +3198,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpnmqtjn73/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpnmqtjn73/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpaja948as/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpaja948as/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3232,7 +3221,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpx03l673f/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpx03l673f/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3252,17 +3241,17 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile.c: In function 'f':
-/root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile.c:8:48: warning: passing argument 1 of 'pthread_setname_np' makes integer from pointer without a cast [-Wint-conversion]
+ /root/CESprj/qemu/build/meson-private/tmpx03l673f/testfile.c: In function 'f':
+/root/CESprj/qemu/build/meson-private/tmpx03l673f/testfile.c:8:48: warning: passing argument 1 of 'pthread_setname_np' makes integer from pointer without a cast [-Wint-conversion]
     8 |   static void *f(void *p) { pthread_setname_np("QEMU"); return NULL; }
       |                                                ^~~~~~
       |                                                |
       |                                                char *
-In file included from /root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile.c:6:
+In file included from /root/CESprj/qemu/build/meson-private/tmpx03l673f/testfile.c:6:
 /usr/include/pthread.h:463:42: note: expected 'pthread_t' {aka 'long unsigned int'} but argument is of type 'char *'
   463 | extern int pthread_setname_np (pthread_t __target_thread, const char *__name)
       |                                ~~~~~~~~~~^~~~~~~~~~~~~~~
-/root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile.c:8:29: error: too few arguments to function 'pthread_setname_np'
+/root/CESprj/qemu/build/meson-private/tmpx03l673f/testfile.c:8:29: error: too few arguments to function 'pthread_setname_np'
     8 |   static void *f(void *p) { pthread_setname_np("QEMU"); return NULL; }
       |                             ^~~~~~~~~~~~~~~~~~
 /usr/include/pthread.h:463:12: note: declared here
@@ -3270,7 +3259,7 @@ In file included from /root/CESprj/qemu/build/meson-private/tmp9wbxv8bd/testfile
       |            ^~~~~~~~~~~~~~~~~~
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpo5agszf9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpo5agszf9/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbn650t0b/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbn650t0b/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3292,13 +3281,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpo5agszf9/testfile.c:7:12: fatal error: pthread_np.h: No such file or directory
+ /root/CESprj/qemu/build/meson-private/tmpbn650t0b/testfile.c:7:12: fatal error: pthread_np.h: No such file or directory
     7 |   #include <pthread_np.h>
       |            ^~~~~~~~~~~~~~
 compilation terminated.
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp5dqloly9/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp5dqloly9/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3319,17 +3308,17 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp5dqloly9/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmp5dqloly9/testfile.c:12:5: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'pthread_condattr_init'
+ /root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/testfile.c:12:5: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'pthread_condattr_init'
    12 |     pthread_condattr_init(&attr);
       |     ^~~~~~~~~~~~~~~~~~~~~
-/root/CESprj/qemu/build/meson-private/tmp5dqloly9/testfile.c:12:28: error: 'attr' undeclared (first use in this function)
+/root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/testfile.c:12:28: error: 'attr' undeclared (first use in this function)
    12 |     pthread_condattr_init(&attr);
       |                            ^~~~
-/root/CESprj/qemu/build/meson-private/tmp5dqloly9/testfile.c:12:28: note: each undeclared identifier is reported only once for each function it appears in
+/root/CESprj/qemu/build/meson-private/tmpcb6a4fxl/testfile.c:12:28: note: each undeclared identifier is reported only once for each function it appears in
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpp0gqgqxy/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpp0gqgqxy/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_gpoblnx/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_gpoblnx/output.exe -pthread -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3358,7 +3347,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9jw7y9pf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9jw7y9pf/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmppx4e217z/testfile.c -o /root/CESprj/qemu/build/meson-private/tmppx4e217z/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3372,17 +3361,17 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp9jw7y9pf/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmp9jw7y9pf/testfile.c:8:27: warning: argument 2 null where non-null expected [-Wnonnull]
+ /root/CESprj/qemu/build/meson-private/tmppx4e217z/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmppx4e217z/testfile.c:8:27: warning: argument 2 null where non-null expected [-Wnonnull]
     8 |   int main(void) { return signalfd(-1, NULL, SFD_CLOEXEC); }
       |                           ^~~~~~~~
-In file included from /root/CESprj/qemu/build/meson-private/tmp9jw7y9pf/testfile.c:6:
+In file included from /root/CESprj/qemu/build/meson-private/tmppx4e217z/testfile.c:6:
 /usr/include/x86_64-linux-gnu/sys/signalfd.h:57:12: note: in a call to function 'signalfd' declared 'nonnull'
    57 | extern int signalfd (int __fd, const sigset_t *__mask, int __flags)
       |            ^~~~~~~~
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmphuk4rbqn/testfile.c -o /root/CESprj/qemu/build/meson-private/tmphuk4rbqn/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpmon9hgfr/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpmon9hgfr/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3406,7 +3395,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpsx1qt2v_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpsx1qt2v_/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpgcb2cl0p/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgcb2cl0p/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3423,7 +3412,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpuv1r_ao1/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpuv1r_ao1/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkl25mwph/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkl25mwph/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3440,7 +3429,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpxp2xppf4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpxp2xppf4/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1xfocugg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1xfocugg/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3459,7 +3448,7 @@ Cached compiler stderr:
  
 Checking for type "struct mmsghdr" : YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpobbnwlan/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpobbnwlan/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpc7gkpnni/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpc7gkpnni/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3474,13 +3463,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpobbnwlan/testfile.c:4:14: fatal error: net/netmap.h: No such file or directory
+ /root/CESprj/qemu/build/meson-private/tmpc7gkpnni/testfile.c:4:14: fatal error: net/netmap.h: No such file or directory
     4 |     #include <net/netmap.h>
       |              ^~~~~~~~~~~~~~
 compilation terminated.
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpkq9d5_pr/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpkq9d5_pr/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpzv9z3h70/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzv9z3h70/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3494,7 +3483,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp_0mmvrj_/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp_0mmvrj_/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdkyhggf2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdkyhggf2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -Werror 
 
 Code:
  
@@ -3508,7 +3497,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpx9xgqud4/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpx9xgqud4/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpd_kdfzxr/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpd_kdfzxr/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
 
 Code:
  
@@ -3528,7 +3517,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoktzcw1n/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpoktzcw1n/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp67z3xvjc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp67z3xvjc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3540,7 +3529,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpbe9dbsiw/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpbe9dbsiw/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpd3oeo8xu/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpd3oeo8xu/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3557,7 +3546,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp344_qspo/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp344_qspo/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfp9gn0vk/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfp9gn0vk/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
 
 Code:
  
@@ -3571,14 +3560,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /usr/bin/ld: /tmp/cc0Fs65G.o: in function `main':
+ /usr/bin/ld: /tmp/ccEPs9JG.o: in function `main':
 testfile.c:(.text+0x44): undefined reference to `__atomic_load_16'
 /usr/bin/ld: testfile.c:(.text+0x84): undefined reference to `__atomic_store_16'
 /usr/bin/ld: testfile.c:(.text+0xba): undefined reference to `__atomic_compare_exchange_16'
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpww_tt96z/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpww_tt96z/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpcj8o_z6k/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpcj8o_z6k/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
 
 Code:
  __attribute__((optimize("O1")))
@@ -3592,14 +3581,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /usr/bin/ld: /tmp/ccUNaIMo.o: in function `main':
+ /usr/bin/ld: /tmp/cc0PRxTf.o: in function `main':
 testfile.c:(.text+0x16): undefined reference to `__atomic_load_16'
 /usr/bin/ld: testfile.c:(.text+0x34): undefined reference to `__atomic_store_16'
 /usr/bin/ld: testfile.c:(.text+0x5b): undefined reference to `__atomic_compare_exchange_16'
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp21hv21xa/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp21hv21xa/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpa_v2u_mn/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpa_v2u_mn/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 -mcx16 -msse2 
 
 Code:
  
@@ -3615,7 +3604,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpxlkp0jfg/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpxlkp0jfg/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpw9i7dwtl/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpw9i7dwtl/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3632,7 +3621,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7qtuu0b0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7qtuu0b0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9y5fo5uh/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9y5fo5uh/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3649,16 +3638,16 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmp7qtuu0b0/testfile.c: In function 'main':
-/root/CESprj/qemu/build/meson-private/tmp7qtuu0b0/testfile.c:9:5: warning: implicit declaration of function 'elf_aux_info' [-Wimplicit-function-declaration]
+ /root/CESprj/qemu/build/meson-private/tmp9y5fo5uh/testfile.c: In function 'main':
+/root/CESprj/qemu/build/meson-private/tmp9y5fo5uh/testfile.c:9:5: warning: implicit declaration of function 'elf_aux_info' [-Wimplicit-function-declaration]
     9 |     elf_aux_info(AT_HWCAP, &hwcap, sizeof(hwcap));
       |     ^~~~~~~~~~~~
-/usr/bin/ld: /tmp/ccLVCrg7.o: in function `main':
+/usr/bin/ld: /tmp/ccYycUsJ.o: in function `main':
 testfile.c:(.text+0x3a): undefined reference to `elf_aux_info'
 collect2: error: ld returned 1 exit status
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpl7h3fzuc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpl7h3fzuc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdopva3_f/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdopva3_f/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3675,7 +3664,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpewpz1mco/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpewpz1mco/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2rc2tw79/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp2rc2tw79/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3699,7 +3688,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpzvlwy776/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpzvlwy776/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp7_ql9to1/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp7_ql9to1/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3714,14 +3703,14 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpzvlwy776/testfile.c:2:18: fatal error: asm/hwprobe.h: No such file or directory
+ /root/CESprj/qemu/build/meson-private/tmp7_ql9to1/testfile.c:2:18: fatal error: asm/hwprobe.h: No such file or directory
     2 |         #include <asm/hwprobe.h>
       |                  ^~~~~~~~~~~~~~~
 compilation terminated.
 
 Header "asm/hwprobe.h" has symbol "RISCV_HWPROBE_EXT_ZBA" : NO (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyghyl64q/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpyghyl64q/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpqbzvtbs0/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpqbzvtbs0/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3738,7 +3727,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpay2dfsxm/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpay2dfsxm/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdrrufo0i/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdrrufo0i/output.exe -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3756,7 +3745,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpyz2czgoc/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpyz2czgoc/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp6beqk_us/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp6beqk_us/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3769,13 +3758,13 @@ Code:
 Cached compiler stdout:
  
 Cached compiler stderr:
- /root/CESprj/qemu/build/meson-private/tmpyz2czgoc/testfile.c:2:14: fatal error: arm_neon.h: No such file or directory
+ /root/CESprj/qemu/build/meson-private/tmp6beqk_us/testfile.c:2:14: fatal error: arm_neon.h: No such file or directory
     2 |     #include <arm_neon.h>
       |              ^~~~~~~~~~~~
 compilation terminated.
 
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp9z_0r61t/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp9z_0r61t/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvkpmu04e/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvkpmu04e/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  
@@ -3798,7 +3787,7 @@ Cached compiler stdout:
 Cached compiler stderr:
  
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpfo1im3w7/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpfo1im3w7/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp1uv_gh5y/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp1uv_gh5y/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -std=gnu11 
 
 Code:
  #include <sys/socket.h>
@@ -4221,7 +4210,7 @@ C linker for the host machine: cc -m64 ld.bfd 2.42
 C compiler for the build machine: cc -m64 (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0")
 C linker for the build machine: cc -m64 ld.bfd 2.42
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoc5gqxw2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpoc5gqxw2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdb4m32an/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdb4m32an/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare 
 
 Code:
  extern int i;
@@ -4233,7 +4222,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wsign-compare: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmph5_yacnf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmph5_yacnf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpaczgxegw/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpaczgxegw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
 
 Code:
  extern int i;
@@ -4245,7 +4234,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wdeclaration-after-statement: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvlzmjieo/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvlzmjieo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-aliasing 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdeyvn6ai/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdeyvn6ai/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-aliasing 
 
 Code:
  extern int i;
@@ -4271,7 +4260,7 @@ C linker for the host machine: cc -m64 ld.bfd 2.42
 C compiler for the build machine: cc -m64 (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0")
 C linker for the build machine: cc -m64 ld.bfd 2.42
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpoc5gqxw2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpoc5gqxw2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdb4m32an/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdb4m32an/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wsign-compare 
 
 Code:
  extern int i;
@@ -4283,7 +4272,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wsign-compare: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmph5_yacnf/testfile.c -o /root/CESprj/qemu/build/meson-private/tmph5_yacnf/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpaczgxegw/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpaczgxegw/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wdeclaration-after-statement 
 
 Code:
  extern int i;
@@ -4295,7 +4284,7 @@ Cached compiler stderr:
  
 Compiler for C supports arguments -Wdeclaration-after-statement: YES (cached)
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpvlzmjieo/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpvlzmjieo/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-aliasing 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpdeyvn6ai/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpdeyvn6ai/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wstrict-aliasing 
 
 Code:
  extern int i;
@@ -7483,7 +7472,7 @@ C compiler for the build machine: cc -m64 (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu
 C linker for the build machine: cc -m64 ld.bfd 2.42
 Configuring platform.h using configuration
 Using cached compile:
-Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmp2gh7glj2/testfile.c -o /root/CESprj/qemu/build/meson-private/tmp2gh7glj2/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-pragmas -Wno-ignored-pragmas 
+Cached command line:  cc -m64 /root/CESprj/qemu/build/meson-private/tmpt2jryatp/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpt2jryatp/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 -Wignored-pragmas -Wno-ignored-pragmas 
 
 Code:
  extern int i;
@@ -7855,7 +7844,7 @@ qemu 10.0.50
 
   User interface
     SDL support                     : [1;32mYES[0m [1;36m2.30.0[0m
-    SDL image support               : NO
+    SDL image support               : [1;32mYES[0m [1;36m2.8.2[0m
     GTK support                     : YES
     pixman                          : [1;32mYES[0m [1;36m0.42.2[0m
     VTE support                     : [1;32mYES[0m [1;36m0.76.0[0m
@@ -7948,11 +7937,11 @@ qemu 10.0.50
 WARNING: The following command line option(s) were not used: cpp_args,objc_args,cpp_link_args,cpp_std
 Found ninja-1.11.1 at /usr/bin/ninja
 Running compile:
-Working directory:  /root/CESprj/qemu/build/meson-private/tmpgseemv9v
+Working directory:  /root/CESprj/qemu/build/meson-private/tmpgzwlat94
 Code:
 
 -----------
-Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpgseemv9v/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgseemv9v/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
+Command line: `cc -m64 /root/CESprj/qemu/build/meson-private/tmpgzwlat94/testfile.c -o /root/CESprj/qemu/build/meson-private/tmpgzwlat94/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs` -> 0
 stdout:
 install: /usr/lib/gcc/x86_64-linux-gnu/13/
 programs: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/

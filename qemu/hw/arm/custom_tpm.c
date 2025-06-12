@@ -12,9 +12,9 @@
 // For asynch behavior
 #include "qemu/main-loop.h"
 
-// For Crypto operations
-#include <openssl/rsa.h>
-#include <openssl/pem.h>
+#include "tpm_types.h"
+#include "tpm_command_handler.h"
+#include "tpm_basic_crypto_rsa.h"
 
 /*REGISTER DEFINITION*/
 REG32(TPM_ACCESS, 0X00)
@@ -56,32 +56,6 @@ typedef enum{
 #define MAX_KEYS 4
 #define KEY_HANDLE_BASE 0X81000000          // A generic (simplied) key handle base for everything
 
-/* Key attributes */
-
-#define FIXED_TPM       0x00000002                // Key cannot be duplicated to another TPM
-#define ST_CLEAR        0x00000004                // Key is cleared on TPM Shutdown
-#define FIXED_PARENT    0x00000010                // Key's parent handle is fixed
-#define DECRYPT         0x00020000                // Key may be used for decrypt operations
-#define SIGN            0x00040000                // Key may be used for signature
-
-
-
-typedef enum{
-    KEY_TYPE_RSA,
-    KEY_TYPE_ECC
-} KeyType;
-
-typedef struct{
-    uint32_t handle;
-    KeyType type;
-    uint32_t attributes;                    // Bitmap to specifie the key use
-    uint8_t public_key[256];                // Public key buffer
-    size_t public_size;
-    uint8_t private_key[256];               // Private key buffer
-    size_t private_size;
-    bool loaded;
-}TPM_Key;
-
 struct CustomTPMState {
     SysBusDevice parent_obj;
 
@@ -108,76 +82,9 @@ struct CustomTPMState {
     QEMUBH *command_bh; // For async command execution
 };
 
-/* COMMAND DEFINITION */
-/* https://trustedcomputinggroup.org/wp-content/uploads/Trusted-Platform-Module-2.0-Library-Part-2-Version-184_pub.pdf */
-/* 6.5.2 TPM_CC Listing*/
-#define TPM2_CC_NV_DefineSpace      0x0000012A
-#define TPM2_CC_CreatePrimary       0x00000131
-#define TPM2_CC_Create              0x00000153
-#define TPM2_CC_Load                0x00000157
-#define TPM2_CC_Sign                0x0000015F
-#define TPM2_CC_SelfTest            0x00000143
-#define TPM2_CC_Startup             0x00000144
-#define TPM2_CC_Shutdown            0x00000145
-#define TPM2_CC_StartAuthSession    0x00000176
-#define TPM2_CC_GetCapability       0x0000017A
-#define TPM2_CC_GetRandom           0x0000017B
-
-// Startup types
-#define TPM_SU_CLEAR                0x0000 
-#define TPM_SU_STATE                0x0001
-
-// Response codes
-#define TPM_RC_SUCCESS              0x000
-
-#define TPM_RC_FMT1                 0x080
-#define TPM_RC_VALUE                (TPM_RC_FMT1 + 0x004)   // Bad parameter value
-#define TPM_RC_SIZE                 (TPM_RC_FMT1 + 0x015)   // Structure is the wrong size
-
-#define TPM_RC_VER1                 0x100
-#define TPM_RC_INITIALIZE           (TPM_RC_VER1 + 0x000)   // TPM not initialized
-#define TPM_RC_FAILURE              (TPM_RC_VER1 + 0x001)   // Out of memory
-
-#define TPM_RC_WARN                 0x900
-#define TPM_RC_TESTING              (TPM_RC_WARN + 0x00A)   // SelfTest Response Code 
-#define TPM_RC_OBJECT_MEMORY        (TPM_RC_WARN + 0x002)   // SelfTest Response Code 
-
 #define SUCCESS_CODE                0x00
 #define ERROR_CODE                  0x01
 
-
-/**  CRYPTO OPERATIONS  **/
-static int generate_rsa_key(TPM_Key *key){
-    RSA *rsa = RSA_generate_key(2048, RSA_F4, NULL, NULL);
-    if(!rsa) return -1;
-
-    // Serialize public key
-    BIO *pub_bio = BIO_new(BIO_s_mem());            //Create a dynamic buffer
-    PEM_write_bio_RSA_PUBKEY(pub_bio, rsa);
-    key->public_size = BIO_read(pub_bio, key->public_key, sizeof(key->public_key));
-    BIO_free(pub_bio);
-    
-    // Serialize private key
-    BIO *priv_bio = BIO_new(BIO_s_mem());           // Create a dynamic buffer
-    PEM_write_bio_RSAPrivateKey(priv_bio, rsa, NULL, NULL, 0, NULL, NULL);
-    key->private_size = BIO_read(priv_bio, key->private_key, sizeof(key->private_key));
-    BIO_free(priv_bio);
-    
-    RSA_free(rsa);
-    return 0;
-}
-
-static int sign_digest(RSA *rsa, const uint8_t *digest, size_t digest_len, uint8_t *signature, size_t *sig_len){
-    unsigned int sig_size;
-    int rv = RSA_sign(NID_sha256, digest, digest_len, 
-                     signature, &sig_size, rsa);
-    if (rv != 1) return -1;
-    
-    *sig_len = sig_size;
-    return 0;
-}
-
-/**                     **/
 static void tpm_reset_state(CustomTPMState *s){
     printf("[TPM] Performing state reset (CLEAR)\n");
     
@@ -193,6 +100,248 @@ static void tpm_reset_state(CustomTPMState *s){
     printf("[TPM] Reset complete\n");
 }
 
+/* Begin Commands */
+static uint32_t SelfTest(CustomTPMState *s){
+    // It should check a test of self function, but in this case it send only a response code
+    printf("[TPM]: SelfTest Command execution\n");
+    s->response_size = 10;
+    if(s->state == TPM_STATE_IDLE) { return TPM_RC_INITIALIZE; } 
+    return TPM_RC_SUCCESS;  
+}
+
+static uint32_t Startup(CustomTPMState *s){
+    printf("[TPM]: Startup Command execution\n");
+    // Startup command has 2-byte parameter (startupType)
+    s->response_size = 10;
+            
+    if(s->command_size < 12){
+        printf("[TPM] Startup command too small\n");
+        return TPM_RC_SIZE;
+    }
+    // Parsing extra 2-byte
+    uint16_t startup_type = (s->command[11] << 8) | s->command[10];
+    printf("[TPM] Startup command, type: 0x%04x\n", startup_type);
+
+    switch(startup_type){
+        case TPM_SU_CLEAR:
+            tpm_reset_state(s);
+            return TPM_RC_SUCCESS;
+        case TPM_SU_STATE:
+            printf("[TPM] State restore not implemented\n");
+            return TPM_RC_SUCCESS;
+        default:
+            printf("[TPM] Invalid startup type\n");
+            return TPM_RC_VALUE;
+    }
+} 
+
+static uint32_t Shutdown(CustomTPMState *s){
+printf("[TPM]: Shutdown Command execution\n");
+    // Startup command has 2-byte parameter (startupType)
+    s->response_size = 10;
+    if(s->state == TPM_STATE_IDLE) { return TPM_RC_INITIALIZE; } 
+    if(s->command_size < 12){
+    printf("[TPM] Startup command too small\n");
+        return TPM_RC_SIZE;
+    }
+    // Parsing extra 2-byte
+    uint16_t shutdown_type = (s->command[11] << 8) | s->command[10];
+    printf("[TPM] Shutdown command, type: 0x%04x\n", shutdown_type);
+
+    switch(shutdown_type){
+        case TPM_SU_CLEAR:
+            printf("[TPM]Not implemented");
+            return TPM_RC_VALUE;
+        case TPM_SU_STATE:
+            s->regs[R_TPM_STS] &= ~R_TPM_STS_CMD_READY_MASK;
+            s->state = TPM_STATE_IDLE;
+
+            for(int i = 0; i < MAX_KEYS; i++){
+                if(s->keys[i].attributes & ST_CLEAR)
+                    memset(&(s->keys[i]), 0, sizeof(s->keys[i]));
+            }
+
+            return TPM_RC_SUCCESS;
+        default:
+            printf("[TPM] Invalid shutdown type\n");
+            return TPM_RC_VALUE;
+    } 
+}
+
+static uint32_t CreatePrimary(CustomTPMState *s){
+    // To generate Primary key
+    printf("[TPM]: CreatePrimary Command execution\n");
+    s->response_size = 10;
+    if(s->state == TPM_STATE_IDLE) { return TPM_RC_INITIALIZE; } 
+    if(s->command_size < 29 ){  // 10 + 4 + 2 + 2 + 2 + 4 + 5
+        printf("[TPM] CreatePrimary command too small\n");
+        return TPM_RC_SIZE;
+    }
+
+    // Extra field in command are:
+    // TPMI_RH_HIERARCHY primaryHandle          (uint32_t)  4 bytes
+    // TPM2B_SENSITIVE_CREATE inSensitive         2 bytes
+    // TPM2B_PUBLIC inPublic                      2 bytes
+    // TPM2B_DATA outsideInfo                     2 bytes
+    // TPML_PCR_SELECTION creationPCR             4 bytes
+    uint32_t primaryHandle;
+    TPM2B_SENSITIVE_CREATE inSensitive;
+    TPM2B_PUBLIC inPublic;
+    uint16_t outsideInfoSize;
+    uint32_t creationPCRCount;
+    int offset = 10;        // Aleeady analyzed field
+
+    // Parsing command
+    primaryHandle =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset];
+    
+    if(primaryHandle != TPM_RH_OWNER && primaryHandle != TPM_RH_ENDORSEMENT && primaryHandle != TPM_RH_PLATFORM && primaryHandle != TPM_RH_NULL){
+        printf("[TPM]: Primary Handle: 0x%x, isn't a valid value\n", primaryHandle);
+        return TPM_RC_HANDLE;
+    }
+    
+    printf("[TPM]: Primary Handle: 0x%x\n", primaryHandle);
+    offset += 4;
+    if(offset+2 > s->command_size) return TPM_RC_SIZE;
+    
+    inSensitive.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    if(offset + inSensitive.size > s->command_size){
+        printf("[TPM] Invalid inSensitive size: %d\n", inSensitive.size);
+        return TPM_RC_SIZE;
+    }
+    // Skip inSensitive Value 
+
+    offset += inSensitive.size;
+    if(offset+2 > s->command_size) return TPM_RC_SIZE;
+
+    inPublic.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    if(offset+inPublic.size > s->command_size){
+        printf("[TPM] Invalid inPublic size: %d\n", inPublic.size);
+        return TPM_RC_SIZE;
+    }
+    
+    if(inPublic.size < 8) return TPM_RC_SIZE;
+    inPublic.publicArea.type = (s->command[offset + 1] <<  8) | s->command[offset]; 
+    inPublic.publicArea.nameAlg = (s->command[offset + 3] <<  8) | s->command[offset+2]; 
+    inPublic.publicArea.objectAttributes = (s->command[offset + 7] << 24) | (s->command[offset + 6] << 16) | (s->command[offset + 5] << 8) | s->command[offset + 4]; 
+    printf("[TPM] Algorithm: 0x%04x, NameAlg: 0x%04x, Attributes: 0x%08x\n", inPublic.publicArea.type, inPublic.publicArea.nameAlg, inPublic.publicArea.objectAttributes);
+
+    // Skipping 
+    //      AuthPolicy
+    //      parameters
+
+    offset += inPublic.size;
+
+    if(offset+2 > s->command_size) return TPM_RC_SIZE;
+    
+    outsideInfoSize = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    if(offset + outsideInfoSize > s->command_size){
+        printf("[TPM] Invalid outSideInfo size: %d\n", outsideInfoSize);
+        return TPM_RC_SIZE;
+    }
+    // Skipping OutsideInfoSize
+    offset += outsideInfoSize;
+
+    if(offset+4 > s->command_size) return TPM_RC_SIZE;
+
+    creationPCRCount =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset]; 
+    // Skip PCR
+
+    
+    int slot = -1;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(!s->keys[i].loaded){
+            slot = i;
+            break;
+        }
+    }
+
+    if(slot == -1){
+        return TPM_RC_OBJECT_MEMORY;
+    }
+
+    TPM_Key *key = &(s->keys[slot]);
+
+    // Initialize key
+    key->handle = KEY_HANDLE_BASE + s->next_handle++;
+
+    switch (inPublic.publicArea.type){
+        case TPM_ALG_RSA:
+            key->type = KEY_TYPE_RSA;
+            break;
+        default:
+            printf("[TPM] Unsupported algorithm: 0x%04X\n", inPublic.publicArea.type);
+            return TPM_RC_ASYMMETRIC;
+    }
+
+    key->attributes = inPublic.publicArea.objectAttributes;
+
+    // Generate key pair
+    // Fixed size for simplicity 1024
+    if(generate_rsa_keys(key->ctx, 1024)){
+        return TPM_RC_FAILURE;
+    }
+    key->loaded = true;
+    key->hierarchy = primaryHandle;
+    printf("[TPM] Created primary key with handle: 0x%08x\n", key->handle);
+
+    // Prepare response
+    int resp_offset = 10;
+            
+    s->response[resp_offset] = key->handle;
+    s->response[resp_offset + 1] = key->handle >> 8;
+    s->response[resp_offset + 2] = key->handle >> 16;
+    s->response[resp_offset + 3] = key->handle >> 24;
+    resp_offset += 4;
+
+    uint16_t pubKeySize = sizeof(key->ctx->public_key);
+    s->response[resp_offset] = pubKeySize;
+    s->response[resp_offset + 1]  = pubKeySize >> 8;
+    resp_offset += 2;
+
+    if(resp_offset + pubKeySize > sizeof(s->response)){
+        printf("[TPM]: Response buffer too small\n");
+        return TPM_RC_FAILURE;
+    }
+
+    memcpy(&s->response[resp_offset], &(key->ctx->public_key), sizeof(key->ctx->public_key));
+    resp_offset += pubKeySize;
+
+    // TPM2B_CREATION_DATA (simplified, empty for now)
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset+1] = 0x00; // size high
+    resp_offset += 2;
+
+    // TPMT_TK_CREATION (simplified, null ticket)
+    s->response[resp_offset] = 0x21; // TPM_ST_CREATION
+    s->response[resp_offset+1] = 0x80;
+    resp_offset += 2;
+    s->response[resp_offset] =   0x07; // TPM_RH_NULL
+    s->response[resp_offset+1] = 0x00;
+    s->response[resp_offset+2] = 0x00;
+    s->response[resp_offset+3] = 0x40;
+    resp_offset += 4;
+    
+    // Empty digest
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset+1] = 0x00; // size high  
+    resp_offset += 2;
+    
+    // TPM2B_DIGEST name (simplified, empty for now)
+    s->response[resp_offset] = 0x00; // size low
+    s->response[resp_offset+1] = 0x00; // size high
+    resp_offset += 2;
+    
+    s->response_size = resp_offset;
+
+    printf("[TPM] CreatePrimary response prepared, size: %d bytes\n", s->response_size);
+
+    return TPM_RC_SUCCESS;
+}
+
+/*  End  Commands */
 static void process_command(CustomTPMState *s){
     // Parsing TPM header
     // +---------------+----------------+------------------------+
@@ -206,124 +355,16 @@ static void process_command(CustomTPMState *s){
     
     switch (command_code){
         case TPM2_CC_SelfTest:
-            // It should check a test of self function, but in this case it send only a response code
-            printf("[TPM]: SelfTest Command execution\n");
-            s->response_size = 10;
-            if(s->state == TPM_STATE_IDLE) { rc = TPM_RC_INITIALIZE; break; } 
-            rc = TPM_RC_SUCCESS;     
+            rc = SelfTest(s); 
             break;
         case TPM2_CC_Startup:
-            printf("[TPM]: Startup Command execution\n");
-            // Startup command has 2-byte parameter (startupType)
-            s->response_size = 10;
-            
-            if(size < 12){
-                printf("[TPM] Startup command too small\n");
-                rc = TPM_RC_SIZE;
-                break;
-            }
-            // Parsing extra 2-byte
-            uint16_t startup_type = (s->command[11] << 8) | s->command[10];
-            printf("[TPM] Startup command, type: 0x%04x\n", startup_type);
-
-            switch(startup_type){
-                case TPM_SU_CLEAR:
-                    tpm_reset_state(s);
-                    rc = TPM_RC_SUCCESS;
-                    break;
-                case TPM_SU_STATE:
-                    printf("[TPM] State restore not implemented\n");
-                    rc = TPM_RC_SUCCESS;
-                    break;
-                default:
-                    printf("[TPM] Invalid startup type\n");
-                    rc = TPM_RC_VALUE;
-                    break;
-            }
+            rc = Startup(s);
             break;
         case TPM2_CC_Shutdown:
-            printf("[TPM]: Shutdown Command execution\n");
-            // Startup command has 2-byte parameter (startupType)
-            s->response_size = 10;
-            if(s->state == TPM_STATE_IDLE) { rc = TPM_RC_INITIALIZE; break; } 
-            if(size < 12){
-                printf("[TPM] Startup command too small\n");
-                rc = TPM_RC_SIZE;
-                break;
-            }
-            // Parsing extra 2-byte
-            uint16_t shutdown_type = (s->command[11] << 8) | s->command[10];
-            printf("[TPM] Shutdown command, type: 0x%04x\n", shutdown_type);
-
-            switch(shutdown_type){
-                case TPM_SU_CLEAR:
-                case TPM_SU_STATE:
-                    s->regs[R_TPM_STS] &= ~R_TPM_STS_CMD_READY_MASK;
-                    s->state = TPM_STATE_IDLE;
-
-                    for(int i = 0; i < MAX_KEYS; i++){
-                        if(s->keys[i].attributes & ST_CLEAR)
-                            memset(&(s->keys[i]), 0, sizeof(s->keys[i]));
-                    }
-
-                    rc = TPM_RC_SUCCESS;
-                    break;
-                default:
-                    printf("[TPM] Invalid shutdown type\n");
-                    rc = TPM_RC_VALUE;
-                    break;
-            } 
+            rc = Shutdown(s); 
             break;
         case TPM2_CC_CreatePrimary:
-            // To generate Primary key
-            printf("[TPM]: CreatePrimary Command execution\n");
-
-            int slot = -1;
-            for(int i = 0; i < MAX_KEYS; i++){
-                if(!s->keys[i].loaded){
-                    slot = i;
-                    break;
-                }
-            }
-
-            if(slot == -1){
-                rc = TPM_RC_OBJECT_MEMORY;
-                break;
-            }
-
-            TPM_Key *key = &(s->keys[slot]);
-
-            // Initialize key
-            key->handle = KEY_HANDLE_BASE + s->next_handle++;
-            key->type = KEY_TYPE_RSA;
-            key->attributes = FIXED_TPM | FIXED_PARENT | SIGN | DECRYPT;
-
-            // Generate key pair
-            // Fake generation
-            /*
-            const char pub_key[] = "PUBLIC_KEY_DATA";
-            const char priv_key[] = "PRIVATE_KEY_DATA";
-            memcpy(key->public_key, pub_key, sizeof(pub_key));
-            key->public_size = sizeof(pub_key);
-            memcpy(key->private_key, priv_key, sizeof(priv_key));
-            key->private_size = sizeof(priv_key);
-            */
-            if(generate_rsa_key(key)){
-                rc = TPM_RC_FAILURE;
-                break;
-            }
-            key->loaded = true;
-            // Prepare response
-            s->response_size = 10 + 4 + key->public_size; // Handle + public key
-            
-            s->response[10] = key->handle;
-            s->response[11] = key->handle >> 8;
-            s->response[12] = key->handle >> 16;
-            s->response[13] = key->handle >> 24;
-
-            memcpy(&s->response[14], key->public_key, key->public_size);
-
-            rc = TPM_RC_SUCCESS;
+            rc = CreatePrimary(s);
             break;
         case TPM2_CC_StartAuthSession:
             printf("[TPM]: StartAuthSession Command execution\n");

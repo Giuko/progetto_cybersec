@@ -327,7 +327,7 @@
 
 #define CONFIG_SDL
 
-#undef CONFIG_SDL_IMAGE
+#define CONFIG_SDL_IMAGE
 
 #undef CONFIG_SECCOMP
 
