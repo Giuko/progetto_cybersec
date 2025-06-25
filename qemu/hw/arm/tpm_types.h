@@ -11,15 +11,15 @@
 /* https://trustedcomputinggroup.org/wp-content/uploads/Trusted-Platform-Module-2.0-Library-Part-2-Version-184_pub.pdf */
 /* 6.5.2 TPM_CC Listing*/
 #define TPM2_CC_NV_DefineSpace      0x0000012A
-#define TPM2_CC_CreatePrimary       0x00000131
-#define TPM2_CC_Create              0x00000153
+#define TPM2_CC_CreatePrimary       0x00000131 //todo
+#define TPM2_CC_Create              0x00000153 //todo
 #define TPM2_CC_Load                0x00000157
-#define TPM2_CC_Sign                0x0000015F
-#define TPM2_CC_RSA_Encrypt         0x00000174
-#define TPM2_CC_RSA_Decrypt         0x00000159
-#define TPM2_CC_SelfTest            0x00000143
-#define TPM2_CC_Startup             0x00000144
-#define TPM2_CC_Shutdown            0x00000145
+#define TPM2_CC_Sign                0x0000015F  
+#define TPM2_CC_RSA_Encrypt         0x00000174 //todo
+#define TPM2_CC_RSA_Decrypt         0x00000159 //todo
+#define TPM2_CC_SelfTest            0x00000143 //done
+#define TPM2_CC_Startup             0x00000144 //done
+#define TPM2_CC_Shutdown            0x00000145 //maybe done
 #define TPM2_CC_StartAuthSession    0x00000176
 #define TPM2_CC_GetCapability       0x0000017A
 #define TPM2_CC_GetRandom           0x0000017B
