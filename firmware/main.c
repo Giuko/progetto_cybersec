@@ -114,7 +114,7 @@ int main(void) {
         }
     };
 
-    UART_putstr("\nSending Create command...\n");
+    UART_putstr("\nSending CreatePrimary command...\n");
     tpm_send_command_with_log(&tpm, &create_primary_cmd, sizeof(create_primary_cmd));
     log_tpm_status(&tpm);   
 
@@ -187,7 +187,7 @@ int main(void) {
         }
     };
 
-    UART_putstr("\nSending CreatePrimary command...\n");
+    UART_putstr("\nSending Create command...\n");
     tpm_send_command_with_log(&tpm, &create_cmd, sizeof(create_cmd));
     log_tpm_status(&tpm);   
 
@@ -292,7 +292,7 @@ int main(void) {
     cmd_header.size = sizeof(struct tpm_create_command);
     struct TMP_shutdown_command shutdown_cmd = {
         .command_header = cmd_header,
-        .shutdownType = TPM_SU_CLEAR, // Shutdown type
+        .shutdownType = TPM_SU_STATE // Shutdown type
     };
 
 

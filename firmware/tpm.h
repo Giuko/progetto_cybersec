@@ -467,8 +467,8 @@ enum tpm_state {
 /* TPM Interface */
 struct tpm_device {
     void *mmio_base;
-    uint8_t command_buffer[256];
-    uint8_t response_buffer[256];
+    uint8_t command_buffer[1024];
+    uint8_t response_buffer[1024];
     uint32_t cmd_size;
     uint32_t resp_size;
     enum tpm_state state;
