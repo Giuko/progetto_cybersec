@@ -17,12 +17,32 @@
 #define TPM2_CC_RSA_Decrypt         0x00000159 //done
 #define TPM2_CC_SelfTest            0x00000143 //done
 #define TPM2_CC_Startup             0x00000144 //done
-#define TPM2_CC_Shutdown            0x00000145 //todo
+#define TPM2_CC_Shutdown            0x00000145 //done
 #define TPM2_CC_StartAuthSession    0x00000176
 #define TPM2_CC_GetCapability       0x0000017A
 #define TPM2_CC_GetRandom           0x0000017B
 
-#define TPM_BASE_ADDRESS            0x00000000 //???
+/* Peripheral memory region */
+#define TPM_BASE_ADDRESS                        ( 0xF0000000UL )
+#define TPM_SIZE                                ( 4 * 1024 )
+
+// MACROS to access MMIO
+#define mmio_read8(addr) (*(volatile uint8_t *)(addr))
+#define mmio_write8(addr, val) (*(volatile uint8_t *)(addr) = (val))
+
+/* TPM Interface Specification Registers */
+#define TPM_ACCESS      0x00
+#define TPM_STS         0x18
+#define TPM_DATA_FIFO   0x24
+
+/* TPM Status Register Flags */
+#define TPM_STS_ERROR       0x01        // bit 0
+#define TPM_STS_DATA_EXPECT 0x04        // bit 2
+#define TPM_STS_DATA_AVAIL  0x10        // bit 4
+#define TPM_STS_GO          0x20        // bit 5Add commentMore actions
+#define TPM_STS_CMD_READY   0x40        // bit 6
+#define TPM_STS_VALID       0x80        // bit 7
+
 
 /* Hash algorithm sizes */
 #define TPM2_SHA_DIGEST_SIZE     20
@@ -61,6 +81,7 @@
 #define TPM2_MAX_PCRS           32
 #define TPM2_PCR_SELECT_MAX      ((TPM2_MAX_PCRS + 7) / 8)
 #define TPM2_MAX_RSA_KEY_BYTES  512
+
 
 /* Key attributes */
 typedef enum{
@@ -108,10 +129,11 @@ typedef enum {
 #define TPM_RH_NULL         0x40000007
 
 /* TPM ALGORITHM */
-#define TPM_ALG_RSA         0x0001
-#define TPM_ALG_SHA         0x0003
+#define TPM_ALG_NULL        0x0010
+#define TPM_ALG_SHA         0x0004
 #define TPM_ALG_SHA1        0x0004
-#define TPM_ALG_AES         0x0004
+#define TPM_ALG_AES         0x0006
+#define TPM_ALG_RSA         0x0001
 // others... 
 
 /* Begin TPM2B_SENSITIVE_CREATE */

@@ -18,6 +18,8 @@ SECTIONS
 
     .bss : {
         *(.bss*)
+        end = .;
+        PROVIDE(end = end);
     } > SRAM
 
     stack_top = ORIGIN(SRAM) + LENGTH(SRAM);

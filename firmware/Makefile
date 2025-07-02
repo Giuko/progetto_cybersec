@@ -11,7 +11,8 @@ tpm = tpm
 AARCH = -mcpu=cortex-m7
 CFLAGS = -c -Wall $(AARCH) -mthumb
 ASFLAGS = $(AARCH)
-LDFLAGS = -T $(ld_script).ld
+LDFLAGS = -T $(ld_script).ld -Wl,--gc-sections       
+LIBS    = -lc -lgcc -lnosys 
 DEBUG_FLAGS = -g 
 
 # QEMU configuration
@@ -34,9 +35,9 @@ all: $(OBJS) link
 %.o: %.s
 	$(ARM_GNU)-as $(ASFLAGS) $< -o $@
 
-link: 
-	$(ARM_GNU)-ld $(LDFLAGS) $(OBJS) -o $(main).elf
-
+link:
+	$(ARM_GNU)-gcc $(AARCH) -mthumb -nostartfiles $(LDFLAGS) $(OBJS) $(LIBS) -o $(main).elf
+ 
 
 # Debug version
 OBJS_DBG = $(startup)_dbg.o $(main)_dbg.o $(uart)_dbg.o $(tpm)_dbg.o
@@ -49,9 +50,9 @@ debug: $(OBJS_DBG) link_dbg
 %_dbg.o: %.s
 	$(ARM_GNU)-as $(ASFLAGS) $(DEBUG_FLAGS) $< -o $@
 
-link_dbg: 
-	$(ARM_GNU)-ld $(LDFLAGS) $(OBJS_DBG) -o $(main).elf
-
+link_dbg:
+	$(ARM_GNU)-gcc $(AARCH) -mthumb -nostartfiles $(DEBUG_FLAGS) $(LDFLAGS) \
+    	$(OBJS_DBG) $(LIBS) -o $(main).elf
 
 # Run QEMU
 qemu_start:
