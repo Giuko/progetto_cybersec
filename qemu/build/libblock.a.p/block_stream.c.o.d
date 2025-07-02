@@ -1,158 +1,163 @@
 libblock.a.p/block_stream.c.o: ../block/stream.c \
- /usr/include/stdc-predef.h /root/CESprj/qemu/include/qemu/osdep.h \
- config-host.h /root/CESprj/qemu/include/exec/poison.h config-poison.h \
- /root/CESprj/qemu/include/qemu/compiler.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/stdc-predef.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/osdep.h \
+ config-host.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/exec/poison.h \
+ config-poison.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/compiler.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/stdarg.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/stddef.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/stdbool.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
+ /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/x86_64-linux-gnu/bits/wordsize.h \
- /usr/include/x86_64-linux-gnu/bits/timesize.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
- /usr/include/x86_64-linux-gnu/bits/long-double.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h \
- /usr/include/x86_64-linux-gnu/bits/time64.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /usr/include/x86_64-linux-gnu/sys/types.h \
- /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/timer_t.h /usr/include/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endianness.h \
- /usr/include/x86_64-linux-gnu/bits/byteswap.h \
- /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
- /usr/include/x86_64-linux-gnu/sys/select.h \
- /usr/include/x86_64-linux-gnu/bits/select.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
- /usr/include/x86_64-linux-gnu/bits/select-decl.h \
- /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
- /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
- /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
- /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
- /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
- /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
- /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
- /usr/include/x86_64-linux-gnu/bits/floatn.h \
- /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/aarch64-linux-gnu/bits/wordsize.h \
+ /usr/include/aarch64-linux-gnu/bits/timesize.h \
+ /usr/include/aarch64-linux-gnu/sys/cdefs.h \
+ /usr/include/aarch64-linux-gnu/bits/long-double.h \
+ /usr/include/aarch64-linux-gnu/gnu/stubs.h \
+ /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h \
+ /usr/include/aarch64-linux-gnu/bits/types.h \
+ /usr/include/aarch64-linux-gnu/bits/typesizes.h \
+ /usr/include/aarch64-linux-gnu/bits/time64.h \
+ /usr/include/aarch64-linux-gnu/bits/wchar.h \
+ /usr/include/aarch64-linux-gnu/bits/stdint-intn.h \
+ /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/aarch64-linux-gnu/sys/types.h \
+ /usr/include/aarch64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/time_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/endian.h /usr/include/aarch64-linux-gnu/bits/endian.h \
+ /usr/include/aarch64-linux-gnu/bits/endianness.h \
+ /usr/include/aarch64-linux-gnu/bits/byteswap.h \
+ /usr/include/aarch64-linux-gnu/bits/uintn-identity.h \
+ /usr/include/aarch64-linux-gnu/sys/select.h \
+ /usr/include/aarch64-linux-gnu/bits/select.h \
+ /usr/include/aarch64-linux-gnu/bits/types/sigset_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/aarch64-linux-gnu/bits/select2.h \
+ /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h \
+ /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h \
+ /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
+ /usr/include/aarch64-linux-gnu/bits/struct_mutex.h \
+ /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h \
+ /usr/include/stdlib.h /usr/include/aarch64-linux-gnu/bits/waitflags.h \
+ /usr/include/aarch64-linux-gnu/bits/waitstatus.h \
+ /usr/include/aarch64-linux-gnu/bits/floatn.h \
+ /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
+ /usr/include/aarch64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/string.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib.h /usr/include/stdio.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/aarch64-linux-gnu/bits/types/FILE.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/aarch64-linux-gnu/bits/stdio.h \
+ /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/string.h \
  /usr/include/strings.h \
- /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+ /usr/include/aarch64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
  /usr/include/inttypes.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
- /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
- /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/aarch64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/aarch64-linux-gnu/bits/uio_lim.h /usr/include/unistd.h \
+ /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
+ /usr/include/aarch64-linux-gnu/bits/environments.h \
+ /usr/include/aarch64-linux-gnu/bits/confname.h \
+ /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
+ /usr/include/aarch64-linux-gnu/bits/unistd.h \
+ /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/aarch64-linux-gnu/bits/time.h \
+ /usr/include/aarch64-linux-gnu/bits/timex.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/ctype.h /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/aarch64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/aarch64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h /usr/include/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/aarch64-linux-gnu/bits/types/error_t.h /usr/include/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
+ /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl2.h /usr/include/getopt.h \
+ /usr/include/aarch64-linux-gnu/bits/getopt_ext.h \
+ /usr/include/aarch64-linux-gnu/sys/stat.h \
+ /usr/include/aarch64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/aarch64-linux-gnu/asm/types.h \
  /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
  linux-headers/asm/bitsperlong.h \
- /root/CESprj/qemu/linux-headers/asm-generic/bitsperlong.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/linux-headers/asm-generic/bitsperlong.h \
  /usr/include/linux/posix_types.h \
- /root/CESprj/qemu/linux-headers/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/linux-headers/linux/stddef.h \
+ /usr/include/aarch64-linux-gnu/asm/posix_types.h \
  /usr/include/asm-generic/posix_types.h \
- /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/assert.h \
- /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp2.h /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
- /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
- /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
- /usr/include/x86_64-linux-gnu/bits/sigaction.h \
- /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
- /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
- /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /usr/include/x86_64-linux-gnu/sys/uio.h \
- /usr/include/x86_64-linux-gnu/bits/uio-ext.h \
- /usr/include/x86_64-linux-gnu/sys/wait.h \
- /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /root/CESprj/qemu/include/glib-compat.h /usr/include/glib-2.0/glib.h \
- /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
- /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
+ /usr/include/aarch64-linux-gnu/bits/statx-generic.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_statx.h \
+ /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/assert.h \
+ /usr/include/setjmp.h /usr/include/aarch64-linux-gnu/bits/setjmp.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/aarch64-linux-gnu/bits/setjmp2.h /usr/include/signal.h \
+ /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
+ /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
+ /usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h \
+ /usr/include/aarch64-linux-gnu/bits/siginfo-arch.h \
+ /usr/include/aarch64-linux-gnu/bits/siginfo-consts.h \
+ /usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h \
+ /usr/include/aarch64-linux-gnu/bits/types/sigval_t.h \
+ /usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h \
+ /usr/include/aarch64-linux-gnu/bits/sigevent-consts.h \
+ /usr/include/aarch64-linux-gnu/bits/sigaction.h \
+ /usr/include/aarch64-linux-gnu/bits/sigcontext.h \
+ /usr/include/aarch64-linux-gnu/asm/sigcontext.h \
+ linux-headers/asm/sve_context.h \
+ /usr/include/aarch64-linux-gnu/bits/types/stack_t.h \
+ /usr/include/aarch64-linux-gnu/sys/ucontext.h \
+ /usr/include/aarch64-linux-gnu/sys/procfs.h \
+ /usr/include/aarch64-linux-gnu/sys/user.h \
+ /usr/include/aarch64-linux-gnu/bits/procfs.h \
+ /usr/include/aarch64-linux-gnu/bits/procfs-id.h \
+ /usr/include/aarch64-linux-gnu/bits/procfs-prregset.h \
+ /usr/include/aarch64-linux-gnu/bits/procfs-extra.h \
+ /usr/include/aarch64-linux-gnu/bits/sigstack.h \
+ /usr/include/aarch64-linux-gnu/bits/sigstksz.h \
+ /usr/include/aarch64-linux-gnu/bits/ss_flags.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h \
+ /usr/include/aarch64-linux-gnu/bits/sigthread.h \
+ /usr/include/aarch64-linux-gnu/bits/signal_ext.h \
+ /usr/include/aarch64-linux-gnu/sys/uio.h \
+ /usr/include/aarch64-linux-gnu/bits/uio-ext.h \
+ /usr/include/aarch64-linux-gnu/sys/wait.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/glib-compat.h \
+ /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
+ /usr/include/glib-2.0/glib/gtypes.h \
+ /usr/lib/aarch64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
+ /usr/lib/gcc/aarch64-linux-gnu/11/include/float.h \
  /usr/include/glib-2.0/glib/gversionmacros.h \
- /usr/include/glib-2.0/glib/glib-visibility.h \
  /usr/include/glib-2.0/glib/garray.h \
  /usr/include/glib-2.0/glib/gasyncqueue.h \
  /usr/include/glib-2.0/glib/gthread.h \
@@ -172,8 +177,8 @@ libblock.a.p/block_stream.c.o: ../block/stream.c \
  /usr/include/glib-2.0/glib/gconvert.h \
  /usr/include/glib-2.0/glib/gdataset.h /usr/include/glib-2.0/glib/gdate.h \
  /usr/include/glib-2.0/glib/gdir.h /usr/include/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent_ext.h \
+ /usr/include/aarch64-linux-gnu/bits/dirent.h \
+ /usr/include/aarch64-linux-gnu/bits/dirent_ext.h \
  /usr/include/glib-2.0/glib/genviron.h \
  /usr/include/glib-2.0/glib/gfileutils.h \
  /usr/include/glib-2.0/glib/ggettext.h /usr/include/glib-2.0/glib/ghash.h \
@@ -186,7 +191,6 @@ libblock.a.p/block_stream.c.o: ../block/stream.c \
  /usr/include/glib-2.0/glib/gmain.h /usr/include/glib-2.0/glib/gpoll.h \
  /usr/include/glib-2.0/glib/gslist.h /usr/include/glib-2.0/glib/gstring.h \
  /usr/include/glib-2.0/glib/gunicode.h \
- /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gkeyfile.h \
  /usr/include/glib-2.0/glib/gmappedfile.h \
  /usr/include/glib-2.0/glib/gmarkup.h \
@@ -194,7 +198,6 @@ libblock.a.p/block_stream.c.o: ../block/stream.c \
  /usr/include/glib-2.0/glib/gvariant.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/goption.h \
- /usr/include/glib-2.0/glib/gpathbuf.h \
  /usr/include/glib-2.0/glib/gpattern.h \
  /usr/include/glib-2.0/glib/gprimes.h /usr/include/glib-2.0/glib/gqsort.h \
  /usr/include/glib-2.0/glib/gqueue.h /usr/include/glib-2.0/glib/grand.h \
@@ -207,6 +210,7 @@ libblock.a.p/block_stream.c.o: ../block/stream.c \
  /usr/include/glib-2.0/glib/gsequence.h \
  /usr/include/glib-2.0/glib/gshell.h /usr/include/glib-2.0/glib/gslice.h \
  /usr/include/glib-2.0/glib/gspawn.h \
+ /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gstringchunk.h \
  /usr/include/glib-2.0/glib/gstrvbuilder.h \
  /usr/include/glib-2.0/glib/gtestutils.h \
@@ -221,109 +225,112 @@ libblock.a.p/block_stream.c.o: ../block/stream.c \
  /usr/include/glib-2.0/glib/deprecated/gmain.h \
  /usr/include/glib-2.0/glib/deprecated/grel.h \
  /usr/include/glib-2.0/glib/deprecated/gthread.h /usr/include/pthread.h \
- /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
- /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+ /usr/include/sched.h /usr/include/aarch64-linux-gnu/bits/sched.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/aarch64-linux-gnu/bits/cpu-set.h \
  /usr/include/glib-2.0/glib/glib-autocleanups.h \
- /usr/include/glib-2.0/glib-unix.h /usr/include/glib-2.0/glib/gstdio.h \
- /usr/include/glib-2.0/glib/gprintf.h /usr/include/pwd.h \
- /root/CESprj/qemu/include/system/os-posix.h \
- /usr/include/x86_64-linux-gnu/sys/mman.h \
- /usr/include/x86_64-linux-gnu/bits/mman.h \
- /usr/include/x86_64-linux-gnu/bits/mman-map-flags-generic.h \
- /usr/include/x86_64-linux-gnu/bits/mman-linux.h \
- /usr/include/x86_64-linux-gnu/bits/mman-shared.h \
- /usr/include/x86_64-linux-gnu/bits/mman_ext.h \
- /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/glib-2.0/glib-unix.h /usr/include/pwd.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/os-posix.h \
+ /usr/include/aarch64-linux-gnu/sys/mman.h \
+ /usr/include/aarch64-linux-gnu/bits/mman.h \
+ /usr/include/aarch64-linux-gnu/bits/mman-map-flags-generic.h \
+ /usr/include/aarch64-linux-gnu/bits/mman-linux.h \
+ /usr/include/aarch64-linux-gnu/bits/mman-shared.h \
+ /usr/include/aarch64-linux-gnu/sys/socket.h \
+ /usr/include/aarch64-linux-gnu/bits/socket.h \
+ /usr/include/aarch64-linux-gnu/bits/socket_type.h \
+ /usr/include/aarch64-linux-gnu/bits/sockaddr.h \
+ /usr/include/aarch64-linux-gnu/asm/socket.h \
  /usr/include/asm-generic/socket.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/aarch64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/include/aarch64-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
+ /usr/include/aarch64-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
  /usr/include/arpa/inet.h /usr/include/netdb.h /usr/include/rpc/netdb.h \
- /usr/include/x86_64-linux-gnu/bits/netdb.h \
- /usr/include/x86_64-linux-gnu/sys/un.h \
- /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
- /usr/include/x86_64-linux-gnu/bits/sysmacros.h \
- /root/CESprj/qemu/include/qemu/typedefs.h ../block/trace.h \
- trace/trace-block.h /root/CESprj/qemu/trace/control.h \
- /root/CESprj/qemu/trace/event-internal.h \
- /root/CESprj/qemu/trace/control-internal.h \
- /root/CESprj/qemu/include/qemu/log-for-trace.h \
- /root/CESprj/qemu/include/qemu/error-report.h \
- /root/CESprj/qemu/include/block/block_int.h \
- /root/CESprj/qemu/include/block/block_int-global-state.h \
- /root/CESprj/qemu/include/block/blockjob.h qapi/qapi-types-block-core.h \
- qapi/qapi-builtin-types.h /root/CESprj/qemu/include/qapi/util.h \
+ /usr/include/aarch64-linux-gnu/bits/netdb.h \
+ /usr/include/aarch64-linux-gnu/sys/un.h \
+ /usr/include/aarch64-linux-gnu/sys/sysmacros.h \
+ /usr/include/aarch64-linux-gnu/bits/sysmacros.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/typedefs.h \
+ ../block/trace.h trace/trace-block.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/trace/control.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/trace/event-internal.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/trace/control-internal.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/log-for-trace.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/error-report.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block_int.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block_int-global-state.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/blockjob.h \
+ qapi/qapi-types-block-core.h qapi/qapi-builtin-types.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qapi/util.h \
  qapi/qapi-types-common.h qapi/qapi-types-crypto.h qapi/qapi-types-job.h \
- qapi/qapi-types-sockets.h /root/CESprj/qemu/include/qemu/job.h \
- qapi/qapi-types-job.h /root/CESprj/qemu/include/qemu/queue.h \
- /root/CESprj/qemu/include/qemu/progress_meter.h \
- /root/CESprj/qemu/include/qemu/thread.h \
- /root/CESprj/qemu/include/qemu/processor.h \
- /root/CESprj/qemu/include/qemu/atomic.h \
- /root/CESprj/qemu/include/qemu/compiler.h \
- /root/CESprj/qemu/include/qemu/thread-posix.h /usr/include/semaphore.h \
- /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /root/CESprj/qemu/include/qemu/qsp.h \
- /root/CESprj/qemu/include/qemu/coroutine.h \
- /root/CESprj/qemu/include/qemu/coroutine-core.h \
- /root/CESprj/qemu/include/qemu/timer.h \
- /root/CESprj/qemu/include/qemu/bitops.h \
- /root/CESprj/qemu/include/qemu/host-utils.h \
- /root/CESprj/qemu/include/qemu/bswap.h \
- /root/CESprj/qemu/include/qemu/int128.h \
- /root/CESprj/qemu/include/qemu/atomic.h \
- /root/CESprj/qemu/include/qemu/notify.h \
- /root/CESprj/qemu/include/qemu/host-utils.h \
- /root/CESprj/qemu/include/qemu/lockable.h \
- /root/CESprj/qemu/include/block/aio.h \
- /root/CESprj/qemu/include/qemu/event_notifier.h \
- /root/CESprj/qemu/include/qemu/lockcnt.h \
- /root/CESprj/qemu/include/block/graph-lock.h \
- /root/CESprj/qemu/include/hw/qdev-core.h \
- /root/CESprj/qemu/include/qemu/bitmap.h \
- /root/CESprj/qemu/include/qemu/rcu.h \
- /root/CESprj/qemu/include/qemu/sys_membarrier.h \
- /root/CESprj/qemu/include/qemu/coroutine-tls.h \
- /root/CESprj/qemu/include/qemu/rcu_queue.h \
- /root/CESprj/qemu/include/qom/object.h \
- /root/CESprj/qemu/include/qemu/module.h \
- /root/CESprj/qemu/include/hw/hotplug.h \
- /root/CESprj/qemu/include/hw/resettable.h \
- /root/CESprj/qemu/include/qemu/ratelimit.h \
- /root/CESprj/qemu/include/block/block_int-common.h \
- /root/CESprj/qemu/include/block/block-common.h \
- /root/CESprj/qemu/include/block/block-global-state.h \
- /root/CESprj/qemu/include/qemu/transactions.h \
+ qapi/qapi-types-sockets.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/job.h \
+ qapi/qapi-types-job.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/queue.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/progress_meter.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/thread.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/processor.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/atomic.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/compiler.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/thread-posix.h \
+ /usr/include/semaphore.h /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/qsp.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/coroutine.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/coroutine-core.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/timer.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/bitops.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/host-utils.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/bswap.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/int128.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/atomic.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/notify.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/host-utils.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/lockable.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/aio.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/event_notifier.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/lockcnt.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/graph-lock.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/hw/qdev-core.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/bitmap.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/rcu.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/sys_membarrier.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/coroutine-tls.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/rcu_queue.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qom/object.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/module.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/hw/hotplug.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/hw/resettable.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/ratelimit.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block_int-common.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block-common.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block-global-state.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/transactions.h \
  /usr/include/glib-2.0/gmodule.h \
- /usr/include/glib-2.0/gmodule/gmodule-visibility.h \
- /root/CESprj/qemu/include/block/snapshot.h \
- /root/CESprj/qemu/include/qemu/iov.h \
- /root/CESprj/qemu/include/qemu/stats64.h \
- /root/CESprj/qemu/include/qemu/hbitmap.h \
- /root/CESprj/qemu/include/qemu/bitops.h \
- /root/CESprj/qemu/include/qemu/main-loop.h \
- /root/CESprj/qemu/include/system/event-loop-base.h \
- /root/CESprj/qemu/include/block/block_int-io.h \
- /root/CESprj/qemu/include/block/blockjob_int.h \
- /root/CESprj/qemu/include/qapi/error.h qapi/qapi-types-error.h \
- /root/CESprj/qemu/include/qobject/qdict.h \
- /root/CESprj/qemu/include/qobject/qobject.h \
- /root/CESprj/qemu/include/system/block-backend.h \
- /root/CESprj/qemu/include/system/block-backend-global-state.h \
- /root/CESprj/qemu/include/system/block-backend-common.h \
- /root/CESprj/qemu/include/block/throttle-groups.h \
- /root/CESprj/qemu/include/qemu/throttle.h \
- /root/CESprj/qemu/include/block/block.h \
- /root/CESprj/qemu/include/block/block-io.h \
- /root/CESprj/qemu/include/block/aio-wait.h \
- /root/CESprj/qemu/include/system/block-backend-io.h \
- /root/CESprj/qemu/include/block/accounting.h \
- /root/CESprj/qemu/include/qemu/timed-average.h qapi/qapi-types-common.h \
- /root/CESprj/qemu/block/copy-on-read.h
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/snapshot.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/iov.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/stats64.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/hbitmap.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/bitops.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/main-loop.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/event-loop-base.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block_int-io.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/blockjob_int.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qapi/error.h \
+ qapi/qapi-types-error.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qobject/qdict.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qobject/qobject.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/block-backend.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/block-backend-global-state.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/block-backend-common.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/throttle-groups.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/throttle.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/block-io.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/aio-wait.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/system/block-backend-io.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/block/accounting.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/include/qemu/timed-average.h \
+ qapi/qapi-types-common.h \
+ /home/ubuntu/Desktop/progetto_cybersec/qemu/block/copy-on-read.h

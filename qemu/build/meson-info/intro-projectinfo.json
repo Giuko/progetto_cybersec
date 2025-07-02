@@ -1,10 +1,6 @@
 {
   "version": "10.0.50",
   "descriptive_name": "qemu",
-  "license": [
-    "unknown"
-  ],
-  "license_files": [],
   "subproject_dir": "subprojects",
   "subprojects": [
     {

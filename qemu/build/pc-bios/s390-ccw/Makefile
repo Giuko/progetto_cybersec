@@ -1,1 +1,1 @@
-/root/CESprj/qemu/pc-bios/s390-ccw/Makefile
+/home/ubuntu/Desktop/progetto_cybersec/qemu/pc-bios/s390-ccw/Makefile

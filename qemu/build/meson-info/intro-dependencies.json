@@ -19,125 +19,18 @@
     ]
   },
   {
-    "name": "xencontrol",
-    "type": "pkgconfig",
-    "version": "4.17.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxenctrl.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "xencontrol"
-    ]
-  },
-  {
-    "name": "xenstore",
-    "type": "pkgconfig",
-    "version": "4.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxenstore.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "xenforeignmemory",
-    "type": "pkgconfig",
-    "version": "1.4",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxenforeignmemory.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "xengnttab",
-    "type": "pkgconfig",
-    "version": "1.2",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxengnttab.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "xenevtchn",
-    "type": "pkgconfig",
-    "version": "1.2",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxenevtchn.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "xendevicemodel",
-    "type": "pkgconfig",
-    "version": "1.4",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxendevicemodel.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "xentoolcore",
-    "type": "pkgconfig",
-    "version": "1.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxentoolcore.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
     "name": "glib-2.0",
     "type": "pkgconfig",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [
       "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+      "-I/usr/lib/aarch64-linux-gnu/glib-2.0/include"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.a",
-      "-lm",
+      "/usr/lib/aarch64-linux-gnu/libglib-2.0.a",
       "-pthread",
-      "/usr/lib/x86_64-linux-gnu/libpcre2-8.a"
+      "-lm",
+      "/usr/lib/aarch64-linux-gnu/libpcre.a"
     ],
     "include_directories": [],
     "sources": [],
@@ -152,16 +45,16 @@
   {
     "name": "gmodule-no-export-2.0",
     "type": "pkgconfig",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [
       "-pthread",
       "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+      "-I/usr/lib/aarch64-linux-gnu/glib-2.0/include"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgmodule-2.0.so",
+      "/usr/lib/aarch64-linux-gnu/libgmodule-2.0.so",
       "-pthread",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
+      "/usr/lib/aarch64-linux-gnu/libglib-2.0.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -175,18 +68,18 @@
   {
     "name": "gio-2.0",
     "type": "pkgconfig",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include",
       "-pthread",
       "-I/usr/include/libmount",
-      "-I/usr/include/blkid"
+      "-I/usr/include/blkid",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib/aarch64-linux-gnu/glib-2.0/include"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
+      "/usr/lib/aarch64-linux-gnu/libgio-2.0.so",
+      "/usr/lib/aarch64-linux-gnu/libgobject-2.0.so",
+      "/usr/lib/aarch64-linux-gnu/libglib-2.0.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -198,19 +91,19 @@
   {
     "name": "gio-unix-2.0",
     "type": "pkgconfig",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [
-      "-I/usr/include/gio-unix-2.0",
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include",
       "-pthread",
+      "-I/usr/include/gio-unix-2.0",
       "-I/usr/include/libmount",
-      "-I/usr/include/blkid"
+      "-I/usr/include/blkid",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib/aarch64-linux-gnu/glib-2.0/include"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
+      "/usr/lib/aarch64-linux-gnu/libgio-2.0.so",
+      "/usr/lib/aarch64-linux-gnu/libgobject-2.0.so",
+      "/usr/lib/aarch64-linux-gnu/libglib-2.0.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -224,12 +117,12 @@
   {
     "name": "pixman-1",
     "type": "pkgconfig",
-    "version": "0.42.2",
+    "version": "0.40.0",
     "compile_args": [
       "-I/usr/include/pixman-1"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libpixman-1.so"
+      "/usr/lib/aarch64-linux-gnu/libpixman-1.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -243,10 +136,10 @@
   {
     "name": "zlib",
     "type": "pkgconfig",
-    "version": "1.3",
+    "version": "1.2.11",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libz.so"
+      "/usr/lib/aarch64-linux-gnu/libz.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -258,29 +151,12 @@
     ]
   },
   {
-    "name": "libnfs",
-    "type": "pkgconfig",
-    "version": "5.0.2",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libnfs.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "libnfs"
-    ]
-  },
-  {
     "name": "xkbcommon",
     "type": "pkgconfig",
-    "version": "1.6.0",
+    "version": "1.4.0",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libxkbcommon.so"
+      "/usr/lib/aarch64-linux-gnu/libxkbcommon.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -292,36 +168,14 @@
     ]
   },
   {
-    "name": "slirp",
-    "type": "pkgconfig",
-    "version": "4.7.0",
-    "compile_args": [
-      "-I/usr/include/slirp",
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libslirp.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "slirp"
-    ]
-  },
-  {
     "name": "libpulse",
     "type": "pkgconfig",
-    "version": "16.1",
+    "version": "15.99.1",
     "compile_args": [
       "-D_REENTRANT"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libpulse.so",
+      "/usr/lib/aarch64-linux-gnu/libpulse.so",
       "-pthread"
     ],
     "include_directories": [],
@@ -336,10 +190,10 @@
   {
     "name": "alsa",
     "type": "pkgconfig",
-    "version": "1.2.11",
+    "version": "1.2.6.1",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libasound.so"
+      "/usr/lib/aarch64-linux-gnu/libasound.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -353,10 +207,10 @@
   {
     "name": "sndio",
     "type": "pkgconfig",
-    "version": "1.9.0",
+    "version": "1.8.0",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libsndio.so"
+      "/usr/lib/aarch64-linux-gnu/libsndio.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -368,104 +222,12 @@
     ]
   },
   {
-    "name": "spice-protocol",
-    "type": "pkgconfig",
-    "version": "0.14.3",
-    "compile_args": [
-      "-I/usr/include/spice-1"
-    ],
-    "link_args": [],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "spice_protocol"
-    ]
-  },
-  {
-    "name": "spice-server",
-    "type": "pkgconfig",
-    "version": "0.15.1",
-    "compile_args": [
-      "-I/usr/include/spice-server",
-      "-I/usr/include/spice-1"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libspice-server.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "spice",
-      "spice_headers",
-      "dep"
-    ]
-  },
-  {
-    "name": "libiscsi",
-    "type": "pkgconfig",
-    "version": "1.19.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libiscsi.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "libiscsi"
-    ]
-  },
-  {
-    "name": "libzstd",
-    "type": "pkgconfig",
-    "version": "1.5.5",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libzstd.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "zstd"
-    ]
-  },
-  {
-    "name": "virglrenderer",
-    "type": "pkgconfig",
-    "version": "1.0.0",
-    "compile_args": [
-      "-I/usr/include/virgl"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libvirglrenderer.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "virgl"
-    ]
-  },
-  {
     "name": "libudev",
     "type": "pkgconfig",
-    "version": "255",
+    "version": "249",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libudev.so"
+      "/usr/lib/aarch64-linux-gnu/libudev.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -477,34 +239,15 @@
     ]
   },
   {
-    "name": "ncursesw",
-    "type": "pkgconfig",
-    "version": "6.4.20240113",
-    "compile_args": [
-      "-D_DEFAULT_SOURCE",
-      "-D_XOPEN_SOURCE=600"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libncursesw.so",
-      "/usr/lib/x86_64-linux-gnu/libtinfo.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
     "name": "sdl2",
     "type": "pkgconfig",
-    "version": "2.30.0",
+    "version": "2.0.20",
     "compile_args": [
-      "-I/usr/include/SDL2",
-      "-D_REENTRANT"
+      "-D_REENTRANT",
+      "-I/usr/include/SDL2"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libSDL2.so"
+      "/usr/lib/aarch64-linux-gnu/libSDL2.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -518,17 +261,14 @@
   {
     "name": "SDL2_image",
     "type": "pkgconfig",
-    "version": "2.8.2",
+    "version": "2.0.5",
     "compile_args": [
-      "-I/usr/include/SDL2",
       "-D_REENTRANT",
-      "-I/usr/include/libpng16",
-      "-I/usr/include/x86_64-linux-gnu",
-      "-I/usr/include/webp"
+      "-I/usr/include/SDL2"
     ],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libSDL2_image.so",
-      "/usr/lib/x86_64-linux-gnu/libSDL2.so"
+      "/usr/lib/aarch64-linux-gnu/libSDL2_image.so",
+      "/usr/lib/aarch64-linux-gnu/libSDL2.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -540,329 +280,12 @@
     ]
   },
   {
-    "name": "epoxy",
-    "type": "pkgconfig",
-    "version": "1.5.10",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libepoxy.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "opengl",
-      "epoxy"
-    ]
-  },
-  {
-    "name": "gbm",
-    "type": "pkgconfig",
-    "version": "24.2.8-1ubuntu1~24.04.1",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgbm.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "gbm"
-    ]
-  },
-  {
-    "name": "gnutls",
-    "type": "pkgconfig",
-    "version": "3.8.3",
-    "compile_args": [
-      "-I/usr/include/p11-kit-1"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgnutls.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "gnutls",
-      "gnutls_crypto"
-    ]
-  },
-  {
-    "name": "gmp",
-    "type": "pkgconfig",
-    "version": "6.3.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgmp.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "gmp"
-    ]
-  },
-  {
-    "name": "gtk+-3.0",
-    "type": "pkgconfig",
-    "version": "3.24.41",
-    "compile_args": [
-      "-I/usr/include/gtk-3.0",
-      "-I/usr/include/pango-1.0",
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include",
-      "-I/usr/include/harfbuzz",
-      "-I/usr/include/freetype2",
-      "-I/usr/include/libpng16",
-      "-I/usr/include/libmount",
-      "-I/usr/include/blkid",
-      "-I/usr/include/fribidi",
-      "-I/usr/include/cairo",
-      "-I/usr/include/pixman-1",
-      "-I/usr/include/gdk-pixbuf-2.0",
-      "-I/usr/include/x86_64-linux-gnu",
-      "-I/usr/include/webp",
-      "-I/usr/include/gio-unix-2.0",
-      "-I/usr/include/atk-1.0",
-      "-I/usr/include/at-spi2-atk/2.0",
-      "-I/usr/include/at-spi-2.0",
-      "-I/usr/include/dbus-1.0",
-      "-I/usr/lib/x86_64-linux-gnu/dbus-1.0/include",
-      "-pthread"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libz.so",
-      "/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libharfbuzz.so",
-      "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo-gobject.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": []
-  },
-  {
-    "name": "gtk+-x11-3.0",
-    "type": "pkgconfig",
-    "version": "3.24.41",
-    "compile_args": [
-      "-I/usr/include/gtk-3.0",
-      "-I/usr/include/pango-1.0",
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include",
-      "-I/usr/include/harfbuzz",
-      "-I/usr/include/freetype2",
-      "-I/usr/include/libpng16",
-      "-I/usr/include/libmount",
-      "-I/usr/include/blkid",
-      "-I/usr/include/fribidi",
-      "-I/usr/include/cairo",
-      "-I/usr/include/pixman-1",
-      "-I/usr/include/gdk-pixbuf-2.0",
-      "-I/usr/include/x86_64-linux-gnu",
-      "-I/usr/include/webp",
-      "-I/usr/include/gio-unix-2.0",
-      "-I/usr/include/atk-1.0",
-      "-I/usr/include/at-spi2-atk/2.0",
-      "-I/usr/include/at-spi-2.0",
-      "-I/usr/include/dbus-1.0",
-      "-I/usr/lib/x86_64-linux-gnu/dbus-1.0/include",
-      "-pthread"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libz.so",
-      "/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libharfbuzz.so",
-      "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo-gobject.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "gtkx11"
-    ]
-  },
-  {
-    "name": "vte-2.91",
-    "type": "pkgconfig",
-    "version": "0.76.0",
-    "compile_args": [
-      "-I/usr/include/vte-2.91",
-      "-I/usr/include/cairo",
-      "-I/usr/include/libpng16",
-      "-I/usr/include/freetype2",
-      "-I/usr/include/pixman-1",
-      "-I/usr/include/glib-2.0",
-      "-I/usr/lib/x86_64-linux-gnu/glib-2.0/include",
-      "-I/usr/include/libmount",
-      "-I/usr/include/blkid",
-      "-I/usr/include/pango-1.0",
-      "-I/usr/include/harfbuzz",
-      "-I/usr/include/fribidi",
-      "-I/usr/include/gtk-3.0",
-      "-I/usr/include/gdk-pixbuf-2.0",
-      "-I/usr/include/x86_64-linux-gnu",
-      "-I/usr/include/webp",
-      "-I/usr/include/gio-unix-2.0",
-      "-I/usr/include/atk-1.0",
-      "-I/usr/include/at-spi2-atk/2.0",
-      "-I/usr/include/at-spi-2.0",
-      "-I/usr/include/dbus-1.0",
-      "-I/usr/lib/x86_64-linux-gnu/dbus-1.0/include",
-      "-pthread"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libvte-2.91.so",
-      "/usr/lib/x86_64-linux-gnu/libgtk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk-3.so",
-      "/usr/lib/x86_64-linux-gnu/libz.so",
-      "/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libpango-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libharfbuzz.so",
-      "/usr/lib/x86_64-linux-gnu/libatk-1.0.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo-gobject.so",
-      "/usr/lib/x86_64-linux-gnu/libcairo.so",
-      "/usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgio-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libgobject-2.0.so",
-      "/usr/lib/x86_64-linux-gnu/libglib-2.0.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "vte"
-    ]
-  },
-  {
-    "name": "x11",
-    "type": "pkgconfig",
-    "version": "1.8.7",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libX11.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "x11"
-    ]
-  },
-  {
-    "name": "libpng",
-    "type": "pkgconfig",
-    "version": "1.6.43",
-    "compile_args": [
-      "-I/usr/include/libpng16"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libpng16.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "png"
-    ]
-  },
-  {
-    "name": "libjpeg",
-    "type": "pkgconfig",
-    "version": "2.1.5",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libjpeg.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "jpeg"
-    ]
-  },
-  {
-    "name": "libusb-1.0",
-    "type": "pkgconfig",
-    "version": "1.0.27",
-    "compile_args": [
-      "-I/usr/include/libusb-1.0"
-    ],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libusb-1.0.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "libusb"
-    ]
-  },
-  {
-    "name": "libtasn1",
-    "type": "pkgconfig",
-    "version": "4.19.0",
-    "compile_args": [],
-    "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libtasn1.so"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "tasn1"
-    ]
-  },
-  {
     "name": "libselinux",
     "type": "pkgconfig",
-    "version": "3.5",
+    "version": "3.3",
     "compile_args": [],
     "link_args": [
-      "/usr/lib/x86_64-linux-gnu/libselinux.so"
+      "/usr/lib/aarch64-linux-gnu/libselinux.so"
     ],
     "include_directories": [],
     "sources": [],
@@ -908,33 +331,9 @@
     ]
   },
   {
-    "name": "dep84755651553409565367416568742867713656",
+    "name": "dep281473121911376",
     "type": "internal",
-    "version": "4.17.0",
-    "compile_args": [],
-    "link_args": [],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [
-      "xencontrol",
-      "xenstore",
-      "xenforeignmemory",
-      "xengnttab",
-      "xenevtchn",
-      "xendevicemodel",
-      "xentoolcore"
-    ],
-    "depends": [],
-    "meson_variables": [
-      "xen",
-      "xen_pc"
-    ]
-  },
-  {
-    "name": "dep297977658609346600110884234002524157909",
-    "type": "internal",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [],
     "link_args": [],
     "include_directories": [],
@@ -950,9 +349,9 @@
     ]
   },
   {
-    "name": "dep227369611443051585324166233791930213980",
+    "name": "dep281473121697408",
     "type": "internal",
-    "version": "2.80.0",
+    "version": "2.72.4",
     "compile_args": [],
     "link_args": [],
     "include_directories": [],
@@ -968,24 +367,7 @@
     ]
   },
   {
-    "name": "aio",
-    "type": "library",
-    "version": "unknown",
-    "compile_args": [],
-    "link_args": [
-      "-laio"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "libaio"
-    ]
-  },
-  {
-    "name": "dep111820668877727972876526846314172753089",
+    "name": "dep281473122026736",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -997,23 +379,6 @@
     "depends": [],
     "meson_variables": [
       "libattr"
-    ]
-  },
-  {
-    "name": "cap-ng",
-    "type": "library",
-    "version": "unknown",
-    "compile_args": [],
-    "link_args": [
-      "-lcap-ng"
-    ],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [],
-    "depends": [],
-    "meson_variables": [
-      "libcap_ng"
     ]
   },
   {
@@ -1034,7 +399,7 @@
     ]
   },
   {
-    "name": "dep285041335586595645731921981675951122649",
+    "name": "dep281473121688432",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1043,39 +408,22 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep297977658609346600110884234002524157909"
+      "libudev",
+      "mpathpersist",
+      "multipath"
     ],
     "depends": [],
     "meson_variables": [
-      "iconv"
+      "mpathpersist"
     ]
   },
   {
-    "name": "dep92924700752131953143433849109306769331",
-    "type": "internal",
-    "version": "6.4.20240113",
-    "compile_args": [
-      "-DNCURSES_WIDECHAR=1"
-    ],
-    "link_args": [],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [
-      "ncursesw"
-    ],
-    "depends": [],
-    "meson_variables": [
-      "curses"
-    ]
-  },
-  {
-    "name": "bz2",
+    "name": "mpathpersist",
     "type": "library",
     "version": "unknown",
     "compile_args": [],
     "link_args": [
-      "-lbz2"
+      "-lmpathpersist"
     ],
     "include_directories": [],
     "sources": [],
@@ -1083,11 +431,28 @@
     "dependencies": [],
     "depends": [],
     "meson_variables": [
-      "libbzip2"
+      "libmpathpersist"
     ]
   },
   {
-    "name": "dep14496766145285517331519030502651029373",
+    "name": "dep281473122034848",
+    "type": "internal",
+    "version": "10.0.50",
+    "compile_args": [],
+    "link_args": [],
+    "include_directories": [],
+    "sources": [],
+    "extra_files": [],
+    "dependencies": [
+      "dep281473121911376"
+    ],
+    "depends": [],
+    "meson_variables": [
+      "iconv"
+    ]
+  },
+  {
+    "name": "dep281473122029904",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1102,25 +467,7 @@
     ]
   },
   {
-    "name": "dep57224048325112087232487613681746741595",
-    "type": "internal",
-    "version": "3.24.41",
-    "compile_args": [],
-    "link_args": [],
-    "include_directories": [],
-    "sources": [],
-    "extra_files": [],
-    "dependencies": [
-      "gtk+-3.0",
-      "gtk+-x11-3.0"
-    ],
-    "depends": [],
-    "meson_variables": [
-      "gtk"
-    ]
-  },
-  {
-    "name": "dep129986449915336200579833922297124071879",
+    "name": "dep281473122040608",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1152,19 +499,19 @@
     ]
   },
   {
-    "name": "dep1877289036550956865330360532806655748",
+    "name": "dep281473120894736",
     "type": "internal",
     "version": "undefined",
     "compile_args": [],
     "link_args": [],
     "include_directories": [
-      "/root/CESprj/qemu/subprojects/libvhost-user/.",
-      "/root/CESprj/qemu/build/subprojects/libvhost-user/."
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/libvhost-user/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/libvhost-user/."
     ],
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "glib-2.0"
+      "dep281473121911376"
     ],
     "depends": [
       "7fa812e@@vhost-user-glib@sta"
@@ -1174,14 +521,14 @@
     ]
   },
   {
-    "name": "dep36555271526702816749503688515559280772",
+    "name": "dep281473118988288",
     "type": "internal",
     "version": "undefined",
     "compile_args": [],
     "link_args": [],
     "include_directories": [
-      "/root/CESprj/qemu/subprojects/libvduse/.",
-      "/root/CESprj/qemu/build/subprojects/libvduse/."
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/libvduse/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/libvduse/."
     ],
     "sources": [],
     "extra_files": [],
@@ -1194,7 +541,7 @@
     ]
   },
   {
-    "name": "dep151682624479206963262047935334278509875",
+    "name": "dep281473118318416",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1209,7 +556,7 @@
     ]
   },
   {
-    "name": "dep9466360318500948866719089382865784602",
+    "name": "dep281473118314432",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1218,7 +565,7 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep151682624479206963262047935334278509875"
+      "dep281473118318416"
     ],
     "depends": [],
     "meson_variables": [
@@ -1226,7 +573,7 @@
     ]
   },
   {
-    "name": "dep14290584731951137707714924336951726504",
+    "name": "dep281473118306992",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1234,7 +581,7 @@
     "include_directories": [],
     "sources": [
       "config-poison.h",
-      "/root/CESprj/qemu/build/config-host.h",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-host.h",
       "qemu-version.h",
       "qemu-options.def",
       "qemu-img-cmds.h",
@@ -1572,7 +919,7 @@
     ],
     "extra_files": [],
     "dependencies": [
-      "dep9466360318500948866719089382865784602",
+      "dep281473118314432",
       "rt"
     ],
     "depends": [
@@ -1583,7 +930,7 @@
     ]
   },
   {
-    "name": "dep46536947544677288043133958704499742342",
+    "name": "dep281473114349120",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1598,7 +945,7 @@
     ]
   },
   {
-    "name": "dep270564498216172684223456996252238221281",
+    "name": "dep281473115613712",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1607,7 +954,7 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep151682624479206963262047935334278509875"
+      "dep281473118318416"
     ],
     "depends": [],
     "meson_variables": [
@@ -1615,7 +962,7 @@
     ]
   },
   {
-    "name": "dep167828704036152319487509697532303200779",
+    "name": "dep281473115610736",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1624,9 +971,8 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "gnutls",
-      "dep270564498216172684223456996252238221281",
-      "dep151682624479206963262047935334278509875"
+      "dep281473115613712",
+      "dep281473118318416"
     ],
     "depends": [],
     "meson_variables": [
@@ -1634,7 +980,7 @@
     ]
   },
   {
-    "name": "dep9257180001120270928584432326442269538",
+    "name": "dep281473118172928",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1643,8 +989,8 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep167828704036152319487509697532303200779",
-      "dep151682624479206963262047935334278509875"
+      "dep281473115610736",
+      "dep281473118318416"
     ],
     "depends": [],
     "meson_variables": [
@@ -1652,7 +998,7 @@
     ]
   },
   {
-    "name": "dep267730581991411417112279797006926229650",
+    "name": "dep281473114996256",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1661,8 +1007,8 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep151682624479206963262047935334278509875",
-      "dep9257180001120270928584432326442269538"
+      "dep281473118318416",
+      "dep281473118172928"
     ],
     "depends": [],
     "meson_variables": [
@@ -1670,7 +1016,7 @@
     ]
   },
   {
-    "name": "dep8370825628070932342397959948191882747",
+    "name": "dep281473119360464",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1681,13 +1027,8 @@
     "dependencies": [
       "libzstd",
       "zlib",
-      "libiscsi",
-      "aio",
-      "libnfs",
-      "dep297977658609346600110884234002524157909",
-      "bz2",
-      "dep167828704036152319487509697532303200779",
-      "dep9257180001120270928584432326442269538"
+      "dep281473115610736",
+      "dep281473118172928"
     ],
     "depends": [],
     "meson_variables": [
@@ -1695,7 +1036,7 @@
     ]
   },
   {
-    "name": "dep49371679275373777217310087726256372634",
+    "name": "dep281473115611504",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1704,9 +1045,9 @@
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep36555271526702816749503688515559280772",
-      "dep8370825628070932342397959948191882747",
-      "dep9466360318500948866719089382865784602"
+      "dep281473118988288",
+      "dep281473119360464",
+      "dep281473118314432"
     ],
     "depends": [],
     "meson_variables": [
@@ -1714,7 +1055,7 @@
     ]
   },
   {
-    "name": "dep272802915037698838007308776513409325196",
+    "name": "dep281473115603872",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1729,7 +1070,7 @@
     ]
   },
   {
-    "name": "dep218140855443458262337618912646048190712",
+    "name": "dep281473113871680",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1739,7 +1080,7 @@
     "extra_files": [],
     "dependencies": [
       "util",
-      "dep9257180001120270928584432326442269538"
+      "dep281473118172928"
     ],
     "depends": [],
     "meson_variables": [
@@ -1747,7 +1088,7 @@
     ]
   },
   {
-    "name": "dep200355569781453112184534755141511072457",
+    "name": "dep281473119479280",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1762,7 +1103,7 @@
     ]
   },
   {
-    "name": "dep142661075258144161415769737873737122687",
+    "name": "dep281473117262304",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1777,7 +1118,7 @@
     ]
   },
   {
-    "name": "dep216760959673379622940870119498975702355",
+    "name": "dep281473115605264",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1792,7 +1133,7 @@
     ]
   },
   {
-    "name": "dep212513157897480587420166636119149947334",
+    "name": "dep281473108795040",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
@@ -1800,7 +1141,7 @@
     "include_directories": [],
     "sources": [
       "config-poison.h",
-      "/root/CESprj/qemu/build/config-host.h",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-host.h",
       "qemu-version.h",
       "qemu-options.def",
       "qemu-img-cmds.h",
@@ -2164,7 +1505,7 @@
     ]
   },
   {
-    "name": "dep259615196108435729169336588511388015492",
+    "name": "dep281473122986080",
     "type": "internal",
     "version": "undefined",
     "compile_args": [
@@ -2176,12 +1517,12 @@
     ],
     "link_args": [],
     "include_directories": [
-      "/root/CESprj/qemu/subprojects/berkeley-softfloat-3/.",
-      "/root/CESprj/qemu/build/subprojects/berkeley-softfloat-3/.",
-      "/root/CESprj/qemu/subprojects/berkeley-softfloat-3/source/include",
-      "/root/CESprj/qemu/build/subprojects/berkeley-softfloat-3/source/include",
-      "/root/CESprj/qemu/subprojects/berkeley-softfloat-3/source/8086-SSE",
-      "/root/CESprj/qemu/build/subprojects/berkeley-softfloat-3/source/8086-SSE"
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-softfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-softfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-softfloat-3/source/include",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-softfloat-3/source/include",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-softfloat-3/source/8086-SSE",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-softfloat-3/source/8086-SSE"
     ],
     "sources": [],
     "extra_files": [],
@@ -2194,7 +1535,7 @@
     ]
   },
   {
-    "name": "dep97244656304495554556964002773718585569",
+    "name": "dep281473104403936",
     "type": "internal",
     "version": "undefined",
     "compile_args": [
@@ -2207,15 +1548,15 @@
     ],
     "link_args": [],
     "include_directories": [
-      "/root/CESprj/qemu/subprojects/berkeley-testfloat-3/.",
-      "/root/CESprj/qemu/build/subprojects/berkeley-testfloat-3/.",
-      "/root/CESprj/qemu/subprojects/berkeley-testfloat-3/source",
-      "/root/CESprj/qemu/build/subprojects/berkeley-testfloat-3/source"
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-testfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-testfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-testfloat-3/source",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-testfloat-3/source"
     ],
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep259615196108435729169336588511388015492"
+      "dep281473122986080"
     ],
     "depends": [
       "91e3eaf@@testfloat@sta"
@@ -2225,7 +1566,7 @@
     ]
   },
   {
-    "name": "dep272120905115405340928563693890346100683",
+    "name": "dep281473104262480",
     "type": "internal",
     "version": "undefined",
     "compile_args": [
@@ -2238,15 +1579,15 @@
     ],
     "link_args": [],
     "include_directories": [
-      "/root/CESprj/qemu/subprojects/berkeley-testfloat-3/.",
-      "/root/CESprj/qemu/build/subprojects/berkeley-testfloat-3/.",
-      "/root/CESprj/qemu/subprojects/berkeley-testfloat-3/source",
-      "/root/CESprj/qemu/build/subprojects/berkeley-testfloat-3/source"
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-testfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-testfloat-3/.",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/subprojects/berkeley-testfloat-3/source",
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/subprojects/berkeley-testfloat-3/source"
     ],
     "sources": [],
     "extra_files": [],
     "dependencies": [
-      "dep259615196108435729169336588511388015492"
+      "dep281473122986080"
     ],
     "depends": [
       "91e3eaf@@slowfloat@sta"
@@ -2256,18 +1597,18 @@
     ]
   },
   {
-    "name": "dep2283505394900898552995418565701265067",
+    "name": "dep281473103185232",
     "type": "internal",
     "version": "10.0.50",
     "compile_args": [],
     "link_args": [],
     "include_directories": [],
     "sources": [
-      "/root/CESprj/qemu/tests/unit/iothread.c"
+      "/home/ubuntu/Desktop/progetto_cybersec/qemu/tests/unit/iothread.c"
     ],
     "extra_files": [],
     "dependencies": [
-      "dep8370825628070932342397959948191882747"
+      "dep281473119360464"
     ],
     "depends": [],
     "meson_variables": [

@@ -16,7 +16,7 @@ unset LD_LIBRARY_PATH
 unset NM
 unset OBJCFLAGS
 unset OBJCOPY
-PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/java8path:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files (x86)/Ghdl/Bin:/mnt/c/Program Files (x86)/ZeroTier/One/:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Neovim/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files/Graphviz-12.2.1-win64/bin:/mnt/c/Users/peppe/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/peppe/AppData/Local/Programs/Python/Python313/:/mnt/c/Users/peppe/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/peppe/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/MinGW/bin:/mnt/c/MinGW:/mnt/c/Users/peppe/AppData/Roaming/npm:/snap/bin'
+PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'
 export PATH
 unset PKG_CONFIG
 unset PKG_CONFIG_LIBDIR

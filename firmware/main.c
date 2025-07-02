@@ -11,7 +11,7 @@ int main(void) {
     log_tpm_status(&tpm);
     
     struct tpm_command_header cmd_header = {
-        .tag = TAG_TPM_ST_NO_SESSIONS,      
+        .tag = TPM_ST_NO_SESSION,      
         .command_code = TPM2_CC_Startup,
         .size = sizeof(struct tpm_startup_command_header)
     };
@@ -32,6 +32,23 @@ int main(void) {
         UART_putstr("Success code received\n");
     else
         UART_putstr("Error code received\n");
+
+
+    // Trying CreatePrimary command
+    cmd_header.command_code = TPM2_CC_CreatePrimary;
+    cmd_header.size = sizeof(struct tpm_createPrimary_command);
+    struct tpm_createPrimary_command create_primary_cmd = {
+        .command_header = cmd_header,
+        .primaryHandle = TPM_RH_OWNER, // Owner hierarchy
+        .inSensitive = { .size = 0 }, // No sensitive data
+        .inPublic = { .size = 0 }, // No public data
+        .outsideInfo = { .size = 0 }, // No outside info
+        .creationPCR = { .count = 0 } // No PCR selection
+    };
+
+    UART_putstr("\nSending CreatePrimary command...\n");
+    tpm_send_command_with_log(&tpm, &create_primary_cmd, create_primary_cmd.command_header.size);
+    log_tpm_status(&tpm);   
 
 
     // Trying self test

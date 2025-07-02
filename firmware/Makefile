@@ -93,5 +93,7 @@ init:
 		ninja-build \
 		python3-sphinx \
 		gcc-arm-linux-gnueabi\
+		gcc-arm-none-eabi\
 		gdb-multiarch \
 		virt-what
+	pip3 install tomli

@@ -1,1 +1,1 @@
-/root/CESprj/qemu/pc-bios/optionrom/Makefile
+/home/ubuntu/Desktop/progetto_cybersec/qemu/pc-bios/optionrom/Makefile

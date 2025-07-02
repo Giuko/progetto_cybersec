@@ -1042,6 +1042,7 @@ libqemuutil.a.p/util_oslib-posix.c.o \
 libqemuutil.a.p/util_qemu-thread-posix.c.o \
 libqemuutil.a.p/util_memfd.c.o \
 libqemuutil.a.p/util_drm.c.o \
+libqemuutil.a.p/util_qtree.c.o \
 libqemuutil.a.p/util_defer-call.c.o \
 libqemuutil.a.p/util_envlist.c.o \
 libqemuutil.a.p/util_path.c.o \
@@ -1112,12 +1113,12 @@ libqemuutil.a.p/util_vhost-user-server.c.o \
 libqemuutil.a.p/util_vfio-helpers.c.o \
 libqemuutil.a.p/util_chardev_open.c.o \
 libqemuutil.a.p/util_yank.c.o \
-libqemuutil.a.p/util_cpuinfo-i386.c.o \
+libqemuutil.a.p/util_cpuinfo-aarch64.c.o \
 libqemuutil.a.p/crypto_aes.c.o \
 libqemuutil.a.p/crypto_clmul.c.o \
 libqemuutil.a.p/crypto_init.c.o \
 libqemuutil.a.p/crypto_sm4.c.o \
-libqemuutil.a.p/crypto_random-gnutls.c.o \
+libqemuutil.a.p/crypto_random-platform.c.o \
 libqemuutil.a.p/trace_control.c.o \
 libqemuutil.a.p/trace_qmp.c.o \
 libqemuutil.a.p/stubs_cpu-get-clock.c.o \
@@ -1144,7 +1145,6 @@ libqemuutil.a.p/stubs_replay-tools.c.o \
 libqemuutil.a.p/stubs_cpus-virtual-clock.c.o \
 libqemuutil.a.p/stubs_icount.c.o \
 libqemuutil.a.p/stubs_graph-lock.c.o \
-libqemuutil.a.p/stubs_linux-aio.c.o \
 libqemuutil.a.p/stubs_qemu-timer-notify-cb.c.o \
 libqemuutil.a.p/stubs_monitor-internal.c.o \
 libqemuutil.a.p/stubs_qmp-command-available.c.o \
@@ -1318,10 +1318,9 @@ libcrypto.a.p/crypto_tlscredspsk.c.o \
 libcrypto.a.p/crypto_tlscredsx509.c.o \
 libcrypto.a.p/crypto_tlssession.c.o \
 libcrypto.a.p/crypto_rsakey.c.o \
-libcrypto.a.p/crypto_x509-utils.c.o \
-libcrypto.a.p/crypto_hash-gnutls.c.o \
-libcrypto.a.p/crypto_hmac-gnutls.c.o \
-libcrypto.a.p/crypto_pbkdf-gnutls.c.o \
+libcrypto.a.p/crypto_hash-glib.c.o \
+libcrypto.a.p/crypto_hmac-glib.c.o \
+libcrypto.a.p/crypto_pbkdf-stub.c.o \
 libcrypto.a.p/crypto_secret_keyring.c.o \
 libcrypto.a \
 libio.a.p/io_channel-buffer.c.o \
@@ -1416,15 +1415,10 @@ libblock.a.p/block_qed.c.o \
 libblock.a.p/block_parallels.c.o \
 libblock.a.p/block_parallels-ext.c.o \
 libblock.a.p/block_file-posix.c.o \
-libblock.a.p/block_iscsi-opts.c.o \
 libblock.a.p/block_nvme.c.o \
 libblock.a.p/block_replication.c.o \
-libblock.a.p/block_linux-aio.c.o \
 libblock.a.p/block_stream.c.o \
 libblock.a.p/block_monitor_bitmap-qmp-cmds.c.o \
-libblock.a.p/block_iscsi.c.o \
-libblock.a.p/block_nfs.c.o \
-libblock.a.p/block_dmg-bz2.c.o \
 libblock.a \
 libblockdev.a.p/nbd_server.c.o \
 libblockdev.a.p/block_export_export.c.o \
@@ -1590,7 +1584,6 @@ libcommon.a.p/plugins_loader.c.o \
 libcommon.a.p/trace_control-target.c.o \
 libcommon.a.p/trace_trace-hmp-cmds.c.o \
 libcommon.a.p/qom_qom-hmp-cmds.c.o \
-libcommon.a.p/crypto_tls-cipher-suites.c.o \
 libcommon.a.p/ui_clipboard.c.o \
 libcommon.a.p/ui_console.c.o \
 libcommon.a.p/ui_cursor.c.o \
@@ -1609,7 +1602,6 @@ libcommon.a.p/ui_console-vc.c.o \
 libcommon.a.p/ui_console-vc-stubs.c.o \
 libcommon.a.p/ui_dbus-module.c.o \
 libcommon.a.p/ui_spice-module.c.o \
-libcommon.a.p/ui_vdagent.c.o \
 libcommon.a.p/ui_input-linux.c.o \
 libcommon.a.p/ui_udmabuf.c.o \
 libcommon.a.p/ui_vnc.c.o \
@@ -2386,7 +2378,6 @@ libcommon.a.p/hw_usb_dev-mtp.c.o \
 libcommon.a.p/hw_usb_dev-smartcard-reader.c.o \
 libcommon.a.p/hw_usb_u2f.c.o \
 libcommon.a.p/hw_usb_u2f-passthru.c.o \
-libcommon.a.p/hw_usb_xen-usb.c.o \
 libcommon.a.p/hw_vfio_calxeda-xgmac.c.o \
 libcommon.a.p/hw_vfio_amd-xgbe.c.o \
 libcommon.a.p/hw_vfio_helpers.c.o \
@@ -2443,7 +2434,6 @@ libcommon.a.p/hw_xen_xen-bus.c.o \
 libcommon.a.p/hw_xen_xen-legacy-backend.c.o \
 libcommon.a.p/hw_xen_xen_devconfig.c.o \
 libcommon.a.p/hw_xen_xen_pvdev.c.o \
-libcommon.a.p/hw_xen_xen-operations.c.o \
 libcommon.a.p/hw_xen_xen_stubs.c.o \
 libcommon.a.p/hw_fsi_lbus.c.o \
 libcommon.a.p/hw_fsi_fsi.c.o \
@@ -2540,7 +2530,6 @@ libcommon.a.p/migration_tls.c.o \
 libcommon.a.p/migration_threadinfo.c.o \
 libcommon.a.p/migration_colo-failover.c.o \
 libcommon.a.p/migration_colo.c.o \
-libcommon.a.p/migration_multifd-zstd.c.o \
 libcommon.a.p/monitor_fds.c.o \
 libcommon.a.p/monitor_hmp-cmds.c.o \
 libcommon.a.p/monitor_hmp.c.o \
@@ -2566,7 +2555,6 @@ libcommon.a.p/net_colo.c.o \
 libcommon.a.p/net_filter-rewriter.c.o \
 libcommon.a.p/net_filter-replay.c.o \
 libcommon.a.p/net_l2tpv3.c.o \
-libcommon.a.p/net_slirp.c.o \
 libcommon.a.p/net_vhost-user.c.o \
 libcommon.a.p/net_vhost-user-stub.c.o \
 libcommon.a.p/net_tap.c.o \
@@ -2599,49 +2587,28 @@ libcommon.a.p/accel_dummy-cpus.c.o \
 libcommon.a.p/plugins_system.c.o \
 libcommon.a.p/plugins_api-system.c.o \
 libcommon.a.p/ebpf_ebpf_rss-stub.c.o \
-libcommon.a.p/ui_curses.c.o \
-libcommon.a.p/ui_shader.c.o \
-libcommon.a.p/ui_console-gl.c.o \
-libcommon.a.p/ui_egl-helpers.c.o \
-libcommon.a.p/ui_egl-context.c.o \
-libcommon.a.p/ui_egl-headless.c.o \
 libcommon.a.p/ui_dbus-chardev.c.o \
 libcommon.a.p/ui_dbus-clipboard.c.o \
 libcommon.a.p/ui_dbus-console.c.o \
 libcommon.a.p/ui_dbus-error.c.o \
 libcommon.a.p/ui_dbus-listener.c.o \
 libcommon.a.p/ui_dbus.c.o \
-libcommon.a.p/ui_gtk.c.o \
-libcommon.a.p/ui_x_keymap.c.o \
-libcommon.a.p/ui_gtk-gl-area.c.o \
-libcommon.a.p/ui_gtk-egl.c.o \
 libcommon.a.p/ui_sdl2-2d.c.o \
 libcommon.a.p/ui_sdl2-input.c.o \
 libcommon.a.p/ui_sdl2.c.o \
-libcommon.a.p/ui_sdl2-gl.c.o \
-libcommon.a.p/ui_spice-core.c.o \
-libcommon.a.p/ui_spice-input.c.o \
-libcommon.a.p/ui_spice-display.c.o \
-libcommon.a.p/ui_spice-app.c.o \
 libcommon.a.p/hw_display_virtio-gpu-base.c.o \
 libcommon.a.p/hw_display_virtio-gpu.c.o \
 libcommon.a.p/hw_display_virtio-gpu-udmabuf.c.o \
 libcommon.a.p/hw_display_vhost-user-gpu.c.o \
-libcommon.a.p/hw_display_virtio-gpu-gl.c.o \
-libcommon.a.p/hw_display_virtio-gpu-virgl.c.o \
 libcommon.a.p/hw_display_virtio-gpu-pci.c.o \
 libcommon.a.p/hw_display_vhost-user-gpu-pci.c.o \
-libcommon.a.p/hw_display_virtio-gpu-pci-gl.c.o \
-libcommon.a.p/hw_usb_host-libusb.c.o \
 libcommon.a.p/hw_s390x_virtio-ccw-gpu.c.o \
 libcommon.a.p/audio_alsaaudio.c.o \
 libcommon.a.p/audio_ossaudio.c.o \
 libcommon.a.p/audio_paaudio.c.o \
 libcommon.a.p/audio_sdlaudio.c.o \
 libcommon.a.p/audio_sndioaudio.c.o \
-libcommon.a.p/audio_spiceaudio.c.o \
 libcommon.a.p/audio_dbusaudio.c.o \
-libcommon.a.p/chardev_spice.c.o \
 libcommon.a.p/semihosting_user.c.o \
 libcommon.a.p/accel_accel-user.c.o \
 libcommon.a.p/plugins_user.c.o \
@@ -2940,21 +2907,13 @@ qemu-edid.p/hw_display_edid-generate.c.o \
 qemu-edid \
 contrib/vhost-user-blk/vhost-user-blk.p/vhost-user-blk.c.o \
 contrib/vhost-user-blk/vhost-user-blk \
-contrib/vhost-user-gpu/vhost-user-gpu.p/vhost-user-gpu.c.o \
-contrib/vhost-user-gpu/vhost-user-gpu.p/virgl.c.o \
-contrib/vhost-user-gpu/vhost-user-gpu.p/vugbm.c.o \
-contrib/vhost-user-gpu/vhost-user-gpu \
 contrib/vhost-user-input/vhost-user-input.p/main.c.o \
 contrib/vhost-user-input/vhost-user-input \
-contrib/vhost-user-scsi/vhost-user-scsi.p/vhost-user-scsi.c.o \
-contrib/vhost-user-scsi/vhost-user-scsi \
 qemu-bridge-helper.p/qemu-bridge-helper.c.o \
 qemu-bridge-helper \
 qemu-pr-helper.p/scsi_qemu-pr-helper.c.o \
 qemu-pr-helper.p/scsi_utils.c.o \
 qemu-pr-helper \
-qemu-vmsr-helper.p/tools_i386_qemu-vmsr-helper.c.o \
-qemu-vmsr-helper \
 contrib/ivshmem-client/ivshmem-client.p/ivshmem-client.c.o \
 contrib/ivshmem-client/ivshmem-client.p/main.c.o \
 contrib/ivshmem-client/ivshmem-client \
@@ -3746,17 +3705,6 @@ tests/unit/test-timed-average.p/test-timed-average.c.o \
 tests/unit/test-timed-average \
 tests/unit/test-uuid.p/test-uuid.c.o \
 tests/unit/test-uuid \
-tests/unit/test-crypto-tlscredsx509.p/test-crypto-tlscredsx509.c.o \
-tests/unit/test-crypto-tlscredsx509.p/crypto-tls-x509-helpers.c.o \
-tests/unit/test-crypto-tlscredsx509 \
-tests/unit/test-crypto-tlssession.p/test-crypto-tlssession.c.o \
-tests/unit/test-crypto-tlssession.p/crypto-tls-x509-helpers.c.o \
-tests/unit/test-crypto-tlssession.p/crypto-tls-psk-helpers.c.o \
-tests/unit/test-crypto-tlssession \
-tests/unit/test-io-channel-tls.p/test-io-channel-tls.c.o \
-tests/unit/test-io-channel-tls.p/io-channel-helpers.c.o \
-tests/unit/test-io-channel-tls.p/crypto-tls-x509-helpers.c.o \
-tests/unit/test-io-channel-tls \
 tests/unit/test-image-locking.p/test-image-locking.c.o \
 tests/unit/test-image-locking.p/iothread.c.o \
 tests/unit/test-image-locking \
@@ -3769,7 +3717,7 @@ tests/unit/test-crypto-pbkdf.p/test-crypto-pbkdf.c.o \
 tests/unit/test-crypto-pbkdf \
 tests/unit/ptimer-test.p/ptimer-test.c.o \
 tests/unit/ptimer-test.p/ptimer-test-stubs.c.o \
-tests/unit/ptimer-test.p/_root_CESprj_qemu_hw_core_ptimer.c.o \
+tests/unit/ptimer-test.p/_home_ubuntu_Desktop_progetto_cybersec_qemu_hw_core_ptimer.c.o \
 tests/unit/ptimer-test \
 tests/unit/test-iov.p/test-iov.c.o \
 tests/unit/test-iov \
@@ -3778,7 +3726,7 @@ tests/unit/test-opts-visitor \
 tests/unit/test-xs-node.p/test-xs-node.c.o \
 tests/unit/test-xs-node \
 tests/unit/test-virtio-dmabuf.p/test-virtio-dmabuf.c.o \
-tests/unit/test-virtio-dmabuf.p/_root_CESprj_qemu_hw_display_virtio-dmabuf.c.o \
+tests/unit/test-virtio-dmabuf.p/_home_ubuntu_Desktop_progetto_cybersec_qemu_hw_display_virtio-dmabuf.c.o \
 tests/unit/test-virtio-dmabuf \
 tests/unit/test-qmp-cmds.p/test-qmp-cmds.c.o \
 tests/unit/test-qmp-cmds \
@@ -3792,7 +3740,7 @@ tests/unit/test-base64 \
 tests/unit/test-bufferiszero.p/test-bufferiszero.c.o \
 tests/unit/test-bufferiszero \
 tests/unit/test-smp-parse.p/test-smp-parse.c.o \
-tests/unit/test-smp-parse.p/_root_CESprj_qemu_hw_core_machine-smp.c.o \
+tests/unit/test-smp-parse.p/_home_ubuntu_Desktop_progetto_cybersec_qemu_hw_core_machine-smp.c.o \
 tests/unit/test-smp-parse \
 tests/unit/test-vmstate.p/test-vmstate.c.o \
 tests/unit/test-vmstate \
@@ -3860,8 +3808,6 @@ tests/qtest/npcm7xx_watchdog_timer-test.p/npcm7xx_watchdog_timer-test.c.o \
 tests/qtest/npcm7xx_watchdog_timer-test \
 tests/qtest/npcm_gmac-test.p/npcm_gmac-test.c.o \
 tests/qtest/npcm_gmac-test \
-tests/qtest/npcm7xx_emc-test.p/npcm7xx_emc-test.c.o \
-tests/qtest/npcm7xx_emc-test \
 tests/qtest/hexloader-test.p/hexloader-test.c.o \
 tests/qtest/hexloader-test \
 tests/qtest/tpm-tis-i2c-test.p/tpm-tis-i2c-test.c.o \
@@ -4008,8 +3954,9 @@ reconfigure \
 ../meson.build \
 ../meson_options.txt \
 ../VERSION \
-/root/CESprj/qemu/build/config-host.mak \
-/root/CESprj/qemu/configs/targets/arm-softmmu.mak \
+/home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-host.mak \
+../scripts/xen-detect.c \
+/home/ubuntu/Desktop/progetto_cybersec/qemu/configs/targets/arm-softmmu.mak \
 ../configs/devices/arm-softmmu/default.mak \
 ../Kconfig \
 ../scripts/minikconf.py \
@@ -4284,7 +4231,6 @@ reconfigure \
 ../contrib/elf2dmp/meson.build \
 ../contrib/vhost-user-blk/meson.build \
 ../contrib/vhost-user-gpu/meson.build \
-../contrib/vhost-user-gpu/50-qemu-gpu.json.in \
 ../contrib/vhost-user-input/meson.build \
 ../contrib/vhost-user-scsi/meson.build \
 ../contrib/ivshmem-client/meson.build \
@@ -4307,7 +4253,7 @@ reconfigure \
 ../tests/bench/meson.build \
 ../tests/qemu-iotests/meson.build \
 /usr/bin/bash \
-/usr/bin/python3.12 \
+/usr/bin/python3.10 \
 ../tests/qemu-iotests/check \
 ../tests/include/meson.build \
 ../tests/decode/meson.build \
@@ -4322,15 +4268,15 @@ reconfigure \
 ../tests/qtest/meson.build \
 ../tests/migration-stress/meson.build \
 ../tests/functional/meson.build \
-../po/meson.build \
-/root/CESprj/qemu/build/config-meson.cross \
+/home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-meson.cross \
 meson-private/coredata.dat
 build-files = \
     ../meson.build \
     ../meson_options.txt \
     ../VERSION \
-    /root/CESprj/qemu/build/config-host.mak \
-    /root/CESprj/qemu/configs/targets/arm-softmmu.mak \
+    /home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-host.mak \
+    ../scripts/xen-detect.c \
+    /home/ubuntu/Desktop/progetto_cybersec/qemu/configs/targets/arm-softmmu.mak \
     ../configs/devices/arm-softmmu/default.mak \
     ../Kconfig \
     ../scripts/minikconf.py \
@@ -4605,7 +4551,6 @@ build-files = \
     ../contrib/elf2dmp/meson.build \
     ../contrib/vhost-user-blk/meson.build \
     ../contrib/vhost-user-gpu/meson.build \
-    ../contrib/vhost-user-gpu/50-qemu-gpu.json.in \
     ../contrib/vhost-user-input/meson.build \
     ../contrib/vhost-user-scsi/meson.build \
     ../contrib/ivshmem-client/meson.build \
@@ -4628,7 +4573,7 @@ build-files = \
     ../tests/bench/meson.build \
     ../tests/qemu-iotests/meson.build \
     /usr/bin/bash \
-    /usr/bin/python3.12 \
+    /usr/bin/python3.10 \
     ../tests/qemu-iotests/check \
     ../tests/include/meson.build \
     ../tests/decode/meson.build \
@@ -4643,6 +4588,5 @@ build-files = \
     ../tests/qtest/meson.build \
     ../tests/migration-stress/meson.build \
     ../tests/functional/meson.build \
-    ../po/meson.build \
-    /root/CESprj/qemu/build/config-meson.cross \
+    /home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-meson.cross \
     meson-private/coredata.dat \

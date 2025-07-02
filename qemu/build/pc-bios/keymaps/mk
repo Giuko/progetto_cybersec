@@ -20,11 +20,16 @@
 #     8: NumLock
 #     9: Alt
 #    10: LevelThree
-#    11: LevelFive
-#    12: Meta
-#    13: Super
-#    14: Hyper
+#    11: LAlt
+#    12: RAlt
+#    13: RControl
+#    14: LControl
 #    15: ScrollLock
+#    16: LevelFive
+#    17: AltGr
+#    18: Meta
+#    19: Super
+#    20: Hyper
 
 # evdev 1 (0x1), QKeyCode "esc", number 0x1
 Escape 0x01
@@ -342,6 +347,8 @@ KP_Separator 0x53 numlock
 # evdev 86 (0x56), QKeyCode "less", number 0x56
 less 0x56
 greater 0x56 shift
+bar 0x56 altgr
+brokenbar 0x56 shift altgr
 
 # evdev 87 (0x57), QKeyCode "f11", number 0x57
 F11 0x57
@@ -632,7 +639,7 @@ XF86TouchpadOff 0x6d
 
 # evdev 194 (0xc2), QKeyCode "f24", number 0x6f
 
-# evdev 195 (0xc3): no evdev -> QKeyCode mapping (xkb keysym ISO_Level5_Shift)
+# evdev 195 (0xc3): no evdev -> QKeyCode mapping (xkb keysym Mode_switch)
 
 # evdev 196 (0xc4): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
@@ -1413,15 +1420,15 @@ XF86AudioMedia 0xed
 
 # evdev 584 (0x248): no evdev -> QKeyCode mapping (xkb keysym ISO_Next_Group)
 
-# evdev 585 (0x249): no evdev -> QKeyCode mapping (xkb keysym XF86EmojiPicker)
+# evdev 585 (0x249): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 586 (0x24a): no evdev -> QKeyCode mapping (xkb keysym XF86Dictate)
+# evdev 586 (0x24a): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 587 (0x24b): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessEnable)
+# evdev 587 (0x24b): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 588 (0x24c): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessDisable)
+# evdev 588 (0x24c): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 589 (0x24d): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessToggle)
+# evdev 589 (0x24d): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
 # evdev 590 (0x24e): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
@@ -1513,35 +1520,35 @@ XF86AudioMedia 0xed
 
 # evdev 634 (0x27a): no evdev -> QKeyCode mapping (xkb keysym XF86SelectiveScreenshot)
 
-# evdev 635 (0x27b): no evdev -> QKeyCode mapping (xkb keysym XF86NextElement)
+# evdev 635 (0x27b): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 636 (0x27c): no evdev -> QKeyCode mapping (xkb keysym XF86PreviousElement)
+# evdev 636 (0x27c): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 637 (0x27d): no evdev -> QKeyCode mapping (xkb keysym XF86AutopilotEngageToggle)
+# evdev 637 (0x27d): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 638 (0x27e): no evdev -> QKeyCode mapping (xkb keysym XF86MarkWaypoint)
+# evdev 638 (0x27e): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 639 (0x27f): no evdev -> QKeyCode mapping (xkb keysym XF86Sos)
+# evdev 639 (0x27f): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 640 (0x280): no evdev -> QKeyCode mapping (xkb keysym XF86NavChart)
+# evdev 640 (0x280): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 641 (0x281): no evdev -> QKeyCode mapping (xkb keysym XF86FishingChart)
+# evdev 641 (0x281): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 642 (0x282): no evdev -> QKeyCode mapping (xkb keysym XF86SingleRangeRadar)
+# evdev 642 (0x282): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 643 (0x283): no evdev -> QKeyCode mapping (xkb keysym XF86DualRangeRadar)
+# evdev 643 (0x283): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 644 (0x284): no evdev -> QKeyCode mapping (xkb keysym XF86RadarOverlay)
+# evdev 644 (0x284): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 645 (0x285): no evdev -> QKeyCode mapping (xkb keysym XF86TraditionalSonar)
+# evdev 645 (0x285): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 646 (0x286): no evdev -> QKeyCode mapping (xkb keysym XF86ClearvuSonar)
+# evdev 646 (0x286): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 647 (0x287): no evdev -> QKeyCode mapping (xkb keysym XF86SidevuSonar)
+# evdev 647 (0x287): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 648 (0x288): no evdev -> QKeyCode mapping (xkb keysym XF86NavInfo)
+# evdev 648 (0x288): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
-# evdev 649 (0x289): no evdev -> QKeyCode mapping (xkb keysym XF86BrightnessAdjust)
+# evdev 649 (0x289): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
 # evdev 650 (0x28a): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
