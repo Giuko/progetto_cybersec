@@ -17,7 +17,7 @@
 #include "tpm_basic_crypto_rsa.h"
 
 /*REGISTER DEFINITION*/
-REG32(TPM_ACCESS, 0X00)
+REG32(TPM_ACCESS, 0x00)
     FIELD(TPM_ACCESS, VALID, 1, 1)
     FIELD(TPM_ACCESS, ACTIVE, 5, 1)
 
