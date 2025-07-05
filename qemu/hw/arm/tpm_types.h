@@ -100,7 +100,7 @@ typedef struct{
 #define TPM_ALG_RSA         0x0001
 #define TPM_ALG_SHA         0x0003
 #define TPM_ALG_SHA1        0x0004
-#define TPM_ALG_AES         0x0004
+#define TPM_ALG_AES         0x0006
 // others... 
 
 /* Begin TPM2B_SENSITIVE_CREATE */

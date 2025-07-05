@@ -77,6 +77,11 @@ const char* tpm_command_name(uint32_t command_code) {
         case TPM2_CC_Startup: return "Startup";
         case TPM2_CC_GetCapability: return "GetCapability";
         case TPM2_CC_SelfTest: return "SelfTest";
+        case TPM2_CC_CreatePrimary: return "CreatePrimary";
+        case TPM2_CC_Create: return "Create";
+        case TPM2_CC_Shutdown: return "Shutdown";
+        case TPM2_CC_RSA_Decrypt: return "RSA Decrypt";
+        case TPM2_CC_RSA_Encrypt: return "RSA Encrypt";
         default: return "Unknown";
     }
 }

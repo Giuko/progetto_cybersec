@@ -23,4 +23,7 @@ SECTIONS
     } > SRAM
 
     stack_top = ORIGIN(SRAM) + LENGTH(SRAM);
+
+    _end = .;
+    PROVIDE(end = .);
 }

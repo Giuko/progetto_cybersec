@@ -17,6 +17,52 @@
 #  include <gio/gunixfdlist.h>
 #endif
 
+#ifdef G_ENABLE_DEBUG
+#define g_marshal_value_peek_boolean(v)  g_value_get_boolean (v)
+#define g_marshal_value_peek_char(v)     g_value_get_schar (v)
+#define g_marshal_value_peek_uchar(v)    g_value_get_uchar (v)
+#define g_marshal_value_peek_int(v)      g_value_get_int (v)
+#define g_marshal_value_peek_uint(v)     g_value_get_uint (v)
+#define g_marshal_value_peek_long(v)     g_value_get_long (v)
+#define g_marshal_value_peek_ulong(v)    g_value_get_ulong (v)
+#define g_marshal_value_peek_int64(v)    g_value_get_int64 (v)
+#define g_marshal_value_peek_uint64(v)   g_value_get_uint64 (v)
+#define g_marshal_value_peek_enum(v)     g_value_get_enum (v)
+#define g_marshal_value_peek_flags(v)    g_value_get_flags (v)
+#define g_marshal_value_peek_float(v)    g_value_get_float (v)
+#define g_marshal_value_peek_double(v)   g_value_get_double (v)
+#define g_marshal_value_peek_string(v)   (char*) g_value_get_string (v)
+#define g_marshal_value_peek_param(v)    g_value_get_param (v)
+#define g_marshal_value_peek_boxed(v)    g_value_get_boxed (v)
+#define g_marshal_value_peek_pointer(v)  g_value_get_pointer (v)
+#define g_marshal_value_peek_object(v)   g_value_get_object (v)
+#define g_marshal_value_peek_variant(v)  g_value_get_variant (v)
+#else /* !G_ENABLE_DEBUG */
+/* WARNING: This code accesses GValues directly, which is UNSUPPORTED API.
+ *          Do not access GValues directly in your code. Instead, use the
+ *          g_value_get_*() functions
+ */
+#define g_marshal_value_peek_boolean(v)  (v)->data[0].v_int
+#define g_marshal_value_peek_char(v)     (v)->data[0].v_int
+#define g_marshal_value_peek_uchar(v)    (v)->data[0].v_uint
+#define g_marshal_value_peek_int(v)      (v)->data[0].v_int
+#define g_marshal_value_peek_uint(v)     (v)->data[0].v_uint
+#define g_marshal_value_peek_long(v)     (v)->data[0].v_long
+#define g_marshal_value_peek_ulong(v)    (v)->data[0].v_ulong
+#define g_marshal_value_peek_int64(v)    (v)->data[0].v_int64
+#define g_marshal_value_peek_uint64(v)   (v)->data[0].v_uint64
+#define g_marshal_value_peek_enum(v)     (v)->data[0].v_long
+#define g_marshal_value_peek_flags(v)    (v)->data[0].v_ulong
+#define g_marshal_value_peek_float(v)    (v)->data[0].v_float
+#define g_marshal_value_peek_double(v)   (v)->data[0].v_double
+#define g_marshal_value_peek_string(v)   (v)->data[0].v_pointer
+#define g_marshal_value_peek_param(v)    (v)->data[0].v_pointer
+#define g_marshal_value_peek_boxed(v)    (v)->data[0].v_pointer
+#define g_marshal_value_peek_pointer(v)  (v)->data[0].v_pointer
+#define g_marshal_value_peek_object(v)   (v)->data[0].v_pointer
+#define g_marshal_value_peek_variant(v)  (v)->data[0].v_pointer
+#endif /* !G_ENABLE_DEBUG */
+
 typedef struct
 {
   GDBusArgInfo parent_struct;
@@ -149,6 +195,1171 @@ _g_value_equal (const GValue *a, const GValue *b)
         break;
     }
   return ret;
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectObjectVariantFunc)
+       (void *data1,
+        GUnixFDList *arg_fd_list,
+        GDBusMethodInvocation *arg_method_invocation,
+        GVariant *arg_listener,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectObjectVariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectObjectVariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_object (param_values + 2),
+              g_marshal_value_peek_variant (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_INT_INT_UINT_UINT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintUintIntIntUintUintFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint16 arg_width_mm,
+        guint16 arg_height_mm,
+        gint arg_xoff,
+        gint arg_yoff,
+        guint arg_width,
+        guint arg_height,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintUintIntIntUintUintFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 8);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintUintIntIntUintUintFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_uint (param_values + 3),
+              g_marshal_value_peek_int (param_values + 4),
+              g_marshal_value_peek_int (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uint (param_values + 7),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_keycode,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintUintFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_x,
+        guint arg_y,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintUintFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintUintFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_uint (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectIntIntFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        gint arg_dx,
+        gint arg_dy,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectIntIntFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectIntIntFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_int (param_values + 2),
+              g_marshal_value_peek_int (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT64_DOUBLE_DOUBLE (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintUint64DoubleDoubleFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_kind,
+        guint64 arg_num_slot,
+        gdouble arg_x,
+        gdouble arg_y,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintUint64DoubleDoubleFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 6);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintUint64DoubleDoubleFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_uint64 (param_values + 3),
+              g_marshal_value_peek_double (param_values + 4),
+              g_marshal_value_peek_double (param_values + 5),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_UINT_UINT_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintUintUintUintVariantFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_width,
+        guint arg_height,
+        guint arg_stride,
+        guint arg_pixman_format,
+        GVariant *arg_data,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintUintUintUintVariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 7);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintUintUintUintVariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_uint (param_values + 3),
+              g_marshal_value_peek_uint (param_values + 4),
+              g_marshal_value_peek_uint (param_values + 5),
+              g_marshal_value_peek_variant (param_values + 6),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT_UINT_UINT_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntUintUintVariantFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        gint arg_x,
+        gint arg_y,
+        gint arg_width,
+        gint arg_height,
+        guint arg_stride,
+        guint arg_pixman_format,
+        GVariant *arg_data,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectIntIntIntIntUintUintVariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 9);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntUintUintVariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_int (param_values + 2),
+              g_marshal_value_peek_int (param_values + 3),
+              g_marshal_value_peek_int (param_values + 4),
+              g_marshal_value_peek_int (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uint (param_values + 7),
+              g_marshal_value_peek_variant (param_values + 8),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT_UINT_UINT_UINT_UINT_UINT64_BOOLEAN (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUint64BooleanFunc)
+       (void *data1,
+        GUnixFDList *arg_fd_list,
+        GDBusMethodInvocation *arg_method_invocation,
+        GVariant *arg_dmabuf,
+        guint arg_width,
+        guint arg_height,
+        guint arg_stride,
+        guint arg_fourcc,
+        guint64 arg_modifier,
+        gboolean arg_y0_top,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUint64BooleanFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 10);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUint64BooleanFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_object (param_values + 2),
+              g_marshal_value_peek_variant (param_values + 3),
+              g_marshal_value_peek_uint (param_values + 4),
+              g_marshal_value_peek_uint (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uint (param_values + 7),
+              g_marshal_value_peek_uint64 (param_values + 8),
+              g_marshal_value_peek_boolean (param_values + 9),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        gint arg_x,
+        gint arg_y,
+        gint arg_width,
+        gint arg_height,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectIntIntIntIntFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 6);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_int (param_values + 2),
+              g_marshal_value_peek_int (param_values + 3),
+              g_marshal_value_peek_int (param_values + 4),
+              g_marshal_value_peek_int (param_values + 5),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectIntIntIntFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        gint arg_x,
+        gint arg_y,
+        gint arg_on,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectIntIntIntFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 5);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectIntIntIntFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_int (param_values + 2),
+              g_marshal_value_peek_int (param_values + 3),
+              g_marshal_value_peek_int (param_values + 4),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntVariantFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        gint arg_width,
+        gint arg_height,
+        gint arg_hot_x,
+        gint arg_hot_y,
+        GVariant *arg_data,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectIntIntIntIntVariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 7);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectIntIntIntIntVariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_int (param_values + 2),
+              g_marshal_value_peek_int (param_values + 3),
+              g_marshal_value_peek_int (param_values + 4),
+              g_marshal_value_peek_int (param_values + 5),
+              g_marshal_value_peek_variant (param_values + 6),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT_UINT_UINT_UINT_UINT_UINT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUintFunc)
+       (void *data1,
+        GUnixFDList *arg_fd_list,
+        GDBusMethodInvocation *arg_method_invocation,
+        GVariant *arg_handle,
+        guint arg_offset,
+        guint arg_width,
+        guint arg_height,
+        guint arg_stride,
+        guint arg_pixman_format,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUintFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 9);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectObjectVariantUintUintUintUintUintFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_object (param_values + 2),
+              g_marshal_value_peek_variant (param_values + 3),
+              g_marshal_value_peek_uint (param_values + 4),
+              g_marshal_value_peek_uint (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uint (param_values + 7),
+              g_marshal_value_peek_uint (param_values + 8),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UINT_UINT_BOOLEAN_UINT_UINT_UINT_UINT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64UintUintBooleanUintUintUintUintFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_handle,
+        guint arg_texture_width,
+        guint arg_texture_height,
+        gboolean arg_y0_top,
+        guint arg_x,
+        guint arg_y,
+        guint arg_width,
+        guint arg_height,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64UintUintBooleanUintUintUintUintFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 10);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64UintUintBooleanUintUintUintUintFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_uint (param_values + 3),
+              g_marshal_value_peek_uint (param_values + 4),
+              g_marshal_value_peek_boolean (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uint (param_values + 7),
+              g_marshal_value_peek_uint (param_values + 8),
+              g_marshal_value_peek_uint (param_values + 9),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_BOXED (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintUintBoxedFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_selection,
+        guint arg_serial,
+        const gchar *const *arg_mimes,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintUintBoxedFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 5);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintUintBoxedFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_uint (param_values + 3),
+              g_marshal_value_peek_boxed (param_values + 4),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_BOXED (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUintBoxedFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint arg_selection,
+        const gchar *const *arg_mimes,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUintBoxedFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUintBoxedFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint (param_values + 2),
+              g_marshal_value_peek_boxed (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UCHAR_BOOLEAN_BOOLEAN_UINT_UCHAR_UINT_UINT_BOOLEAN (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64UcharBooleanBooleanUintUcharUintUintBooleanFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        guchar arg_bits,
+        gboolean arg_is_signed,
+        gboolean arg_is_float,
+        guint arg_freq,
+        guchar arg_nchannels,
+        guint arg_bytes_per_frame,
+        guint arg_bytes_per_second,
+        gboolean arg_be,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64UcharBooleanBooleanUintUcharUintUintBooleanFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 11);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64UcharBooleanBooleanUintUcharUintUintBooleanFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_uchar (param_values + 3),
+              g_marshal_value_peek_boolean (param_values + 4),
+              g_marshal_value_peek_boolean (param_values + 5),
+              g_marshal_value_peek_uint (param_values + 6),
+              g_marshal_value_peek_uchar (param_values + 7),
+              g_marshal_value_peek_uint (param_values + 8),
+              g_marshal_value_peek_uint (param_values + 9),
+              g_marshal_value_peek_boolean (param_values + 10),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64 (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64Func)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64Func callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64Func)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64BooleanFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        gboolean arg_enabled,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64BooleanFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64BooleanFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_boolean (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64BooleanVariantFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        gboolean arg_mute,
+        GVariant *arg_volume,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64BooleanVariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 5);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64BooleanVariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_boolean (param_values + 3),
+              g_marshal_value_peek_variant (param_values + 4),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_VARIANT (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64VariantFunc)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        GVariant *arg_data,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64VariantFunc callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64VariantFunc)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_variant (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+static void
+_g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UINT64 (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint G_GNUC_UNUSED,
+    void         *marshal_data)
+{
+  typedef gboolean (*_GDbusCodegenMarshalBoolean_ObjectUint64Uint64Func)
+       (void *data1,
+        GDBusMethodInvocation *arg_method_invocation,
+        guint64 arg_id,
+        guint64 arg_size,
+        void *data2);
+  _GDbusCodegenMarshalBoolean_ObjectUint64Uint64Func callback;
+  GCClosure *cc = (GCClosure*) closure;
+  void *data1, *data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+
+  callback = (_GDbusCodegenMarshalBoolean_ObjectUint64Uint64Func)
+    (marshal_data ? marshal_data : cc->callback);
+
+  v_return =
+    callback (data1,
+              g_marshal_value_peek_object (param_values + 1),
+              g_marshal_value_peek_uint64 (param_values + 2),
+              g_marshal_value_peek_uint64 (param_values + 3),
+              data2);
+
+  g_value_set_boolean (return_value, v_return);
 }
 
 /* ------------------------------------------------------------------------
@@ -357,6 +1568,8 @@ qemu_dbus_display1_vm_default_init (QemuDBusDisplay1VMIface *iface)
 const gchar *
 qemu_dbus_display1_vm_get_name (QemuDBusDisplay1VM *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_VM (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_VM_GET_IFACE (object)->get_name (object);
 }
 
@@ -408,6 +1621,8 @@ qemu_dbus_display1_vm_set_name (QemuDBusDisplay1VM *object, const gchar *value)
 const gchar *
 qemu_dbus_display1_vm_get_uuid (QemuDBusDisplay1VM *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_VM (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_VM_GET_IFACE (object)->get_uuid (object);
 }
 
@@ -459,6 +1674,8 @@ qemu_dbus_display1_vm_set_uuid (QemuDBusDisplay1VM *object, const gchar *value)
 GVariant *
 qemu_dbus_display1_vm_get_console_ids (QemuDBusDisplay1VM *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_VM (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_VM_GET_IFACE (object)->get_console_ids (object);
 }
 
@@ -510,6 +1727,8 @@ qemu_dbus_display1_vm_set_console_ids (QemuDBusDisplay1VM *object, GVariant *val
 const gchar *const *
 qemu_dbus_display1_vm_get_interfaces (QemuDBusDisplay1VM *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_VM (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_VM_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -1429,7 +2648,7 @@ qemu_dbus_display1_vm_skeleton_get_name (QemuDBusDisplay1VM *object)
   QemuDBusDisplay1VMSkeleton *skeleton = QEMU_DBUS_DISPLAY1_VM_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -1440,7 +2659,7 @@ qemu_dbus_display1_vm_skeleton_get_uuid (QemuDBusDisplay1VM *object)
   QemuDBusDisplay1VMSkeleton *skeleton = QEMU_DBUS_DISPLAY1_VM_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[1]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[1]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -1451,7 +2670,7 @@ qemu_dbus_display1_vm_skeleton_get_console_ids (QemuDBusDisplay1VM *object)
   QemuDBusDisplay1VMSkeleton *skeleton = QEMU_DBUS_DISPLAY1_VM_SKELETON (object);
   GVariant *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_variant (&(skeleton->priv->properties[2]));
+  value = g_marshal_value_peek_variant (&(skeleton->priv->properties[2]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -1462,7 +2681,7 @@ qemu_dbus_display1_vm_skeleton_get_interfaces (QemuDBusDisplay1VM *object)
   QemuDBusDisplay1VMSkeleton *skeleton = QEMU_DBUS_DISPLAY1_VM_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[3]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[3]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -1818,6 +3037,32 @@ qemu_dbus_display1_console_override_properties (GObjectClass *klass, guint prope
 }
 
 
+inline static void
+qemu_dbus_display1_console_method_marshal_register_listener (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_console_method_marshal_set_uiinfo (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_INT_INT_UINT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Console:
@@ -1867,7 +3112,7 @@ qemu_dbus_display1_console_default_init (QemuDBusDisplay1ConsoleIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ConsoleIface, handle_register_listener),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_console_method_marshal_register_listener,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT);
@@ -1895,7 +3140,7 @@ qemu_dbus_display1_console_default_init (QemuDBusDisplay1ConsoleIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ConsoleIface, handle_set_uiinfo),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_console_method_marshal_set_uiinfo,
     G_TYPE_BOOLEAN,
     7,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_INT, G_TYPE_INT, G_TYPE_UINT, G_TYPE_UINT);
@@ -1981,6 +3226,8 @@ qemu_dbus_display1_console_default_init (QemuDBusDisplay1ConsoleIface *iface)
 const gchar *
 qemu_dbus_display1_console_get_label (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_label (object);
 }
 
@@ -2030,6 +3277,8 @@ qemu_dbus_display1_console_set_label (QemuDBusDisplay1Console *object, const gch
 guint 
 qemu_dbus_display1_console_get_head (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), 0);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_head (object);
 }
 
@@ -2063,6 +3312,8 @@ qemu_dbus_display1_console_set_head (QemuDBusDisplay1Console *object, guint valu
 const gchar *
 qemu_dbus_display1_console_get_type_ (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_type_ (object);
 }
 
@@ -2112,6 +3363,8 @@ qemu_dbus_display1_console_set_type_ (QemuDBusDisplay1Console *object, const gch
 guint 
 qemu_dbus_display1_console_get_width (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), 0);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_width (object);
 }
 
@@ -2143,6 +3396,8 @@ qemu_dbus_display1_console_set_width (QemuDBusDisplay1Console *object, guint val
 guint 
 qemu_dbus_display1_console_get_height (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), 0);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_height (object);
 }
 
@@ -2176,6 +3431,8 @@ qemu_dbus_display1_console_set_height (QemuDBusDisplay1Console *object, guint va
 const gchar *
 qemu_dbus_display1_console_get_device_address (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_device_address (object);
 }
 
@@ -2227,6 +3484,8 @@ qemu_dbus_display1_console_set_device_address (QemuDBusDisplay1Console *object, 
 const gchar *const *
 qemu_dbus_display1_console_get_interfaces (QemuDBusDisplay1Console *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CONSOLE (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CONSOLE_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -3499,7 +4758,7 @@ qemu_dbus_display1_console_skeleton_get_label (QemuDBusDisplay1Console *object)
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3510,7 +4769,7 @@ qemu_dbus_display1_console_skeleton_get_head (QemuDBusDisplay1Console *object)
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   guint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_uint (&(skeleton->priv->properties[1]));
+  value = g_marshal_value_peek_uint (&(skeleton->priv->properties[1]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3521,7 +4780,7 @@ qemu_dbus_display1_console_skeleton_get_type_ (QemuDBusDisplay1Console *object)
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[2]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[2]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3532,7 +4791,7 @@ qemu_dbus_display1_console_skeleton_get_width (QemuDBusDisplay1Console *object)
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   guint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_uint (&(skeleton->priv->properties[3]));
+  value = g_marshal_value_peek_uint (&(skeleton->priv->properties[3]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3543,7 +4802,7 @@ qemu_dbus_display1_console_skeleton_get_height (QemuDBusDisplay1Console *object)
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   guint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_uint (&(skeleton->priv->properties[4]));
+  value = g_marshal_value_peek_uint (&(skeleton->priv->properties[4]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3554,7 +4813,7 @@ qemu_dbus_display1_console_skeleton_get_device_address (QemuDBusDisplay1Console 
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[5]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[5]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3565,7 +4824,7 @@ qemu_dbus_display1_console_skeleton_get_interfaces (QemuDBusDisplay1Console *obj
   QemuDBusDisplay1ConsoleSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CONSOLE_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[6]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[6]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -3768,6 +5027,32 @@ qemu_dbus_display1_keyboard_override_properties (GObjectClass *klass, guint prop
 }
 
 
+inline static void
+qemu_dbus_display1_keyboard_method_marshal_press (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_keyboard_method_marshal_release (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Keyboard:
@@ -3810,7 +5095,7 @@ qemu_dbus_display1_keyboard_default_init (QemuDBusDisplay1KeyboardIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1KeyboardIface, handle_press),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_keyboard_method_marshal_press,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT);
@@ -3833,7 +5118,7 @@ qemu_dbus_display1_keyboard_default_init (QemuDBusDisplay1KeyboardIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1KeyboardIface, handle_release),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_keyboard_method_marshal_release,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT);
@@ -3863,6 +5148,8 @@ qemu_dbus_display1_keyboard_default_init (QemuDBusDisplay1KeyboardIface *iface)
 guint 
 qemu_dbus_display1_keyboard_get_modifiers (QemuDBusDisplay1Keyboard *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_KEYBOARD (object), 0);
+
   return QEMU_DBUS_DISPLAY1_KEYBOARD_GET_IFACE (object)->get_modifiers (object);
 }
 
@@ -4967,7 +6254,7 @@ qemu_dbus_display1_keyboard_skeleton_get_modifiers (QemuDBusDisplay1Keyboard *ob
   QemuDBusDisplay1KeyboardSkeleton *skeleton = QEMU_DBUS_DISPLAY1_KEYBOARD_SKELETON (object);
   guint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_uint (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_uint (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -5250,6 +6537,58 @@ qemu_dbus_display1_mouse_override_properties (GObjectClass *klass, guint propert
 }
 
 
+inline static void
+qemu_dbus_display1_mouse_method_marshal_press (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_mouse_method_marshal_release (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_mouse_method_marshal_set_abs_position (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_mouse_method_marshal_rel_motion (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Mouse:
@@ -5294,7 +6633,7 @@ qemu_dbus_display1_mouse_default_init (QemuDBusDisplay1MouseIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1MouseIface, handle_press),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_mouse_method_marshal_press,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT);
@@ -5317,7 +6656,7 @@ qemu_dbus_display1_mouse_default_init (QemuDBusDisplay1MouseIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1MouseIface, handle_release),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_mouse_method_marshal_release,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT);
@@ -5341,7 +6680,7 @@ qemu_dbus_display1_mouse_default_init (QemuDBusDisplay1MouseIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1MouseIface, handle_set_abs_position),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_mouse_method_marshal_set_abs_position,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_UINT);
@@ -5365,7 +6704,7 @@ qemu_dbus_display1_mouse_default_init (QemuDBusDisplay1MouseIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1MouseIface, handle_rel_motion),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_mouse_method_marshal_rel_motion,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT);
@@ -5395,6 +6734,8 @@ qemu_dbus_display1_mouse_default_init (QemuDBusDisplay1MouseIface *iface)
 gboolean 
 qemu_dbus_display1_mouse_get_is_absolute (QemuDBusDisplay1Mouse *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_MOUSE (object), FALSE);
+
   return QEMU_DBUS_DISPLAY1_MOUSE_GET_IFACE (object)->get_is_absolute (object);
 }
 
@@ -6119,7 +7460,7 @@ qemu_dbus_display1_mouse_proxy_get_is_absolute (QemuDBusDisplay1Mouse *object)
 {
   QemuDBusDisplay1MouseProxy *proxy = QEMU_DBUS_DISPLAY1_MOUSE_PROXY (object);
   GVariant *variant;
-  gboolean value = 0;
+  gboolean value = FALSE;
   variant = g_dbus_proxy_get_cached_property (G_DBUS_PROXY (proxy), "IsAbsolute");
   if (variant != NULL)
     {
@@ -6767,7 +8108,7 @@ qemu_dbus_display1_mouse_skeleton_get_is_absolute (QemuDBusDisplay1Mouse *object
   QemuDBusDisplay1MouseSkeleton *skeleton = QEMU_DBUS_DISPLAY1_MOUSE_SKELETON (object);
   gboolean value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boolean (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_boolean (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -6969,6 +8310,19 @@ qemu_dbus_display1_multi_touch_override_properties (GObjectClass *klass, guint p
 }
 
 
+inline static void
+qemu_dbus_display1_multi_touch_method_marshal_send_event (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT64_DOUBLE_DOUBLE (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1MultiTouch:
@@ -7013,7 +8367,7 @@ qemu_dbus_display1_multi_touch_default_init (QemuDBusDisplay1MultiTouchIface *if
     G_STRUCT_OFFSET (QemuDBusDisplay1MultiTouchIface, handle_send_event),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_multi_touch_method_marshal_send_event,
     G_TYPE_BOOLEAN,
     5,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_UINT64, G_TYPE_DOUBLE, G_TYPE_DOUBLE);
@@ -7043,6 +8397,8 @@ qemu_dbus_display1_multi_touch_default_init (QemuDBusDisplay1MultiTouchIface *if
 gint 
 qemu_dbus_display1_multi_touch_get_max_slots (QemuDBusDisplay1MultiTouch *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_MULTI_TOUCH (object), 0);
+
   return QEMU_DBUS_DISPLAY1_MULTI_TOUCH_GET_IFACE (object)->get_max_slots (object);
 }
 
@@ -8037,7 +9393,7 @@ qemu_dbus_display1_multi_touch_skeleton_get_max_slots (QemuDBusDisplay1MultiTouc
   QemuDBusDisplay1MultiTouchSkeleton *skeleton = QEMU_DBUS_DISPLAY1_MULTI_TOUCH_SKELETON (object);
   gint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_int (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_int (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -8672,6 +10028,97 @@ qemu_dbus_display1_listener_override_properties (GObjectClass *klass, guint prop
 }
 
 
+inline static void
+qemu_dbus_display1_listener_method_marshal_scanout (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_UINT_UINT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_update (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT_UINT_UINT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_scanout_dmabuf (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT_UINT_UINT_UINT_UINT_UINT64_BOOLEAN (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_update_dmabuf (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_disable (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_mouse_set (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_method_marshal_cursor_define (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Listener:
@@ -8723,7 +10170,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_scanout),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_scanout,
     G_TYPE_BOOLEAN,
     6,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_VARIANT);
@@ -8752,7 +10199,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_update),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_update,
     G_TYPE_BOOLEAN,
     8,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_VARIANT);
@@ -8782,7 +10229,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_scanout_dmabuf),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_scanout_dmabuf,
     G_TYPE_BOOLEAN,
     9,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT64, G_TYPE_BOOLEAN);
@@ -8808,7 +10255,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_update_dmabuf),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_update_dmabuf,
     G_TYPE_BOOLEAN,
     5,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT);
@@ -8830,7 +10277,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_disable),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_disable,
     G_TYPE_BOOLEAN,
     1,
     G_TYPE_DBUS_METHOD_INVOCATION);
@@ -8855,7 +10302,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_mouse_set),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_mouse_set,
     G_TYPE_BOOLEAN,
     4,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT);
@@ -8882,7 +10329,7 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerIface, handle_cursor_define),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_method_marshal_cursor_define,
     G_TYPE_BOOLEAN,
     6,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_VARIANT);
@@ -8914,6 +10361,8 @@ qemu_dbus_display1_listener_default_init (QemuDBusDisplay1ListenerIface *iface)
 const gchar *const *
 qemu_dbus_display1_listener_get_interfaces (QemuDBusDisplay1Listener *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_LISTENER (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_LISTENER_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -10838,7 +12287,7 @@ qemu_dbus_display1_listener_skeleton_get_interfaces (QemuDBusDisplay1Listener *o
   QemuDBusDisplay1ListenerSkeleton *skeleton = QEMU_DBUS_DISPLAY1_LISTENER_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -11110,6 +12559,32 @@ qemu_dbus_display1_listener_unix_map_override_properties (GObjectClass *klass G_
 }
 
 
+inline static void
+qemu_dbus_display1_listener_unix_map_method_marshal_scanout_map (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT_UINT_UINT_UINT_UINT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_unix_map_method_marshal_update_map (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1ListenerUnixMap:
@@ -11157,7 +12632,7 @@ qemu_dbus_display1_listener_unix_map_default_init (QemuDBusDisplay1ListenerUnixM
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerUnixMapIface, handle_scanout_map),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_unix_map_method_marshal_scanout_map,
     G_TYPE_BOOLEAN,
     8,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT);
@@ -11183,7 +12658,7 @@ qemu_dbus_display1_listener_unix_map_default_init (QemuDBusDisplay1ListenerUnixM
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerUnixMapIface, handle_update_map),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_unix_map_method_marshal_update_map,
     G_TYPE_BOOLEAN,
     5,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT);
@@ -12383,6 +13858,32 @@ qemu_dbus_display1_listener_win32_d3d11_override_properties (GObjectClass *klass
 }
 
 
+inline static void
+qemu_dbus_display1_listener_win32_d3d11_method_marshal_scanout_texture2d (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UINT_UINT_BOOLEAN_UINT_UINT_UINT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_listener_win32_d3d11_method_marshal_update_texture2d (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_INT_INT_INT_INT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1ListenerWin32D3d11:
@@ -12431,7 +13932,7 @@ qemu_dbus_display1_listener_win32_d3d11_default_init (QemuDBusDisplay1ListenerWi
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerWin32D3d11Iface, handle_scanout_texture2d),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_win32_d3d11_method_marshal_scanout_texture2d,
     G_TYPE_BOOLEAN,
     9,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT);
@@ -12457,7 +13958,7 @@ qemu_dbus_display1_listener_win32_d3d11_default_init (QemuDBusDisplay1ListenerWi
     G_STRUCT_OFFSET (QemuDBusDisplay1ListenerWin32D3d11Iface, handle_update_texture2d),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_listener_win32_d3d11_method_marshal_update_texture2d,
     G_TYPE_BOOLEAN,
     5,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT);
@@ -13680,6 +15181,71 @@ qemu_dbus_display1_clipboard_override_properties (GObjectClass *klass, guint pro
 }
 
 
+inline static void
+qemu_dbus_display1_clipboard_method_marshal_register (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_clipboard_method_marshal_unregister (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_clipboard_method_marshal_grab (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_UINT_BOXED (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_clipboard_method_marshal_release (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_clipboard_method_marshal_request (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT_BOXED (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Clipboard:
@@ -13724,7 +15290,7 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
     G_STRUCT_OFFSET (QemuDBusDisplay1ClipboardIface, handle_register),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_clipboard_method_marshal_register,
     G_TYPE_BOOLEAN,
     1,
     G_TYPE_DBUS_METHOD_INVOCATION);
@@ -13746,7 +15312,7 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
     G_STRUCT_OFFSET (QemuDBusDisplay1ClipboardIface, handle_unregister),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_clipboard_method_marshal_unregister,
     G_TYPE_BOOLEAN,
     1,
     G_TYPE_DBUS_METHOD_INVOCATION);
@@ -13771,7 +15337,7 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
     G_STRUCT_OFFSET (QemuDBusDisplay1ClipboardIface, handle_grab),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_clipboard_method_marshal_grab,
     G_TYPE_BOOLEAN,
     4,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_STRV);
@@ -13794,7 +15360,7 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
     G_STRUCT_OFFSET (QemuDBusDisplay1ClipboardIface, handle_release),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_clipboard_method_marshal_release,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT);
@@ -13818,7 +15384,7 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
     G_STRUCT_OFFSET (QemuDBusDisplay1ClipboardIface, handle_request),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_clipboard_method_marshal_request,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT, G_TYPE_STRV);
@@ -13850,6 +15416,8 @@ qemu_dbus_display1_clipboard_default_init (QemuDBusDisplay1ClipboardIface *iface
 const gchar *const *
 qemu_dbus_display1_clipboard_get_interfaces (QemuDBusDisplay1Clipboard *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CLIPBOARD (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CLIPBOARD_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -15384,7 +16952,7 @@ qemu_dbus_display1_clipboard_skeleton_get_interfaces (QemuDBusDisplay1Clipboard 
   QemuDBusDisplay1ClipboardSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CLIPBOARD_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -15611,6 +17179,32 @@ qemu_dbus_display1_audio_override_properties (GObjectClass *klass, guint propert
 }
 
 
+inline static void
+qemu_dbus_display1_audio_method_marshal_register_out_listener (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_method_marshal_register_in_listener (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Audio:
@@ -15655,7 +17249,7 @@ qemu_dbus_display1_audio_default_init (QemuDBusDisplay1AudioIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioIface, handle_register_out_listener),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_method_marshal_register_out_listener,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT);
@@ -15679,7 +17273,7 @@ qemu_dbus_display1_audio_default_init (QemuDBusDisplay1AudioIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioIface, handle_register_in_listener),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_method_marshal_register_in_listener,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT);
@@ -15718,6 +17312,8 @@ qemu_dbus_display1_audio_default_init (QemuDBusDisplay1AudioIface *iface)
 guint 
 qemu_dbus_display1_audio_get_nsamples (QemuDBusDisplay1Audio *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_AUDIO (object), 0);
+
   return QEMU_DBUS_DISPLAY1_AUDIO_GET_IFACE (object)->get_nsamples (object);
 }
 
@@ -15751,6 +17347,8 @@ qemu_dbus_display1_audio_set_nsamples (QemuDBusDisplay1Audio *object, guint valu
 const gchar *const *
 qemu_dbus_display1_audio_get_interfaces (QemuDBusDisplay1Audio *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_AUDIO (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_AUDIO_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -16922,7 +18520,7 @@ qemu_dbus_display1_audio_skeleton_get_nsamples (QemuDBusDisplay1Audio *object)
   QemuDBusDisplay1AudioSkeleton *skeleton = QEMU_DBUS_DISPLAY1_AUDIO_SKELETON (object);
   guint value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_uint (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_uint (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -16933,7 +18531,7 @@ qemu_dbus_display1_audio_skeleton_get_interfaces (QemuDBusDisplay1Audio *object)
   QemuDBusDisplay1AudioSkeleton *skeleton = QEMU_DBUS_DISPLAY1_AUDIO_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[1]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[1]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -17368,6 +18966,71 @@ qemu_dbus_display1_audio_out_listener_override_properties (GObjectClass *klass, 
 }
 
 
+inline static void
+qemu_dbus_display1_audio_out_listener_method_marshal_init (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UCHAR_BOOLEAN_BOOLEAN_UINT_UCHAR_UINT_UINT_BOOLEAN (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_out_listener_method_marshal_fini (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64 (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_out_listener_method_marshal_set_enabled (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_out_listener_method_marshal_set_volume (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_out_listener_method_marshal_write (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1AudioOutListener:
@@ -17421,7 +19084,7 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioOutListenerIface, handle_init),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_out_listener_method_marshal_init,
     G_TYPE_BOOLEAN,
     10,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UCHAR, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_BOOLEAN);
@@ -17444,7 +19107,7 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioOutListenerIface, handle_fini),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_out_listener_method_marshal_fini,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64);
@@ -17468,7 +19131,7 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioOutListenerIface, handle_set_enabled),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_out_listener_method_marshal_set_enabled,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_BOOLEAN);
@@ -17493,7 +19156,7 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioOutListenerIface, handle_set_volume),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_out_listener_method_marshal_set_volume,
     G_TYPE_BOOLEAN,
     4,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_BOOLEAN, G_TYPE_VARIANT);
@@ -17517,7 +19180,7 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioOutListenerIface, handle_write),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_out_listener_method_marshal_write,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_VARIANT);
@@ -17549,6 +19212,8 @@ qemu_dbus_display1_audio_out_listener_default_init (QemuDBusDisplay1AudioOutList
 const gchar *const *
 qemu_dbus_display1_audio_out_listener_get_interfaces (QemuDBusDisplay1AudioOutListener *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_AUDIO_OUT_LISTENER (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_AUDIO_OUT_LISTENER_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -19131,7 +20796,7 @@ qemu_dbus_display1_audio_out_listener_skeleton_get_interfaces (QemuDBusDisplay1A
   QemuDBusDisplay1AudioOutListenerSkeleton *skeleton = QEMU_DBUS_DISPLAY1_AUDIO_OUT_LISTENER_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -19582,6 +21247,71 @@ qemu_dbus_display1_audio_in_listener_override_properties (GObjectClass *klass, g
 }
 
 
+inline static void
+qemu_dbus_display1_audio_in_listener_method_marshal_init (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UCHAR_BOOLEAN_BOOLEAN_UINT_UCHAR_UINT_UINT_BOOLEAN (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_in_listener_method_marshal_fini (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64 (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_in_listener_method_marshal_set_enabled (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_in_listener_method_marshal_set_volume (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_BOOLEAN_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_audio_in_listener_method_marshal_read (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_UINT64_UINT64 (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1AudioInListener:
@@ -19635,7 +21365,7 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioInListenerIface, handle_init),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_in_listener_method_marshal_init,
     G_TYPE_BOOLEAN,
     10,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UCHAR, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_BOOLEAN);
@@ -19658,7 +21388,7 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioInListenerIface, handle_fini),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_in_listener_method_marshal_fini,
     G_TYPE_BOOLEAN,
     2,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64);
@@ -19682,7 +21412,7 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioInListenerIface, handle_set_enabled),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_in_listener_method_marshal_set_enabled,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_BOOLEAN);
@@ -19707,7 +21437,7 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioInListenerIface, handle_set_volume),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_in_listener_method_marshal_set_volume,
     G_TYPE_BOOLEAN,
     4,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_BOOLEAN, G_TYPE_VARIANT);
@@ -19731,7 +21461,7 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
     G_STRUCT_OFFSET (QemuDBusDisplay1AudioInListenerIface, handle_read),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_audio_in_listener_method_marshal_read,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UINT64, G_TYPE_UINT64);
@@ -19763,6 +21493,8 @@ qemu_dbus_display1_audio_in_listener_default_init (QemuDBusDisplay1AudioInListen
 const gchar *const *
 qemu_dbus_display1_audio_in_listener_get_interfaces (QemuDBusDisplay1AudioInListener *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_AUDIO_IN_LISTENER (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_AUDIO_IN_LISTENER_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -21354,7 +23086,7 @@ qemu_dbus_display1_audio_in_listener_skeleton_get_interfaces (QemuDBusDisplay1Au
   QemuDBusDisplay1AudioInListenerSkeleton *skeleton = QEMU_DBUS_DISPLAY1_AUDIO_IN_LISTENER_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -21598,6 +23330,32 @@ qemu_dbus_display1_chardev_override_properties (GObjectClass *klass, guint prope
 }
 
 
+inline static void
+qemu_dbus_display1_chardev_method_marshal_register (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT_OBJECT_VARIANT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
+inline static void
+qemu_dbus_display1_chardev_method_marshal_send_break (
+    GClosure     *closure,
+    GValue       *return_value,
+    unsigned int  n_param_values,
+    const GValue *param_values,
+    void         *invocation_hint,
+    void         *marshal_data)
+{
+  _g_dbus_codegen_marshal_BOOLEAN__OBJECT (closure,
+    return_value, n_param_values, param_values, invocation_hint, marshal_data);
+}
+
 
 /**
  * QemuDBusDisplay1Chardev:
@@ -21645,7 +23403,7 @@ qemu_dbus_display1_chardev_default_init (QemuDBusDisplay1ChardevIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ChardevIface, handle_register),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_chardev_method_marshal_register,
     G_TYPE_BOOLEAN,
     3,
     G_TYPE_DBUS_METHOD_INVOCATION, G_TYPE_UNIX_FD_LIST, G_TYPE_VARIANT);
@@ -21667,7 +23425,7 @@ qemu_dbus_display1_chardev_default_init (QemuDBusDisplay1ChardevIface *iface)
     G_STRUCT_OFFSET (QemuDBusDisplay1ChardevIface, handle_send_break),
     g_signal_accumulator_true_handled,
     NULL,
-    g_cclosure_marshal_generic,
+      qemu_dbus_display1_chardev_method_marshal_send_break,
     G_TYPE_BOOLEAN,
     1,
     G_TYPE_DBUS_METHOD_INVOCATION);
@@ -21735,6 +23493,8 @@ qemu_dbus_display1_chardev_default_init (QemuDBusDisplay1ChardevIface *iface)
 const gchar *
 qemu_dbus_display1_chardev_get_name (QemuDBusDisplay1Chardev *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CHARDEV (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CHARDEV_GET_IFACE (object)->get_name (object);
 }
 
@@ -21784,6 +23544,8 @@ qemu_dbus_display1_chardev_set_name (QemuDBusDisplay1Chardev *object, const gcha
 gboolean 
 qemu_dbus_display1_chardev_get_feopened (QemuDBusDisplay1Chardev *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CHARDEV (object), FALSE);
+
   return QEMU_DBUS_DISPLAY1_CHARDEV_GET_IFACE (object)->get_feopened (object);
 }
 
@@ -21815,6 +23577,8 @@ qemu_dbus_display1_chardev_set_feopened (QemuDBusDisplay1Chardev *object, gboole
 gboolean 
 qemu_dbus_display1_chardev_get_echo (QemuDBusDisplay1Chardev *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CHARDEV (object), FALSE);
+
   return QEMU_DBUS_DISPLAY1_CHARDEV_GET_IFACE (object)->get_echo (object);
 }
 
@@ -21848,6 +23612,8 @@ qemu_dbus_display1_chardev_set_echo (QemuDBusDisplay1Chardev *object, gboolean v
 const gchar *
 qemu_dbus_display1_chardev_get_owner (QemuDBusDisplay1Chardev *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CHARDEV (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CHARDEV_GET_IFACE (object)->get_owner (object);
 }
 
@@ -21899,6 +23665,8 @@ qemu_dbus_display1_chardev_set_owner (QemuDBusDisplay1Chardev *object, const gch
 const gchar *const *
 qemu_dbus_display1_chardev_get_interfaces (QemuDBusDisplay1Chardev *object)
 {
+  g_return_val_if_fail (QEMU_DBUS_IS_DISPLAY1_CHARDEV (object), NULL);
+
   return QEMU_DBUS_DISPLAY1_CHARDEV_GET_IFACE (object)->get_interfaces (object);
 }
 
@@ -22396,7 +24164,7 @@ qemu_dbus_display1_chardev_proxy_get_feopened (QemuDBusDisplay1Chardev *object)
 {
   QemuDBusDisplay1ChardevProxy *proxy = QEMU_DBUS_DISPLAY1_CHARDEV_PROXY (object);
   GVariant *variant;
-  gboolean value = 0;
+  gboolean value = FALSE;
   variant = g_dbus_proxy_get_cached_property (G_DBUS_PROXY (proxy), "FEOpened");
   if (variant != NULL)
     {
@@ -22411,7 +24179,7 @@ qemu_dbus_display1_chardev_proxy_get_echo (QemuDBusDisplay1Chardev *object)
 {
   QemuDBusDisplay1ChardevProxy *proxy = QEMU_DBUS_DISPLAY1_CHARDEV_PROXY (object);
   GVariant *variant;
-  gboolean value = 0;
+  gboolean value = FALSE;
   variant = g_dbus_proxy_get_cached_property (G_DBUS_PROXY (proxy), "Echo");
   if (variant != NULL)
     {
@@ -23101,7 +24869,7 @@ qemu_dbus_display1_chardev_skeleton_get_name (QemuDBusDisplay1Chardev *object)
   QemuDBusDisplay1ChardevSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CHARDEV_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[0]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[0]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -23112,7 +24880,7 @@ qemu_dbus_display1_chardev_skeleton_get_feopened (QemuDBusDisplay1Chardev *objec
   QemuDBusDisplay1ChardevSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CHARDEV_SKELETON (object);
   gboolean value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boolean (&(skeleton->priv->properties[1]));
+  value = g_marshal_value_peek_boolean (&(skeleton->priv->properties[1]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -23123,7 +24891,7 @@ qemu_dbus_display1_chardev_skeleton_get_echo (QemuDBusDisplay1Chardev *object)
   QemuDBusDisplay1ChardevSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CHARDEV_SKELETON (object);
   gboolean value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boolean (&(skeleton->priv->properties[2]));
+  value = g_marshal_value_peek_boolean (&(skeleton->priv->properties[2]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -23134,7 +24902,7 @@ qemu_dbus_display1_chardev_skeleton_get_owner (QemuDBusDisplay1Chardev *object)
   QemuDBusDisplay1ChardevSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CHARDEV_SKELETON (object);
   const gchar *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_string (&(skeleton->priv->properties[3]));
+  value = g_marshal_value_peek_string (&(skeleton->priv->properties[3]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }
@@ -23145,7 +24913,7 @@ qemu_dbus_display1_chardev_skeleton_get_interfaces (QemuDBusDisplay1Chardev *obj
   QemuDBusDisplay1ChardevSkeleton *skeleton = QEMU_DBUS_DISPLAY1_CHARDEV_SKELETON (object);
   const gchar *const *value;
   g_mutex_lock (&skeleton->priv->lock);
-  value = g_value_get_boxed (&(skeleton->priv->properties[4]));
+  value = g_marshal_value_peek_boxed (&(skeleton->priv->properties[4]));
   g_mutex_unlock (&skeleton->priv->lock);
   return value;
 }

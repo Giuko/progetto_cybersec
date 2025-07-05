@@ -25,7 +25,7 @@ QEMU_FLAGS = -M nxps32k3x8evb \
 qemu_exec = ../qemu/build/qemu-system-arm $(QEMU_FLAGS)
 
 # Normal compilation
-OBJS = $(startup).o $(main).o $(uart).o $(tpm).o
+OBJS = $(startup).o $(main).o $(uart).o $(tpm).o syscall.o
 
 all: $(OBJS) link
 

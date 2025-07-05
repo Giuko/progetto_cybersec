@@ -140,22 +140,22 @@ typedef enum {
 typedef struct {
     uint16_t size;                    // Size of buffer  
     uint8_t buffer[128];               // Additional entropy data
-} TPM2B_SENSITIVE_DATA;
+} __attribute__((packed)) TPM2B_SENSITIVE_DATA ;
 
 typedef struct {
     uint16_t size;                    // Size of buffer
     uint8_t buffer[64];                // Auth value (typically password/PIN)
-} TPM2B_AUTH;
+}  __attribute__((packed)) TPM2B_AUTH;
 
 typedef struct {
     TPM2B_AUTH userAuth;            // Authorization value for the object
     TPM2B_SENSITIVE_DATA data;      // Extra entropy for key generation
-} TPMS_SENSITIVE_CREATE;
+}  __attribute__((packed)) TPMS_SENSITIVE_CREATE;
 
 typedef struct {
     uint16_t size;                    // Total size of sensitiveCreate
     TPMS_SENSITIVE_CREATE sensitiveCreate;
-} TPM2B_SENSITIVE_CREATE;
+}  __attribute__((packed)) TPM2B_SENSITIVE_CREATE;
 /* End TPM2B_SENSITIVE_CREATE */
 
 /* Begin TPM2B_PUBLIC */
@@ -163,23 +163,23 @@ typedef struct {
 typedef struct {
     uint16_t size;                  // Size of policy hash
     uint8_t buffer[64];             // Policy hash (usually empty for simple keys)
-} TPM2B_DIGEST;
+}  __attribute__((packed)) TPM2B_DIGEST;
 // RSA Public Key
 typedef struct {
     uint16_t size;                  // Size of RSA modulus (n)
     uint8_t buffer[512];            // RSA modulus (up to 4096 bits = 512 bytes)
-} TPM2B_PUBLIC_KEY_RSA;
+}  __attribute__((packed)) TPM2B_PUBLIC_KEY_RSA;
 
 typedef struct {
     uint16_t algorithm;             // Symmetric algorithm (TPM_ALG_NULL for RSA)
     uint16_t mode;                  // Mode (not used when algorithm is NULL)
     uint16_t keyBits;               // Key bits (not used when algorithm is NULL)
-} TPMT_SYM_DEF_OBJECT;
+}  __attribute__((packed)) TPMT_SYM_DEF_OBJECT;
 
 typedef struct {
     uint16_t scheme;                // RSA scheme (can be TPM_ALG_NULL)
     uint16_t details;               // Scheme details (empty for basic impl)
-} TPMT_RSA_SCHEME;
+}  __attribute__((packed)) TPMT_RSA_SCHEME;
 
 // RSA Parameters Structure
 typedef struct {
@@ -187,7 +187,7 @@ typedef struct {
     TPMT_RSA_SCHEME scheme;         // RSA signature/encryption scheme
     uint16_t keyBits;               // Key size: 1024, 2048, 3072, 4096
     uint32_t exponent;              // Public exponent (0 = default 65537)
-} TPMS_RSA_PARMS;
+}  __attribute__((packed)) TPMS_RSA_PARMS;
 
 typedef struct {
     uint16_t type;                  // Algorithm type: TPM_ALG_RSA (0x0001)
@@ -196,12 +196,12 @@ typedef struct {
     TPM2B_DIGEST authPolicy;        // Authorization policy
     TPMS_RSA_PARMS parameters;      // RSA-specific parameters
     TPM2B_PUBLIC_KEY_RSA unique;    // RSA public key (n value)
-} TPMT_PUBLIC;
+}  __attribute__((packed)) TPMT_PUBLIC;
 
 typedef struct {
     uint16_t size;                    // Total size of publicArea
     TPMT_PUBLIC publicArea;
-} TPM2B_PUBLIC;
+}  __attribute__((packed)) TPM2B_PUBLIC;
 
 typedef union TPMU_HA TPMU_HA;
 union TPMU_HA {
@@ -217,27 +217,27 @@ typedef struct TPM2B_DATA TPM2B_DATA;
 struct TPM2B_DATA {
     uint16_t size;
     uint8_t buffer[sizeof(TPMU_HA)];
-};
+} __attribute__((packed))  ;
 
 typedef struct TPMS_PCR_SELECTION TPMS_PCR_SELECTION;
 struct TPMS_PCR_SELECTION {
     uint16_t hash; /* the hash algorithm associated with the selection */
     uint8_t sizeofSelect; /* the size in octets of the pcrSelect array */
     uint8_t pcrSelect[TPM2_PCR_SELECT_MAX]; /* the bit map of selected PCR */
-};
+} __attribute__((packed)) ;
 
 typedef struct TPML_PCR_SELECTION TPML_PCR_SELECTION;
 struct TPML_PCR_SELECTION {
     uint32_t count; /* number of selection structures. A value of zero is allowed. */
     TPMS_PCR_SELECTION pcrSelections[TPM2_NUM_PCR_BANKS]; /* list of selections */
-};
+} __attribute__((packed)) ;
 
 
 typedef struct TPM2B_PRIVATE_KEY_RSA TPM2B_PRIVATE_KEY_RSA;
 struct TPM2B_PRIVATE_KEY_RSA {
     uint16_t size;
     uint8_t buffer[TPM2_MAX_RSA_KEY_BYTES/2 * 5];
-};
+} __attribute__((packed)) ;
 
 typedef union TPMU_SENSITIVE_COMPOSITE TPMU_SENSITIVE_COMPOSITE;
 union TPMU_SENSITIVE_COMPOSITE {
@@ -250,33 +250,33 @@ struct TPMT_SENSITIVE {
     TPM2B_AUTH authValue;          /* user authorization data. The authValue may be a zero-length string. This value shall not be larger than the size of the digest produced by the nameAlg of the object. */
     TPM2B_DIGEST seedValue;        /* for asymmetric key object the optional protection seed for other objects the obfuscation value. This value shall not be larger than the size of the digest produced by nameAlg of the object. */
     TPMU_SENSITIVE_COMPOSITE sensitive; /* the type-specific private data */
-};
+} __attribute__((packed)) ;
 
 typedef struct TPM2B_SENSITIVE TPM2B_SENSITIVE;
 struct TPM2B_SENSITIVE {
     uint16_t  size;
     TPMT_SENSITIVE sensitiveArea;
-};
+} __attribute__((packed)) ;
 
 typedef struct _PRIVATE _PRIVATE;
 struct _PRIVATE {
     TPM2B_DIGEST integrityOuter;
     TPM2B_DIGEST integrityInner; /* could also be a TPM2B_IV */
     TPM2B_SENSITIVE sensitive;   /* the sensitive area */
-};
+} __attribute__((packed)) ;
 
 
 typedef struct TPM2B_PRIVATE TPM2B_PRIVATE;
 struct TPM2B_PRIVATE {
     uint16_t size;
     uint8_t buffer[sizeof(_PRIVATE)];
-};
+} __attribute__((packed)) ;
 
 typedef struct TPMT_HA TPMT_HA;
 struct TPMT_HA {
     uint16_t hashAlg; /* selector of the hash contained in the digest that implies the size of the digest. NOTE The leading + on the type indicates that this structure should pass an indication to the unmarshaling function for  so that TPM2_ALG_NULL will be allowed if a use of a TPMT_HA allows TPM2_ALG_NULL. */
     TPMU_HA digest;        /* the digest data */
-};
+} __attribute__((packed)) ;
 
 typedef union TPMU_NAME TPMU_NAME;
 union TPMU_NAME {
@@ -288,7 +288,7 @@ typedef struct TPM2B_NAME TPM2B_NAME;
 struct TPM2B_NAME {
     uint16_t size;
     uint8_t name[sizeof(TPMU_NAME)];
-};
+} __attribute__((packed)) ;
 
 typedef struct TPMS_CREATION_DATA TPMS_CREATION_DATA;
 struct TPMS_CREATION_DATA {
@@ -299,25 +299,25 @@ struct TPMS_CREATION_DATA {
     TPM2B_NAME parentName;          /* done Name of the parent at time of creation. The size will match digest size associated with parentNameAlg unless it is TPM2_ALG_NULL in which case the size will be 4 and parentName will be the hierarchy handle. */
     TPM2B_NAME parentQualifiedName; /* done Qualified Name of the parent at the time of creationSize is the same as parentName. */
     TPM2B_DATA outsideInfo;         /* done association with additional information added by the key creator. This will be the contents of the outsideInfo parameter in TPM2_Create or TPM2_CreatePrimary. */
-};
+} __attribute__((packed)) ;
 
 typedef struct TPM2B_CREATION_DATA TPM2B_CREATION_DATA;
 struct TPM2B_CREATION_DATA {
     uint16_t  size;
     TPMS_CREATION_DATA creationData;
-};
+} __attribute__((packed)) ;
 
 typedef struct TPMT_TK_CREATION TPMT_TK_CREATION;
 struct TPMT_TK_CREATION {
     uint16_t tag;                 /* ticket structure tag */
     uint32_t hierarchy; /* the hierarchy containing name */
     TPM2B_DIGEST digest;         //done /* This shall be the HMAC produced using a proof value of hierarchy. */
-};
+} __attribute__((packed)) ;
 
 typedef struct TPMS_EMPTY TPMS_EMPTY;
 struct TPMS_EMPTY {
     uint8_t empty[1]; /* a structure with no member */
-};
+} __attribute__((packed)) ;
 
 typedef TPMS_EMPTY TPMS_ENC_SCHEME_RSAES; 
 
@@ -331,7 +331,7 @@ typedef struct TPMT_RSA_DECRYPT TPMT_RSA_DECRYPT;
 struct TPMT_RSA_DECRYPT {
     uint16_t scheme; //done /* scheme selector */
     TPMU_ASYM_SCHEME details;    //done  /* scheme parameters */
-};
+} __attribute__((packed)) ;
 
 
 

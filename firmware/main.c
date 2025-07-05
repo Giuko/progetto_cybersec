@@ -37,7 +37,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-    // Trying self test
+    /*// Trying self test
     cmd_header.command_code = TPM2_CC_SelfTest;
     cmd_header.size = sizeof(struct tpm_command_header);
  
@@ -52,34 +52,34 @@ int main(void) {
         UART_putstr("Success code received\n");
     else
         UART_putstr("Error code received\n");
-
+*/
 
 
     // Trying CreatePrimary command
     cmd_header.tag = TPM_ST_SESSION;
     cmd_header.command_code = TPM2_CC_CreatePrimary;
-    cmd_header.size = sizeof(struct tpm_createPrimary_command);
+    cmd_header.size = sizeof(struct tpm_createPrimary_command); 
     struct tpm_createPrimary_command create_primary_cmd = {
         .command_header = cmd_header,
         .primaryHandle = TPM_RH_OWNER, // Using Owner hierarchy
         .inSensitive = {
-            .size = 0, // No sensitive data for primary key
+            .size = 128+64 + 2 + 2,     // 2 byte for size of each 
             .sensitiveCreate = {
                 .userAuth = {
-                    .size = 0, // No user auth for primary key
+                    .size = 128, // No user auth for primary key
                     .buffer = {0}
                 },
                 .data = {
-                    .size = 0, // No additional data for primary key
+                    .size = 64, // No additional data for primary key
                     .buffer = {0}
                 }
             }
         },
         .inPublic = {
-            .size = 0, // Size will be set later
+            .size = 8, // Size will be set later
             .publicArea = {
-                .type = TPM_ALG_RSA, // Using RSA for primary key
-                .nameAlg = TPM_ALG_SHA, // Using SHA for name algorithm
+                .type = KEY_TYPE_RSA, // Using RSA for primary key
+                .nameAlg = TPM_ALG_RSA, // Using SHA for name algorithm
                 .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
                 .authPolicy = {
                     .size = 0, // No auth policy for primary key
@@ -115,9 +115,10 @@ int main(void) {
     };
 
     UART_putstr("\nSending CreatePrimary command...\n");
+    
     tpm_send_command_with_log(&tpm, &create_primary_cmd, sizeof(create_primary_cmd));
     log_tpm_status(&tpm);   
-
+    return 0;
     struct tpm_createPrimary_response *createPrimary_response = (struct tpm_createPrimary_response *)malloc(sizeof(struct tpm_createPrimary_response));
     tpm_receive_response_with_log(&tpm, createPrimary_response, sizeof(struct tpm_createPrimary_response));
     
@@ -127,7 +128,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-
+/*
     // Trying Create command
     cmd_header.tag = TPM_ST_SESSION;
     cmd_header.command_code = TPM2_CC_Create;
@@ -308,6 +309,6 @@ int main(void) {
     else
         UART_putstr("Error code received\n");
 
-
+*/
     return 0;
 }

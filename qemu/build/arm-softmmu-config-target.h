@@ -5,6 +5,8 @@
 
 #pragma once
 
+#define CONFIG_I386_DIS 1
+
 #define CONFIG_SOFTMMU 1
 
 #define CONFIG_SYSTEM_ONLY 1

@@ -94,7 +94,7 @@ bool generate_rsa_keys(TPMRSAContext *ctx, int key_bits) {
     // Generate two prime p e q
     uint64_t p = generate_prime(key_bits / 2);
     uint64_t q = generate_prime(key_bits / 2);
-    
+    printf("[TPM]: p and q generated\n"); 
     uint64_t n = p * q;
     
     uint64_t phi_n = (p - 1) * (q - 1);
@@ -107,27 +107,39 @@ bool generate_rsa_keys(TPMRSAContext *ctx, int key_bits) {
             e += 2;
         }
     }
+    printf("[TPM]: found greatest common divider between e and phi_n\n");
     
     // Compute d = e^(-1) mod φ(n)
     uint64_t d = mod_inverse(e, phi_n);
     if (d == 0) {
         return false; // Errore nella generazione
     }
-    
+    printf("[TPM]: computed d\n");  
     // Save keys
+    printf("Public key:  %lx %lx\n", n, e); 
+    printf("Private key: %lx %lx\n", n, d); 
+    printf("n: %lx (%lu)\n", n, n); 
+    printf("d: %lx (%lu)\n", d, d); 
+    printf("p: %lx (%lu)\n", p, p); 
+    printf("q: %lx (%lu)\n", q, q); 
+    printf("e: %lx (%lu)\n", e, e); 
+    printf("phi_n: %lx (%lu)\n", phi_n, phi_n); 
     ctx->public_key.n = n;
     ctx->public_key.e = e;
+    ctx->public_key.p = p;
+    ctx->public_key.q = q; 
     ctx->public_key.is_valid = true;
-    
+    printf("[TPM]: public_key generated\n"); 
     ctx->private_key.n = n;
     ctx->private_key.d = d;
     ctx->private_key.p = p;
     ctx->private_key.q = q;
-    ctx->private_key.is_valid = true;
+    ctx->private_key.is_valid = true; 
+    printf("[TPM]: private_key generated\n");
     
     ctx->key_size = key_bits;
     ctx->keys_generated = true;
-    
+    printf("[TPM]: key generated\n");   
     return true;
 }
 

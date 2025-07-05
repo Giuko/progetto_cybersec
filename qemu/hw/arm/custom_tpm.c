@@ -60,16 +60,16 @@ struct CustomTPMState {
     SysBusDevice parent_obj;
 
     MemoryRegion mmio;
-    uint8_t fifo[256];
+    uint8_t fifo[1024];
     uint32_t fifo_pos;
         
     uint32_t regs[0x100/sizeof(uint32_t)];
 
-    uint8_t command[256];
+    uint8_t command[1024];
     uint32_t command_size;
     uint32_t command_pos;
 
-    uint8_t response[265];
+    uint8_t response[1024*1024];
     uint32_t response_size;
     uint32_t response_pos;
 
@@ -174,7 +174,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     s->response_size = 10;
     if(s->state == TPM_STATE_IDLE) { return TPM_RC_INITIALIZE; } 
     if(s->command_size < 29 ){  // 10 + 4 + 2 + 2 + 2 + 4 + 5
-        printf("[TPM] CreatePrimary command too small\n");
+        printf("[TPM] CreatePrimary command too small, debug 1\n");
         return TPM_RC_SIZE;
     }
 
@@ -195,56 +195,76 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     primaryHandle =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset];
     
     if(primaryHandle != TPM_RH_OWNER && primaryHandle != TPM_RH_ENDORSEMENT && primaryHandle != TPM_RH_PLATFORM && primaryHandle != TPM_RH_NULL){
-        printf("[TPM]: Primary Handle: 0x%x, isn't a valid value\n", primaryHandle);
+        printf("[TPM]: Primary Handle: 0x%x, isn't a valid value, debug 2\n", primaryHandle);
         return TPM_RC_HANDLE;
     }
     
     printf("[TPM]: Primary Handle: 0x%x\n", primaryHandle);
     offset += 4;
-    if(offset+2 > s->command_size) return TPM_RC_SIZE;
-    
+
+    // inSensitive
+    if(offset+2 > s->command_size){
+        printf("[TPM]: Invalid command size: %d, debug 3\n", s->command_size);  
+        return TPM_RC_SIZE;
+    }
     inSensitive.size = (s->command[offset+1] << 8) | s->command[offset];
     offset += 2;
     if(offset + inSensitive.size > s->command_size){
-        printf("[TPM] Invalid inSensitive size: %d\n", inSensitive.size);
+        printf("[TPM]: Invalid inSensitive size: %d, debug 4\n", inSensitive.size);
         return TPM_RC_SIZE;
     }
     // Skip inSensitive Value 
-    
-    if(offset+2 > s->command_size) return TPM_RC_SIZE;
+    offset += inSensitive.size; 
+    printf("[TPM]: inSensitive Size: %d\n", inSensitive.size);
 
+    // inPublic
+    if(offset+2 > s->command_size){
+        printf("[TPM]: Invalid command size: %d, debug 5\n", s->command_size);
+        return TPM_RC_SIZE;
+    }
+
+    printf("[TPM]: offset: %d\n", offset);
     inPublic.size = (s->command[offset+1] << 8) | s->command[offset];
     offset += 2;
     if(offset+inPublic.size > s->command_size){
-        printf("[TPM] Invalid inPublic size: %d\n", inPublic.size);
+        printf("[TPM] Invalid inPublic size: %d, debug 6\n", inPublic.size);
         return TPM_RC_SIZE;
     }
     
-    if(inPublic.size < 8) return TPM_RC_SIZE;
+    if(inPublic.size < 8) {
+        printf("[TPM] Invalid inPublic size: %d, debug 7\n", inPublic.size);
+        return TPM_RC_SIZE;
+    }
     inPublic.publicArea.type = (s->command[offset + 1] <<  8) | s->command[offset]; 
     inPublic.publicArea.nameAlg = (s->command[offset + 3] <<  8) | s->command[offset+2]; 
     inPublic.publicArea.objectAttributes = (s->command[offset + 7] << 24) | (s->command[offset + 6] << 16) | (s->command[offset + 5] << 8) | s->command[offset + 4]; 
     printf("[TPM] Algorithm: 0x%04x, NameAlg: 0x%04x, Attributes: 0x%08x\n", inPublic.publicArea.type, inPublic.publicArea.nameAlg, inPublic.publicArea.objectAttributes);
 
+    printf("TPM_ALG_RSA: %d", TPM_ALG_RSA);
     // Skipping 
     //      AuthPolicy
     //      parameters
 
     offset += inPublic.size;
 
-    if(offset+2 > s->command_size) return TPM_RC_SIZE;
+    if(offset+2 > s->command_size){
+        printf("[TPM]: Invalid command size: %d, debug 8\n", s->command_size);
+        return TPM_RC_SIZE;
+    }
     
     outsideInfoSize = (s->command[offset+1] << 8) | s->command[offset];
     offset += 2;
     if(offset + outsideInfoSize > s->command_size){
-        printf("[TPM] Invalid outSideInfo size: %d\n", outsideInfoSize);
+        printf("[TPM] Invalid outSideInfo size: %d, debug 9\n", outsideInfoSize);
         return TPM_RC_SIZE;
     }
     // Skipping OutsideInfoSize
     offset += outsideInfoSize;
 
-    if(offset+4 > s->command_size) return TPM_RC_SIZE;
-
+    if(offset+4 > s->command_size) {
+        printf("[TPM]: Invalid command size: %d, debug 10\n", s->command_size);
+        return TPM_RC_SIZE;
+    }
     creationPCRCount =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset]; 
     // Skip PCR
 
@@ -258,6 +278,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     }
 
     if(slot == -1){
+        printf("[TPM]: KEY slot ended\n");
         return TPM_RC_OBJECT_MEMORY;
     }
 
@@ -266,7 +287,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     // Initialize key
     key->handle = KEY_HANDLE_BASE + s->next_handle++;
 
-    switch (inPublic.publicArea.type){
+    switch (inPublic.publicArea.nameAlg){
         case TPM_ALG_RSA:
             key->type = KEY_TYPE_RSA;
             break;
@@ -276,12 +297,13 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     }
 
     key->attributes = inPublic.publicArea.objectAttributes;
-
     // Generate key pair
     // Fixed size for simplicity 1024
     if(generate_rsa_keys(key->ctx, 1024)){
+        printf("[TPM]: key generation failed, debug 11\n");
         return TPM_RC_FAILURE;
     }
+    return 0;
     key->loaded = true;
     key->hierarchy = primaryHandle;
     printf("[TPM] Created primary key with handle: 0x%08x\n", key->handle);
@@ -301,10 +323,9 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     resp_offset += 2;
 
     if(resp_offset + pubKeySize > sizeof(s->response)){
-        printf("[TPM]: Response buffer too small\n");
+        printf("[TPM]: Response buffer too small, debug 12\n");
         return TPM_RC_FAILURE;
     }
-
     memcpy(&s->response[resp_offset], &(key->ctx->public_key), sizeof(key->ctx->public_key));
     resp_offset += pubKeySize;
 
@@ -336,7 +357,6 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     s->response_size = resp_offset;
 
     printf("[TPM] CreatePrimary response prepared, size: %d bytes\n", s->response_size);
-
     return TPM_RC_SUCCESS;
 }
 
@@ -886,7 +906,9 @@ static void process_command(CustomTPMState *s){
     uint32_t size = (s->command[5] << 24) | (s->command[4] << 16) | (s->command[3] << 8) | s->command[2];
     uint32_t command_code = (s->command[9] << 24) | (s->command[8] << 16) | (s->command[7] << 8) | s->command[6];
     uint32_t rc = 0;            // Response code
-    
+ 
+    printf("[TPM]: Processing command: Tag: 0x%04x, Size: %d, Command Code: 0x%08x\n", tag, size, command_code);
+
     switch (command_code){
         case TPM2_CC_SelfTest:
             rc = SelfTest(s); 
@@ -958,7 +980,7 @@ static uint64_t custom_tpm_mmio_read(void *opaque, hwaddr addr, unsigned size){
     CustomTPMState *s = opaque;
     uint32_t val = 0;
    
-    printf("[TPM]: Reading address: 0x%lx\n", addr);
+    //printf("[TPM]: Reading address: 0x%lx\n", addr);
 
     switch(addr){
         case A_TPM_ACCESS:
@@ -996,7 +1018,8 @@ static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsig
                 // To trigger data execution
                 printf("[TPM]: Triggering command execution\n");
                 s->processing = true;
-                qemu_bh_schedule(s->command_bh);
+                //qemu_bh_schedule(s->command_bh);
+                process_command(s);
             }
             break;
         case A_TPM_DATA_FIFO:

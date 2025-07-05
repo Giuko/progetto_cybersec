@@ -20,16 +20,11 @@
 #     8: NumLock
 #     9: Alt
 #    10: LevelThree
-#    11: LAlt
-#    12: RAlt
-#    13: RControl
-#    14: LControl
+#    11: LevelFive
+#    12: Meta
+#    13: Super
+#    14: Hyper
 #    15: ScrollLock
-#    16: LevelFive
-#    17: AltGr
-#    18: Meta
-#    19: Super
-#    20: Hyper
 
 # evdev 1 (0x1), QKeyCode "esc", number 0x1
 Escape 0x01
@@ -37,62 +32,50 @@ Escape 0x01
 # evdev 2 (0x2), QKeyCode "1", number 0x2
 1 0x02
 exclam 0x02 shift
-plusminus 0x02 altgr
 
 # evdev 3 (0x3), QKeyCode "2", number 0x3
 2 0x03
 quotedbl 0x03 shift
-at 0x03 altgr
 
 # evdev 4 (0x4), QKeyCode "3", number 0x4
 3 0x04
 slash 0x04 shift
-sterling 0x04 altgr
 
 # evdev 5 (0x5), QKeyCode "4", number 0x5
 4 0x05
 dollar 0x05 shift
-cent 0x05 altgr
 
 # evdev 6 (0x6), QKeyCode "5", number 0x6
 5 0x06
 percent 0x06 shift
-currency 0x06 altgr
 
 # evdev 7 (0x7), QKeyCode "6", number 0x7
 6 0x07
 question 0x07 shift
-notsign 0x07 altgr
 
 # evdev 8 (0x8), QKeyCode "7", number 0x8
 7 0x08
 ampersand 0x08 shift
-brokenbar 0x08 altgr
 
 # evdev 9 (0x9), QKeyCode "8", number 0x9
 8 0x09
 asterisk 0x09 shift
-twosuperior 0x09 altgr
 
 # evdev 10 (0xa), QKeyCode "9", number 0xa
 9 0x0a
 parenleft 0x0a shift
-threesuperior 0x0a altgr
 
 # evdev 11 (0xb), QKeyCode "0", number 0xb
 0 0x0b
 parenright 0x0b shift
-onequarter 0x0b altgr
 
 # evdev 12 (0xc), QKeyCode "minus", number 0xc
 minus 0x0c
 underscore 0x0c shift
-onehalf 0x0c altgr
 
 # evdev 13 (0xd), QKeyCode "equal", number 0xd
 equal 0x0d
 plus 0x0d shift
-threequarters 0x0d altgr
 
 # evdev 14 (0xe), QKeyCode "backspace", number 0xe
 BackSpace 0x0e
@@ -136,21 +119,17 @@ I 0x17 shift
 # evdev 24 (0x18), QKeyCode "o", number 0x18
 o 0x18
 O 0x18 shift
-section 0x18 altgr
 
 # evdev 25 (0x19), QKeyCode "p", number 0x19
 p 0x19
 P 0x19 shift
-paragraph 0x19 altgr
 
 # evdev 26 (0x1a), QKeyCode "bracket_left", number 0x1a
 dead_circumflex 0x1a
-bracketleft 0x1a altgr
 
 # evdev 27 (0x1b), QKeyCode "bracket_right", number 0x1b
 dead_cedilla 0x1b
 dead_diaeresis 0x1b shift
-bracketright 0x1b altgr
 
 # evdev 28 (0x1c), QKeyCode "ret", number 0x1c
 Return 0x1c
@@ -197,16 +176,13 @@ L 0x26 shift
 # evdev 39 (0x27), QKeyCode "semicolon", number 0x27
 semicolon 0x27
 colon 0x27 shift
-asciitilde 0x27 altgr
 
 # evdev 40 (0x28), QKeyCode "apostrophe", number 0x28
 dead_grave 0x28
-braceleft 0x28 altgr
 
 # evdev 41 (0x29), QKeyCode "grave_accent", number 0x29
 numbersign 0x29
 bar 0x29 shift
-backslash 0x29 altgr
 
 # evdev 42 (0x2a), QKeyCode "shift", number 0x2a
 Shift_L 0x2a
@@ -214,7 +190,6 @@ Shift_L 0x2a
 # evdev 43 (0x2b), QKeyCode "backslash", number 0x2b
 less 0x2b
 greater 0x2b shift
-braceright 0x2b altgr
 
 # evdev 44 (0x2c), QKeyCode "z", number 0x2c
 z 0x2c
@@ -243,21 +218,17 @@ N 0x31 shift
 # evdev 50 (0x32), QKeyCode "m", number 0x32
 m 0x32
 M 0x32 shift
-mu 0x32 altgr
 
 # evdev 51 (0x33), QKeyCode "comma", number 0x33
 comma 0x33
 apostrophe 0x33 shift
-macron 0x33 altgr
 
 # evdev 52 (0x34), QKeyCode "dot", number 0x34
 period 0x34
-hyphen 0x34 altgr
 
 # evdev 53 (0x35), QKeyCode "slash", number 0x35
 eacute 0x35
 Eacute 0x35 shift
-dead_acute 0x35 altgr
 
 # evdev 54 (0x36), QKeyCode "shift_r", number 0x36
 Shift_R 0x36
@@ -271,7 +242,6 @@ Meta_L 0x38 shift
 
 # evdev 57 (0x39), QKeyCode "spc", number 0x39
 space 0x39
-nobreakspace 0x39 altgr
 
 # evdev 58 (0x3a), QKeyCode "caps_lock", number 0x3a
 Caps_Lock 0x3a
@@ -367,10 +337,8 @@ KP_Decimal 0x53 numlock
 # evdev 85 (0x55): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
 # evdev 86 (0x56), QKeyCode "less", number 0x56
-guillemotleft 0x56
-guillemotright 0x56 shift
-degree 0x56 altgr
-brokenbar 0x56 shift altgr
+guillemetleft 0x56
+guillemetright 0x56 shift
 
 # evdev 87 (0x57), QKeyCode "f11", number 0x57
 F11 0x57
@@ -660,7 +628,7 @@ XF86TouchpadOff 0x6d
 
 # evdev 194 (0xc2), QKeyCode "f24", number 0x6f
 
-# evdev 195 (0xc3): no evdev -> QKeyCode mapping (xkb keysym Mode_switch)
+# evdev 195 (0xc3): no evdev -> QKeyCode mapping (xkb keysym ISO_Level5_Shift)
 
 # evdev 196 (0xc4): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
@@ -1441,15 +1409,15 @@ XF86AudioMedia 0xed
 
 # evdev 584 (0x248): no evdev -> QKeyCode mapping (xkb keysym ISO_Next_Group)
 
-# evdev 585 (0x249): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 585 (0x249): no evdev -> QKeyCode mapping (xkb keysym XF86EmojiPicker)
 
-# evdev 586 (0x24a): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 586 (0x24a): no evdev -> QKeyCode mapping (xkb keysym XF86Dictate)
 
-# evdev 587 (0x24b): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 587 (0x24b): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessEnable)
 
-# evdev 588 (0x24c): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 588 (0x24c): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessDisable)
 
-# evdev 589 (0x24d): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 589 (0x24d): no evdev -> QKeyCode mapping (xkb keysym XF86CameraAccessToggle)
 
 # evdev 590 (0x24e): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 
@@ -1541,35 +1509,35 @@ XF86AudioMedia 0xed
 
 # evdev 634 (0x27a): no evdev -> QKeyCode mapping (xkb keysym XF86SelectiveScreenshot)
 
-# evdev 635 (0x27b): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 635 (0x27b): no evdev -> QKeyCode mapping (xkb keysym XF86NextElement)
 
-# evdev 636 (0x27c): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 636 (0x27c): no evdev -> QKeyCode mapping (xkb keysym XF86PreviousElement)
 
-# evdev 637 (0x27d): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 637 (0x27d): no evdev -> QKeyCode mapping (xkb keysym XF86AutopilotEngageToggle)
 
-# evdev 638 (0x27e): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 638 (0x27e): no evdev -> QKeyCode mapping (xkb keysym XF86MarkWaypoint)
 
-# evdev 639 (0x27f): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 639 (0x27f): no evdev -> QKeyCode mapping (xkb keysym XF86Sos)
 
-# evdev 640 (0x280): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 640 (0x280): no evdev -> QKeyCode mapping (xkb keysym XF86NavChart)
 
-# evdev 641 (0x281): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 641 (0x281): no evdev -> QKeyCode mapping (xkb keysym XF86FishingChart)
 
-# evdev 642 (0x282): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 642 (0x282): no evdev -> QKeyCode mapping (xkb keysym XF86SingleRangeRadar)
 
-# evdev 643 (0x283): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 643 (0x283): no evdev -> QKeyCode mapping (xkb keysym XF86DualRangeRadar)
 
-# evdev 644 (0x284): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 644 (0x284): no evdev -> QKeyCode mapping (xkb keysym XF86RadarOverlay)
 
-# evdev 645 (0x285): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 645 (0x285): no evdev -> QKeyCode mapping (xkb keysym XF86TraditionalSonar)
 
-# evdev 646 (0x286): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 646 (0x286): no evdev -> QKeyCode mapping (xkb keysym XF86ClearvuSonar)
 
-# evdev 647 (0x287): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 647 (0x287): no evdev -> QKeyCode mapping (xkb keysym XF86SidevuSonar)
 
-# evdev 648 (0x288): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 648 (0x288): no evdev -> QKeyCode mapping (xkb keysym XF86NavInfo)
 
-# evdev 649 (0x289): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
+# evdev 649 (0x289): no evdev -> QKeyCode mapping (xkb keysym XF86BrightnessAdjust)
 
 # evdev 650 (0x28a): no evdev -> QKeyCode mapping (xkb keysym NoSymbol)
 

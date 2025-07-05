@@ -3,17 +3,19 @@
     "c": {
       "id": "gcc",
       "exelist": [
-        "cc"
+        "cc",
+        "-m64"
       ],
       "linker_exelist": [
-        "cc"
+        "cc",
+        "-m64"
       ],
       "file_suffixes": [
         "c"
       ],
       "default_suffix": "c",
-      "version": "11.4.0",
-      "full_version": "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0",
+      "version": "13.3.0",
+      "full_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
       "linker_id": "ld.bfd"
     }
   },
@@ -21,17 +23,19 @@
     "c": {
       "id": "gcc",
       "exelist": [
-        "cc"
+        "cc",
+        "-m64"
       ],
       "linker_exelist": [
-        "cc"
+        "cc",
+        "-m64"
       ],
       "file_suffixes": [
         "c"
       ],
       "default_suffix": "c",
-      "version": "11.4.0",
-      "full_version": "cc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0",
+      "version": "13.3.0",
+      "full_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
       "linker_id": "ld.bfd"
     }
   }

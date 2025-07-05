@@ -3,5 +3,5 @@ docs = disabled
 plugins = true
 
 [properties]
-native_file = ['/home/ubuntu/Desktop/progetto_cybersec/qemu/build/config-meson.cross']
+native_file = ['/root/CESprj/qemu/build/config-meson.cross']
 

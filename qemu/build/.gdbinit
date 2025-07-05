@@ -1,1 +1,1 @@
-/home/ubuntu/Desktop/progetto_cybersec/qemu/.gdbinit
+/root/CESprj/qemu/.gdbinit

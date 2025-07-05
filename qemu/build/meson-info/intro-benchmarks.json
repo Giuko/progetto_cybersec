@@ -1,7 +1,7 @@
 [
   {
     "cmd": [
-      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/tests/bench/bufferiszero-bench",
+      "/root/CESprj/qemu/build/tests/bench/bufferiszero-bench",
       "--tap",
       "-k"
     ],
@@ -22,7 +22,7 @@
   },
   {
     "cmd": [
-      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/tests/bench/benchmark-crypto-hash",
+      "/root/CESprj/qemu/build/tests/bench/benchmark-crypto-hash",
       "--tap",
       "-k"
     ],
@@ -43,7 +43,7 @@
   },
   {
     "cmd": [
-      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/tests/bench/benchmark-crypto-hmac",
+      "/root/CESprj/qemu/build/tests/bench/benchmark-crypto-hmac",
       "--tap",
       "-k"
     ],
@@ -64,7 +64,7 @@
   },
   {
     "cmd": [
-      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/tests/bench/benchmark-crypto-cipher",
+      "/root/CESprj/qemu/build/tests/bench/benchmark-crypto-cipher",
       "--tap",
       "-k"
     ],
@@ -85,7 +85,7 @@
   },
   {
     "cmd": [
-      "/home/ubuntu/Desktop/progetto_cybersec/qemu/build/tests/bench/benchmark-crypto-akcipher",
+      "/root/CESprj/qemu/build/tests/bench/benchmark-crypto-akcipher",
       "--tap",
       "-k"
     ],
