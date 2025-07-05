@@ -4,7 +4,7 @@
 #include "crypto/rsakey.h"
 #include "qapi/error.h"
 #include "glib.h"
-
+#include <stdio.h>
 #include "tpm_basic_crypto_rsa.h"
 
 // greatest common divider
@@ -43,13 +43,13 @@ static bool is_prime(uint64_t n) {
 }
 
 // QEMU random number generation
-static uint64_t generate_prime(int bits) {
-    uint64_t candidate;
-    uint8_t random_bytes[8];
+static uint32_t generate_prime(int bits) {
+    uint32_t candidate;
+    uint8_t random_bytes[4];
     
     do {
         qcrypto_random_bytes(random_bytes, sizeof(random_bytes), NULL);
-        candidate = *(uint64_t*)random_bytes;
+        candidate = *(uint32_t*)random_bytes;
         
         // Adjust range
         candidate |= (1ULL << (bits - 1)); // MSB = 1
@@ -61,43 +61,44 @@ static uint64_t generate_prime(int bits) {
     return candidate;
 }
 
-// Euclide's algorithm to found the modular inverse
-static int64_t extended_gcd(int64_t a, int64_t b, int64_t *x, int64_t *y) {
-    if (a == 0) {
-        *x = 0;
-        *y = 1;
-        return b;
-    }
-    
-    int64_t x1, y1;
-    int64_t gcd_val = extended_gcd(b % a, a, &x1, &y1);
-    
-    *x = y1 - (b / a) * x1;
-    *y = x1;
-    
-    return gcd_val;
-}
+// Algorithm to found the modular inverse
+uint64_t modinv(uint64_t e, uint64_t phi_n) {
+    int64_t t = 0, new_t = 1;
+    int64_t r = phi_n, new_r = e;
 
-static uint64_t mod_inverse(uint64_t a, uint64_t m) {
-    int64_t x, y;
-    int64_t g = extended_gcd(a, m, &x, &y);
-    
-    if (g != 1) {
-        return 0; // Inverse non existent
+    while (new_r != 0) {
+        int64_t quotient = r / new_r;
+
+        int64_t temp_t = t;
+        t = new_t;
+        new_t = temp_t - quotient * new_t;
+
+        int64_t temp_r = r;
+        r = new_r;
+        new_r = temp_r - quotient * new_r;
     }
-    
-    return (x % m + m) % m;
+
+    // Check if inverse exists
+    if (r > 1) {
+        return 0; // e and phi_n are not coprime
+    }
+
+    if (t < 0) {
+        t += phi_n;
+    }
+
+    return (uint64_t)t;
 }
 
 // Generazione chiavi RSA
 bool generate_rsa_keys(TPMRSAContext *ctx, int key_bits) {
     // Generate two prime p e q
-    uint64_t p = generate_prime(key_bits / 2);
-    uint64_t q = generate_prime(key_bits / 2);
+    uint32_t p = generate_prime(32);
+    uint32_t q = generate_prime(32);
     printf("[TPM]: p and q generated\n"); 
-    uint64_t n = p * q;
+    uint64_t n = (uint64_t)p * (uint64_t)q;
     
-    uint64_t phi_n = (p - 1) * (q - 1);
+    uint64_t phi_n = (uint64_t)(p-1) * (uint64_t)(q-1);
     
     // e (tipically 65537)
     uint64_t e = 65537;
@@ -107,21 +108,21 @@ bool generate_rsa_keys(TPMRSAContext *ctx, int key_bits) {
             e += 2;
         }
     }
-    printf("[TPM]: found greatest common divider between e and phi_n\n");
     
     // Compute d = e^(-1) mod φ(n)
-    uint64_t d = mod_inverse(e, phi_n);
+    //uint64_t d = mod_inverse(e, phi_n);
+    uint64_t d = modinv(e, phi_n);
     if (d == 0) {
-        return false; // Errore nella generazione
+        //return false; // Errore nella generazione
+        printf("d==0\n");
     }
-    printf("[TPM]: computed d\n");  
     // Save keys
     printf("Public key:  %lx %lx\n", n, e); 
     printf("Private key: %lx %lx\n", n, d); 
     printf("n: %lx (%lu)\n", n, n); 
     printf("d: %lx (%lu)\n", d, d); 
-    printf("p: %lx (%lu)\n", p, p); 
-    printf("q: %lx (%lu)\n", q, q); 
+    printf("p: %x (%u)\n", p, p); 
+    printf("q: %x (%u)\n", q, q); 
     printf("e: %lx (%lu)\n", e, e); 
     printf("phi_n: %lx (%lu)\n", phi_n, phi_n); 
     ctx->public_key.n = n;
