@@ -282,7 +282,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
         return TPM_RC_OBJECT_MEMORY;
     }
 
-    TPM_Key *key = &(s->keys[slot]);
+    TPM_Key *key = (TPM_Key*)malloc(sizeof(TPM_Key));
 
     // Initialize key
     key->handle = KEY_HANDLE_BASE + s->next_handle++;
@@ -299,15 +299,19 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     key->attributes = inPublic.publicArea.objectAttributes;
     // Generate key pair
     // Fixed size for simplicity 1024
-    if(generate_rsa_keys(key->ctx, 1024)){
+    if(!generate_rsa_keys(key->ctx, 1024)){
         printf("[TPM]: key generation failed, debug 11\n");
         return TPM_RC_FAILURE;
     }
-    return 0;
     key->loaded = true;
     key->hierarchy = primaryHandle;
     printf("[TPM] Created primary key with handle: 0x%08x\n", key->handle);
-
+    if(!verify_key_integrity(&(key->ctx->data_key)))
+        printf("[TPM]: Key generated isn't working properly\n"); 
+    else
+        printf("[TPM]: Key generated is working properly\n"); 
+    s->keys[slot] = *key;
+    
     // Prepare response
     int resp_offset = 10;
             

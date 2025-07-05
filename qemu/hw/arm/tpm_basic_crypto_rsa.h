@@ -4,25 +4,21 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// RSA key structure
-typedef struct {
-    uint64_t n;      // module
-    uint64_t e;      // pubblico part
-    uint64_t d;      // privato part
-    uint64_t p, q;   // prime factor
-    bool is_valid;
-} RSAKey;
+#include <openssl/rsa.h>
 
-typedef struct {
-    RSAKey public_key;
-    RSAKey private_key;
-    uint32_t key_size;
-    bool keys_generated;
-} TPMRSAContext;
+typedef struct RSAKeyPair {
+    EVP_PKEY *pkey;
+    uint8_t *public_key_der;
+    uint8_t *private_key_der;
+    size_t public_key_len;
+    size_t private_key_len;
+} RSAKeyPair;
 
-bool generate_rsa_keys(TPMRSAContext *ctx, int key_bits);
-uint64_t rsa_encrypt(uint64_t message, RSAKey *key); 
-uint64_t rsa_decrypt(uint64_t ciphertext, RSAKey *key);
-bool verify_key_integrity(RSAKey *key);
+RSAKeyPair *qemu_generate_rsa_key(int key_bits, bool save_to_file, const char *filename_prefix);
+void free_rsa_keypair(RSAKeyPair *keypair);
+
+//uint64_t rsa_encrypt(uint64_t message, RSAKey *key); 
+//uint64_t rsa_decrypt(uint64_t ciphertext, RSAKey *key);
+//bool verify_key_integrity(RSAKey *key);
 
 #endif
