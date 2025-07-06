@@ -311,4 +311,16 @@ libqemu-arm-softmmu.a.p/hw_arm_custom_tpm.c.o: ../hw/arm/custom_tpm.c \
  /root/CESprj/qemu/include/qemu/timer.h \
  /root/CESprj/qemu/include/block/graph-lock.h \
  /root/CESprj/qemu/include/system/event-loop-base.h ../hw/arm/tpm_types.h \
- ../hw/arm/tpm_basic_crypto_rsa.h ../hw/arm/tpm_command_handler.h
+ ../hw/arm/tpm_basic_crypto_rsa.h /usr/include/openssl/rsa.h \
+ /usr/include/openssl/macros.h \
+ /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+ /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+ /usr/include/openssl/opensslv.h /usr/include/openssl/asn1.h \
+ /usr/include/openssl/e_os2.h /usr/include/openssl/bio.h \
+ /usr/include/openssl/crypto.h /usr/include/openssl/safestack.h \
+ /usr/include/openssl/stack.h /usr/include/openssl/types.h \
+ /usr/include/openssl/cryptoerr.h /usr/include/openssl/symhacks.h \
+ /usr/include/openssl/cryptoerr_legacy.h /usr/include/openssl/core.h \
+ /usr/include/openssl/bioerr.h /usr/include/openssl/asn1err.h \
+ /usr/include/openssl/bn.h /usr/include/openssl/bnerr.h \
+ /usr/include/openssl/rsaerr.h ../hw/arm/tpm_command_handler.h

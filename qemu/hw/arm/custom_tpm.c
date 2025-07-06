@@ -188,7 +188,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     TPM2B_SENSITIVE_CREATE inSensitive;
     TPM2B_PUBLIC inPublic;
     uint16_t outsideInfoSize;
-    uint32_t creationPCRCount;
+    //uint32_t creationPCRCount;
     int offset = 10;        // Aleeady analyzed field
 
     // Parsing command
@@ -265,7 +265,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
         printf("[TPM]: Invalid command size: %d, debug 10\n", s->command_size);
         return TPM_RC_SIZE;
     }
-    creationPCRCount =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset]; 
+    //creationPCRCount =  (s->command[offset+3] << 24)| (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset]; 
     // Skip PCR
 
     
@@ -299,17 +299,13 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     key->attributes = inPublic.publicArea.objectAttributes;
     // Generate key pair
     // Fixed size for simplicity 1024
-    if(!generate_rsa_keys(key->ctx, 1024)){
+    if(!(key->key = qemu_generate_rsa_key(1024))){
         printf("[TPM]: key generation failed, debug 11\n");
         return TPM_RC_FAILURE;
     }
     key->loaded = true;
     key->hierarchy = primaryHandle;
     printf("[TPM] Created primary key with handle: 0x%08x\n", key->handle);
-    if(!verify_key_integrity(&(key->ctx->data_key)))
-        printf("[TPM]: Key generated isn't working properly\n"); 
-    else
-        printf("[TPM]: Key generated is working properly\n"); 
     s->keys[slot] = *key;
     
     // Prepare response
@@ -321,7 +317,9 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     s->response[resp_offset + 3] = key->handle >> 24;
     resp_offset += 4;
 
-    uint16_t pubKeySize = sizeof(key->ctx->public_key);
+    uint16_t pubKeySize = 0;
+    //uint16_t pubKeySize = sizeof(key->ctx->public_key);
+
     s->response[resp_offset] = pubKeySize;
     s->response[resp_offset + 1]  = pubKeySize >> 8;
     resp_offset += 2;
@@ -330,7 +328,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
         printf("[TPM]: Response buffer too small, debug 12\n");
         return TPM_RC_FAILURE;
     }
-    memcpy(&s->response[resp_offset], &(key->ctx->public_key), sizeof(key->ctx->public_key));
+    //memcpy(&s->response[resp_offset], &(key->ctx->public_key), sizeof(key->ctx->public_key));
     resp_offset += pubKeySize;
 
     // TPM2B_CREATION_DATA (simplified, empty for now)
@@ -364,6 +362,11 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     return TPM_RC_SUCCESS;
 }
 
+
+static uint32_t Create(CustomTPMState *s){
+    return 0;
+};
+/*
 static uint32_t Create(CustomTPMState *s){
     // To generate a key under an existing parent key
     printf("[TPM]: Create Command execution\n");
@@ -587,7 +590,7 @@ static uint32_t Create(CustomTPMState *s){
     
 
 }
-
+*/
 static uint32_t RSA_Decrypt(CustomTPMState *s){
     // TPM2_RSA_Decrypt command implementation
     printf("[TPM]: RSA_Decrypt Command execution\n");
@@ -696,7 +699,8 @@ static uint32_t RSA_Decrypt(CustomTPMState *s){
 
     // Perform RSA decryption using the custom function
     printf("[TPM]: Performing RSA decryption...\n");
-    uint64_t plaintext = rsa_decrypt(ciphertext, &(key->ctx->private_key));
+    uint64_t plaintext = 0;
+    //uint64_t plaintext = rsa_decrypt(ciphertext, &(key->ctx->private_key));
     
     printf("[TPM]: Decryption result: 0x%016lx\n", plaintext);
     
@@ -852,9 +856,9 @@ static uint32_t RSA_Encrypt(CustomTPMState *s){
 
     // Perform RSA encryption using the custom function
     printf("[TPM]: Performing RSA encryption...\n");
-    uint64_t ciphertext = rsa_encrypt(message, &(key->ctx->public_key));
+    //uint64_t ciphertext = rsa_encrypt(message, &(key->ctx->public_key));
     
-    printf("[TPM]: Encryption result: 0x%016lx\n", ciphertext);
+    //printf("[TPM]: Encryption result: 0x%016lx\n", ciphertext);
     
     // Prepare response
     int resp_offset = 10;
@@ -865,7 +869,8 @@ static uint32_t RSA_Encrypt(CustomTPMState *s){
     int ciphertextSize = 0;
     
     // Find actual size (remove leading zeros)
-    uint64_t temp = ciphertext;
+    uint64_t temp = 0;
+    //uint64_t temp = ciphertext;
     if(temp == 0) {
         ciphertextSize = 1;
         ciphertextBytes[0] = 0;
@@ -928,6 +933,12 @@ static void process_command(CustomTPMState *s){
             break;
         case TPM2_CC_Create:
             rc = Create(s);
+            break;
+        case TPM2_CC_RSA_Encrypt:
+            rc = RSA_Encrypt(s);
+            break;
+        case TPM2_CC_RSA_Decrypt:
+            rc = RSA_Decrypt(s);
             break;
         case TPM2_CC_Load:
             printf("[TPM]: Load Command not implemented");

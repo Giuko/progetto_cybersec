@@ -16868,7 +16868,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep49064517064045035585607096282518600438",
+      "dep33842484089500727220903834274276293877",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17384,6 +17384,7 @@
     "extra_files": [],
     "subproject": null,
     "dependencies": [
+      "openssl",
       "zlib",
       "rt",
       "gnutls",
@@ -17407,7 +17408,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep49064517064045035585607096282518600438",
+      "dep33842484089500727220903834274276293877",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -17600,6 +17601,8 @@
           "--dynamic-list=/root/CESprj/qemu/build/plugins/qemu-plugin.symbols",
           "@block.syms",
           "@qemu.syms",
+          "/usr/lib/x86_64-linux-gnu/libssl.so",
+          "/usr/lib/x86_64-linux-gnu/libcrypto.so",
           "/usr/lib/x86_64-linux-gnu/libz.so",
           "-lrt",
           "/usr/lib/x86_64-linux-gnu/libgnutls.so",
@@ -17652,6 +17655,7 @@
     "extra_files": [],
     "subproject": null,
     "dependencies": [
+      "openssl",
       "zlib",
       "rt",
       "gnutls",
@@ -17673,7 +17677,7 @@
       "gio-unix-2.0",
       "libzstd",
       "slirp",
-      "dep49064517064045035585607096282518600438",
+      "dep33842484089500727220903834274276293877",
       "ncursesw",
       "glib-2.0",
       "gmodule-no-export-2.0",
@@ -24002,7 +24006,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep118517128024751213234437421149312905471"
+      "dep100948775603419051599279550310221916347"
     ],
     "depends": [],
     "installed": false
@@ -24088,7 +24092,7 @@
     "extra_files": [],
     "subproject": "berkeley-testfloat-3",
     "dependencies": [
-      "dep118517128024751213234437421149312905471"
+      "dep100948775603419051599279550310221916347"
     ],
     "depends": [],
     "installed": false
@@ -24245,9 +24249,9 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep118517128024751213234437421149312905471",
-      "dep225203120858925244453428131498862961291",
-      "dep176468326816012721420618854400689610827"
+      "dep100948775603419051599279550310221916347",
+      "dep283288020574064400326324599274176690007",
+      "dep244832189992881880615615467263990658960"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24404,8 +24408,8 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep225203120858925244453428131498862961291",
-      "dep118517128024751213234437421149312905471"
+      "dep283288020574064400326324599274176690007",
+      "dep100948775603419051599279550310221916347"
     ],
     "depends": [],
     "win_subsystem": "console",
@@ -24552,7 +24556,7 @@
     "subproject": null,
     "dependencies": [
       "rt",
-      "dep118517128024751213234437421149312905471"
+      "dep100948775603419051599279550310221916347"
     ],
     "depends": [],
     "win_subsystem": "console",

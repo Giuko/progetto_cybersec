@@ -1,3 +1,5 @@
+libcrypto = dependency('openssl', required: true)
+
 arm_ss = ss.source_set()
 arm_common_ss = ss.source_set()
 arm_ss.add(when: 'CONFIG_ARM_VIRT', if_true: files('virt.c'))
@@ -28,6 +30,7 @@ arm_ss.add(when: 'CONFIG_NXPS32K3X8EVB', if_true: files('nxps32k3x8evb.c', 'nxps
 #######################################
 arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: files('custom_tpm.c'))
 arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: files('tpm_basic_crypto_rsa.c'))
+arm_ss.add(when: 'CONFIG_CUSTOMTPM', if_true: libcrypto)
 
 #arm_common_ss.add(when: 'CONFIG_STELLARIS', if_true: files('stellaris.c'))
 #arm_common_ss.add(when: 'CONFIG_STM32VLDISCOVERY', if_true: files('stm32vldiscovery.c'))

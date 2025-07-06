@@ -260,6 +260,7 @@ libqemu-arm-softmmu.a.p/hw_arm_tpm_basic_crypto_rsa.c.o: \
  /root/CESprj/qemu/include/crypto/akcipher.h qapi/qapi-types-crypto.h \
  qapi/qapi-builtin-types.h /root/CESprj/qemu/include/qapi/util.h \
  /root/CESprj/qemu/include/qapi/error.h qapi/qapi-types-error.h \
+ /root/CESprj/qemu/include/qemu/error-report.h \
  ../hw/arm/tpm_basic_crypto_rsa.h /usr/include/openssl/rsa.h \
  /usr/include/openssl/macros.h \
  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
@@ -272,4 +273,18 @@ libqemu-arm-softmmu.a.p/hw_arm_tpm_basic_crypto_rsa.c.o: \
  /usr/include/openssl/cryptoerr_legacy.h /usr/include/openssl/core.h \
  /usr/include/openssl/bioerr.h /usr/include/openssl/asn1err.h \
  /usr/include/openssl/bn.h /usr/include/openssl/bnerr.h \
- /usr/include/openssl/rsaerr.h
+ /usr/include/openssl/rsaerr.h /usr/include/openssl/evp.h \
+ /usr/include/openssl/core_dispatch.h /usr/include/openssl/evperr.h \
+ /usr/include/openssl/params.h /usr/include/openssl/objects.h \
+ /usr/include/openssl/obj_mac.h /usr/include/openssl/objectserr.h \
+ /usr/include/openssl/pem.h /usr/include/openssl/x509.h \
+ /usr/include/openssl/buffer.h /usr/include/openssl/buffererr.h \
+ /usr/include/openssl/ec.h /usr/include/openssl/ecerr.h \
+ /usr/include/openssl/dsa.h /usr/include/openssl/dh.h \
+ /usr/include/openssl/dherr.h /usr/include/openssl/dsaerr.h \
+ /usr/include/openssl/sha.h /usr/include/openssl/x509err.h \
+ /usr/include/openssl/x509_vfy.h /usr/include/openssl/lhash.h \
+ /usr/include/openssl/pkcs7.h /usr/include/openssl/pkcs7err.h \
+ /usr/include/openssl/http.h /usr/include/openssl/conf.h \
+ /usr/include/openssl/conferr.h /usr/include/openssl/conftypes.h \
+ /usr/include/openssl/pemerr.h

@@ -76,8 +76,8 @@ typedef struct{
     KeyType type;
     uint32_t attributes;                    // Bitmap to specifie the key use
    
-    TPMRSAContext *ctx;
-    
+    RSAKeyPair *key;
+
     uint32_t hierarchy;
     bool loaded;
 
