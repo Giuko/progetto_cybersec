@@ -76,13 +76,13 @@ int main(void) {
             }
         },
         .inPublic = {
-            .size = 2 + 2 + 4 + (2 + 0) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 0),
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
             .publicArea = {
                 .type = KEY_TYPE_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_RSA, // Using SHA for name algorithm
                 .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
                 .authPolicy = {
-                    .size = 0, // No auth policy for primary key
+                    .size = 64, // No auth policy for primary key
                     .buffer = {0}
                 },
                 .parameters = {
@@ -99,13 +99,13 @@ int main(void) {
                     .exponent = 0 // Default exponent (65537)
                 },
                 .unique = {
-                    .size = 0, // No unique value for primary key
+                    .size = 512, // No unique value for primary key
                     .buffer = {0} // No unique value for primary key
                 }
             }
         },
         .outsideInfo = {
-            .size = 0, // No outside info for primary key
+            .size = 64, // No outside info for primary key
             .buffer = {0} // No outside info for primary key
         },
         .creationPCR = {
@@ -150,13 +150,13 @@ int main(void) {
             }
         },
         .inPublic = {
-            .size = 2 + 2 + 4 + (2 + 0) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 0),
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
             .publicArea = {
                 .type = TPM_ALG_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_SHA, // Using SHA for name algorithm
                 .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
                 .authPolicy = {
-                    .size = 0, // No auth policy for primary key
+                    .size = 64, // No auth policy for primary key
                     .buffer = {0}
                 },
                 .parameters = {
@@ -173,13 +173,13 @@ int main(void) {
                     .exponent = 0 // Default exponent (65537)
                 },
                 .unique = {
-                    .size = 0, // No unique value for primary key
+                    .size = 512, // No unique value for primary key
                     .buffer = {0} // No unique value for primary key
                 }
             }
         },
         .outsideInfo = {
-            .size = 0, // No outside info for primary key
+            .size = 64, // No outside info for primary key
             .buffer = {0} // No outside info for primary key
         },
         .creationPCR = {
