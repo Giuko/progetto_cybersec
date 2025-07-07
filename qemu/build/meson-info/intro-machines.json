@@ -1,8 +1,8 @@
 {
   "host": {
     "system": "linux",
-    "cpu_family": "x86_64",
-    "cpu": "x86_64",
+    "cpu_family": "aarch64",
+    "cpu": "aarch64",
     "endian": "little",
     "kernel": "linux",
     "subsystem": "linux",
@@ -12,8 +12,8 @@
   },
   "build": {
     "system": "linux",
-    "cpu_family": "x86_64",
-    "cpu": "x86_64",
+    "cpu_family": "aarch64",
+    "cpu": "aarch64",
     "endian": "little",
     "kernel": "linux",
     "subsystem": "linux",
@@ -23,8 +23,8 @@
   },
   "target": {
     "system": "linux",
-    "cpu_family": "x86_64",
-    "cpu": "x86_64",
+    "cpu_family": "aarch64",
+    "cpu": "aarch64",
     "endian": "little",
     "kernel": "linux",
     "subsystem": "linux",

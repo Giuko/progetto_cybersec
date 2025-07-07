@@ -15,7 +15,7 @@
 
 #undef CONFIG_ALIGNED_MALLOC
 
-#undef CONFIG_ARM_AES_BUILTIN
+#define CONFIG_ARM_AES_BUILTIN
 
 #define CONFIG_ASAN_IFACE_FIBER
 
@@ -49,9 +49,9 @@
 
 #define CONFIG_AUDIO_SNDIO
 
-#define CONFIG_AVX2_OPT
+#undef CONFIG_AVX2_OPT
 
-#define CONFIG_AVX512BW_OPT
+#undef CONFIG_AVX512BW_OPT
 
 #define CONFIG_BDRV_RO_WHITELIST 
 
@@ -83,7 +83,7 @@
 
 #define CONFIG_COROUTINE_POOL
 
-#define CONFIG_CPUID_H
+#undef CONFIG_CPUID_H
 
 #undef CONFIG_CRYPTO_SM3
 
@@ -91,7 +91,7 @@
 
 #undef CONFIG_CURL
 
-#define CONFIG_CURSES
+#undef CONFIG_CURSES
 
 #undef CONFIG_DARWIN
 
@@ -143,7 +143,7 @@
 
 #undef CONFIG_FUZZ
 
-#define CONFIG_GBM
+#undef CONFIG_GBM
 
 #undef CONFIG_GCOV
 
@@ -163,11 +163,11 @@
 
 #undef CONFIG_GLUSTERFS
 
-#define CONFIG_GNUTLS
+#undef CONFIG_GNUTLS
 
-#define CONFIG_GNUTLS_CRYPTO
+#undef CONFIG_GNUTLS_CRYPTO
 
-#define CONFIG_GTK
+#undef CONFIG_GTK
 
 #undef CONFIG_GTK_CLIPBOARD
 
@@ -178,8 +178,6 @@
 #undef CONFIG_HOGWEED
 
 #define CONFIG_HOST_DSOSUF ".so"
-
-#define CONFIG_IASL "/usr/bin/iasl"
 
 #define CONFIG_INOTIFY
 
@@ -193,21 +191,21 @@
 
 #undef CONFIG_KEYUTILS
 
-#define CONFIG_KVM_TARGETS "i386-softmmu" ,"x86_64-softmmu"
+#define CONFIG_KVM_TARGETS "aarch64-softmmu"
 
 #define CONFIG_L2TPV3
 
 #undef CONFIG_LIBATTR
 
-#define CONFIG_LIBCAP_NG
+#undef CONFIG_LIBCAP_NG
 
 #undef CONFIG_LIBDAXCTL
 
 #undef CONFIG_LIBDW
 
-#define CONFIG_LIBISCSI
+#undef CONFIG_LIBISCSI
 
-#define CONFIG_LIBNFS
+#undef CONFIG_LIBNFS
 
 #undef CONFIG_LIBPMEM
 
@@ -217,7 +215,7 @@
 
 #define CONFIG_LINUX
 
-#define CONFIG_LINUX_AIO
+#undef CONFIG_LINUX_AIO
 
 #undef CONFIG_LINUX_IO_URING
 
@@ -239,7 +237,7 @@
 
 #undef CONFIG_MODULE_UPGRADES
 
-#undef CONFIG_MPATH
+#define CONFIG_MPATH
 
 #undef CONFIG_NETMAP
 
@@ -247,7 +245,7 @@
 
 #undef CONFIG_NUMA
 
-#define CONFIG_OPENGL
+#undef CONFIG_OPENGL
 
 #define CONFIG_OPEN_BY_HANDLE
 
@@ -255,7 +253,7 @@
 
 #define CONFIG_PLUGIN
 
-#define CONFIG_PNG
+#undef CONFIG_PNG
 
 #define CONFIG_POSIX
 
@@ -303,7 +301,7 @@
 
 #define CONFIG_QEMU_LOCALSTATEDIR "/var/local"
 
-#define CONFIG_QEMU_MODDIR "/usr/local/lib/x86_64-linux-gnu/qemu"
+#define CONFIG_QEMU_MODDIR "/usr/local/lib/aarch64-linux-gnu/qemu"
 
 #undef CONFIG_QEMU_PRIVATE_XTS
 
@@ -341,7 +339,7 @@
 
 #define CONFIG_SIGNALFD
 
-#define CONFIG_SLIRP
+#undef CONFIG_SLIRP
 
 #define CONFIG_SMBD_COMMAND "/usr/sbin/smbd"
 
@@ -349,15 +347,9 @@
 
 #undef CONFIG_SOLARIS
 
-#define CONFIG_SPICE
+#undef CONFIG_SPICE
 
-#define CONFIG_SPICE_PROTOCOL
-
-#define CONFIG_SPICE_PROTOCOL_MAJOR 0
-
-#define CONFIG_SPICE_PROTOCOL_MICRO 3
-
-#define CONFIG_SPICE_PROTOCOL_MINOR 14
+#undef CONFIG_SPICE_PROTOCOL
 
 #define CONFIG_SPLICE
 
@@ -373,7 +365,7 @@
 
 #define CONFIG_SYSMACROS
 
-#define CONFIG_TASN1
+#undef CONFIG_TASN1
 
 #define CONFIG_TCG 1
 
@@ -395,7 +387,7 @@
 
 #undef CONFIG_USBFS
 
-#define CONFIG_USB_LIBUSB
+#undef CONFIG_USB_LIBUSB
 
 #undef CONFIG_VALGRIND_H
 
@@ -429,23 +421,21 @@
 
 #define CONFIG_VNC
 
-#define CONFIG_VNC_JPEG
+#undef CONFIG_VNC_JPEG
 
 #undef CONFIG_VNC_SASL
 
-#define CONFIG_VTE
+#undef CONFIG_VTE
 
 #undef CONFIG_WIN32
 
-#define CONFIG_X11
+#undef CONFIG_X11
 
-#define CONFIG_XEN_BACKEND
-
-#define CONFIG_XEN_CTRL_INTERFACE_VERSION 41700
+#undef CONFIG_XEN_BACKEND
 
 #define CONFIG_XKBCOMMON
 
-#define CONFIG_ZSTD
+#undef CONFIG_ZSTD
 
 #define HAVE_BLK_ZONE_REP_CAPACITY
 
@@ -463,11 +453,9 @@
 
 #define HAVE_GLIB_WITH_ALIGNED_ALLOC
 
-#undef HAVE_GLIB_WITH_SLICE_ALLOCATOR
+#define HAVE_GLIB_WITH_SLICE_ALLOCATOR
 
 #define HAVE_HOST_BLOCK_DEVICE
-
-#define HAVE_IO_PREP_PWRITEV2
 
 #define HAVE_IPPROTO_MPTCP
 
@@ -503,7 +491,7 @@
 
 #undef HAVE_VSS_SDK
 
-#define HOST_X86_64 1
+#define HOST_AARCH64 1
 
 #define QEMU_VERSION "10.0.50"
 
@@ -512,6 +500,4 @@
 #define QEMU_VERSION_MICRO 50
 
 #define QEMU_VERSION_MINOR 0
-
-#define VIRGL_VERSION_MAJOR 1
 

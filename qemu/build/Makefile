@@ -1,1 +1,1 @@
-/root/CESprj/qemu/Makefile
+/home/ubuntu/Desktop/NEW/progetto_cybersec/qemu/Makefile

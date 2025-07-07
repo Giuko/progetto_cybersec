@@ -1,1 +1,1 @@
-/root/CESprj/qemu/include/qemu/qemu-plugin.h
+/home/ubuntu/Desktop/NEW/progetto_cybersec/qemu/include/qemu/qemu-plugin.h

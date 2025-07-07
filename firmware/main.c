@@ -37,7 +37,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-    /*// Trying self test
+    // Trying self test
     cmd_header.command_code = TPM2_CC_SelfTest;
     cmd_header.size = sizeof(struct tpm_command_header);
  
@@ -52,7 +52,7 @@ int main(void) {
         UART_putstr("Success code received\n");
     else
         UART_putstr("Error code received\n");
-*/
+
 
 
     // Trying CreatePrimary command
@@ -76,7 +76,7 @@ int main(void) {
             }
         },
         .inPublic = {
-            .size = 8, // Size will be set later
+            .size = 2 + 2 + 4 + (2 + 0) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 0),
             .publicArea = {
                 .type = KEY_TYPE_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_RSA, // Using SHA for name algorithm
@@ -128,7 +128,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-/*
+
     // Trying Create command
     cmd_header.tag = TPM_ST_SESSION;
     cmd_header.command_code = TPM2_CC_Create;
@@ -137,20 +137,20 @@ int main(void) {
         .command_header = cmd_header,
         .parentHandle = 0, // Using NULL for parent handle
         .inSensitive = {
-            .size = 0, // No sensitive data for primary key
+            .size = 128+64 + 2 + 2,
             .sensitiveCreate = {
                 .userAuth = {
-                    .size = 0, // No user auth for primary key
+                    .size = 128, // No user auth for primary key
                     .buffer = {0}
                 },
                 .data = {
-                    .size = 0, // No additional data for primary key
+                    .size = 64, // No additional data for primary key
                     .buffer = {0}
                 }
             }
         },
         .inPublic = {
-            .size = 0, // Size will be set later
+            .size = 2 + 2 + 4 + (2 + 0) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 0),
             .publicArea = {
                 .type = TPM_ALG_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_SHA, // Using SHA for name algorithm
@@ -200,7 +200,7 @@ int main(void) {
     else
         UART_putstr("Error code received\n");
 
-   
+
     // Trying RSA_Encrypt command
     cmd_header.tag = TPM_ST_NO_SESSION;
     cmd_header.command_code = TPM2_CC_RSA_Encrypt;
@@ -309,6 +309,6 @@ int main(void) {
     else
         UART_putstr("Error code received\n");
 
-*/
+
     return 0;
 }

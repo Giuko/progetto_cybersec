@@ -109,7 +109,6 @@
 #pragma GCC poison CONFIG_I2C
 #pragma GCC poison CONFIG_I2C_DEVICES
 #pragma GCC poison CONFIG_I2C_ECHO
-#pragma GCC poison CONFIG_I386_DIS
 #pragma GCC poison CONFIG_I82801B11
 #pragma GCC poison CONFIG_IDE_BUS
 #pragma GCC poison CONFIG_IDE_CF

@@ -81,12 +81,12 @@ static void disas_a32_uncond_extract_disas_a32_uncond_Fmt_2(DisasContext *ctx, a
 
 static void disas_a32_uncond_extract_disas_a32_uncond_Fmt_3(DisasContext *ctx, arg_cps *a, uint32_t insn)
 {
-    a->M = extract32(insn, 17, 1);
-    a->imod = extract32(insn, 18, 2);
-    a->A = extract32(insn, 8, 1);
     a->F = extract32(insn, 6, 1);
     a->mode = extract32(insn, 0, 5);
+    a->A = extract32(insn, 8, 1);
+    a->M = extract32(insn, 17, 1);
     a->I = extract32(insn, 7, 1);
+    a->imod = extract32(insn, 18, 2);
 }
 
 static void disas_a32_uncond_extract_disas_a32_uncond_Fmt_4(DisasContext *ctx, arg_empty *a, uint32_t insn)

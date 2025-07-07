@@ -1,1 +1,1 @@
-/root/CESprj/qemu/pc-bios/skiboot.lid
+/home/ubuntu/Desktop/NEW/progetto_cybersec/qemu/pc-bios/skiboot.lid
