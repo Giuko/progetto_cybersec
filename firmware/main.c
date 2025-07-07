@@ -192,8 +192,8 @@ int main(void) {
     tpm_send_command_with_log(&tpm, &create_cmd, sizeof(create_cmd));
     log_tpm_status(&tpm);   
 
-    struct tpm_createPrimary_response *create_response = (struct tpm_createPrimary_response *)malloc(sizeof(struct tpm_createPrimary_response));
-    tpm_receive_response_with_log(&tpm, create_response, sizeof(struct tpm_createPrimary_response));
+    struct tpm_create_response *create_response = (struct tpm_create_response *)malloc(sizeof(struct tpm_create_response));
+    tpm_receive_response_with_log(&tpm, create_response, sizeof(struct tpm_create_response));
     
     if(create_response->response_header.response_code == 0)
         UART_putstr("Success code received\n");
@@ -209,7 +209,7 @@ int main(void) {
     size_t msg_len_enc = strlen(message_RCA_enc);
     struct TMP_RSA_encrypt_command RCA_enc_cmd = {
         .command_header = cmd_header,
-        .keyHandle = 0, 
+        .keyHandle = createPrimary_response->objectHandle, 
         .message = {
             .size = sizeof(message_RCA_enc), // Size of the message
             .buffer = {0} // Copying the message
@@ -223,7 +223,7 @@ int main(void) {
             }
         },
         .label = {
-            .size = 0, // No label for RSA encryption
+            .size = 64, // No label for RSA encryption
             .buffer = {0} // No label for RSA encryption
         }
     };
@@ -252,7 +252,7 @@ int main(void) {
     size_t msg_len_dec = strlen(message_RCA_dec);
     struct TMP_RSA_decrypt_command RCA_dec_cmd = {
         .command_header = cmd_header,
-        .keyHandle = 0, 
+        .keyHandle = createPrimary_response->objectHandle, 
         .cipherText = {
             .size = sizeof(message_RCA_dec), // Size of the message
             .buffer = {0} // Copying the message
@@ -266,7 +266,7 @@ int main(void) {
             }
         },
         .label = {
-            .size = 0, // No label for RSA encryption
+            .size = 64, // No label for RSA encryption
             .buffer = {0} // No label for RSA encryption
         }
     };
