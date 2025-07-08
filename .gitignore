@@ -1,5 +1,5 @@
 /GNUmakefile
-/build/
+/qemu/build/
 /.cache/
 /.vscode/
 *.pyc

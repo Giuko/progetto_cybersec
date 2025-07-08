@@ -6,11 +6,7 @@
 #include "qemu/error-report.h"
 #include <stdio.h>
 #include "tpm_basic_crypto_rsa.h"
-#include "openssl/evp.h"
-#include "openssl/pem.h"
-#include "openssl/rsa.h"
-#include "openssl/bn.h"
-#include "openssl/bio.h"
+
 
 static RSAKeyPair *generate_rsa_keypair(int key_bits){
     RSAKeyPair *keypair = NULL;
@@ -234,12 +230,13 @@ int qemu_verify_integrity(RSAKeyPair *keypair){
     size_t ciphertext_len = 0, decrypted_len = 0;
     uint8_t outcome = 0; 
     printf("\n=== RSA Encryption Test ===\n");
-    printf("[TPM]: Original data: %s\n", test_data);
+    printf("[TPM]: Original data: '%s'\n", test_data);
     
     /* Test PKCS#1 v1.5 padding */
     if (qemu_rsa_encrypt(keypair, (uint8_t *)test_data, strlen(test_data), 
                          &ciphertext, &ciphertext_len) == 0) {
         
+        printf("[TPM]: Encrypted data: %.*s\n", (int)ciphertext_len, ciphertext);
         if (qemu_rsa_decrypt(keypair, ciphertext, ciphertext_len, 
                              &decrypted, &decrypted_len) == 0) {
             printf("[TPM]: Decrypted data: %.*s\n", (int)decrypted_len, decrypted);

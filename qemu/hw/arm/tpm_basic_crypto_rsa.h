@@ -4,8 +4,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <openssl/rsa.h>
-
+#include "openssl/evp.h"
+#include "openssl/pem.h"
+#include "openssl/rsa.h"
+#include "openssl/bn.h"
+#include "openssl/bio.h"
 typedef struct RSAKeyPair {
     EVP_PKEY *pkey;
     uint8_t *public_key_der;
