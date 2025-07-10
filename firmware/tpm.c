@@ -1,6 +1,9 @@
 #include "tpm.h"
 #include "uart.h"
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 void tpm_init(struct tpm_device *dev, void *base_address){
     dev->mmio_base = base_address;
@@ -141,4 +144,83 @@ void log_tpm_status(struct tpm_device *dev) {
     if(status & TPM_STS_CMD_READY) UART_putstr("CMD_READY ");
     if(status & TPM_STS_VALID) UART_putstr("VALID ");
     UART_putstr("]\n");
+}
+
+uint64_t createPrimary(struct tpm_device *tpm){
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_SESSION,
+        .command_code = TPM2_CC_CreatePrimary,
+        .size = sizeof(struct tpm_createPrimary_command)
+    };
+
+    struct tpm_createPrimary_command create_primary_cmd = {
+        .command_header = std_cmd_header,
+        .primaryHandle = TPM_RH_OWNER, // Using Owner hierarchy
+        .inSensitive = {
+            .size = 128+64 + 2 + 2,     // 2 byte for size of each 
+            .sensitiveCreate = {
+                .userAuth = {
+                    .size = 128, // No user auth for primary key
+                    .buffer = {0}
+                },
+                .data = {
+                    .size = 64, // No additional data for primary key
+                    .buffer = {0}
+                }
+            }
+        },
+        .inPublic = {
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
+            .publicArea = {
+                .type = KEY_TYPE_RSA, // Using RSA for primary key
+                .nameAlg = TPM_ALG_RSA, // Using SHA for name algorithm
+                .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
+                .authPolicy = {
+                    .size = 64, // No auth policy for primary key
+                    .buffer = {0}
+                },
+                .parameters = {
+                    .symmetric = {
+                        .algorithm = TPM_ALG_NULL, // No symmetric algorithm for primary key
+                        .mode = 0, // Not used
+                        .keyBits = 0 // Not used
+                    },
+                    .scheme = {
+                        .scheme = TPM_ALG_NULL, // No scheme for primary key
+                        .details = 0 // No details for primary key
+                    },
+                    .keyBits = 2048, // Using 2048 bits for RSA key size
+                    .exponent = 0 // Default exponent (65537)
+                },
+                .unique = {
+                    .size = 512, // No unique value for primary key
+                    .buffer = {0} // No unique value for primary key
+                }
+            }
+        },
+        .outsideInfo = {
+            .size = 64, // No outside info for primary key
+            .buffer = {0} // No outside info for primary key
+        },
+        .creationPCR = {
+            .count = 0, // No PCR selection for primary key
+            .pcrSelections = {{0}} // No PCR selections for primary key
+        }
+    };
+    
+    UART_putstr("\nSending CreatePrimary command...\n");
+    tpm_send_command_with_log(tpm, &create_primary_cmd, sizeof(create_primary_cmd));
+    struct tpm_createPrimary_response *createPrimary_response = (struct tpm_createPrimary_response*)malloc(sizeof(struct tpm_createPrimary_response));
+
+    if(createPrimary_response->response_header.response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(createPrimary_response->response_header.response_code);
+        UART_putstr(")\n");
+        return -1;
+    }
+
+
+
+
+    return 0;
 }

@@ -37,7 +37,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-    /*// Trying self test
+    // Trying self test
     cmd_header.command_code = TPM2_CC_SelfTest;
     cmd_header.size = sizeof(struct tpm_command_header);
  
@@ -52,7 +52,7 @@ int main(void) {
         UART_putstr("Success code received\n");
     else
         UART_putstr("Error code received\n");
-*/
+
 
 
     // Trying CreatePrimary command
@@ -76,7 +76,7 @@ int main(void) {
             }
         },
         .inPublic = {
-            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512), // Size will be set later
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
             .publicArea = {
                 .type = KEY_TYPE_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_RSA, // Using SHA for name algorithm
@@ -105,7 +105,7 @@ int main(void) {
             }
         },
         .outsideInfo = {
-            .size = 0, // No outside info for primary key
+            .size = 64, // No outside info for primary key
             .buffer = {0} // No outside info for primary key
         },
         .creationPCR = {
@@ -118,7 +118,7 @@ int main(void) {
     
     tpm_send_command_with_log(&tpm, &create_primary_cmd, sizeof(create_primary_cmd));
     log_tpm_status(&tpm);   
-    return 0;
+    
     struct tpm_createPrimary_response *createPrimary_response = (struct tpm_createPrimary_response *)malloc(sizeof(struct tpm_createPrimary_response));
     tpm_receive_response_with_log(&tpm, createPrimary_response, sizeof(struct tpm_createPrimary_response));
     
@@ -128,7 +128,7 @@ int main(void) {
         UART_putstr("Error code received\n");
 
 
-/*
+
     // Trying Create command
     cmd_header.tag = TPM_ST_SESSION;
     cmd_header.command_code = TPM2_CC_Create;
@@ -137,26 +137,26 @@ int main(void) {
         .command_header = cmd_header,
         .parentHandle = 0, // Using NULL for parent handle
         .inSensitive = {
-            .size = 0, // No sensitive data for primary key
+            .size = 128+64 + 2 + 2,
             .sensitiveCreate = {
                 .userAuth = {
-                    .size = 0, // No user auth for primary key
+                    .size = 128, // No user auth for primary key
                     .buffer = {0}
                 },
                 .data = {
-                    .size = 0, // No additional data for primary key
+                    .size = 64, // No additional data for primary key
                     .buffer = {0}
                 }
             }
         },
         .inPublic = {
-            .size = 0, // Size will be set later
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
             .publicArea = {
                 .type = TPM_ALG_RSA, // Using RSA for primary key
                 .nameAlg = TPM_ALG_SHA, // Using SHA for name algorithm
                 .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
                 .authPolicy = {
-                    .size = 0, // No auth policy for primary key
+                    .size = 64, // No auth policy for primary key
                     .buffer = {0}
                 },
                 .parameters = {
@@ -173,13 +173,13 @@ int main(void) {
                     .exponent = 0 // Default exponent (65537)
                 },
                 .unique = {
-                    .size = 0, // No unique value for primary key
+                    .size = 512, // No unique value for primary key
                     .buffer = {0} // No unique value for primary key
                 }
             }
         },
         .outsideInfo = {
-            .size = 0, // No outside info for primary key
+            .size = 64, // No outside info for primary key
             .buffer = {0} // No outside info for primary key
         },
         .creationPCR = {
@@ -192,15 +192,15 @@ int main(void) {
     tpm_send_command_with_log(&tpm, &create_cmd, sizeof(create_cmd));
     log_tpm_status(&tpm);   
 
-    struct tpm_createPrimary_response *create_response = (struct tpm_createPrimary_response *)malloc(sizeof(struct tpm_createPrimary_response));
-    tpm_receive_response_with_log(&tpm, create_response, sizeof(struct tpm_createPrimary_response));
+    struct tpm_create_response *create_response = (struct tpm_create_response *)malloc(sizeof(struct tpm_create_response));
+    tpm_receive_response_with_log(&tpm, create_response, sizeof(struct tpm_create_response));
     
     if(create_response->response_header.response_code == 0)
         UART_putstr("Success code received\n");
     else
         UART_putstr("Error code received\n");
 
-   
+
     // Trying RSA_Encrypt command
     cmd_header.tag = TPM_ST_NO_SESSION;
     cmd_header.command_code = TPM2_CC_RSA_Encrypt;
@@ -209,7 +209,7 @@ int main(void) {
     size_t msg_len_enc = strlen(message_RCA_enc);
     struct TMP_RSA_encrypt_command RCA_enc_cmd = {
         .command_header = cmd_header,
-        .keyHandle = 0, 
+        .keyHandle = createPrimary_response->objectHandle, 
         .message = {
             .size = sizeof(message_RCA_enc), // Size of the message
             .buffer = {0} // Copying the message
@@ -223,7 +223,7 @@ int main(void) {
             }
         },
         .label = {
-            .size = 0, // No label for RSA encryption
+            .size = 64, // No label for RSA encryption
             .buffer = {0} // No label for RSA encryption
         }
     };
@@ -252,7 +252,7 @@ int main(void) {
     size_t msg_len_dec = strlen(message_RCA_dec);
     struct TMP_RSA_decrypt_command RCA_dec_cmd = {
         .command_header = cmd_header,
-        .keyHandle = 0, 
+        .keyHandle = createPrimary_response->objectHandle, 
         .cipherText = {
             .size = sizeof(message_RCA_dec), // Size of the message
             .buffer = {0} // Copying the message
@@ -266,7 +266,7 @@ int main(void) {
             }
         },
         .label = {
-            .size = 0, // No label for RSA encryption
+            .size = 64, // No label for RSA encryption
             .buffer = {0} // No label for RSA encryption
         }
     };
@@ -309,6 +309,6 @@ int main(void) {
     else
         UART_putstr("Error code received\n");
 
-*/
+
     return 0;
 }

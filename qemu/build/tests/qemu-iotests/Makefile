@@ -1,1 +1,0 @@
-/root/CESprj/qemu/tests/qemu-iotests/Makefile

@@ -1298,6 +1298,7 @@ static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsig
             if(val & R_TPM_STS_GO_MASK){
                 // To trigger data execution
                 printf("[TPM]: Triggering command execution\n");
+                s->command_pos = 0;
                 s->processing = true;
                 //qemu_bh_schedule(s->command_bh);
                 process_command(s);
@@ -1310,12 +1311,15 @@ static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsig
                 // | Tag (2 bytes) | Size (4 bytes) | Command Code (4 bytes) |
                 // +---------------+----------------+------------------------+
                 s->command[s->command_pos++] = val; 
+                //printf("0x%lx | 0x%lx\n", s->command[s->command_pos-1], val); 
+                if (s->command_pos == 6){
+                    s->command_size = (s->command[5] << 24) | (s->command[4] << 16) | (s->command[3] << 8) | s->command[2];
+                    //printf("Command size: %lx\n", s->command_size);
+                }
                 
                 if (s->command_pos >= 6){   
                     // Waiting 6 bytes to have the size and to check it 
                     // Parsing size 
-                    
-                    s->command_size = (s->command[5] << 24) | (s->command[4] << 16) | (s->command[3] << 8) | s->command[2];
                     if(s->command_size > sizeof(s->command)){
                         // Command size too big, return error
                         printf("[TPM]: Command size too big: %d\n", s->command_size);

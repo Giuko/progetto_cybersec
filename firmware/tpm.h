@@ -456,6 +456,10 @@ struct TMP_shutdown_response{
 
 
 
+/* Commands signature*/
+// Return he handle of the key created
+uint64_t createPrimary(struct tpm_device *tpm);
+
 enum tpm_state {
     TPM_STATE_IDLE,
     TPM_STATE_READY,
