@@ -548,6 +548,8 @@ static uint32_t CreatePrimary(CustomTPMState *s){
     s->response[resp_offset + 3] = key->handle >> 24;
     resp_offset += 4;
 
+    printf("Handle: %02x %02x %02x %02x\n", key->handle, key->handle >> 8, key->handle >> 16, key->handle >> 24);
+
     // TPM2B_PUBLIC outPublic
     if (build_tpm2b_public_response(s, key, &inPublic, &resp_offset) != 0){
         printf("[TPM]: Failed to build TPM2B_PUBLIC\n");

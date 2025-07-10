@@ -211,13 +211,15 @@ struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm){
     UART_putstr("\nSending CreatePrimary command...\n");
     tpm_send_command_with_log(tpm, &create_primary_cmd, sizeof(create_primary_cmd));
     struct tpm_createPrimary_response *createPrimary_response = (struct tpm_createPrimary_response*)malloc(sizeof(struct tpm_createPrimary_response));
-
+    tpm_receive_response_with_log(tpm, createPrimary_response, sizeof(struct tpm_create_response));
+    
     if(createPrimary_response->response_header.response_code != 0){
         UART_putstr("Error code received (0x");
         UART_puthex(createPrimary_response->response_header.response_code);
         UART_putstr(")\n");
         return NULL;
     }
+    
     return createPrimary_response;
 }
 
@@ -323,7 +325,7 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
             .buffer = {0} // No label for RSA encryption
         }
     };
-    mempcpy(RCA_enc_cmd.message.buffer, plaintext, plaintext_size);
+    memcpy(RCA_enc_cmd.message.buffer, plaintext, plaintext_size);
     
     UART_putstr("\nSending RSA_Encrypt command...\n");
     tpm_send_command_with_log(tpm, &RCA_enc_cmd, sizeof(RCA_enc_cmd));

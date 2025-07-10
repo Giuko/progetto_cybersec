@@ -59,6 +59,9 @@ int main(void) {
 
     struct tpm_createPrimary_response *createPrimary_response = createPrimary(&tpm);
     uint32_t primary_handle = createPrimary_response->objectHandle;
+    UART_putstr("Created primary key with handle 0x");
+    UART_puthex(primary_handle);
+    UART_println();
 
     /* ***************************************************** */
     /*                     Create                            */
