@@ -146,7 +146,7 @@ void log_tpm_status(struct tpm_device *dev) {
     UART_putstr("]\n");
 }
 
-uint64_t createPrimary(struct tpm_device *tpm){
+struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm){
     struct tpm_command_header std_cmd_header = {
         .tag = TPM_ST_SESSION,
         .command_code = TPM2_CC_CreatePrimary,
@@ -216,11 +216,129 @@ uint64_t createPrimary(struct tpm_device *tpm){
         UART_putstr("Error code received (0x");
         UART_puthex(createPrimary_response->response_header.response_code);
         UART_putstr(")\n");
-        return -1;
+        return NULL;
+    }
+    return createPrimary_response;
+}
+
+struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handle){
+
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_SESSION,
+        .command_code = TPM2_CC_Create,
+        .size = sizeof(struct tpm_create_command)
+    };
+    struct tpm_create_command create_cmd = {
+        .command_header = std_cmd_header,
+        .parentHandle = parent_handle,
+        .inSensitive = {
+            .size = 128+64 + 2 + 2,
+            .sensitiveCreate = {
+                .userAuth = {
+                    .size = 128, // No user auth for primary key
+                    .buffer = {0}
+                },
+                .data = {
+                    .size = 64, // No additional data for primary key
+                    .buffer = {0}
+                }
+            }
+        },
+        .inPublic = {
+            .size = 2 + 2 + 4 + (2 + 64) + ((2 + 2 + 2 ) + (2 + 2) + 2 + 4) + (2 + 512),
+            .publicArea = {
+                .type = TPM_ALG_RSA, // Using RSA for primary key
+                .nameAlg = TPM_ALG_SHA, // Using SHA for name algorithm
+                .objectAttributes = ST_CLEAR | FIXED_TPM | FIXED_PARENT | DECRYPT | SIGN,
+                .authPolicy = {
+                    .size = 64, // No auth policy for primary key
+                    .buffer = {0}
+                },
+                .parameters = {
+                    .symmetric = {
+                        .algorithm = TPM_ALG_NULL, // No symmetric algorithm for primary key
+                        .mode = 0, // Not used
+                        .keyBits = 0 // Not used
+                    },
+                    .scheme = {
+                        .scheme = TPM_ALG_NULL, // No scheme for primary key
+                        .details = 0 // No details for primary key
+                    },
+                    .keyBits = 2048, // Using 2048 bits for RSA key size
+                    .exponent = 0 // Default exponent (65537)
+                },
+                .unique = {
+                    .size = 512, // No unique value for primary key
+                    .buffer = {0} // No unique value for primary key
+                }
+            }
+        },
+        .outsideInfo = {
+            .size = 64, // No outside info for primary key
+            .buffer = {0} // No outside info for primary key
+        },
+        .creationPCR = {
+            .count = 0, // No PCR selection for primary key
+            .pcrSelections = {{0}} // No PCR selections for primary key
+        }
+    };
+    
+    UART_putstr("\nSending Create command...\n");
+    tpm_send_command_with_log(tpm, &create_cmd, sizeof(create_cmd));
+ 
+    struct tpm_create_response *create_response = (struct tpm_create_response *)malloc(sizeof(struct tpm_create_response));
+    tpm_receive_response_with_log(tpm, create_response, sizeof(struct tpm_create_response));
+    
+    if(create_response->response_header.response_code != 0){
+        return NULL;
     }
 
+    return create_response;
+}
 
+struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *plaintext, size_t plaintext_size){
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_NO_SESSION,
+        .command_code = TPM2_CC_RSA_Encrypt,
+        .size = sizeof(struct TMP_RSA_encrypt_command)
+    };
 
+    struct TMP_RSA_encrypt_command RCA_enc_cmd = {
+        .command_header = std_cmd_header,
+        .keyHandle = key_handle, 
+        .message = {
+            .size = plaintext_size, // Size of the message
+            .buffer = {0} // Copying the message
+        },
+        .inScheme = {
+            .scheme = TPM_ALG_NULL, // No scheme for RSA encryption  
+            .details = {
+                .rsaes = {
+                    .empty = {0}      
+                }
+            }
+        },
+        .label = {
+            .size = 64, // No label for RSA encryption
+            .buffer = {0} // No label for RSA encryption
+        }
+    };
+    mempcpy(RCA_enc_cmd.message.buffer, plaintext, plaintext_size);
+    
+    UART_putstr("\nSending RSA_Encrypt command...\n");
+    tpm_send_command_with_log(tpm, &RCA_enc_cmd, sizeof(RCA_enc_cmd));
+    
+    struct TMP_RSA_encrypt_response *RSA_enc_response = (struct TMP_RSA_encrypt_response *)malloc(sizeof(struct TMP_RSA_encrypt_response));
 
-    return 0;
+    tpm_receive_response_with_log(tpm, RSA_enc_response, sizeof(struct TMP_RSA_encrypt_response));
+    
+    if(RSA_enc_response->response_header.response_code != 0){
+        UART_putstr("Error code received (");
+        UART_puthex(RSA_enc_response->response_header.response_code);
+        UART_putstr(")\n");
+        return NULL;
+    }
+
+    return RSA_enc_response;
+
 }

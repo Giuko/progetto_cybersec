@@ -450,16 +450,6 @@ struct TMP_shutdown_response{
     struct tpm_response_header response_header;
 } __attribute__((packed));
 
-
-
-
-
-
-
-/* Commands signature*/
-// Return he handle of the key created
-uint64_t createPrimary(struct tpm_device *tpm);
-
 enum tpm_state {
     TPM_STATE_IDLE,
     TPM_STATE_READY,
@@ -491,4 +481,12 @@ const char* tpm_command_name(uint32_t command_code);
 int tpm_send_command_with_log(struct tpm_device *dev, void *command, uint32_t size);
 int tpm_receive_response_with_log(struct tpm_device *dev, void *buffer, uint32_t max_size);
 void log_tpm_status(struct tpm_device *dev);
+
+
+/* Commands signature*/
+// Return he handle of the key created
+struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm);
+struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parentHandle);
+struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *plaintext, size_t plaintext_size);
+
 #endif
