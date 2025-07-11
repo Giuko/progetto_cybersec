@@ -16,6 +16,8 @@ int main(void) {
     /*                  Startup                              */
 
     struct tpm_response_header *startup_response = startup(&tpm);
+    UART_puthex(sizeof(tpm.response_buffer));
+    UART_println();
     if (startup_response != NULL) {
         UART_putstr("TPM started successfully.\n");
     }
@@ -34,7 +36,7 @@ int main(void) {
     /* ***************************************************** */
     /*              Create Primary                           */
 
-    uint16_t keyBits = 2048;
+    uint16_t keyBits = 2048;      // Needed this size to encrypt child key
     struct tpm_createPrimary_response *createPrimary_response = createPrimary(&tpm, keyBits);
     uint32_t primary_handle = createPrimary_response->objectHandle;
     UART_putstr("Created primary key with handle 0x");
@@ -44,15 +46,21 @@ int main(void) {
     /* ***************************************************** */
     /*                     Create                            */
 
-//    struct tpm_create_response *create_response = create(&tpm, primary_handle);
-  
+    keyBits = 2048;
+    struct tpm_create_response *create_response = create(&tpm, primary_handle, keyBits);
+    UART_putstr("Created key with handle, private size: ");
+    UART_puthex(create_response->outPrivate.size);
+    UART_println();
+
+    
+
     /* ***************************************************** */
     /*                 RSA_Ecrypt                            */
    
     char text[] = "This is a text";
     size_t text_size = sizeof(text);
     struct TMP_RSA_encrypt_response *enc_response = encrypt(&tpm, primary_handle, text, text_size);
-
+    
     /* ***************************************************** */
     /*                 RSA_Decrypt                           */
 

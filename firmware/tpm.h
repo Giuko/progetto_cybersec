@@ -166,8 +166,8 @@ typedef struct {
 }  __attribute__((packed)) TPM2B_DIGEST;
 // RSA Public Key
 typedef struct {
-    uint16_t size;                  // Size of RSA modulus (n)
-    uint8_t buffer[512];            // RSA modulus (up to 4096 bits = 512 bytes)
+    uint16_t size;                      // Size of RSA modulus (n)
+    uint8_t buffer[512];               // RSA modulus
 }  __attribute__((packed)) TPM2B_PUBLIC_KEY_RSA;
 
 typedef struct {
@@ -270,6 +270,7 @@ typedef struct TPM2B_PRIVATE TPM2B_PRIVATE;
 struct TPM2B_PRIVATE {
     uint16_t size;
     uint8_t buffer[sizeof(_PRIVATE)];
+    //uint8_t blob[0x400];
 } __attribute__((packed)) ;
 
 typedef struct TPMT_HA TPMT_HA;
@@ -486,7 +487,7 @@ void log_tpm_status(struct tpm_device *dev);
 /* Commands signature*/
 // Return he handle of the key created
 struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm, uint16_t keyBits);
-struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parentHandle);
+struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parentHandle, uint16_t keyBits);
 struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *plaintext, size_t plaintext_size);
 struct TMP_RSA_decrypt_response* decrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *cipherText, size_t cipherText_size);
 

@@ -27,13 +27,20 @@ static int wait_for_status(struct tpm_device *dev, uint8_t mask, uint8_t value){
 
 int tpm_send_command(struct tpm_device *dev, void *command, uint32_t size){
     // Check command size
-    if(size > sizeof(dev->command_buffer))
+    if(size > sizeof(dev->command_buffer)){
+        UART_putstr("Size exceeded\n");
+        UART_puthex(size);
+        UART_putstr(" > ");
+        UART_puthex(sizeof(dev->command_buffer));
+        UART_println();
         return -1;
+    }
 
     // Wait for command ready
-    if(wait_for_status(dev, TPM_STS_CMD_READY, TPM_STS_CMD_READY))
+    if(wait_for_status(dev, TPM_STS_CMD_READY, TPM_STS_CMD_READY)){
+        UART_putstr("Time exceeded\n");
         return -1;
-
+    }
     // Write command to FIFO
     uint8_t *cmd = (uint8_t *)command;
     for(int i = 0; i < size; i++){
@@ -223,7 +230,7 @@ struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm, uint16_
     return createPrimary_response;
 }
 
-struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handle){
+struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handle, uint16_t keyBits){
 
     struct tpm_command_header std_cmd_header = {
         .tag = TPM_ST_SESSION,
@@ -266,7 +273,7 @@ struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handl
                         .scheme = TPM_ALG_NULL, // No scheme for primary key
                         .details = 0 // No details for primary key
                     },
-                    .keyBits = 2048, // Using 2048 bits for RSA key size
+                    .keyBits = 1024, // Using 2048 bits for RSA key size
                     .exponent = 0 // Default exponent (65537)
                 },
                 .unique = {
@@ -334,7 +341,9 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
     tpm_send_command_with_log(tpm, &RCA_enc_cmd, sizeof(RCA_enc_cmd));
     
     struct TMP_RSA_encrypt_response *RSA_enc_response = (struct TMP_RSA_encrypt_response *)malloc(sizeof(struct TMP_RSA_encrypt_response));
-
+    UART_putstr("Encrypt size: ");
+    UART_puthex(RSA_enc_response->outData.size);
+    UART_println();
     tpm_receive_response_with_log(tpm, RSA_enc_response, sizeof(struct TMP_RSA_encrypt_response));
     
     if(RSA_enc_response->response_header.response_code != 0){
@@ -347,8 +356,6 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
     return RSA_enc_response;
 
 }
-
-
 
 struct TMP_RSA_decrypt_response* decrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *cipherText, size_t cipherText_size){
     

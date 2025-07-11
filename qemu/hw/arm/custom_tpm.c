@@ -55,7 +55,7 @@ typedef enum{
 } TPMInternalState;
 
 #define MAX_KEYS 4
-#define KEY_HANDLE_BASE 0X81000000          // A generic (simplied) key handle base for everything
+#define KEY_HANDLE_BASE 0x81000000          // A generic (simplied) key handle base for everything
 
 struct CustomTPMState {
     SysBusDevice parent_obj;
@@ -151,7 +151,7 @@ static int serialize_public_area(TPMT_PUBLIC *pub, uint8_t *buffer, int max_size
     return offset;
 }
 
-// Helper function to calculate object name
+// Helper function to create output
 static int calculate_object_name(TPM_Key *key, TPM2B_PUBLIC *inPublic, TPM2B_DIGEST *name) {
     if(!key || !inPublic || !name) {
         return -1;
@@ -399,6 +399,114 @@ static int build_creation_ticket(CustomTPMState *s, TPM_Key *key, int *resp_offs
     return 0;
 }
 
+static int create_tpm2b_private(TPM2B_PRIVATE *outPrivate, TPMT_SENSITIVE *sensitive, TPM_Key *parentKey) {
+    if (!outPrivate || !sensitive || !parentKey) {
+        printf("[TPM]: Invalid parameters for create_tpm2b_private\n");
+        return -1;
+    }
+
+    // Calculate the size needed for the sensitive data
+    size_t sensitive_size = 0;
+    
+    // Add sizes for each field in TPMT_SENSITIVE
+    sensitive_size += 2; // sensitiveType (TPMI_ALG_PUBLIC)
+    sensitive_size += 2 + sensitive->authValue.size; // TPM2B_AUTH
+    sensitive_size += 2 + sensitive->seedValue.size; // TPM2B_DIGEST
+    sensitive_size += 2 + sensitive->sensitive.size; // TPM2B_SENSITIVE_DATA
+    
+    // Check if we need to split the data due to RSA encryption size limits
+    int rsa_key_size = EVP_PKEY_size(parentKey->key->pkey); // RSA key size in bytes
+    int max_plaintext_size = rsa_key_size - 11; // PKCS#1 v1.5 padding overhead
+    if (sensitive_size > max_plaintext_size) {
+        printf("[TPM]: Sensitive data too large for RSA encryption (%zu > %d)\n", sensitive_size, max_plaintext_size);
+        return -1;
+    }else{
+    
+        // Data is small enough for direct RSA encryption
+        uint8_t *sensitive_buffer = g_malloc(sensitive_size);
+        if (!sensitive_buffer) {
+            printf("[TPM]: Failed to allocate buffer\n");
+            return -1;
+        }
+        
+        size_t offset = 0;
+        
+        // Serialize all sensitive data
+        sensitive_buffer[offset] = sensitive->sensitiveType;
+        sensitive_buffer[offset + 1] = (sensitive->sensitiveType >> 8);
+        offset += 2;
+        
+        sensitive_buffer[offset] = sensitive->authValue.size;
+        sensitive_buffer[offset + 1] = (sensitive->authValue.size >> 8);
+        offset += 2;
+        if (sensitive->authValue.size > 0) {
+            memcpy(&sensitive_buffer[offset], sensitive->authValue.buffer, sensitive->authValue.size);
+            offset += sensitive->authValue.size;
+        }
+        
+        sensitive_buffer[offset] = sensitive->seedValue.size;
+        sensitive_buffer[offset + 1] = (sensitive->seedValue.size >> 8);
+        offset += 2;
+        if (sensitive->seedValue.size > 0) {
+            memcpy(&sensitive_buffer[offset], sensitive->seedValue.buffer, sensitive->seedValue.size);
+            offset += sensitive->seedValue.size;
+        }
+        
+        sensitive_buffer[offset] = sensitive->sensitive.size;
+        sensitive_buffer[offset + 1] = (sensitive->sensitive.size >> 8);
+        offset += 2;
+        if (sensitive->sensitive.size > 0) {
+            memcpy(&sensitive_buffer[offset], sensitive->sensitive.buffer, sensitive->sensitive.size);
+            offset += sensitive->sensitive.size;
+        }
+        
+        // Encrypt with RSA
+        uint8_t *encrypted_data = NULL;
+        size_t encrypted_data_len = 0;
+        
+        if (qemu_rsa_encrypt(parentKey->key, sensitive_buffer, sensitive_size, 
+                            &encrypted_data, &encrypted_data_len) != 0) {
+            printf("[TPM]: Failed to encrypt sensitive data\n");
+            g_free(sensitive_buffer);
+            return -1;
+        }
+        
+        if (encrypted_data_len > sizeof(outPrivate->buffer)) {
+            printf("[TPM]: Encrypted data too large for buffer\n");
+            g_free(sensitive_buffer);
+            g_free(encrypted_data);
+            return -1;
+        }
+        
+        outPrivate->size = encrypted_data_len;
+        memcpy(outPrivate->buffer, encrypted_data, encrypted_data_len);
+        
+        g_free(sensitive_buffer);
+        g_free(encrypted_data);
+    }
+    
+    return 0;
+
+}
+
+static int serialize_tpm2b_private(TPM2B_PRIVATE *outPrivate, uint8_t *response, int *resp_offset) {
+    if (!outPrivate || !response || !resp_offset) {
+        printf("[TPM]: Invalid parameters for serialize_tpm2b_private\n");
+        return -1;
+    }
+    
+    response[*resp_offset] = outPrivate->size;
+    response[*resp_offset + 1] = (outPrivate->size >> 8);
+    *resp_offset += 2;
+    
+    // Write data
+    if (outPrivate->size > 0) {
+        memcpy(&response[*resp_offset], outPrivate->buffer, outPrivate->size);
+        *resp_offset += outPrivate->size;
+    }
+    
+    return 0;
+}
 /* Begin Commands */
 static uint32_t SelfTest(CustomTPMState *s){
     // It should check a test of self function, but in this case it send only a response code
@@ -948,21 +1056,23 @@ static uint32_t Create(CustomTPMState *s){
         return TPM_RC_FAILURE;
     }
 
+    // ============= CREATE TPM2B_PRIVATE =============
     // Create TPM2B_PRIVATE by encrypting the sensitive data
-    /*if(create_tpm2b_private(&outPrivate, &sensitive, parentKey) != 0) {
+    if(create_tpm2b_private(&outPrivate, &sensitive, parentKey) != 0) {
         printf("[TPM]: Failed to create TPM2B_PRIVATE\n");
+        free(key);
         return TPM_RC_FAILURE;
     }
 
     // Serialize TPM2B_PRIVATE to response
     if(serialize_tpm2b_private(&outPrivate, s->response, &resp_offset) != 0) {
         printf("[TPM]: Failed to serialize TPM2B_PRIVATE\n");
+        free(key);
         return TPM_RC_FAILURE;
-    }
-    */
+    } 
     printf("[TPM]: TPM2B_PRIVATE created successfully, size: %d bytes\n", outPrivate.size);
     
-    // ========== CREATE TPM2B_PUBLIC ==========
+    // ============== CREATE TPM2B_PUBLIC ==============
     // Build TPM2B_PUBLIC response using existing helper function
     if (build_tpm2b_public_response(s, key, &inPublic, &resp_offset) != 0){
         printf("[TPM]: Failed to build TPM2B_PUBLIC\n");
@@ -975,7 +1085,7 @@ static uint32_t Create(CustomTPMState *s){
         return TPM_RC_FAILURE;
     }
     
-    // ========== CREATE TPMT_TK_CREATION ==========
+    // =========== CREATE TPMT_TK_CREATION ============
     if (build_creation_ticket(s, key, &resp_offset) != 0) {
         printf("[TPM]: Failed to build creation ticket\n");
         return TPM_RC_FAILURE;

@@ -98,19 +98,19 @@ static void print_rsa_key_pem(EVP_PKEY *pkey){
 RSAKeyPair *qemu_generate_rsa_key(int key_bits){
     RSAKeyPair *keypair;
     
-    printf("Generating RSA key pair (%d bits)...\n", key_bits);
+    printf("[TPM] Generating RSA key pair (%d bits)...\n", key_bits);
     
     keypair = generate_rsa_keypair(key_bits);
     if (!keypair) {
-        error_report("Failed to generate RSA keypair");
+        error_report("[TPM] Failed to generate RSA keypair");
         return NULL;
     }
     
-    printf("RSA key pair generated successfully!\n");
-    printf("Public key size: %zu bytes\n", keypair->public_key_len);
-    printf("Private key size: %zu bytes\n", keypair->private_key_len);
+    printf("[TPM] RSA key pair generated successfully!\n");
+    printf("[TPM] Public key size: %zu bytes\n", keypair->public_key_len);
+    printf("[TPM] Private key size: %zu bytes\n", keypair->private_key_len);
     
-    print_rsa_key_pem(keypair->pkey);
+    // print_rsa_key_pem(keypair->pkey);
  
     if(!qemu_verify_integrity(keypair)){
         printf("Verification failed\n");
