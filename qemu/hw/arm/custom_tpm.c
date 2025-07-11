@@ -102,6 +102,117 @@ static void tpm_reset_state(CustomTPMState *s){
 }
 
 /**/
+// Helper function to serialize public area for hashing
+static int serialize_public_area(TPMT_PUBLIC *pub, uint8_t *buffer, int max_size) {
+    if(!pub || !buffer) {
+        return -1;
+    }
+    
+    int offset = 0;
+    
+    // This is a simplified serialization - in a real implementation,
+    // you would need to serialize all fields according to TPM spec
+    
+    // Type (2 bytes)
+    if(offset + 2 > max_size) return -1;
+    buffer[offset] = pub->type & 0xFF;
+    buffer[offset + 1] = (pub->type >> 8) & 0xFF;
+    offset += 2;
+    
+    // NameAlg (2 bytes)
+    if(offset + 2 > max_size) return -1;
+    buffer[offset] = pub->nameAlg & 0xFF;
+    buffer[offset + 1] = (pub->nameAlg >> 8) & 0xFF;
+    offset += 2;
+    
+    // ObjectAttributes (4 bytes)
+    if(offset + 4 > max_size) return -1;
+    buffer[offset] = pub->objectAttributes & 0xFF;
+    buffer[offset + 1] = (pub->objectAttributes >> 8) & 0xFF;
+    buffer[offset + 2] = (pub->objectAttributes >> 16) & 0xFF;
+    buffer[offset + 3] = (pub->objectAttributes >> 24) & 0xFF;
+    offset += 4;
+    
+    // AuthPolicy
+    if(offset + 2 > max_size) return -1;
+    buffer[offset] = pub->authPolicy.size & 0xFF;
+    buffer[offset + 1] = (pub->authPolicy.size >> 8) & 0xFF;
+    offset += 2;
+    
+    if(pub->authPolicy.size > 0) {
+        if(offset + pub->authPolicy.size > max_size) return -1;
+        memcpy(&buffer[offset], pub->authPolicy.buffer, pub->authPolicy.size);
+        offset += pub->authPolicy.size;
+    }
+    
+    // Parameters and unique would be added here for complete implementation
+    // For now, just return what we have
+    
+    return offset;
+}
+
+// Helper function to calculate object name
+static int calculate_object_name(TPM_Key *key, TPM2B_PUBLIC *inPublic, TPM2B_DIGEST *name) {
+    if(!key || !inPublic || !name) {
+        return -1;
+    }
+    
+    // Object name is hash of the public area
+    // Format: nameAlg (2 bytes) + hash of public area
+    
+    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+    if(!ctx) {
+        printf("[TPM]: Failed to create hash context for name calculation\n");
+        return -1;
+    }
+    
+    const EVP_MD *md = NULL;
+    switch(inPublic->publicArea.nameAlg) {
+        case TPM_ALG_SHA1:
+            md = EVP_sha1();
+            break;
+        default:
+            printf("[TPM]: Unsupported name algorithm: 0x%04x\n", inPublic->publicArea.nameAlg);
+            EVP_MD_CTX_free(ctx);
+            return -1;
+    }
+    
+    unsigned char hash[64]; // Max hash size
+    unsigned int hash_len;
+    
+    // Create a buffer with the public area data to hash
+    uint8_t public_area_buffer[2048];
+    int pub_size = serialize_public_area(&inPublic->publicArea, public_area_buffer, sizeof(public_area_buffer));
+    
+    if(pub_size <= 0) {
+        printf("[TPM]: Failed to serialize public area for name calculation\n");
+        EVP_MD_CTX_free(ctx);
+        return -1;
+    }
+    
+    EVP_DigestInit_ex(ctx, md, NULL);
+    EVP_DigestUpdate(ctx, public_area_buffer, pub_size);
+    EVP_DigestFinal_ex(ctx, hash, &hash_len);
+    EVP_MD_CTX_free(ctx);
+    
+    // Build name: nameAlg + hash
+    name->size = 2 + hash_len;
+    if(name->size > sizeof(name->buffer)) {
+        printf("[TPM]: Name too large: %d bytes\n", name->size);
+        return -1;
+    }
+    
+    // Store nameAlg (little endian)
+    name->buffer[0] = inPublic->publicArea.nameAlg & 0xFF;
+    name->buffer[1] = (inPublic->publicArea.nameAlg >> 8) & 0xFF;
+    
+    // Store hash
+    memcpy(&name->buffer[2], hash, hash_len);
+    
+    printf("[TPM]: Object name calculated, size: %d bytes\n", name->size);
+    return 0;
+}
+
 static int build_tpm2b_public_response(CustomTPMState *s, TPM_Key *key, TPM2B_PUBLIC *inPublic, int *resp_offset) {
     int start_offset = *resp_offset;
     
@@ -494,6 +605,7 @@ static uint32_t CreatePrimary(CustomTPMState *s){
 
     // Initialize key
     key->handle = KEY_HANDLE_BASE + s->next_handle++;
+    printf("[TPM]: handle 0x%x\n", key->handle);
     key->type = KEY_TYPE_RSA;
     key->attributes = inPublic.publicArea.objectAttributes;
     key->algorithm = inPublic.publicArea.type;
@@ -794,113 +906,344 @@ static uint32_t Create(CustomTPMState *s){
     printf("[TPM] Created key under parent 0x%08x\n", parentHandle);
 
     // Store the key in the slot
-    s->keys[slot] = *key;
+    // s->keys[slot] = *key;
 
-    key->loaded = true;
+    // key->loaded = true;
+    key->loaded = false;
 
     // Prepare response - improved response building
     int resp_offset = 10;
 
-    // TPM2B_PRIVATE outPrivate (simplified - in real TPM this would be encrypted)
-    uint16_t privateSize = key->key->private_key_len;
-    if(privateSize == 0) {
-        privateSize = sizeof(key->key->private_key_der); // fallback
+    // TPM2B_PRIVATE outPrivate
+    TPM2B_PRIVATE outPrivate;
+    memset(&outPrivate, 0, sizeof(outPrivate));
+    
+    TPMT_SENSITIVE sensitive;
+    memset(&sensitive, 0, sizeof(sensitive));
+
+    sensitive.sensitiveType = inPublic.publicArea.type;
+
+    if(inSensitive.size >= 2) {
+        uint16_t userAuthSize = inSensitive.sensitiveCreate.userAuth.size;
+        if(userAuthSize > 0 && userAuthSize + 2 <= inSensitive.size) {
+            sensitive.authValue.size = userAuthSize;
+            if(userAuthSize <= sizeof(sensitive.authValue.buffer)) {
+                memcpy(sensitive.authValue.buffer, &inSensitive.sensitiveCreate.userAuth.buffer, userAuthSize);
+            }
+        }
     }
-    
-    s->response[resp_offset] = privateSize & 0xFF;
-    s->response[resp_offset + 1] = (privateSize >> 8) & 0xFF;
-    resp_offset += 2;
-    
-    if(resp_offset + privateSize > sizeof(s->response)){
-        printf("[TPM]: Response buffer too small for private key\n");
-        free(key);
-        return TPM_RC_FAILURE;
-    }
-    
 
-
-
-    // In a real implementation, this should be encrypted with parent's key
+    sensitive.seedValue.size = 0;
+    // Set sensitive data (the actual private key)
     if(key->key->private_key_der && key->key->private_key_len > 0) {
-        memcpy(&s->response[resp_offset], key->key->private_key_der, privateSize);
-    }
-    
-    /* Encrypt private key */
-    uint8_t *private_key_data = NULL;
-    private_key_data = key->key->private_key_der;
-    printf("[TPM]: Encrypting private key with parent's public key...\n");
-
-    size_t ciphertext_buffer_size = parentKey->key->public_key_len;
-    uint8_t *ciphertext_buffer = malloc(ciphertext_buffer_size);
-    if(!ciphertext_buffer){
-        printf("[TPM]: Failed to allocate ciphertext buffer for private key encryption\n");
-        free(key);
+        if(key->key->private_key_len <= sizeof(sensitive.sensitive.buffer)) {
+            sensitive.sensitive.size = key->key->private_key_len;
+            memcpy(sensitive.sensitive.buffer, key->key->private_key_der, key->key->private_key_len);
+        } else {
+            printf("[TPM]: Private key too large for sensitive buffer\n");
+            return TPM_RC_FAILURE;
+        }
+    } else {
+        printf("[TPM]: No private key data available\n");
         return TPM_RC_FAILURE;
     }
 
-    int ciphertext_len = 0;
-    ciphertext_len = qemu_rsa_encrypt(parentKey->key, private_key_data, privateSize, &ciphertext_buffer, &ciphertext_buffer_size);
-    
-    if(ciphertext_len <= 0) {
-        printf("[TPM]: Failed to encrypt private key with parent's public key\n");
-        free(ciphertext_buffer);
-        free(key);
+    // Create TPM2B_PRIVATE by encrypting the sensitive data
+    /*if(create_tpm2b_private(&outPrivate, &sensitive, parentKey) != 0) {
+        printf("[TPM]: Failed to create TPM2B_PRIVATE\n");
         return TPM_RC_FAILURE;
     }
 
-    // Store encrypted private key size in response
-    s->response[resp_offset] = ciphertext_len & 0xFF;
-    s->response[resp_offset + 1] = (ciphertext_len >> 8) & 0xFF;
-    resp_offset += 2;
-    if(resp_offset + ciphertext_len > sizeof(s->response)){
-        printf("[TPM]: Response buffer too small for encrypted private key\n");
-        free(ciphertext_buffer);
-        free(key);
+    // Serialize TPM2B_PRIVATE to response
+    if(serialize_tpm2b_private(&outPrivate, s->response, &resp_offset) != 0) {
+        printf("[TPM]: Failed to serialize TPM2B_PRIVATE\n");
         return TPM_RC_FAILURE;
     }
+    */
+    printf("[TPM]: TPM2B_PRIVATE created successfully, size: %d bytes\n", outPrivate.size);
     
-    // Copy encrypted private key to response
-    memcpy(&s->response[resp_offset], ciphertext_buffer, ciphertext_len);
-    resp_offset += ciphertext_len;
-    // Clean up encryption buffer
-    free(ciphertext_buffer);
-    printf("[TPM]: Private key encrypted successfully, size: %d bytes\n", ciphertext_len);
-
-    // TPM2B_PUBLIC outPublic - use helper function like CreatePrimary
+    // ========== CREATE TPM2B_PUBLIC ==========
+    // Build TPM2B_PUBLIC response using existing helper function
     if (build_tpm2b_public_response(s, key, &inPublic, &resp_offset) != 0){
         printf("[TPM]: Failed to build TPM2B_PUBLIC\n");
-        free(key);
         return TPM_RC_FAILURE;
     }
-
-    // TPM2B_CREATION_DATA creationData
+    
+    // ========== CREATE TPM2B_CREATION_DATA ==========
     if (build_creation_data(s, key, &resp_offset) != 0) {
         printf("[TPM]: Failed to build creation data\n");
-        free(key);
         return TPM_RC_FAILURE;
     }
-
-    // TPMT_TK_CREATION creationTicket
+    
+    // ========== CREATE TPMT_TK_CREATION ==========
     if (build_creation_ticket(s, key, &resp_offset) != 0) {
         printf("[TPM]: Failed to build creation ticket\n");
-        free(key);
         return TPM_RC_FAILURE;
     }
-
-    // TPM2B_DIGEST name (simplified, empty for now)
-    s->response[resp_offset] = 0x00; // size low
-    s->response[resp_offset + 1] = 0x00; // size high
-    resp_offset += 2;
+    
+    // ========== CREATE TPM2B_DIGEST (name) ==========
+    // Calculate object name (hash of public area)
+    TPM2B_DIGEST objectName;
+    memset(&objectName, 0, sizeof(objectName));
+    
+    if(calculate_object_name(key, &inPublic, &objectName) == 0) {
+        // Serialize object name
+        s->response[resp_offset] = objectName.size & 0xFF;
+        s->response[resp_offset + 1] = (objectName.size >> 8) & 0xFF;
+        resp_offset += 2;
+        
+        if(objectName.size > 0) {
+            memcpy(&s->response[resp_offset], objectName.buffer, objectName.size);
+            resp_offset += objectName.size;
+        }
+    } else {
+        // Empty name if calculation fails
+        s->response[resp_offset] = 0x00; // size low
+        s->response[resp_offset + 1] = 0x00; // size high
+        resp_offset += 2;
+    }
     
     s->response_size = resp_offset;
-
     printf("[TPM] Create response prepared, size: %d bytes\n", s->response_size);
-    printf("[TPM] Key handle: 0x%08x, Type: %d, Bits: %d\n", 
-           key->handle, key->type, inPublic.publicArea.parameters.keyBits);
-
-    free(key); // The key is already copied to s->keys[slot]
+    printf("[TPM] Key Type: %d, Bits: %d, Algorithm: 0x%04x\n", 
+           key->type, inPublic.publicArea.parameters.keyBits, key->algorithm);
+    
     return TPM_RC_SUCCESS;
-    return creationPCRCount;    // To remove unused warning
+}
+
+static uint32_t Load(CustomTPMState *s) {
+    // Load a previously created key into the TPM
+    printf("[TPM]: Load Command execution\n");
+    s->response_size = 10;
+    
+    if(s->state == TPM_STATE_IDLE) { 
+        return TPM_RC_INITIALIZE; 
+    } 
+    
+    if(s->command_size < 18) {  // 10 + 4 + 2 + 2 (minimum)
+        printf("[TPM] Load command too small\n");
+        return TPM_RC_SIZE;
+    }
+    
+    // Load command fields:
+    // TPMI_DH_OBJECT parentHandle             (uint32_t)  4 bytes
+    // TPM2B_PRIVATE inPrivate                 2 bytes + encrypted private key data
+    // TPM2B_PUBLIC inPublic                   2 bytes + public key data
+    
+    uint32_t parentHandle;
+    TPM2B_PRIVATE inPrivate;
+    TPM2B_PUBLIC inPublic;
+    int offset = 10;        // Skip standard TPM header
+    
+    // Parse parentHandle
+    parentHandle = (s->command[offset+3] << 24) | (s->command[offset+2] << 16) | (s->command[offset+1] << 8) | s->command[offset];
+    offset += 4;
+    
+    printf("[TPM]: Parent Handle: 0x%x\n", parentHandle);
+    
+    // Find parent key
+    TPM_Key *parentKey = NULL;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(s->keys[i].loaded && s->keys[i].handle == parentHandle){
+            parentKey = &(s->keys[i]);
+            break;
+        }
+    }
+    if(parentKey == NULL){
+        printf("[TPM]: Parent handle 0x%x not found\n", parentHandle);
+        return TPM_RC_HANDLE;
+    }
+    
+    // Parse inPrivate (encrypted private key)
+    if(offset + 2 > s->command_size) {
+        printf("[TPM]: Invalid command size for inPrivate\n");
+        return TPM_RC_SIZE;
+    }
+    inPrivate.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + inPrivate.size > s->command_size){
+        printf("[TPM] Invalid inPrivate size: %d\n", inPrivate.size);
+        return TPM_RC_SIZE;
+    }
+    
+    // Store encrypted private key data
+    if(inPrivate.size > sizeof(inPrivate.buffer)) {
+        printf("[TPM]: inPrivate size too large: %d\n", inPrivate.size);
+        return TPM_RC_SIZE;
+    }
+    memcpy(inPrivate.buffer, &s->command[offset], inPrivate.size);
+    offset += inPrivate.size;
+    
+    // Parse inPublic
+    if(offset + 2 > s->command_size) {
+        printf("[TPM]: Invalid command size for inPublic\n");
+        return TPM_RC_SIZE;
+    }
+    inPublic.size = (s->command[offset+1] << 8) | s->command[offset];
+    offset += 2;
+    
+    if(offset + inPublic.size > s->command_size){
+        printf("[TPM] Invalid inPublic size: %d\n", inPublic.size);
+        return TPM_RC_SIZE;
+    }
+    
+    if(inPublic.size < 8) {
+        printf("[TPM] Invalid inPublic size: %d\n", inPublic.size);
+        return TPM_RC_SIZE;
+    }
+    
+    // Parse public area (similar to Create command)
+    int pub_offset = offset;
+    inPublic.publicArea.type = (s->command[pub_offset + 1] << 8) | s->command[pub_offset]; 
+    inPublic.publicArea.nameAlg = (s->command[pub_offset + 3] << 8) | s->command[pub_offset + 2]; 
+    inPublic.publicArea.objectAttributes = (s->command[pub_offset + 7] << 24) | 
+                                          (s->command[pub_offset + 6] << 16) | 
+                                          (s->command[pub_offset + 5] << 8) | 
+                                          s->command[pub_offset + 4]; 
+    
+    printf("[TPM] Algorithm: 0x%04x, NameAlg: 0x%04x, Attributes: 0x%08x\n", 
+           inPublic.publicArea.type, inPublic.publicArea.nameAlg, inPublic.publicArea.objectAttributes);
+    pub_offset += 8;
+    
+    // Parse authPolicy
+    inPublic.publicArea.authPolicy.size = (s->command[pub_offset + 1] << 8) | s->command[pub_offset];
+    pub_offset += 2;
+    pub_offset += inPublic.publicArea.authPolicy.size;
+    
+    // Skip symmetric and scheme
+    pub_offset += 2+2+2;  // symmetric
+    pub_offset += 2+2;    // scheme
+    
+    // Parse key parameters
+    inPublic.publicArea.parameters.keyBits = (s->command[pub_offset + 1] << 8) | s->command[pub_offset];
+    pub_offset += 2;
+    printf("[TPM]: RSA key bit size: %d\n", inPublic.publicArea.parameters.keyBits);
+    
+    // Parse exponent
+    inPublic.publicArea.parameters.exponent = (s->command[pub_offset + 3] << 24) | 
+                                             (s->command[pub_offset + 2] << 16) | 
+                                             (s->command[pub_offset + 1] << 8) | 
+                                             s->command[pub_offset];
+    pub_offset += 4;
+    
+    // Parse unique (public key)
+    inPublic.publicArea.unique.size = (s->command[pub_offset + 1] << 8) | s->command[pub_offset];
+    pub_offset += 2;
+    
+    if(inPublic.publicArea.unique.size > sizeof(inPublic.publicArea.unique.buffer)) {
+        printf("[TPM]: Public key size too large: %d\n", inPublic.publicArea.unique.size);
+        return TPM_RC_SIZE;
+    }
+    memcpy(inPublic.publicArea.unique.buffer, &s->command[pub_offset], inPublic.publicArea.unique.size);
+    
+    // Decrypt the private key using parent's private key
+    printf("[TPM]: Decrypting private key with parent's private key...\n");
+    
+    uint8_t *decrypted_private_key = malloc(inPrivate.size);
+    if(!decrypted_private_key) {
+        printf("[TPM]: Failed to allocate buffer for decrypted private key\n");
+        return TPM_RC_FAILURE;
+    }
+    
+    size_t decrypted_size = inPrivate.size;
+    int decrypt_result = qemu_rsa_decrypt(parentKey->key, inPrivate.buffer, inPrivate.size, 
+                                         &decrypted_private_key, &decrypted_size);
+    
+    if(decrypt_result <= 0) {
+        printf("[TPM]: Failed to decrypt private key\n");
+        free(decrypted_private_key);
+        return TPM_RC_FAILURE;
+    }
+    
+    printf("[TPM]: Private key decrypted successfully, size: %zu bytes\n", decrypted_size);
+    
+    // Find available slot for the loaded key
+    int slot = -1;
+    for(int i = 0; i < MAX_KEYS; i++){
+        if(!s->keys[i].loaded){
+            slot = i;
+            break;
+        }
+    }
+    if(slot == -1){
+        printf("[TPM]: No available key slots\n");
+        free(decrypted_private_key);
+        return TPM_RC_OBJECT_MEMORY;
+    }
+    
+    // Generate a new handle for the loaded key
+    uint32_t newHandle = 0x80000000 + slot;  // Transient handles start at 0x80000000
+    
+    // Initialize the key structure
+    TPM_Key *key = &s->keys[slot];
+    key->handle = newHandle;
+    key->parent_handle = parentHandle;
+    key->loaded = true;
+    key->attributes = inPublic.publicArea.objectAttributes;
+    key->algorithm = inPublic.publicArea.type;
+    key->usage_count = 0;
+    key->status = KEY_STATUS_ACTIVE;
+    key->hierarchy = parentKey->hierarchy;
+    
+    switch (inPublic.publicArea.type){
+        case TPM_ALG_RSA:
+            key->type = KEY_TYPE_RSA;
+            break;
+        default:
+            printf("[TPM] Unsupported algorithm: 0x%04X\n", inPublic.publicArea.type);
+            free(decrypted_private_key);
+            return TPM_RC_ASYMMETRIC;
+    }
+    
+    // Reconstruct the key from decrypted private key and public key
+ /*   key->key = qemu_reconstruct_rsa_key(decrypted_private_key, decrypted_size,
+                                       inPublic.publicArea.unique.buffer, 
+                                       inPublic.publicArea.unique.size,
+                                       inPublic.publicArea.parameters.keyBits);
+   */ 
+    if(!key->key) {
+        printf("[TPM]: Failed to reconstruct RSA key\n");
+        free(decrypted_private_key);
+        key->loaded = false;
+        return TPM_RC_FAILURE;
+    }
+    
+    // Generate fingerprint for the key
+    if(key->key->public_key_der && key->key->public_key_len > 0){
+        EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+        if(ctx){
+            unsigned char hash[32];
+            unsigned int hash_len;
+           
+            EVP_DigestInit_ex(ctx, EVP_sha256(), NULL);
+            EVP_DigestUpdate(ctx, key->key->public_key_der, key->key->public_key_len);
+            EVP_DigestFinal_ex(ctx, hash, &hash_len);
+            memcpy(key->fingerprint, hash, 8);
+            EVP_MD_CTX_free(ctx);
+        }
+    }
+    
+    free(decrypted_private_key);
+    
+    printf("[TPM] Key loaded successfully with handle 0x%08x\n", newHandle);
+    printf("[TPM] Key Type: %d, Bits: %d, Parent: 0x%08x\n", 
+           key->type, inPublic.publicArea.parameters.keyBits, parentHandle);
+    
+    // Prepare response
+    int resp_offset = 10;
+    
+    // TPMI_DH_OBJECT objectHandle - the handle of the loaded object
+    s->response[resp_offset] = newHandle & 0xFF;
+    s->response[resp_offset + 1] = (newHandle >> 8) & 0xFF;
+    s->response[resp_offset + 2] = (newHandle >> 16) & 0xFF;
+    s->response[resp_offset + 3] = (newHandle >> 24) & 0xFF;
+    resp_offset += 4;
+    
+    s->response_size = resp_offset;
+    printf("[TPM] Load response prepared, size: %d bytes\n", s->response_size);
+    
+    return TPM_RC_SUCCESS;
 }
 
 static uint32_t RSA_Decrypt(CustomTPMState *s){
@@ -1006,7 +1349,7 @@ static uint32_t RSA_Decrypt(CustomTPMState *s){
     uint8_t *plaintext_buffer;
     size_t plaintext_len = 0;
    
-    plaintext_len = qemu_rsa_decrypt(key->key, ciphertext, cipherTextSize, &plaintext_buffer, &plaintext_len);
+    qemu_rsa_decrypt(key->key, ciphertext, cipherTextSize, &plaintext_buffer, &plaintext_len);
 
     printf("[TPM]: Decryption result size: 0x%016lx\n", plaintext_len);
    
@@ -1115,6 +1458,8 @@ static uint32_t RSA_Encrypt(CustomTPMState *s){
     }
     
     uint8_t *message = &s->command[offset];
+    printf("[TPM]: message size: %d\n", messageSize);
+    printf("[TPM]: message: %s\n", &s->command[offset]);
     offset += messageSize;
 
     // Parse scheme (simplified - just read algorithm)
@@ -1148,16 +1493,16 @@ static uint32_t RSA_Encrypt(CustomTPMState *s){
         printf("[TPM]: Failed to allocate ciphertext buffer\n");
         return TPM_RC_FAILURE;
     }
-   
-    int ciphertext_len = 0;
-    ciphertext_len = qemu_rsa_encrypt(key->key, message, messageSize, &ciphertext_buffer, &ciphertext_buffer_size);
-
+    printf("[TPM]: %s to encrypt\n", message); 
+    qemu_rsa_encrypt(key->key, message, messageSize, &ciphertext_buffer, &ciphertext_buffer_size);
+    printf("[TPM]: encrypted len: %d\n", ciphertext_buffer_size);
+    printf("[TPM]: encrypted mes: %s\n", ciphertext_buffer);
     // Prepare response
     int resp_offset = 10;
    
     // TPM2B_PUBLIC_KEY_RSA
-    s->response[resp_offset] = ciphertext_len;
-    s->response[resp_offset + 1] = (ciphertext_len >> 8);
+    s->response[resp_offset] = ciphertext_buffer_size;
+    s->response[resp_offset + 1] = (ciphertext_buffer_size >> 8);
     resp_offset += 2;
 
     // Write ciphertext bytes

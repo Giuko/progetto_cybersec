@@ -113,6 +113,7 @@ RSAKeyPair *qemu_generate_rsa_key(int key_bits){
     print_rsa_key_pem(keypair->pkey);
  
     if(!qemu_verify_integrity(keypair)){
+        printf("Verification failed\n");
         return NULL;
     }
     
@@ -229,7 +230,7 @@ int qemu_verify_integrity(RSAKeyPair *keypair){
     uint8_t *ciphertext = NULL, *decrypted = NULL;
     size_t ciphertext_len = 0, decrypted_len = 0;
     uint8_t outcome = 0; 
-    printf("\n=== RSA Encryption Test ===\n");
+    printf("\n=== RSA Verification Test ===\n");
     printf("[TPM]: Original data: '%s'\n", test_data);
     
     /* Test PKCS#1 v1.5 padding */

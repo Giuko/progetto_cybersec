@@ -106,7 +106,7 @@ typedef struct{
 /* Begin TPM2B_SENSITIVE_CREATE */
 typedef struct {
     uint16_t size;                    // Size of buffer  
-    uint8_t buffer[128];               // Additional entropy data
+    uint8_t buffer[1024];               // Additional entropy data
 } TPM2B_SENSITIVE_DATA;
 
 typedef struct {
@@ -172,4 +172,21 @@ typedef struct {
 
 /* End TPM2B_PUBLIC */
 
+// Maximum size for private area (from TPM spec)
+#define MAX_PRIVATE_SIZE 2048
+
+// TPM2B_PRIVATE structure
+typedef struct {
+    uint16_t size;                          // Size of the private area
+    uint8_t buffer[MAX_PRIVATE_SIZE];       // The private area
+} TPM2B_PRIVATE;
+
+// TPMT_SENSITIVE structure - what gets encrypted in TPM2B_PRIVATE
+typedef struct {
+    uint16_t sensitiveType;                 // TPM_ALG_ID - same as the associated public area
+    TPM2B_AUTH authValue;                   // Authorization value for this object
+    TPM2B_DIGEST seedValue;                 // For derived objects, the seed value
+    TPM2B_SENSITIVE_DATA sensitive;         // The sensitive data (private key material)
+} TPMT_SENSITIVE;
+/* End TPM2B_PRIVATE */
 #endif //__TPM_TYPES__

@@ -146,7 +146,7 @@ void log_tpm_status(struct tpm_device *dev) {
     UART_putstr("]\n");
 }
 
-struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm){
+struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm, uint16_t keyBits){
     struct tpm_command_header std_cmd_header = {
         .tag = TPM_ST_SESSION,
         .command_code = TPM2_CC_CreatePrimary,
@@ -189,7 +189,7 @@ struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm){
                         .scheme = TPM_ALG_NULL, // No scheme for primary key
                         .details = 0 // No details for primary key
                     },
-                    .keyBits = 2048, // Using 2048 bits for RSA key size
+                    .keyBits = keyBits, // Using 2048 bits for RSA key size
                     .exponent = 0 // Default exponent (65537)
                 },
                 .unique = {
@@ -292,9 +292,12 @@ struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handl
     tpm_receive_response_with_log(tpm, create_response, sizeof(struct tpm_create_response));
     
     if(create_response->response_header.response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(create_response->response_header.response_code);
+        UART_putstr(")\n");
         return NULL;
     }
-
+    
     return create_response;
 }
 
@@ -335,7 +338,7 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
     tpm_receive_response_with_log(tpm, RSA_enc_response, sizeof(struct TMP_RSA_encrypt_response));
     
     if(RSA_enc_response->response_header.response_code != 0){
-        UART_putstr("Error code received (");
+        UART_putstr("Error code received (0x");
         UART_puthex(RSA_enc_response->response_header.response_code);
         UART_putstr(")\n");
         return NULL;
@@ -343,4 +346,149 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
 
     return RSA_enc_response;
 
+}
+
+
+
+struct TMP_RSA_decrypt_response* decrypt(struct tpm_device *tpm, uint32_t key_handle, uint8_t *cipherText, size_t cipherText_size){
+    
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_SESSION,
+        .command_code = TPM2_CC_RSA_Decrypt,
+        .size = sizeof(struct TMP_RSA_decrypt_command)
+    };
+
+    struct TMP_RSA_decrypt_command RCA_dec_cmd = {
+        .command_header = std_cmd_header,
+        .keyHandle = key_handle, 
+        .cipherText = {
+            .size = cipherText_size, // Size of the message
+            .buffer = {0} // Copying the message
+        },
+        .inScheme = {
+            .scheme = TPM_ALG_NULL, // No scheme for RSA encryption  
+            .details = {
+                .rsaes = {
+                    .empty = {0}      
+                }
+            }
+        },
+        .label = {
+            .size = 64, // No label for RSA encryption
+            .buffer = {0} // No label for RSA encryption
+        }
+    };
+    memcpy(RCA_dec_cmd.cipherText.buffer, cipherText, cipherText_size);
+    
+    UART_putstr("\nSending RSA_Decrypt command...\n");
+    tpm_send_command_with_log(tpm, &RCA_dec_cmd, sizeof(RCA_dec_cmd));
+    
+    struct TMP_RSA_decrypt_response *RSA_dec_response = (struct TMP_RSA_decrypt_response *)malloc(sizeof(struct TMP_RSA_decrypt_response));
+
+    tpm_receive_response_with_log(tpm, RSA_dec_response, sizeof(struct TMP_RSA_decrypt_response));
+    
+    if(RSA_dec_response->response_header.response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(RSA_dec_response->response_header.response_code);
+        UART_putstr(")\n");
+        return NULL;
+    }
+
+    return RSA_dec_response;
+
+}
+
+
+
+struct tpm_response_header* startup(struct tpm_device *tpm){
+
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_NO_SESSION,
+        .command_code = TPM2_CC_Startup,
+        .size = sizeof(struct tpm_startup_command_header)
+    };
+    
+    struct tpm_startup_command_header startup_cmd = {
+        .command_header = std_cmd_header,
+        .startup_type = TPM_SU_CLEAR
+    };
+
+    UART_putstr("\nSending Startup command...\n");
+    tpm_send_command_with_log(tpm, &startup_cmd, sizeof(startup_cmd));
+    log_tpm_status(tpm);
+
+
+    struct tpm_response_header *startup_response = (struct tpm_response_header *)malloc(sizeof(struct tpm_response_header));
+    tpm_receive_response_with_log(tpm, startup_response, sizeof(struct tpm_response_header));
+    
+    if( startup_response->response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(startup_response->response_code);
+        UART_putstr(")\n");
+        return NULL;
+    }
+
+    return startup_response;
+}
+
+
+
+struct tpm_response_header* selfTest(struct tpm_device *tpm){
+
+
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_NO_SESSION,
+        .command_code = TPM2_CC_SelfTest,
+        .size = sizeof(struct tpm_startup_command_header)
+    };
+    
+
+    UART_putstr("\nSending SelfTest command...\n");
+    tpm_send_command_with_log(tpm, &std_cmd_header, sizeof(std_cmd_header));
+    log_tpm_status(tpm);
+
+
+    struct tpm_response_header *selftest_response = (struct tpm_response_header *)malloc(sizeof(struct tpm_response_header));
+    tpm_receive_response_with_log(tpm, selftest_response, sizeof(struct tpm_response_header));
+    
+    if( selftest_response->response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(selftest_response->response_code);
+        UART_putstr(")\n");
+        return NULL;
+    }
+
+    return selftest_response;
+}
+
+
+struct TMP_shutdown_response* shutdown(struct tpm_device *tpm){
+
+    struct tpm_command_header std_cmd_header = {
+        .tag = TPM_ST_SESSION,
+        .command_code = TPM2_CC_Shutdown,
+        .size = sizeof(struct TMP_shutdown_command)
+    };
+    
+    struct TMP_shutdown_command shutdown_cmd = {
+        .command_header = std_cmd_header,
+        .shutdownType = TPM_SU_STATE // Shutdown type
+    };
+
+
+    UART_putstr("\nSending Shutdown command...\n");
+    tpm_send_command_with_log(tpm, &shutdown_cmd, sizeof(shutdown_cmd));
+    log_tpm_status(tpm);   
+
+    struct TMP_shutdown_response *shutdown_response = (struct TMP_shutdown_response *)malloc(sizeof(struct TMP_shutdown_response));
+    tpm_receive_response_with_log(tpm, shutdown_response, sizeof(struct TMP_shutdown_response));
+    
+    if( shutdown_response->response_header.response_code != 0){
+        UART_putstr("Error code received (0x");
+        UART_puthex(shutdown_response->response_header.response_code);
+        UART_putstr(")\n");
+        return NULL;
+    }
+
+    return shutdown_response;
 }
