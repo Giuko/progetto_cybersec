@@ -2,3 +2,48 @@
 \chapter{Further Improvements}
 \label{chap4}
 
+While our TPM implementation serves as a functional and educational prototype, 
+several enhancements can be made to improve its robustness, realism, and security within the QEMU environment. 
+These improvements aim to mitigate some of the identified threats and expand the 
+TPM's capabilities while maintaining feasibility.
+
+\section*{Secure Communication Channel}
+To reduce the risk of interception and tampering, a secure communication protocol could be 
+introduced between the TPM and the microcontroller. 
+For example, implementing an encrypted transport layer over the serial interface, 
+using pre-shared keys or session-based encryption, would significantly enhance confidentiality and integrity.
+
+\section*{Command Filtering and Validation}
+Introducing a command validation layer that verifies caller identity, 
+and checks for malformed or unauthorized commands would help prevent misuse.
+
+\section*{Simulated Persistent Key Storage}
+To better emulate real TPM behavior, a mechanism for securely saving and restoring key data across power 
+cycles could be added. 
+This might involve encrypting keys with a hardcoded or boot-generated master key and storing them in a 
+virtual file or memory region that is only accessible to the TPM module.
+
+\section*{Basic Secure Boot Emulation}
+While full secure boot is not feasible in QEMU, a simplified version could be implemented where the TPM stores hashes 
+of known-good firmware. During startup, the microcontroller could send a hash of the running firmware 
+to the TPM for validation, simulating the boot integrity check process.
+
+\section*{Logging Support}
+To increase transparency and accountability, a basic log feature could be added. 
+The TPM could maintain an in-memory or file-backed log of all received commands, 
+cryptographic operations, and internal state changes. 
+These logs could be used for debugging or future security analysis.
+
+\section*{Enhanced Error Handling and Feedback}
+Currently, the TPM returns only basic error codes for invalid commands. 
+This can be extended to provide more detailed diagnostic feedback for malformed payloads, 
+unsupported commands, or protocol violations. 
+Such enhancements would make the system easier to debug and more resilient to unexpected inputs.
+
+\section*{Support for Additional TPM Commands}
+To increase the realism of the implementation, support for additional TPM 2.0 commands could be developed, such as:
+\begin{itemize}
+    \item \textbf{PCR Extend and Read:} Emulate platform configuration registers to support integrity measurements.
+    \item \textbf{NV Storage:} Simulate non-volatile storage for keys, counters, and configuration values.
+\end{itemize}
+
