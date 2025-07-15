@@ -17,6 +17,19 @@ using pre-shared keys or session-based encryption, would significantly enhance c
 Introducing a command validation layer that verifies caller identity, 
 and checks for malformed or unauthorized commands would help prevent misuse.
 
+\section*{Secure Key Storage}
+In a QEMU-based environment, where true hardware-based isolation is not possible, 
+secure key storage must be emulated through software mechanisms. 
+In our implementation, the TPM generates a primary RSA key that serves as a trust anchor. 
+This key acts as the root of trust for subsequent cryptographic operations, including the protection of other keys.
+To simulate secure storage, the primary key is used to encrypt newly generated keys before they are written to memory. 
+Similarly, any key retrieved from memory must be decrypted using the primary key before it can be used. 
+This approach ensures that even if the memory region is exposed, the protected keys remain unintelligible without access to the primary key.
+While this method does not provide the same level of tamper resistance as a physical TPM, 
+it conceptually mirrors the role of a hardware-based Root of Trust for Storage (RTS), 
+enabling integrity and confidentiality in key management within the emulated TPM.
+With the only effect to reduce the velocity of the module.
+
 \section*{Simulated Persistent Key Storage}
 To better emulate real TPM behavior, a mechanism for securely saving and restoring key data across power 
 cycles could be added. 

@@ -2,7 +2,8 @@
 \chapter{Implementation}
 \label{chap2}
 
-The implementation of the Trusted Platform Module (TPM) involves the development of both hardware and firmware components.
+The implementation of the Trusted Platform Module (TPM) involves 
+the development of both hardware and firmware components.
 
 The implementation of the Trusted Platform Module (TPM) 
 requires the coordinated development of hardware and 
@@ -38,39 +39,73 @@ as defined by the TPM specification of the communication
 protocol. 
 
 \section{QEMU Implementation}
-    The basic board is a custom ARM board developed to emulate a NXP board. The peripheral will be emulated along this board. 
-    The custom TPM was implemented as a standard peripheral device within QEMU, interfacing with the microcontroller via a memory-mapped bus. 
-    The module is designed to operate in parallel with the main system, simulating the behavior of a hardware TPM as closely as possible. 
-    This includes replicating the internal state transitions, initialization sequence, and command-response protocol typical of a real TPM device.
-    Although integrated as a memory-mapped device, the TPM uses a serial-like communication protocol to receive and transmit data. To maintain the behavior of a real TPM.
-    So a serial protocol was used. The device expects to receive data in a certain order, the same data and the same order as a real TPM and in the same way it does for the response.
+    The basic board is a custom ARM board developed to emulate a NXP board. 
+    The peripheral will be emulated along this board. 
+    The custom TPM was implemented as a standard peripheral device within QEMU, 
+    interfacing with the microcontroller via a memory-mapped bus. 
+    The module is designed to operate in parallel with the main system, 
+    simulating the behavior of a hardware TPM as closely as possible. 
+    This includes replicating the internal state transitions, initialization sequence, 
+    and command-response protocol typical of a real TPM device.
+    Although integrated as a memory-mapped device, the TPM uses a serial-like communication 
+    protocol to receive and transmit data. To maintain the behavior of a real TPM.
+    So a serial protocol was used. The device expects to receive data in a certain order, 
+    the same data and the same order as a real TPM and in the same way it does for the response.
     The peripheral adheres to a simplified model of the TPM 2.0 architecture.
 
     \subsection{Serial protocol}
-        The TPM communicates using a byte-wise serial protocol. The firmware sends command packets one byte at a time, which the TPM receives and parses sequentially.
-        Each command is reconstructed according to the TPM 2.0 command buffer format, using little-endian byte order for multi-byte fields.
+        The TPM communicates using a byte-wise serial protocol. The firmware sends command 
+        packets one byte at a time, which the TPM receives and parses sequentially.
+        Each command is reconstructed according to the TPM 2.0 command buffer format, 
+        using little-endian byte order for multi-byte fields.
         Each command must begin with a standard TPM header, which includes a tag, total size, and command code. 
-        Based on the command code, the TPM determines how to interpret the remaining payload, which varies depending on the specific command. 
-        Throughout the parsing process, the TPM validates the size of the command payload against the expected size. 
+        Based on the command code, the TPM determines how to interpret the remaining 
+        payload, which varies depending on the specific command. 
+        Throughout the parsing process, the TPM validates the size of the 
+        command payload against the expected size. 
         If there is a mismatch, an error code is returned immediately, halting further processing.
-        The response is constructed in a similar manner: once command processing is complete, the TPM generates a response buffer with a corresponding header and payload. 
+        The response is constructed in a similar manner: once command processing is complete, 
+        the TPM generates a response buffer with a corresponding header and payload. 
         The firmware is expected to read the response only after the complete message has been sent by the TPM.
     
     \subsection{Implemented Functionalities}
-        The core functionality of our implementation revolves around RSA key generation and basic cryptographic operations. 
-        The TPM supports a minimal but representative set of TPM 2.0-style commands, specifically:
+
+        The core functionality of our TPM implementation centers around RSA key management and cryptographic operations, 
+        using the OpenSSL library to ensure correctness and cryptographic safety. 
+        The following TPM 2.0-style commands were implemented:
+
         \begin{itemize}
-            \item \textbf{CreatePrimary}: Initializes a primary RSA key in the TPM hierarchy, serving as the root of trust for further operations.
-            \item \textbf{RSA\_Encrypt}: Encrypts input data using the loaded RSA public key.
-            \item \textbf{RSA\_Decrypt}: Decrypts input data using the corresponding RSA private key stored securely within the TPM.
+            \item \textbf{CreatePrimary}:   Generates a new RSA key pair at the top of the TPM hierarchy. 
+                                            Internally, this is performed using OpenSSL’s \texttt{EVP\_PKEY} interface. 
+                                            The key is generated with a configurable size, given in input, encoded in DER format, 
+                                            and stored securely in the TPM's internal state.
+            
+            \item \textbf{RSA\_Encrypt}:    Accepts input data from the host and encrypts it using the public RSA key. 
+                                            The encryption uses PKCS\#1 v1.5 padding and OpenSSL's high-level EVP API for secure buffer management.
+            
+            \item \textbf{RSA\_Decrypt}:    Uses the RSA private key stored in the TPM to decrypt ciphertext received from the host. 
+                                            Padding and integrity are validated automatically by OpenSSL.
         \end{itemize}
 
-        To ensure a similar initialization sequence other functionalities have been introduced:
+        To simulate a real-world TPM behavior, the following utility commands were also implemented:
+
         \begin{itemize}
-            \item \textbf{Startup}: Initializes the TPM module by resetting its internal state, clearing any existing keys, and preparing it for command processing.            
-            \item \textbf{SelfTest}: Performs a minimal self-check to verify that communication between the microcontroller and the TPM is functioning correctly.
-            \item \textbf{Shutdown}: Transitions the TPM to an "off" state, requiring a subsequent \texttt{Startup} command before accepting further operations. This mimics the behavior of a real TPM during system shutdown or reset.
+            \item \textbf{Startup}:     Initializes the TPM, resets its internal state, and prepares it for key generation and command processing.
+            
+            \item \textbf{SelfTest}:    Performs a basic internal verification of key generation and encryption/decryption functionality. 
+            
+            \item \textbf{Shutdown}:    Transitions the TPM into an inactive state. On shutdown, all temporary key material is invalidated, 
+                                        and the TPM must be restarted before accepting new commands.
         \end{itemize}
+
+        The RSA key generation process relies on OpenSSL’s EVP API and supports dynamic key size configuration. 
+        The function \texttt{generate\_rsa\_keypair()} creates a new key pair and extracts both public and private key components in DER-encoded format.
+
+        All encryption and decryption operations are performed via the EVP interface using a secure context (\texttt{EVP\_PKEY\_CTX}). 
+        The code also includes detailed error reporting and memory safety checks to prevent buffer misuse.
+
+        Finally, we implemented an internal \texttt{qemu\_verify\_integrity()} function that validates the correctness of the RSA pipeline by encrypting and decrypting a test message. 
+        This self-test step ensures proper functioning of the OpenSSL-based cryptographic backend.
 
 \section{Firmware}
 The firmware implementation is crucial for the TPM's 
