@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  15 JUL 2025 18:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  15 JUL 2025 18:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -24,14 +24,36 @@ File: bk10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count271
+\Gm@cntv=\count272
+\c@Gm@tempcnt=\count273
+\Gm@bindingoffset=\dimen142
+\Gm@wd@mp=\dimen143
+\Gm@odd@mp=\dimen144
+\Gm@even@mp=\dimen145
+\Gm@layoutwidth=\dimen146
+\Gm@layoutheight=\dimen147
+\Gm@layouthoffset=\dimen148
+\Gm@layoutvoffset=\dimen149
+\Gm@dimlist=\toks18
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2025/02/14 v25.4 The multilingual framework for pdfLaTeX, LuaLaTeX and XeLaTeX
-\babel@savecnt=\count271
-\U@D=\dimen142
+\babel@savecnt=\count274
+\U@D=\dimen150
 \l@unhyphenated=\language90
  (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count272
+\bbl@dirlevel=\count275
  (/usr/local/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
@@ -59,7 +81,7 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthL=\skip62
 \f@nch@widthC=\skip63
 \f@nch@widthR=\skip64
-\@temptokenb=\toks17
+\@temptokenb=\toks19
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/titlesec/titlesec.sty
@@ -67,34 +89,31 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box52
 \beforetitleunit=\skip65
 \aftertitleunit=\skip66
-\ttl@plus=\dimen143
-\ttl@minus=\dimen144
-\ttl@toksa=\toks18
-\titlewidth=\dimen145
-\titlewidthlast=\dimen146
-\titlewidthfirst=\dimen147
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks19
-)
-\lst@mode=\count273
+\ttl@plus=\dimen151
+\ttl@minus=\dimen152
+\ttl@toksa=\toks20
+\titlewidth=\dimen153
+\titlewidthlast=\dimen154
+\titlewidthfirst=\dimen155
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count276
 \lst@gtempboxa=\box53
-\lst@token=\toks20
-\lst@length=\count274
-\lst@currlwidth=\dimen148
-\lst@column=\count275
-\lst@pos=\count276
-\lst@lostspace=\dimen149
-\lst@width=\dimen150
-\lst@newlines=\count277
-\lst@lineno=\count278
-\lst@maxwidth=\dimen151
+\lst@token=\toks21
+\lst@length=\count277
+\lst@currlwidth=\dimen156
+\lst@column=\count278
+\lst@pos=\count279
+\lst@lostspace=\dimen157
+\lst@width=\dimen158
+\lst@newlines=\count280
+\lst@lineno=\count281
+\lst@maxwidth=\dimen159
  (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count279
-\lst@skipnumbers=\count280
+\c@lstnumber=\count282
+\lst@skipnumbers=\count283
 \lst@framebox=\box54
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
@@ -102,23 +121,23 @@ File: listings.cfg 2024/09/23 1.10c listings configuration
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen152
-\lightrulewidth=\dimen153
-\cmidrulewidth=\dimen154
-\belowrulesep=\dimen155
-\belowbottomsep=\dimen156
-\aboverulesep=\dimen157
-\abovetopsep=\dimen158
-\cmidrulesep=\dimen159
-\cmidrulekern=\dimen160
-\defaultaddspace=\dimen161
-\@cmidla=\count281
-\@cmidlb=\count282
-\@aboverulesep=\dimen162
-\@belowrulesep=\dimen163
-\@thisruleclass=\count283
-\@lastruleclass=\count284
-\@thisrulewidth=\dimen164
+\heavyrulewidth=\dimen160
+\lightrulewidth=\dimen161
+\cmidrulewidth=\dimen162
+\belowrulesep=\dimen163
+\belowbottomsep=\dimen164
+\aboverulesep=\dimen165
+\abovetopsep=\dimen166
+\cmidrulesep=\dimen167
+\cmidrulekern=\dimen168
+\defaultaddspace=\dimen169
+\@cmidla=\count284
+\@cmidlb=\count285
+\@aboverulesep=\dimen170
+\@belowrulesep=\dimen171
+\@thisruleclass=\count286
+\@lastruleclass=\count287
+\@thisrulewidth=\dimen172
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
@@ -132,8 +151,32 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen165
-\Gin@req@width=\dimen166
+\Gin@req@height=\dimen173
+\Gin@req@width=\dimen174
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen175
+\captionmargin=\dimen176
+\caption@leftmargin=\dimen177
+\caption@rightmargin=\dimen178
+\caption@width=\dimen179
+\caption@indent=\dimen180
+\caption@parindent=\dimen181
+\caption@hangindent=\dimen182
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count288
+\c@continuedfloat=\count289
+Package caption Info: listings package is loaded.
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count290
+\float@exts=\toks22
+\float@box=\box55
+\@float@everytoks=\toks23
+\@floatcapt=\box56
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2024/11/05 v2.17t AMS math features
 \@mathmargin=\skip67
@@ -143,59 +186,59 @@ For additional information on amsmath, use the `?' option.
 Package: amstext 2021/08/26 v2.01 AMS text
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks21
-\ex@=\dimen167
+\@emptytoks=\toks24
+\ex@=\dimen183
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen168
+\pmbraise@=\dimen184
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count285
+\inf@bad=\count291
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count286
-\leftroot@=\count287
+\uproot@=\count292
+\leftroot@=\count293
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count288
-\DOTSCASE@=\count289
+\classnum@=\count294
+\DOTSCASE@=\count295
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box55
-\strutbox@=\box56
+\Mathstrutbox@=\box57
+\strutbox@=\box58
 LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen169
+\big@size=\dimen185
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count290
+\macc@depth=\count296
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count291
+\c@MaxMatrixCols=\count297
 \dotsspace@=\muskip17
-\c@parentequation=\count292
-\dspbrk@lvl=\count293
-\tag@help=\toks22
-\row@=\count294
-\column@=\count295
-\maxfields@=\count296
-\andhelp@=\toks23
-\eqnshift@=\dimen170
-\alignsep@=\dimen171
-\tagshift@=\dimen172
-\tagwidth@=\dimen173
-\totwidth@=\dimen174
-\lineht@=\dimen175
-\@envbody=\toks24
+\c@parentequation=\count298
+\dspbrk@lvl=\count299
+\tag@help=\toks25
+\row@=\count300
+\column@=\count301
+\maxfields@=\count302
+\andhelp@=\toks26
+\eqnshift@=\dimen186
+\alignsep@=\dimen187
+\tagshift@=\dimen188
+\tagwidth@=\dimen189
+\totwidth@=\dimen190
+\lineht@=\dimen191
+\@envbody=\toks27
 \multlinegap=\skip68
 \multlinetaggap=\skip69
-\mathdisplay@stack=\toks25
+\mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -207,41 +250,17 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks26
-\thm@bodyfont=\toks27
-\thm@headfont=\toks28
-\thm@notefont=\toks29
-\thm@headpunct=\toks30
+\thm@style=\toks29
+\thm@bodyfont=\toks30
+\thm@headfont=\toks31
+\thm@notefont=\toks32
+\thm@headpunct=\toks33
 \thm@preskip=\skip70
 \thm@postskip=\skip71
 \thm@headsep=\skip72
-\dth@everypar=\toks31
+\dth@everypar=\toks34
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen176
-\captionmargin=\dimen177
-\caption@leftmargin=\dimen178
-\caption@rightmargin=\dimen179
-\caption@width=\dimen180
-\caption@indent=\dimen181
-\caption@parindent=\dimen182
-\caption@hangindent=\dimen183
-Package caption Info: Standard document class detected.
-)
-\c@caption@flags=\count297
-\c@continuedfloat=\count298
-Package caption Info: listings package is loaded.
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count299
-\float@exts=\toks32
-\float@box=\box57
-\@float@everytoks=\toks33
-\@floatcapt=\box58
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/empheq.sty
 Package: empheq 2024/08/09 v2.17 Emphasizing equations
  (/usr/local/texlive/2025/texmf-dist/tex/latex/mathtools/mhsetup.sty
@@ -250,57 +269,57 @@ Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count300
-\calc@Bcount=\count301
-\calc@Adimen=\dimen184
-\calc@Bdimen=\dimen185
+\calc@Acount=\count303
+\calc@Bcount=\count304
+\calc@Adimen=\dimen192
+\calc@Bdimen=\dimen193
 \calc@Askip=\skip73
 \calc@Bskip=\skip74
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count302
+\calc@Ccount=\count305
 \calc@Cskip=\skip75
 )
-\g_MT_multlinerow_int=\count303
-\l_MT_multwidth_dim=\dimen186
+\g_MT_multlinerow_int=\count306
+\l_MT_multwidth_dim=\dimen194
 \origjot=\skip76
-\l_MT_shortvdotswithinadjustabove_dim=\dimen187
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen188
-\l_MT_above_intertext_sep=\dimen189
-\l_MT_below_intertext_sep=\dimen190
-\l_MT_above_shortintertext_sep=\dimen191
-\l_MT_below_shortintertext_sep=\dimen192
+\l_MT_shortvdotswithinadjustabove_dim=\dimen195
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen196
+\l_MT_above_intertext_sep=\dimen197
+\l_MT_below_intertext_sep=\dimen198
+\l_MT_above_shortintertext_sep=\dimen199
+\l_MT_below_shortintertext_sep=\dimen256
 \xmathstrut@box=\box59
-\xmathstrut@dim=\dimen193
+\xmathstrut@dim=\dimen257
 )
-\l_EQ_equationtype_int=\count304
-\l_EQ_alignmentmode_int=\count305
-\l_EQ_totalwidth_dim=\dimen194
-\l_EQ_displaywidth_dim=\dimen195
-\l_EQ_temp_linewidth_dim=\dimen196
-\l_EQ_linewidth_dim=\dimen197
-\EmphEqdelimitershortfall=\dimen198
-\EmphEqdelimiterfactor=\count306
-\g_EQ_toptag_height_dim=\dimen199
-\g_EQ_bottomtag_depth_dim=\dimen256
-\g_EQ_toprow_height_dim=\dimen257
-\g_EQ_bottomrow_depth_dim=\dimen258
-\g_EQ_widesttag_dim=\dimen259
+\l_EQ_equationtype_int=\count307
+\l_EQ_alignmentmode_int=\count308
+\l_EQ_totalwidth_dim=\dimen258
+\l_EQ_displaywidth_dim=\dimen259
+\l_EQ_temp_linewidth_dim=\dimen260
+\l_EQ_linewidth_dim=\dimen261
+\EmphEqdelimitershortfall=\dimen262
+\EmphEqdelimiterfactor=\count309
+\g_EQ_toptag_height_dim=\dimen263
+\g_EQ_bottomtag_depth_dim=\dimen264
+\g_EQ_toprow_height_dim=\dimen265
+\g_EQ_bottomrow_depth_dim=\dimen266
+\g_EQ_widesttag_dim=\dimen267
 \EQ_mathdisplay_box=\box60
 \EQ_tag_box=\box61
-\g_EQ_temprow_int=\count307
+\g_EQ_temprow_int=\count310
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks34
-\verbatim@line=\toks35
+\every@verbatim=\toks35
+\verbatim@line=\toks36
 \verbatim@in@stream=\read3
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
-\FV@CodeLineNo=\count308
+\FV@CodeLineNo=\count311
 \FV@InFile=\read4
 \FV@TabBox=\box62
-\c@FancyVerbLine=\count309
-\FV@StepNumber=\count310
+\c@FancyVerbLine=\count312
+\FV@StepNumber=\count313
 \FV@OutFile=\write3
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
@@ -313,7 +332,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 Writing index file homebook.idx
 (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count311
+\l__color_backend_stack_int=\count314
 \l__pdf_internal_box=\box63
 )
 
@@ -323,34 +342,69 @@ LaTeX Warning: Unused global option(s):
 (./homebook.aux)
 \openout1 = `homebook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-\c@lstlisting=\count312
- (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-31.2056pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=61.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count315
+(/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count313
-\scratchdimen=\dimen260
+\scratchcounter=\count316
+\scratchdimen=\dimen268
 \scratchbox=\box64
-\nofMPsegments=\count314
-\nofMParguments=\count315
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count316
-\MPscratchDim=\dimen261
-\MPnumerator=\count317
-\makeMPintoPDFobject=\count318
-\everyMPtoPDFconversion=\toks37
+\nofMPsegments=\count317
+\nofMParguments=\count318
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count319
+\MPscratchDim=\dimen269
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
+\everyMPtoPDFconversion=\toks38
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -360,11 +414,11 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\Hy@linkcounter=\count319
+\Hy@linkcounter=\count322
 <./logopoli.jpg, id=1, 573.8238pt x 565.1514pt>
 File: ./logopoli.jpg Graphic file (type jpg)
 <use ./logopoli.jpg>
-Package pdftex.def Info: ./logopoli.jpg  used on input line 76.
+Package pdftex.def Info: ./logopoli.jpg  used on input line 53.
 (pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
 
 
@@ -400,66 +454,59 @@ Chapter 1.
 File: ./chapters/figures/TPM.png Graphic file (type png)
 <use ./chapters/figures/TPM.png>
 Package pdftex.def Info: ./chapters/figures/TPM.png  used on input line 70.
-(pdftex.def)             Requested size: 352.8155pt x 171.41255pt.
+(pdftex.def)             Requested size: 364.19667pt x 176.94495pt.
+) (./chapters/chap2.tex
 
-
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]) (./chapters/chap2.tex
-
-[3]
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]
 Chapter 2.
 
 
-[4
+[3
 
 ]
 
-[5]
+[4]
 
-[6]
-Overfull \hbox (14.36823pt too wide) in paragraph at lines 227--231
+[5]
+Overfull \hbox (0.14183pt too wide) in paragraph at lines 227--231
 []\OT1/cmr/bx/n/10 Command Codes: \OT1/cmr/m/n/10 Con-stants rep-re-sent-ing the var-i-ous TPM com-mands, such as \OT1/cmtt/m/n/10 TPM2[]CC[]Startup\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (10.5528pt too wide) in paragraph at lines 234--238
-[]\OT1/cmr/bx/n/10 Startup Types: \OT1/cmr/m/n/10 De-fines the startup modes for the TPM, such as \OT1/cmtt/m/n/10 TPM[]SU[]CLEAR \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 TPM[]SU[]STATE\OT1/cmr/m/n/10 ,
- []
-
-
-Overfull \hbox (44.17607pt too wide) in paragraph at lines 238--243
+Overfull \hbox (29.94968pt too wide) in paragraph at lines 238--243
 []\OT1/cmr/bx/n/10 Structure Tags: \OT1/cmr/m/n/10 Spec-i-fies tags for TPM com-mand and re-sponse struc-tures, in-clud-ing \OT1/cmtt/m/n/10 TPM[]ST[]NO[]SESSION\OT1/cmr/m/n/10 ,
  []
 
 
 
-[7]) (./chapters/chap3.tex
+[6]) (./chapters/chap3.tex
 
-[8]
+[7]
 Chapter 3.
 
 
-[9
+[8
 
 ]) (./chapters/chap4.tex
 
-[10]
+[9]
 Chapter 4.
 
 
-[11
+[10
 
 ]) (./chapters/chap5.tex
 
-[12]
+[11]
 Chapter 5.
 
-Overfull \hbox (28.47847pt too wide) in paragraph at lines 16--19
+Overfull \hbox (14.25208pt too wide) in paragraph at lines 16--19
 \OT1/cmtt/m/n/10 https : / / trustedcomputinggroup . org / wp-[]content / uploads / TPM-[]Rev-[]2 . 0-[]Part-[]3-[]Commands-[]01 .
  []
 
 )
 
-[13
+[12
 
 ] (./homebook.aux)
  ***********
@@ -468,18 +515,18 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 8694 strings out of 473190
- 143128 string characters out of 5715801
- 559873 words of memory out of 5000000
- 31848 multiletter control sequences out of 15000+600000
+ 9253 strings out of 473190
+ 151636 string characters out of 5715801
+ 575660 words of memory out of 5000000
+ 32396 multiletter control sequences out of 15000+600000
  564679 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,69p,414b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,69p,414b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on homebook.pdf (15 pages, 683884 bytes).
+Output written on homebook.pdf (14 pages, 683405 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

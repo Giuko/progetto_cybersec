@@ -1,67 +1,43 @@
+\documentclass[10pt, english, makeidx, a4paper, titlepage, oneside]{book}
 
-\documentclass[10pt,  english, makeidx, a4paper, titlepage, oneside]{book}
+\usepackage[a4paper, margin=2.5cm]{geometry} % ✅ Use this instead of manual margins
 \usepackage{babel}
 \usepackage{fancyhdr}
 \usepackage{makeidx}
 \usepackage{titlesec}
 \usepackage{listings}
 \usepackage{booktabs}
-
-\newenvironment{listato}{\footnotesize}{\normalsize }
-
-%\pagestyle{empty}
-
-\textwidth 15.5cm
-\textheight 23cm
-\topmargin -1cm
-\oddsidemargin -0.5cm
-\linespread{1.1}
-
-\pagestyle{fancy}
-\lhead{}
-\chead{Microelectronic Systems}
-\lfoot{}
-\cfoot{}
-\rfoot{}
-\rhead{\thepage}
-
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{amssymb}
-%\oddsidemargin -1.1cm
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
-%\usepackage{subscript}
+\usepackage{amssymb}
 \usepackage{empheq}
 \usepackage{verbatim}
 \usepackage{fancyvrb}
-
 \usepackage{url}
 
+\linespread{1.1}
 
-\lstdefinelanguage{VHDL}{morekeywords={library,use,all,entity,generic, is,port,in,out,end,architecture,of,begin,and,if,then,else,elsif,process},morecomment=[l]--}
+% Header/Footer style
+\pagestyle{fancy}
+\lhead{}
+\chead{Cybersecurity for Embedded Systems}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
 
-\lstdefinestyle{vhdl}{language = VHDL, basicstyle = \ttfamily, keywordstyle = \color{keyword}\bfseries, commentstyle = \color{comment}}
 
+
+% Chapter formatting
 \titleformat{\chapter}[display]
-{\normalfont\Large\filcenter\sffamily}
-{\titlerule[0.5pt]%
-\vspace{1pt}
-\titlerule
-\vspace{1pc}
-\LARGE\MakeUppercase{\chaptertitlename} \thechapter
-}
-{1pc}
-{\titlerule
-\vspace{1pc}
-\Huge}
+  {\normalfont\Large\filcenter\sffamily}
+  {\titlerule[0.5pt]\vspace{1pt}\titlerule\vspace{1pc}\LARGE\MakeUppercase{\chaptertitlename} \thechapter}
+  {1pc}
+  {\titlerule\vspace{1pc}\Huge}
 
 \makeindex
 
@@ -69,9 +45,10 @@
 
 \frontmatter
 
+% Title Page
 \begin{titlepage}
 \begin{center}
-\vspace*{2cm} % Adjust this to move content down (or use \vfill for full vertical centering)
+\vfill
 
 \includegraphics[width=3cm]{./logopoli} 
 
@@ -90,7 +67,7 @@
 \vspace{2cm}
 {\Large Master Degree in Computer Engineering}
 
-\vfill % Push referents & authors to bottom
+\vfill
 
 {\large Referents: Prof. Alessandro Savino, Nicola Scarano}
 
@@ -103,25 +80,27 @@
 Bonenti Silvia - s339232\\
 Marocco Luca - s333945}
 
-\vspace{2cm}
+\vspace{1cm}
 {\large \today}
+
+\vfill
 \end{center}
 \end{titlepage}
 
-
+% TOC
 \tableofcontents
 
 \mainmatter
 
-% CHAPTERS
+% Chapters
 \input{./chapters/chap1}
 \input{./chapters/chap2}
 \input{./chapters/chap3}
 \input{./chapters/chap4}
 \input{./chapters/chap5}
 
-% APPENDICES
+% Appendices (optional)
 \appendix
-%\input{./appendices/appendix1}
+% \input{./appendices/appendix1}
 
 \end{document}
