@@ -152,11 +152,11 @@ INPUT ./chapters/figures/TPM.png
 INPUT ./chapters/figures/TPM.png
 INPUT ./chapters/figures/TPM.png
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT ./chapters/chap2_silvia.tex
-INPUT ./chapters/chap2_silvia.tex
-INPUT ./chapters/chap2_silvia.tex
-INPUT ./chapters/chap2_silvia.tex
-INPUT ./chapters/chap2_silvia.tex
+INPUT ./chapters/chap2.tex
+INPUT ./chapters/chap2.tex
+INPUT ./chapters/chap2.tex
+INPUT ./chapters/chap2.tex
+INPUT ./chapters/chap2.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT ./chapters/chap3.tex
 INPUT ./chapters/chap3.tex

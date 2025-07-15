@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  15 JUL 2025 17:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  15 JUL 2025 18:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -399,11 +399,11 @@ Chapter 1.
 <./chapters/figures/TPM.png, id=19, 886.31125pt x 430.60875pt>
 File: ./chapters/figures/TPM.png Graphic file (type png)
 <use ./chapters/figures/TPM.png>
-Package pdftex.def Info: ./chapters/figures/TPM.png  used on input line 71.
+Package pdftex.def Info: ./chapters/figures/TPM.png  used on input line 70.
 (pdftex.def)             Requested size: 352.8155pt x 171.41255pt.
 
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]) (./chapters/chap2_silvia.tex
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]) (./chapters/chap2.tex
 
 [3]
 Chapter 2.
@@ -414,37 +414,43 @@ Chapter 2.
 ]
 
 [5]
-Overfull \hbox (14.36823pt too wide) in paragraph at lines 178--182
+
+[6]
+Overfull \hbox (14.36823pt too wide) in paragraph at lines 227--231
 []\OT1/cmr/bx/n/10 Command Codes: \OT1/cmr/m/n/10 Con-stants rep-re-sent-ing the var-i-ous TPM com-mands, such as \OT1/cmtt/m/n/10 TPM2[]CC[]Startup\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (10.5528pt too wide) in paragraph at lines 185--189
+Overfull \hbox (10.5528pt too wide) in paragraph at lines 234--238
 []\OT1/cmr/bx/n/10 Startup Types: \OT1/cmr/m/n/10 De-fines the startup modes for the TPM, such as \OT1/cmtt/m/n/10 TPM[]SU[]CLEAR \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 TPM[]SU[]STATE\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (44.17607pt too wide) in paragraph at lines 189--194
+Overfull \hbox (44.17607pt too wide) in paragraph at lines 238--243
 []\OT1/cmr/bx/n/10 Structure Tags: \OT1/cmr/m/n/10 Spec-i-fies tags for TPM com-mand and re-sponse struc-tures, in-clud-ing \OT1/cmtt/m/n/10 TPM[]ST[]NO[]SESSION\OT1/cmr/m/n/10 ,
  []
 
 
 
-[6]) (./chapters/chap3.tex
+[7]) (./chapters/chap3.tex
 
-[7]
+[8]
 Chapter 3.
-) (./chapters/chap4.tex
 
-[8
-
-]
-Chapter 4.
-) (./chapters/chap5.tex
 
 [9
 
-]
+]) (./chapters/chap4.tex
+
+[10]
+Chapter 4.
+
+
+[11
+
+]) (./chapters/chap5.tex
+
+[12]
 Chapter 5.
 
 Overfull \hbox (28.47847pt too wide) in paragraph at lines 16--19
@@ -453,7 +459,7 @@ Overfull \hbox (28.47847pt too wide) in paragraph at lines 16--19
 
 )
 
-[10
+[13
 
 ] (./homebook.aux)
  ***********
@@ -463,17 +469,17 @@ L3 programming layer <2025-01-18>
  ) 
 Here is how much of TeX's memory you used:
  8692 strings out of 473190
- 143128 string characters out of 5715801
- 558884 words of memory out of 5000000
+ 143072 string characters out of 5715801
+ 559873 words of memory out of 5000000
  31846 multiletter control sequences out of 15000+600000
  564679 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,69p,380b,341s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,12n,69p,414b,357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on homebook.pdf (12 pages, 667982 bytes).
+Output written on homebook.pdf (15 pages, 684036 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 98 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
