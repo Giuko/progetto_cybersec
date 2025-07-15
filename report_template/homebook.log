@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  10 JUL 2025 16:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.7.3)  15 JUL 2025 17:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/silviab24/Desktop/School/Cybersecurity/report_template/homebook.tex
-(/Users/silviab24/Desktop/School/Cybersecurity/report_template/homebook.tex
+**/Users/silviab24/Desktop/School/Cybersecurity/group20-TPM/report_template/homebook.tex
+(/Users/silviab24/Desktop/School/Cybersecurity/group20-TPM/report_template/homebook.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/book.cls
@@ -302,6 +302,9 @@ Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
 \c@FancyVerbLine=\count309
 \FV@StepNumber=\count310
 \FV@OutFile=\write3
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 \@indexfile=\write4
 \openout4 = `homebook.idx'.
@@ -320,20 +323,20 @@ LaTeX Warning: Unused global option(s):
 (./homebook.aux)
 \openout1 = `homebook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 \c@lstlisting=\count312
  (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -361,7 +364,7 @@ Package caption Info: End \AtBeginDocument code.
 <./logopoli.jpg, id=1, 573.8238pt x 565.1514pt>
 File: ./logopoli.jpg Graphic file (type jpg)
 <use ./logopoli.jpg>
-Package pdftex.def Info: ./logopoli.jpg  used on input line 71.
+Package pdftex.def Info: ./logopoli.jpg  used on input line 74.
 (pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
 
 
@@ -400,31 +403,57 @@ Package pdftex.def Info: ./chapters/figures/TPM.png  used on input line 71.
 (pdftex.def)             Requested size: 352.8155pt x 171.41255pt.
 
 
-[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]) (./chapters/chap2.tex
+[2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./chapters/figures/TPM.png>]) (./chapters/chap2_silvia.tex
 
 [3]
 Chapter 2.
-) (./chapters/chap3.tex
+
 
 [4
 
 ]
+
+[5]
+Overfull \hbox (14.36823pt too wide) in paragraph at lines 178--182
+[]\OT1/cmr/bx/n/10 Command Codes: \OT1/cmr/m/n/10 Con-stants rep-re-sent-ing the var-i-ous TPM com-mands, such as \OT1/cmtt/m/n/10 TPM2[]CC[]Startup\OT1/cmr/m/n/10 ,
+ []
+
+
+Overfull \hbox (10.5528pt too wide) in paragraph at lines 185--189
+[]\OT1/cmr/bx/n/10 Startup Types: \OT1/cmr/m/n/10 De-fines the startup modes for the TPM, such as \OT1/cmtt/m/n/10 TPM[]SU[]CLEAR \OT1/cmr/m/n/10 and \OT1/cmtt/m/n/10 TPM[]SU[]STATE\OT1/cmr/m/n/10 ,
+ []
+
+
+Overfull \hbox (44.17607pt too wide) in paragraph at lines 189--194
+[]\OT1/cmr/bx/n/10 Structure Tags: \OT1/cmr/m/n/10 Spec-i-fies tags for TPM com-mand and re-sponse struc-tures, in-clud-ing \OT1/cmtt/m/n/10 TPM[]ST[]NO[]SESSION\OT1/cmr/m/n/10 ,
+ []
+
+
+
+[6]) (./chapters/chap3.tex
+
+[7]
 Chapter 3.
 ) (./chapters/chap4.tex
 
-[5
+[8
 
 ]
 Chapter 4.
 ) (./chapters/chap5.tex
 
-[6
+[9
 
 ]
 Chapter 5.
+
+Overfull \hbox (28.47847pt too wide) in paragraph at lines 16--19
+\OT1/cmtt/m/n/10 https : / / trustedcomputinggroup . org / wp-[]content / uploads / TPM-[]Rev-[]2 . 0-[]Part-[]3-[]Commands-[]01 .
+ []
+
 )
 
-[7
+[10
 
 ] (./homebook.aux)
  ***********
@@ -433,18 +462,18 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 8602 strings out of 473190
- 141777 string characters out of 5715801
- 555687 words of memory out of 5000000
- 31761 multiletter control sequences out of 15000+600000
- 564511 words of font info for 57 fonts, out of 8000000 for 9000
+ 8692 strings out of 473190
+ 143128 string characters out of 5715801
+ 558884 words of memory out of 5000000
+ 31846 multiletter control sequences out of 15000+600000
+ 564679 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,69p,302b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on homebook.pdf (9 pages, 638197 bytes).
+ 57i,11n,69p,380b,341s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on homebook.pdf (12 pages, 667982 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
