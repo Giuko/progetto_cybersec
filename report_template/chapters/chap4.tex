@@ -30,12 +30,6 @@ it conceptually mirrors the role of a hardware-based Root of Trust for Storage (
 enabling integrity and confidentiality in key management within the emulated TPM.
 With the only effect to reduce the velocity of the module.
 
-\section*{Simulated Persistent Key Storage}
-To better emulate real TPM behavior, a mechanism for securely saving and restoring key data across power 
-cycles could be added. 
-This might involve encrypting keys with a hardcoded or boot-generated master key and storing them in a 
-virtual file or memory region that is only accessible to the TPM module.
-
 \section*{Basic Secure Boot Emulation}
 While full secure boot is not feasible in QEMU, a simplified version could be implemented where the TPM stores hashes 
 of known-good firmware. During startup, the microcontroller could send a hash of the running firmware 
