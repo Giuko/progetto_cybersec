@@ -4,31 +4,34 @@
 
 Our custom TPM implementation does not guarantee complete security and presents several limitations inherent to its design and execution environment.
 
-\section*{Communication Security}
+\section{Communication Security}
 One of the primary limitations lies in the lack of secure communication between the TPM and the microcontroller. 
 Operating within a QEMU environment, it is extremely challenging to implement a communication channel that is resistant to side-channel attacks. 
 As a result, sensitive data transmitted to or from the TPM could potentially be intercepted or manipulated.
 
-\section*{Key Storage}
+\section{Key Storage}
 Another significant concern is secure key storage. 
 Although keys are stored in a dedicated region of memory that is only accessible through the TPM API, this isolation is purely virtual. 
 In a real TPM, keys would be stored in tamper-resistant non-volatile memory, physically protected from direct access. 
 In our implementation, the lack of true hardware isolation leaves keys vulnerable to extraction in case of system compromise.
 
-\section*{Lack of Command Validation}
+\section{Lack of Command Validation}
 The TPM currently accepts and processes any well-formed command it receives, without enforcing higher-level policy or authentication. 
 This makes it susceptible to misuse if malicious code running on the host sends unauthorized or crafted commands. 
-Since our TPM focuses solely on cryptographic operations and does not implement access control or command authorization mechanisms, it cannot detect or prevent such abuse.
+Since our TPM focuses solely on cryptographic operations and does not implement access control or command authorization mechanisms, 
+it cannot detect or prevent such abuse.
 
-\section*{No Secure Boot}
+\section{No Secure Boot}
 The implementation does not support secure boot or firmware integrity verification mechanisms. 
 In a production TPM, secure boot ensures that only authenticated and untampered firmware is loaded, establishing a root of trust at startup. 
 Without this feature, a compromised or malicious bootloader or kernel could gain unrestricted access to TPM services, undermining its security guarantees.
 
-\section*{Lack of Logging}
+\section{Lack of Logging}
 The TPM does not provide audit or activity logs for command execution, state transitions, or key usage. 
-Such logging is vital in real-world scenarios for detecting misuse, tracing the origin of cryptographic operations, and supporting forensic analysis after a security incident. 
+Such logging is vital in real-world scenarios for detecting misuse, tracing the origin of cryptographic operations, and supporting 
+forensic analysis after a security incident. 
 The absence of logs limits the system's accountability and makes it difficult to detect or respond to abnormal behavior.
 
-\section*{Summary}
-In summary, while our TPM implementation is functionally representative and suitable for development and testing purposes, it lacks several critical hardware-level protections and secure communication features required for deployment in real-world, security-sensitive applications.
+\section{Summary}
+In summary, while our TPM implementation is functionally representative and suitable for development and testing purposes, 
+it lacks several critical hardware-level protections and secure communication features required for deployment in real-world, security-sensitive applications.

@@ -7,17 +7,17 @@ several enhancements can be made to improve its robustness, realism, and securit
 These improvements aim to mitigate some of the identified threats and expand the 
 TPM's capabilities while maintaining feasibility.
 
-\section*{Secure Communication Channel}
+\section{Secure Communication Channel}
 To reduce the risk of interception and tampering, a secure communication protocol could be 
 introduced between the TPM and the microcontroller. 
 For example, implementing an encrypted transport layer over the serial interface, 
 using pre-shared keys or session-based encryption, would significantly enhance confidentiality and integrity.
 
-\section*{Command Filtering and Validation}
+\section{Command Filtering and Validation}
 Introducing a command validation layer that verifies caller identity, 
 and checks for malformed or unauthorized commands would help prevent misuse.
 
-\section*{Secure Key Storage}
+\section{Secure Key Storage}
 In a QEMU-based environment, where true hardware-based isolation is not possible, 
 secure key storage must be emulated through software mechanisms. 
 In our implementation, the TPM generates a primary RSA key that serves as a trust anchor. 
@@ -27,27 +27,26 @@ Similarly, any key retrieved from memory must be decrypted using the primary key
 This approach ensures that even if the memory region is exposed, the protected keys remain unintelligible without access to the primary key.
 While this method does not provide the same level of tamper resistance as a physical TPM, 
 it conceptually mirrors the role of a hardware-based Root of Trust for Storage (RTS), 
-enabling integrity and confidentiality in key management within the emulated TPM.
-With the only effect to reduce the velocity of the module.
+enabling integrity and confidentiality in key management within the emulated TPM, with the only effect to reduce the velocity of the module.
 
-\section*{Basic Secure Boot Emulation}
+\section{Basic Secure Boot Emulation}
 While full secure boot is not feasible in QEMU, a simplified version could be implemented where the TPM stores hashes 
 of known-good firmware. During startup, the microcontroller could send a hash of the running firmware 
 to the TPM for validation, simulating the boot integrity check process.
 
-\section*{Logging Support}
+\section{Logging Support}
 To increase transparency and accountability, a basic log feature could be added. 
 The TPM could maintain an in-memory or file-backed log of all received commands, 
 cryptographic operations, and internal state changes. 
 These logs could be used for debugging or future security analysis.
 
-\section*{Enhanced Error Handling and Feedback}
+\section{Enhanced Error Handling and Feedback}
 Currently, the TPM returns only basic error codes for invalid commands. 
 This can be extended to provide more detailed diagnostic feedback for malformed payloads, 
 unsupported commands, or protocol violations. 
 Such enhancements would make the system easier to debug and more resilient to unexpected inputs.
 
-\section*{Support for Additional TPM Commands}
+\section{Support for Additional TPM Commands}
 To increase the realism of the implementation, support for additional TPM 2.0 commands could be developed, such as:
 \begin{itemize}
     \item \textbf{PCR Extend and Read:} Emulate platform configuration registers to support integrity measurements.

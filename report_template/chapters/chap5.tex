@@ -8,18 +8,19 @@ the development of the TPM firmware and its associated
 documentation. These sources provide essential 
 background information, technical specifications, 
 implementation guidance, and best practices that
-have informed both the design and implementation 
-of the system.
+have informed our design and development process.
 
 
 \begin{itemize}
     \item \textbf{Trusted Platform Module (TPM) 2.0 Library Specification, Part 3 – Commands, Revision 1.38} \\
     \url{https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-3-Commands-01.38.pdf} \\
-    This document specifies the command interface of the TPM 2.0, including command codes, structures, and expected behavior. It is a core reference for developing compliant TPM firmware.
+    This document specifies the command interface of the TPM 2.0 architecture, including command codes, structures, and expected behavior. 
+    It is a core reference for developing compliant TPM firmware.
 
     \item \textbf{tpm2-tss: TPM2.0 TSS (Trusted Software Stack)} \\
     \url{https://github.com/tpm2-software/tpm2-tss} \\
-    The tpm2-tss project is an open-source implementation of the TPM 2.0 software stack. It includes the TCG TSS 2.0 system API (SAPI) and enhanced system API (ESAPI) layers. This repository served as a reference for software integration, testing, and compatibility.
+    The tpm2-tss project is an open-source implementation of the TPM 2.0 software stack. This repository served as a reference for software integration, 
+    and compatibility.
 
     \item \textbf{Taming QEMU: Instrumenting and Modifying Emulated Systems} \\
     \url{https://github.com/quarkslab/sstic-tame-the-qemu} \\

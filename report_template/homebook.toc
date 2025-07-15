@@ -16,7 +16,20 @@
 \contentsline {subsection}{\numberline {2.2.2}tpm.c}{5}{}%
 \contentsline {subsubsection}{tpm.h}{6}{}%
 \contentsline {subsection}{\numberline {2.2.3}uart.c}{6}{}%
-\contentsline {subsubsection}{uart.h}{7}{}%
-\contentsline {chapter}{\numberline {3}Limitations and Security Threats}{8}{}%
-\contentsline {chapter}{\numberline {4}Further Improvements}{10}{}%
-\contentsline {chapter}{\numberline {5}References}{12}{}%
+\contentsline {subsubsection}{uart.h}{6}{}%
+\contentsline {chapter}{\numberline {3}Limitations and Security Threats}{7}{}%
+\contentsline {section}{\numberline {3.1}Communication Security}{7}{}%
+\contentsline {section}{\numberline {3.2}Key Storage}{7}{}%
+\contentsline {section}{\numberline {3.3}Lack of Command Validation}{7}{}%
+\contentsline {section}{\numberline {3.4}No Secure Boot}{7}{}%
+\contentsline {section}{\numberline {3.5}Lack of Logging}{7}{}%
+\contentsline {section}{\numberline {3.6}Summary}{8}{}%
+\contentsline {chapter}{\numberline {4}Further Improvements}{9}{}%
+\contentsline {section}{\numberline {4.1}Secure Communication Channel}{9}{}%
+\contentsline {section}{\numberline {4.2}Command Filtering and Validation}{9}{}%
+\contentsline {section}{\numberline {4.3}Secure Key Storage}{9}{}%
+\contentsline {section}{\numberline {4.4}Basic Secure Boot Emulation}{9}{}%
+\contentsline {section}{\numberline {4.5}Logging Support}{10}{}%
+\contentsline {section}{\numberline {4.6}Enhanced Error Handling and Feedback}{10}{}%
+\contentsline {section}{\numberline {4.7}Support for Additional TPM Commands}{10}{}%
+\contentsline {chapter}{\numberline {5}References}{11}{}%
