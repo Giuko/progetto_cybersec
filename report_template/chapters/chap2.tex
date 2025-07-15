@@ -1,14 +1,265 @@
-
-% chapter 1
+% chapter 2
 \chapter{Implementation}
 \label{chap2}
 
-The implementation of the Trusted Platform Module (TPM) involves
-the development of both hardware and firmware components.
+The implementation of the Trusted Platform Module (TPM) involves the development of both hardware and firmware components.
 
+The implementation of the Trusted Platform Module (TPM) 
+requires the coordinated development of hardware and 
+firmware components. 
+Together, these components enable the execution of 
+TPM commands and the management of cryptographic 
+operations. 
 
-\section{Hardware}
+The implementation focuses on three core aspects:
+\begin{itemize}
+    \item \textbf{Command Processing:} The system must
+    be able to interpret and execute the TPM commands
+    sent by the host system. This involves parsing the
+    command structure, validating the parameters, and
+    executing the corresponding operations.
+    \item \textbf{Cryptographic Operations:} The system
+    must implement the cryptographic algorithms required
+    by the TPM, such as RSA, ECC, and SHA. These
+    operations are essential for secure key generation,
+    signing, and verification processes.
+    \item \textbf{State Management:} The system must
+    maintain the internal state of the TPM, including
+    the storage of keys, policies, and other sensitive
+    data. This involves managing the non-volatile memory
+    and ensuring that the data is securely stored and
+    protected against unauthorized access.
+\end{itemize}
 
+The TPM commands are the interface through which the
+TPM interacts with the host system. Each command is
+defined by a specific structure and set of parameters,
+as defined by the TPM specification of the communication
+protocol. 
 
+\section{QEMU Implementation}
+    The basic board is a custom ARM board developed to emulate a NXP board. The peripheral will be emulated along this board. 
+    The custom TPM was implemented as a standard peripheral device within QEMU, interfacing with the microcontroller via a memory-mapped bus. 
+    The module is designed to operate in parallel with the main system, simulating the behavior of a hardware TPM as closely as possible. 
+    This includes replicating the internal state transitions, initialization sequence, and command-response protocol typical of a real TPM device.
+    Although integrated as a memory-mapped device, the TPM uses a serial-like communication protocol to receive and transmit data. To maintain the behavior of a real TPM.
+    So a serial protocol was used. The device expects to receive data in a certain order, the same data and the same order as a real TPM and in the same way it does for the response.
+    The peripheral adheres to a simplified model of the TPM 2.0 architecture.
+
+    \subsection{Serial protocol}
+        The TPM communicates using a byte-wise serial protocol. The firmware sends command packets one byte at a time, which the TPM receives and parses sequentially.
+        Each command is reconstructed according to the TPM 2.0 command buffer format, using little-endian byte order for multi-byte fields.
+        Each command must begin with a standard TPM header, which includes a tag, total size, and command code. 
+        Based on the command code, the TPM determines how to interpret the remaining payload, which varies depending on the specific command. 
+        Throughout the parsing process, the TPM validates the size of the command payload against the expected size. 
+        If there is a mismatch, an error code is returned immediately, halting further processing.
+        The response is constructed in a similar manner: once command processing is complete, the TPM generates a response buffer with a corresponding header and payload. 
+        The firmware is expected to read the response only after the complete message has been sent by the TPM.
+    
+    \subsection{Implemented Functionalities}
+        The core functionality of our implementation revolves around RSA key generation and basic cryptographic operations. 
+        The TPM supports a minimal but representative set of TPM 2.0-style commands, specifically:
+        \begin{itemize}
+            \item \textbf{CreatePrimary}: Initializes a primary RSA key in the TPM hierarchy, serving as the root of trust for further operations.
+            \item \textbf{RSA\_Encrypt}: Encrypts input data using the loaded RSA public key.
+            \item \textbf{RSA\_Decrypt}: Decrypts input data using the corresponding RSA private key stored securely within the TPM.
+        \end{itemize}
+
+        To ensure a similar initialization sequence other functionalities have been introduced:
+        \begin{itemize}
+            \item \textbf{Startup}: Initializes the TPM module by resetting its internal state, clearing any existing keys, and preparing it for command processing.            
+            \item \textbf{SelfTest}: Performs a minimal self-check to verify that communication between the microcontroller and the TPM is functioning correctly.
+            \item \textbf{Shutdown}: Transitions the TPM to an "off" state, requiring a subsequent \texttt{Startup} command before accepting further operations. This mimics the behavior of a real TPM during system shutdown or reset.
+        \end{itemize}
 
 \section{Firmware}
+The firmware implementation is crucial for the TPM's 
+functionality, as it manages the interaction between 
+the hardware and the software layers. 
+
+The firmware is responsible for executing the TPM commands, 
+managing the cryptographic operations, 
+and maintaining the internal state of the TPM.
+It is designed to be efficient and secure, ensuring that
+the TPM can perform its functions without exposing
+sensitive data or being vulnerable to attacks.
+
+The firmware is implemented in C and is structured into 
+several files, each handling specific aspects of the TPM's
+functionality. The main components of the firmware include:
+\begin{itemize}
+    \item \textbf{main.c:} The entry point of the firmware,
+    which initializes the TPM and starts the command
+    processing loop.
+    \item \textbf{tpm.c (tpm.h):} Contains the core logic for
+    processing TPM commands, including parsing the
+    command structure, validating parameters, and
+    executing the corresponding operations.
+    \item \textbf{uart.c (uart.h):} Handles the UART communication
+    between the TPM and the host system, ensuring that
+    commands are received and responses are sent correctly.
+\end{itemize}
+
+
+\subsection{main.c}
+
+The \texttt{main.c} file serves as the entry point for 
+the TPM firmware. Its primary responsibilities are to 
+initialize the TPM device, execute a sequence of TPM 
+commands, and manage communication with the host system 
+via UART. 
+
+The main steps performed in \texttt{main.c} are:
+
+\begin{itemize}
+    \item \textbf{Initialization:} The UART interface is 
+    initialized for communication, and the TPM device 
+    structure is set up.
+    \item \textbf{Startup and Self-Test:} The TPM is 
+    started and a self-test is performed to verify its 
+    integrity and functionality.
+    \item \textbf{Key Management:} A primary key is 
+    created for cryptographic operations.
+    \item \textbf{Cryptographic Operations:} The firmware 
+    demonstrates encryption and decryption using RSA, 
+    showing how data can be securely processed within 
+    the TPM.
+    \item \textbf{Shutdown:} The TPM is properly shut 
+    down to ensure all sensitive operations are 
+    terminated securely.
+    \item \textbf{Status Reporting:} Throughout the 
+    process, status messages are sent to the host 
+    via UART to indicate progress and results.
+\end{itemize}
+
+This structure ensures that the TPM firmware can reliably 
+process commands, manage keys, and perform cryptographic 
+operations while maintaining secure communication with 
+the host system.
+
+
+\subsection{tpm.c}
+
+The \texttt{tpm.c} file contains the core logic for 
+processing TPM commands and managing the TPM device state.
+
+It provides functions for sending commands to the TPM, 
+receiving responses, and handling cryptographic operations 
+such as key creation, encryption, and decryption. 
+
+The main responsibilities of \texttt{tpm.c} are:
+
+\begin{itemize}
+    \item \textbf{TPM Initialization:} Functions to 
+    initialize the TPM device and set its state,
+    ensuring it is ready to process commands.
+    \item \textbf{Command Communication:} Routines to 
+    send commands to the TPM and receive responses, 
+    with integrated UART logging for debugging and 
+    monitoring.
+    \item \textbf{Specific Command Implementations:} For 
+    each TPM command (e.g., Startup, Self Test, Create 
+    Primary, RSA\_Encrypt, RSA\_Decrypt, Shutdown),
+    dedicated functions are provided. These functions 
+    construct and initialize the corresponding command 
+    and response structures as defined in \texttt{tpm.h}, 
+    ensuring correct formatting and parameter handling 
+    for each operation.
+\end{itemize}
+
+The \texttt{tpm.c} file is essential for the TPM's
+functionality, as it encapsulates the logic for command
+processing and cryptographic operations while ensuring
+that the TPM adheres to the specifications defined in
+the TPM standard. 
+
+It is designed to be modular and
+extensible, allowing for future enhancements and
+additional commands to be easily integrated.
+
+\subsubsection{tpm.h}
+The \texttt{tpm.h} file defines the data structures and
+constants used in the TPM firmware. It serves as a
+header file that provides the necessary definitions
+for the TPM commands, response structures, and
+cryptographic parameters used throughout the firmware.
+
+It includes definitions for:
+\begin{itemize}
+    \item \textbf{Command Codes:} Constants representing 
+    the various TPM commands, such as 
+    \texttt{TPM2\_CC\_Startup}, 
+    \texttt{TPM2\_CC\_CreatePrimary}, and others.
+    \item \textbf{Memory Regions:} Definitions for the 
+    base address and size of the TPM peripheral memory 
+    region, allowing for direct memory-mapped I/O access.
+    \item \textbf{Startup Types:} Defines the startup 
+    modes for the TPM, such as \texttt{TPM\_SU\_CLEAR} 
+    and \texttt{TPM\_SU\_STATE}, which determine how 
+    the TPM initializes its state.
+    \item \textbf{Structure Tags:} Specifies tags 
+    for TPM command and response structures, 
+    including \texttt{TPM\_ST\_NO\_SESSION}, 
+    \texttt{TPM\_ST\_SESSION}, used to 
+    identify the type of TPM structure being processed.
+    \item \textbf{Data Structures:} Definitions for the 
+    various data structures used in TPM commands and 
+    responses, including for example 
+    \texttt{tpm\_createPrimary\_command}, 
+    \texttt{tpm\_createPrimary\_response}, and others.
+    \item \textbf{Response Codes:} Definitions for the 
+    response codes used by the TPM to indicate success 
+    or failure of operations.
+\end{itemize}
+This file is crucial for ensuring that the firmware
+can correctly interpret and construct the TPM command
+and response structures, as well as manage the
+cryptographic operations required by the TPM.
+
+
+\subsection{uart.c}
+The \texttt{uart.c} file implements the UART
+communication functions used by the TPM firmware to 
+exchange data with the host system. It provides routines
+for initializing the UART interface, sending characters 
+and strings, and printing data in hexadecimal format
+for debugging and status reporting purposes. The main
+functions in \texttt{uart.c} include:
+\begin{itemize}
+    \item \textbf{UART\_init:} Initializes the UART 
+    interface, setting the baud rate and enabling the 
+    UART controller.
+    \item \textbf{UART\_putstr:} Sends a null-terminated 
+    string over UART, character by character.
+    \item \textbf{UART\_putc:} Sends a single character 
+    over UART, waiting for the transmit buffer to be 
+    ready.
+    \item \textbf{UART\_println:} Sends a newline character 
+    to indicate the end of a line in the output.
+    \item \textbf{UART\_puthex:} Converts a 32-bit value 
+    to its hexadecimal representation and sends it over 
+    UART.
+    \item \textbf{UART\_puthex\_byte:} Converts an 8-bit 
+    value to its hexadecimal representation and sends it 
+    over UART.
+    \item \textbf{UART\_puthex\_2byte:} Converts a 16-bit 
+    value to its hexadecimal representation and sends it 
+    over UART.
+    \item \textbf{UART\_putdigit:} Sends a single digit 
+    (0-9) as a character over UART.
+\end{itemize}
+
+These functions ensure reliable communication between the 
+TPM and the host, supporting both textual and hexadecimal 
+output for monitoring and debugging purposes.
+
+\subsubsection{uart.h}
+The \texttt{uart.h} file provides the interface and 
+definitions for UART communication used in the TPM 
+firmware: it includes register definitions for the UART 
+hardware and declares the functions implemented 
+in \texttt{uart.c}.
+
+This header ensures that the UART functions are accessible 
+throughout the firmware, enabling reliable communication 
+between the TPM and the host system.
