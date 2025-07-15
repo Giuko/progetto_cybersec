@@ -1,0 +1,52 @@
+Giuko (35):
+      Basic board
+      Update README.md
+      Update README.md
+      Update README.md
+      UART (lp011_luminary)  working on board, basic driver written
+      Merge branch 'main' of https://github.com/Giuko/progetto_cybersec
+      Move large files to Git LFS
+      TPM 2.0 base added
+      Execution chain of swtpm for WLS
+      Updated Makefile
+      modified tpm, updated firmware
+      commit to sync
+      commit to sync
+      Amplied custom_tpm.c, writed little software
+      Fix sending command, receiving command, added asynchrousity to the board
+      Added makefile init
+      Key command chain finished, added CreatePrimaryKey (not complete, not really working)
+      Real key pair generation added
+      Updated README
+      Removed LFS to manage big files
+      Updated firmware, added creation primary key
+      Added basic crypto operation
+      added .gitignore
+      Debug rsa key generation
+      Fixed RSA alg
+      Updated RSA alg
+      Changed RSA generation approach
+      Changed RSA generation approach
+      RSA key generation working
+      SSL working on Create, CreatePrimary, Encrypt, Decrypt
+      Creating function to manage command and response (only create primary command creation done)
+      Creating function to manage command and response (create and encrypt done)
+      Fix issue on create primary
+      Basic function correct behavior
+      Trying to improve create command
+
+SilviaB24 (3):
+      fix: tpm.h compilation errors, start working on main.c
+      feat: basic version of commands, to be fixred
+      fix: minor fixes
+
+s333945 (1):
+      Added basic header for functions of tpm
+
+silviaB24 (5):
+      start command header validation
+      Merge branch 'main' of https://github.com/Giuko/progetto_cybersec
+      dumb TPM write
+      Merge branch 'main' of https://github.com/Giuko/progetto_cybersec
+      dumb write compiling
+
