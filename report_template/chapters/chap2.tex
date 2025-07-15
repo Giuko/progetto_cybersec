@@ -2,8 +2,7 @@
 \chapter{Implementation}
 \label{chap2}
 
-The implementation of the Trusted Platform Module (TPM) involves 
-the development of both hardware and firmware components.
+The implementation of the Trusted Platform Module (TPM) involves the development of both hardware and firmware components.
 
 The implementation of the Trusted Platform Module (TPM) 
 requires the coordinated development of hardware and 
@@ -107,6 +106,7 @@ protocol.
         Finally, we implemented an internal \texttt{qemu\_verify\_integrity()} function that validates the correctness of the RSA pipeline by encrypting and decrypting a test message. 
         This self-test step ensures proper functioning of the OpenSSL-based cryptographic backend.
 
+
 \section{Firmware}
 The firmware implementation is crucial for the TPM's 
 functionality, as it manages the interaction between 
@@ -119,8 +119,11 @@ It is designed to be efficient and secure, ensuring that
 the TPM can perform its functions without exposing
 sensitive data or being vulnerable to attacks.
 
-The firmware is implemented in C and is structured into 
-several files, each handling specific aspects of the TPM's
+The firmware is implemented in C as a bare-metal application, 
+meaning it runs directly on the hardware without an operating system. 
+
+It is structured into several files, each handling specific aspects 
+of the TPM's
 functionality. The main components of the firmware include:
 \begin{itemize}
     \item \textbf{main.c:} The entry point of the firmware,
@@ -255,9 +258,11 @@ cryptographic operations required by the TPM.
 \subsection{uart.c}
 The \texttt{uart.c} file implements the UART
 communication functions used by the TPM firmware to 
-exchange data with the host system. It provides routines
-for initializing the UART interface, sending characters 
-and strings, and printing data in hexadecimal format
+exchange data with the host system. Since the firmware runs 
+on a bare-metal system without an operating system, a dedicated 
+UART module is required to handle all serial communication directly 
+with the hardware. It provides routines for initializing the UART interface, 
+sending characters and strings, and printing data in hexadecimal format
 for debugging and status reporting purposes. The main
 functions in \texttt{uart.c} include:
 \begin{itemize}
@@ -298,3 +303,5 @@ in \texttt{uart.c}.
 This header ensures that the UART functions are accessible 
 throughout the firmware, enabling reliable communication 
 between the TPM and the host system.
+
+
