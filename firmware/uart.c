@@ -59,3 +59,26 @@ void UART_puthex_2byte(uint16_t value){
 void UART_putdigit(uint8_t digit){
     UART_putc(digit+48);
 }
+
+char UART_getc(void){
+   while(UART0_FLAGREG & UART_F_RXFE);
+   return (char)(UART0_DATA);
+}
+
+void UART_gets(char *s, int maxlen){
+    int i = 0;
+    char c;
+    while(i < maxlen-1){
+        c = UART_getc();
+        // Echo
+        UART_putc(c);
+
+        if(c == '\r' || c == '\n'){
+            break;
+        }
+
+        s[i++] = c;
+    }
+    s[i] = '\0';
+    UART_putc('\n');
+}

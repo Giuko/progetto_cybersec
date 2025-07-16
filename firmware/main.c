@@ -1,6 +1,7 @@
 #include "uart.h"
 #include "tpm.h"
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -11,7 +12,9 @@ int main(void) {
     UART_putstr("Initializing TPM...\n");
     tpm_init(&tpm, (void*)TPM_BASE_ADDRESS);
     log_tpm_status(&tpm);
-    
+     
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*                  Startup                              */
 
@@ -23,6 +26,8 @@ int main(void) {
     }
 
     
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*                  Self test                            */
 
@@ -33,6 +38,8 @@ int main(void) {
     }
 
     
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*              Create Primary                           */
 
@@ -43,24 +50,30 @@ int main(void) {
     UART_puthex(primary_handle);
     UART_println();
 
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*                     Create                            */
-
+/*
     keyBits = 2048;
     struct tpm_create_response *create_response = create(&tpm, primary_handle, keyBits);
     UART_putstr("Created key with handle, private size: ");
     UART_puthex(create_response->outPrivate.size);
     UART_println();
-
+*/
     
 
     /* ***************************************************** */
     /*                 RSA_Ecrypt                            */
    
-    char text[] = "This is a text";
-    size_t text_size = sizeof(text);
+    char text[100];
+    UART_putstr("Write something to be Encrypted\n>> ");
+    UART_gets(text, 100);
+    size_t text_size = strlen(text);
     struct TMP_RSA_encrypt_response *enc_response = encrypt(&tpm, primary_handle, text, text_size);
     
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*                 RSA_Decrypt                           */
 
@@ -75,6 +88,8 @@ int main(void) {
         UART_println();
     } 
     
+    UART_putstr("\n\nPress one key to continue...\n");
+    UART_getc();
     /* ***************************************************** */
     /*                   Shutdown                            */
 

@@ -1757,8 +1757,8 @@ static void custom_tpm_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsig
                 printf("[TPM]: Triggering command execution\n");
                 s->command_pos = 0;
                 s->processing = true;
-                //qemu_bh_schedule(s->command_bh);
-                process_command(s);
+                qemu_bh_schedule(s->command_bh);
+                //process_command(s);
             }
             break;
         case A_TPM_DATA_FIFO:

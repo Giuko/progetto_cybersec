@@ -110,7 +110,7 @@ RSAKeyPair *qemu_generate_rsa_key(int key_bits){
     printf("[TPM] Public key size: %zu bytes\n", keypair->public_key_len);
     printf("[TPM] Private key size: %zu bytes\n", keypair->private_key_len);
     
-    // print_rsa_key_pem(keypair->pkey);
+    print_rsa_key_pem(keypair->pkey);
  
     if(!qemu_verify_integrity(keypair)){
         printf("Verification failed\n");
