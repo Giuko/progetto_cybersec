@@ -6,8 +6,8 @@
 
 **Core board and peripheral setup:**
 
-* [`qemu/hw/arm/nxps32k3x8evb.c`](./ qemu/hw/arm/nxps32k3x8evb.c) — Base board definition and peripheral connections
-* [`qemu/hw/arm/nxps32k3x8evb_mcu.c`](qemu/hw/arm/nxps32k3x8evb_mcu.c) — MCU-specific implementation
+* [`qemu/hw/arm/nxps32k3x8evb.c`](./qemu/hw/arm/nxps32k3x8evb.c) — Base board definition and peripheral connections
+* [`qemu/hw/arm/nxps32k3x8evb_mcu.c`](./qemu/hw/arm/nxps32k3x8evb_mcu.c) — MCU-specific implementation
 
 **Custom TPM implementation:**
 
