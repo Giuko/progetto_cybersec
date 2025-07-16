@@ -6,16 +6,16 @@
 
 **Core board and peripheral setup:**
 
-* `qemu/hw/arm/nxps32k3x8evb.c` — Base board definition and peripheral connections
-* `qemu/hw/arm/nxps32k3x8evb_mcu.c` — MCU-specific implementation
+* [`qemu/hw/arm/nxps32k3x8evb.c`](./ qemu/hw/arm/nxps32k3x8evb.c) — Base board definition and peripheral connections
+* [`qemu/hw/arm/nxps32k3x8evb_mcu.c`](qemu/hw/arm/nxps32k3x8evb_mcu.c) — MCU-specific implementation
 
 **Custom TPM implementation:**
 
-* `qemu/hw/arm/custom_tpm.c` — TPM logic and core implementation
-* `qemu/hw/arm/tpm_command_handler.h` — TPM command structure definitions
-* `qemu/hw/arm/tpm_types.h` — TPM specification types and constants
-* `qemu/hw/arm/tpm_basic_crypto_rsa.c` — RSA cryptographic operations for TPM
-* `qemu/hw/arm/tpm_basic_crypto_rsa.h` — Header file for RSA crypto functions
+* [`qemu/hw/arm/custom_tpm.c`](./qemu/hw/arm/custom_tpm.c) — TPM logic and core implementation
+* [`qemu/hw/arm/tpm_command_handler.h`](./qemu/hw/arm/tpm_command_handler.h) — TPM command structure definitions
+* [`qemu/hw/arm/tpm_types.h`](./qemu/hw/arm/tpm_types.h) — TPM specification types and constants
+* [`qemu/hw/arm/tpm_basic_crypto_rsa.c`](./qemu/hw/arm/tpm_basic_crypto_rsa.c) — RSA cryptographic operations for TPM
+* [`qemu/hw/arm/tpm_basic_crypto_rsa.h`](./qemu/hw/arm/tpm_basic_crypto_rsa.h) — Header file for RSA crypto functions
 
 ---
 
@@ -23,16 +23,16 @@
 
 **Bare-metal setup (firmware):**
 
-* `firmware/linker.ld` — Linker script
-* `firmware/startup.s` — Startup assembly code
-* `firmware/syscall.c` — System call stubs
-* `firmware/tpm.c` — TPM communication logic
-* `firmware/tpm.h` — TPM interface and definitions
+* [`firmware/linker.ld`](./firmware/linker.ld) — Linker script
+* [`firmware/startup.s`](./firmware/startup.s)— Startup assembly code
+* [`firmware/syscall.c`](./firmware/syscall.c) — System call stubs
+* [`firmware/tpm.c`](./firmware/tpm.c) — TPM communication logic
+* [`firmware/tpm.h`](./firmware/tpm.h) — TPM interface and definitions
 
 **TPM driver code:**
 
-* `firmware/tpm.c` — TPM driver implementation
-* `firmware/tpm.h` — TPM driver interface
+* [`firmware/tpm.c`](./firmware/tpm.c) — TPM driver implementation
+* [`firmware/tpm.h`](./firmware/tpm.h) — TPM driver interface
 
 ---
 
