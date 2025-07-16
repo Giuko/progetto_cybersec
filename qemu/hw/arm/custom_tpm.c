@@ -54,7 +54,7 @@ typedef enum{
     TPM_STATE_READY
 } TPMInternalState;
 
-#define MAX_KEYS 4
+#define MAX_KEYS 10
 #define KEY_HANDLE_BASE 0x81000000          // A generic (simplied) key handle base for everything
 
 struct CustomTPMState {

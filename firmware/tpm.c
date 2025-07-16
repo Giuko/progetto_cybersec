@@ -15,6 +15,38 @@ void tpm_init(struct tpm_device *dev, void *base_address){
     mmio_write8(dev->mmio_base+TPM_STS, TPM_STS_CMD_READY|TPM_STS_VALID);
 }
 
+void error_handling(int err_code){
+    UART_putstr("TPM Error [0x");
+    UART_puthex(err_code);
+    UART_putstr("]: ");
+
+    switch (err_code) {
+        case TPM_RC_ASYMMETRIC:
+            UART_putstr("Asymmetric algorithm not supported or incorrect.");
+            break;
+        case TPM_RC_VALUE:
+            UART_putstr("Bad parameter value.");
+            break;
+        case TPM_RC_HANDLE:
+            UART_putstr("Invalid TPM handle.");
+            break;
+        case TPM_RC_SIZE:
+            UART_putstr("Incorrect structure size.");
+            break;
+        case TPM_RC_INITIALIZE:
+            UART_putstr("TPM not initialized.");
+            break;
+        case TPM_RC_FAILURE:
+            UART_putstr("TPM internal failure (e.g., out of memory).");
+            break;
+        default:
+            UART_putstr("Unknown error code.");
+            break;
+    }
+
+    UART_println();    
+}
+
 static int wait_for_status(struct tpm_device *dev, uint8_t mask, uint8_t value){
     int timeout = 50;       // Simulating waiting for peripheral
     while(timeout-- > 0){
@@ -221,9 +253,11 @@ struct tpm_createPrimary_response* createPrimary(struct tpm_device *tpm, uint16_
     tpm_receive_response_with_log(tpm, createPrimary_response, sizeof(struct tpm_create_response));
     
     if(createPrimary_response->response_header.response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(createPrimary_response->response_header.response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(createPrimary_response->response_header.response_code);
+        // UART_putstr(")\n");
+        
+        error_handling(createPrimary_response->response_header.response_code);
         return NULL;
     }
     
@@ -299,9 +333,10 @@ struct tpm_create_response* create(struct tpm_device *tpm, uint32_t parent_handl
     tpm_receive_response_with_log(tpm, create_response, sizeof(struct tpm_create_response));
     
     if(create_response->response_header.response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(create_response->response_header.response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(create_response->response_header.response_code);
+        // UART_putstr(")\n");
+        error_handling(create_response->response_header.response_code);
         return NULL;
     }
     
@@ -347,9 +382,10 @@ struct TMP_RSA_encrypt_response* encrypt(struct tpm_device *tpm, uint32_t key_ha
     tpm_receive_response_with_log(tpm, RSA_enc_response, sizeof(struct TMP_RSA_encrypt_response));
     
     if(RSA_enc_response->response_header.response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(RSA_enc_response->response_header.response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(RSA_enc_response->response_header.response_code);
+        // UART_putstr(")\n");
+        error_handling(RSA_enc_response->response_header.response_code);
         return NULL;
     }
 
@@ -395,9 +431,10 @@ struct TMP_RSA_decrypt_response* decrypt(struct tpm_device *tpm, uint32_t key_ha
     tpm_receive_response_with_log(tpm, RSA_dec_response, sizeof(struct TMP_RSA_decrypt_response));
     
     if(RSA_dec_response->response_header.response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(RSA_dec_response->response_header.response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(RSA_dec_response->response_header.response_code);
+        // UART_putstr(")\n");
+        error_handling(RSA_dec_response->response_header.response_code);
         return NULL;
     }
 
@@ -429,9 +466,10 @@ struct tpm_response_header* startup(struct tpm_device *tpm){
     tpm_receive_response_with_log(tpm, startup_response, sizeof(struct tpm_response_header));
     
     if( startup_response->response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(startup_response->response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(startup_response->response_code);
+        // UART_putstr(")\n");
+        error_handling(startup_response->response_code);
         return NULL;
     }
 
@@ -459,9 +497,10 @@ struct tpm_response_header* selfTest(struct tpm_device *tpm){
     tpm_receive_response_with_log(tpm, selftest_response, sizeof(struct tpm_response_header));
     
     if( selftest_response->response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(selftest_response->response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(selftest_response->response_code);
+        // UART_putstr(")\n");
+        error_handling(selftest_response->response_code);
         return NULL;
     }
 
@@ -491,9 +530,10 @@ struct TMP_shutdown_response* shutdown(struct tpm_device *tpm){
     tpm_receive_response_with_log(tpm, shutdown_response, sizeof(struct TMP_shutdown_response));
     
     if( shutdown_response->response_header.response_code != 0){
-        UART_putstr("Error code received (0x");
-        UART_puthex(shutdown_response->response_header.response_code);
-        UART_putstr(")\n");
+        // UART_putstr("Error code received (0x");
+        // UART_puthex(shutdown_response->response_header.response_code);
+        // UART_putstr(")\n");
+        error_handling(shutdown_response->response_header.response_code);
         return NULL;
     }
 
